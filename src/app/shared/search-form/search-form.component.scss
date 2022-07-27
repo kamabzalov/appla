@@ -1,0 +1,21 @@
+@use "~assets/scss/vars";
+
+:host {
+  display: flex;
+  width: 100%;
+
+  .search-form {
+    width: 100%;
+
+    &__input {
+      border-radius: vars.$base-size * 5 0 0 vars.$base-size * 5;
+    }
+
+    &__icon {
+      border-radius: 0 vars.$base-size * 5 vars.$base-size * 5 0;
+      background: vars.$yellow-orange;
+      border: 1px solid vars.$yellow-orange;
+      cursor: pointer;
+    }
+  }
+}

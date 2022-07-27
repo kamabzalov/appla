@@ -1,0 +1,21 @@
+@use "~assets/scss/vars";
+
+.header {
+  &__controls {
+    background: vars.$steel-blue;
+
+    &-link {
+      color: vars.$white;
+
+      &:hover {
+        color: vars.$yellow-orange;
+      }
+    }
+
+    &-logo {
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }
+}

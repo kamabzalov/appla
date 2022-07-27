@@ -1,0 +1,67 @@
+@use "vars";
+
+@mixin make-margins {
+  @for $i from 0 through 100 {
+    $i: $i * vars.$base-size;
+    .m-t-#{$i} {
+      margin-top: $i !important;
+    }
+    .m-r-#{$i} {
+      margin-right: $i !important;
+    }
+    .m-b-#{$i} {
+      margin-bottom: $i !important;
+    }
+    .m-l-#{$i} {
+      margin-left: $i !important;
+    }
+    .m-#{$i} {
+      margin: $i !important;
+    }
+  }
+
+  .m-t-auto {
+    margin-top: auto !important;
+  }
+
+  .m-r-auto {
+    margin-right: auto !important;
+  }
+
+  .m-b-auto {
+    margin-bottom: auto !important;
+  }
+
+  .m-l-auto {
+    margin-left: auto !important;
+  }
+}
+
+@mixin make-paddings {
+  @for $i from 0 through 100 {
+    $i: $i * vars.$base-size;
+    .p-t-#{$i} {
+      padding-top: $i !important;
+    }
+    .p-r-#{$i} {
+      padding-right: $i !important;
+    }
+    .p-b-#{$i} {
+      padding-bottom: $i !important;
+    }
+    .p-l-#{$i} {
+      padding-left: $i !important;
+    }
+    .p-#{$i} {
+      padding: $i !important;
+    }
+  }
+}
+
+@mixin make-container($padding-x: vars.$base-size * 7) {
+  max-width: 1176px;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}

@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@use "assets/scss/vars";
+@use "assets/scss/mixins";
+
+@include mixins.make-margins;
+@include mixins.make-paddings;
+
+body {
+  font-size: vars.$base-size * 3 !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+
+.appla-container {
+  @include mixins.make-container;
+}
