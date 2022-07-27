@@ -12,6 +12,13 @@ a {
   text-decoration: none !important;
 }
 
+input {
+  &:focus {
+    box-shadow: none !important;
+    border: none;
+  }
+}
+
 
 .appla-container {
   @include mixins.make-container;

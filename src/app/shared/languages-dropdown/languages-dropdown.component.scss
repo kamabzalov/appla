@@ -1,0 +1,36 @@
+@use "~assets/scss/vars";
+
+.languages-menu {
+
+  &__toggle {
+    &:after {
+      content: unset;
+    }
+
+    &:hover, &:focus {
+      border-color: transparent;
+    }
+  }
+
+  &__icon {
+    width: vars.$base-size * 8;
+    height: vars.$base-size * 8;
+    border-radius: 50%;
+  }
+
+  .icon-dropdown {
+    width: vars.$base-size * 5;
+    height: vars.$base-size * 5;
+    border-radius: vars.$base-size;
+  }
+
+  &.dropdown {
+    .dropdown-menu {
+      border-radius: vars.$base-size * 5;
+
+      & .dropdown-item {
+        padding: vars.$base-size * 3 vars.$base-size * 4;
+      }
+    }
+  }
+}
