@@ -18,4 +18,28 @@
       }
     }
   }
+
+  .login-actions {
+
+
+    &__login {
+      color: vars.$white;
+      border-color: vars.$yellow-orange;
+      border-radius: vars.$base-size * 5;
+      padding: vars.$base-size * 2 vars.$base-size * 5;
+      font-size: 11px;
+
+      &:hover {
+        background: vars.$yellow-orange;
+      }
+    }
+
+    &__sign {
+      color: vars.$white;
+      background: vars.$yellow-orange;
+      border-radius: vars.$base-size * 5;
+      padding: vars.$base-size * 2 vars.$base-size * 5;
+      font-size: 11px;
+    }
+  }
 }

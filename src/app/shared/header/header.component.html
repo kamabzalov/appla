@@ -1,7 +1,7 @@
 <header class="header">
 	<section class="header__controls p-t-16px p-b-16px">
 		<div class="appla-container">
-			<div class="row">
+			<div class="row align-items-center">
 				<div class="col-md-1 col-sm-1 p-0px">
 					<a class="header__controls-link header__controls-logo" href="/">
 						<img src="/assets/images/appla.svg" alt="Appla">
@@ -22,8 +22,13 @@
 				<div class="d-flex col-md-3 col-sm-3">
 					<div class="row">
 						<div class="d-flex col-md-12">
-							<div class="d-flex">
+							<div class="d-flex align-items-center">
 								<appla-languages-dropdown></appla-languages-dropdown>
+								<appla-cart-widget class="m-r-12px"></appla-cart-widget>
+								<div class="d-flex login-actions">
+									<button class="btn btn-outline-primary login-actions__login">Login</button>
+									<a href="/account/register" class="btn btn-primary login-actions__sign">Sign Up </a>
+								</div>
 							</div>
 						</div>
 					</div>
