@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { faFacebook, faTwitter, faInstagram, faLinkedin, faYoutube, faTiktok } from "@fortawesome/free-brands-svg-icons";
+
 
 @Component({
   selector: 'appla-footer',
@@ -6,11 +8,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent{
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  facebook = faFacebook;
+  faTwitter = faTwitter;
+  faInstagram = faInstagram;
+  faLinkedin = faLinkedin;
+  faYoutube = faYoutube;
+  faTiktok = faTiktok;
 }
