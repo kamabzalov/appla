@@ -1,10 +1,15 @@
 @use "assets/scss/vars";
 @use "assets/scss/mixins";
+@use "assets/scss/fonts";
 
 @include mixins.make-margins;
 @include mixins.make-paddings;
 
 body {
+  background: vars.$ghost-white;
+  color: rgba(49, 53, 59, 0.96);
+  font-weight: 400;
+  font-family: Poppins, Helvetica, "sans-serif";
   font-size: vars.$base-size * 3 !important;
 }
 
