@@ -7,6 +7,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { LanguagesDropdownComponent } from './languages-dropdown/languages-dropdown.component';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { CartWidgetComponent } from './cart-widget/cart-widget.component';
+import { NavigationComponent } from './header/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CartWidgetComponent } from './cart-widget/cart-widget.component';
     SearchFormComponent,
     LanguagesDropdownComponent,
     CartWidgetComponent,
+    NavigationComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { CartWidgetComponent } from './cart-widget/cart-widget.component';
     FooterComponent,
     SearchFormComponent,
     LanguagesDropdownComponent,
-    CartWidgetComponent
+    CartWidgetComponent,
+    NavigationComponent,
   ]
 })
 export class SharedModule {

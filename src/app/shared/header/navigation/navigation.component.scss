@@ -1,0 +1,11 @@
+@use "~assets/scss/vars" as vars;
+
+.navigation {
+  background: vars.$dazzled-blue;
+
+  &-list {
+    &__item {
+      color: vars.$white;
+    }
+  }
+}
