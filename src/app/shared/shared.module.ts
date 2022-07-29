@@ -8,6 +8,7 @@ import { LanguagesDropdownComponent } from './languages-dropdown/languages-dropd
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { CartWidgetComponent } from './cart-widget/cart-widget.component';
 import { NavigationComponent } from './header/navigation/navigation.component';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NavigationComponent } from './header/navigation/navigation.component';
     LanguagesDropdownComponent,
     CartWidgetComponent,
     NavigationComponent,
+    SliderComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ import { NavigationComponent } from './header/navigation/navigation.component';
     LanguagesDropdownComponent,
     CartWidgetComponent,
     NavigationComponent,
+    SliderComponent,
   ]
 })
 export class SharedModule {

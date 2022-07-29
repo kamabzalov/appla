@@ -3,6 +3,10 @@
 .footer {
   background: vars.$azureish-white;
 
+  &-benefits {
+    border-bottom: 1px solid vars.$lavender-gray;
+  }
+
   &-benefit {
     border-right: 1px solid vars.$lavender-gray;
 
@@ -29,7 +33,6 @@
   &-separator {
     height: 1px;
     background: vars.$lavender-gray;
-    width: 92%;
     border: none;
   }
 
