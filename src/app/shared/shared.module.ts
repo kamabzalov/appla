@@ -9,6 +9,8 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { CartWidgetComponent } from './cart-widget/cart-widget.component';
 import { NavigationComponent } from './header/navigation/navigation.component';
 import { SliderComponent } from './slider/slider.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselModule } from "ngx-owl-carousel-o";
 
 @NgModule({
   declarations: [
@@ -19,11 +21,13 @@ import { SliderComponent } from './slider/slider.component';
     CartWidgetComponent,
     NavigationComponent,
     SliderComponent,
+    CarouselComponent,
   ],
   imports: [
     CommonModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CarouselModule,
   ],
   exports: [
     NgbModule,
@@ -35,6 +39,7 @@ import { SliderComponent } from './slider/slider.component';
     CartWidgetComponent,
     NavigationComponent,
     SliderComponent,
+    CarouselComponent
   ]
 })
 export class SharedModule {

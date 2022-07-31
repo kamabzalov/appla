@@ -41,6 +41,10 @@
       border-color: vars.$yellow-orange;
       padding: vars.$base-size * 2 vars.$base-size * 5;
       font-size: 11px;
+
+      &:hover {
+        background: transparent;
+      }
     }
   }
 }
