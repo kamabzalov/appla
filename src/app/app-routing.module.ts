@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'Search',
+    loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
   }
 ];
 

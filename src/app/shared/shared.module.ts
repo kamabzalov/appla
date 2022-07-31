@@ -12,6 +12,7 @@ import { SliderComponent } from './slider/slider.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselModule } from "ngx-owl-carousel-o";
 import { AdvertiseBannerComponent } from './advertise-banner/advertise-banner.component';
+import { PreviewCardComponent } from './preview-card/preview-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AdvertiseBannerComponent } from './advertise-banner/advertise-banner.co
     SliderComponent,
     CarouselComponent,
     AdvertiseBannerComponent,
+    PreviewCardComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +45,7 @@ import { AdvertiseBannerComponent } from './advertise-banner/advertise-banner.co
     SliderComponent,
     CarouselComponent,
     AdvertiseBannerComponent,
+    PreviewCardComponent,
   ]
 })
 export class SharedModule {

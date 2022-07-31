@@ -1,0 +1,22 @@
+@use "~assets/scss/vars" as vars;
+
+.preview-card {
+  padding: 10px;
+  border: solid 0 vars.$water;
+  box-shadow: 0 0 4px 2px rgb(49 53 59 / 12%);
+  border-radius: 20px;
+  background-color: white;
+
+  &__image {
+    border: solid 1px vars.$water;
+    border-radius: 20px;
+    padding: 0;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+  }
+
+  &__price {
+    color: vars.$yellow-orange;
+  }
+}
