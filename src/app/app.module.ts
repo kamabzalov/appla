@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { TileComponent } from "./home/tile/tile.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    TileComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
