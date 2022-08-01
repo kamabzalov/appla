@@ -1,6 +1,7 @@
 @use "assets/scss/vars";
 @use "assets/scss/mixins";
 @use "assets/scss/fonts";
+@use "assets/scss/forms";
 
 @include mixins.make-margins;
 @include mixins.make-paddings;

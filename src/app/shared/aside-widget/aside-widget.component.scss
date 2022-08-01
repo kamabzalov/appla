@@ -1,0 +1,25 @@
+@use "~assets/scss/vars" as vars;
+
+.aside-widget {
+  background-color: vars.$white;
+
+  &__head {
+    border-bottom: 1px solid vars.$water;
+  }
+
+  &__toggle {
+    font-weight: 700;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+  }
+
+  &__icon {
+    background-color: vars.$yellow-orange;
+    color: vars.$white;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+  }
+}

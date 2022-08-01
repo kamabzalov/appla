@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'appla-search-form',
@@ -8,7 +9,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class SearchFormComponent implements OnInit {
 
-  constructor() { }
+  faSearch = faMagnifyingGlass
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

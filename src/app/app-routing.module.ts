@@ -10,6 +10,14 @@ const routes: Routes = [
   {
     path: 'Search',
     loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
+  },
+  {
+    path: 'category',
+    loadChildren: () => import('./shop-category/shop-category.module').then(m => m.ShopCategoryModule)
+  },
+  {
+    path: 'product',
+    loadChildren: () => import('./shop-product/shop-product.module').then(m => m.ShopProductModule)
   }
 ];
 

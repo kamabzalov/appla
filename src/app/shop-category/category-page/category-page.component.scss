@@ -1,0 +1,16 @@
+@use "~assets/scss/vars" as vars;
+
+.form-price {
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: vars.$yellow-orange;
+    color: vars.$white;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+  }
+}
