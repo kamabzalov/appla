@@ -14,6 +14,13 @@ import { CarouselModule } from "ngx-owl-carousel-o";
 import { AdvertiseBannerComponent } from './advertise-banner/advertise-banner.component';
 import { PreviewCardComponent } from './preview-card/preview-card.component';
 import { AsideWidgetComponent } from './aside-widget/aside-widget.component';
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { HttpClient } from "@angular/common/http";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -31,6 +38,14 @@ import { AsideWidgetComponent } from './aside-widget/aside-widget.component';
   ],
   imports: [
     CommonModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     NgbModule,
     FontAwesomeModule,
     CarouselModule,
@@ -38,6 +53,7 @@ import { AsideWidgetComponent } from './aside-widget/aside-widget.component';
   exports: [
     NgbModule,
     FontAwesomeModule,
+    TranslateModule,
     HeaderComponent,
     FooterComponent,
     SearchFormComponent,

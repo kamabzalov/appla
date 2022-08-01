@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { TranslateService } from "@ngx-translate/core";
+
+type AppLanguages = 'en' | 'ru' | 'gre';
 
 @Component({
   selector: 'appla-languages-dropdown',
@@ -8,9 +11,16 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class LanguagesDropdownComponent implements OnInit {
 
-  constructor() { }
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['en', 'ru', 'gre']);
+    translate.setDefaultLang('en');
+    
+  }
 
   ngOnInit(): void {
   }
 
+  setLang(langCode: AppLanguages) {
+    this.translate.use(langCode);
+  }
 }

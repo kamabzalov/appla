@@ -29,3 +29,7 @@ input {
 .appla-container {
   @include mixins.make-container;
 }
+
+.card-content {
+ @include mixins.make-card-content;
+}

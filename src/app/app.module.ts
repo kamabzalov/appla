@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TileComponent } from "./home/tile/tile.component";
 import { ProductCategoryTileComponent } from "./home/product-category-tile/product-category-tile.component";
+import { HttpClientModule } from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { ProductCategoryTileComponent } from "./home/product-category-tile/produ
     ProductCategoryTileComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
