@@ -8,7 +8,7 @@
     width: 100%;
 
     &__input {
-      border: none;
+      border: 1px solid vars.$bright-gray;
       border-radius: vars.$base-size * 5 0 0 vars.$base-size * 5;
     }
 

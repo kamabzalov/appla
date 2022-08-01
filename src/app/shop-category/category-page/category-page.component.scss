@@ -14,3 +14,16 @@
     border-radius: 50%;
   }
 }
+
+.category-products {
+  background: vars.$white;
+
+  &__title {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__summary {
+    font-size: 13px;
+  }
+}

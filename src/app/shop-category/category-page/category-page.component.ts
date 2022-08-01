@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faTags } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'appla-category-page',
@@ -10,6 +10,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 export class CategoryPageComponent implements OnInit {
 
   faChevronRight = faChevronRight;
+  faTags = faTags;
 
   constructor() {
   }
