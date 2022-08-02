@@ -1,0 +1,33 @@
+@use "~assets/scss/vars" as vars;
+
+.product-offers {
+
+  &__header {
+    border-bottom: 1px solid vars.$lavender-gray;
+  }
+
+  &__image {
+    width: 55px;
+    height: 55px;
+  }
+
+  &__item {
+    border-bottom: 1px solid vars.$lavender-gray;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  &__link {
+    background-color: vars.$yellow-orange;
+    border-color: vars.$yellow-orange;
+    border-radius: 20px;
+    color: vars.$white;
+    font-weight: 600;
+    padding: 10px 20px;
+  }
+
+
+
+}
