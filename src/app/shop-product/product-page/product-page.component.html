@@ -1,3 +1,57 @@
 <div class="appla-container m-t-20px">
-	<div class="card-content"></div>
+	<section class="product m-b-20px">
+		<div class="row">
+			<div class="col-12">
+				<div class="card-content">
+					<div class="row">
+						<div class="col-md-7 col-sm-12">
+							<img src="./assets/images/product-page/product-page.jpeg" class="product__image img-fluid"
+								 alt="">
+						</div>
+						<div class="col-md-5 col-sm-12">
+							<h1 class="product__title">Samsung Galaxy A52s 5G 16.5 Cm (6.5)</h1>
+							<p class="product__price">309.00 €</p>
+							<p class="product-categories p-b-4px">Categories: <span class="product__category">Smartphones</span>
+							</p>
+
+							<div class="d-flex justify-content-between">
+								<p class="product__condition">Condition: New</p>
+								<p class="product__status">In Stock</p>
+							</div>
+
+							<div class="card-content product-order">
+								<h2 class="product-order__header">Order item</h2>
+								<p class="product-order__quantity">Quantity</p>
+								<div class="d-flex m-b-12px">
+									<div class="input-group product-order__quantity-form m-r-8px">
+										<button class="btn btn-outline-secondary" type="button">
+											<fa-icon [icon]="faMinus"></fa-icon>
+										</button>
+										<input type="text" class="form-control" placeholder=""
+											   aria-label="Example text with button addon">
+										<button class="btn btn-outline-secondary" type="button">
+											<fa-icon [icon]="faPlus"></fa-icon>
+										</button>
+									</div>
+									<button class="product-order__max p-l-16px p-r-16px">Max</button>
+								</div>
+								<button class="w-100 product-order__cart-button p-12px">Add to Cart</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row"></div>
+	</section>
+
+	<section>
+		<div class="row">
+			<div class="col-12">
+				<appla-advertise-banner></appla-advertise-banner>
+			</div>
+		</div>
+	</section>
+
 </div>

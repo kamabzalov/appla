@@ -1,0 +1,64 @@
+@use "~assets/scss/vars" as vars;
+
+.product {
+
+  &-categories {
+    border-bottom: 1px solid vars.$water;
+  }
+
+  &-order {
+    &__header {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &__quantity-form {
+      width: auto;
+    }
+
+    &__max {
+      color: vars.$white;
+      background-color: vars.$yellow-orange;
+      border: 1px solid vars.$yellow-orange;
+      border-radius: 20px;
+    }
+
+    &__cart-button {
+      color: vars.$white;
+      background-color: vars.$yellow-orange;
+      border: 1px solid vars.$yellow-orange;
+      border-radius: 20px;
+    }
+  }
+
+  &__image {
+    border: 1px solid vars.$water;
+    border-radius: 20px;
+  }
+
+  &__title {
+    text-transform: capitalize;
+    font-size: 24px;
+    color: vars.$charcoal;
+    font-weight: 600;
+  }
+
+  &__price {
+    font-size: 18px;
+    color: vars.$yellow-orange;
+    font-weight: 600;
+  }
+
+  &__category {
+    color: vars.$yellow-orange;
+    font-weight: 600;
+  }
+
+  &__condition {
+    color: vars.$steel-blue;
+  }
+
+  &__status {
+    color: vars.$american-green;
+  }
+}
