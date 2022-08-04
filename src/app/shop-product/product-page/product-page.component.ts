@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'appla-product-page',
@@ -11,6 +11,7 @@ export class ProductPageComponent implements OnInit {
 
   faPlus = faPlus;
   faMinus = faMinus;
+  faStar = faStar;
 
   constructor() { }
 

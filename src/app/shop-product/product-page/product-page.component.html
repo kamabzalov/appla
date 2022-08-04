@@ -1,49 +1,130 @@
 <div class="appla-container m-t-20px">
-	<section class="product m-b-20px">
-		<div class="row">
+	<section class="product card-content m-b-20px">
+		<div class="row m-b-16px">
 			<div class="col-12">
-				<div class="card-content">
-					<div class="row">
-						<div class="col-md-7 col-sm-12">
-							<img src="./assets/images/product-page/product-page.jpeg" class="product__image img-fluid"
-								 alt="">
+				<div class="row">
+					<div class="col-md-7 col-sm-12">
+						<img src="./assets/images/product-page/product-page.jpeg" class="product__image img-fluid"
+							 alt="">
+					</div>
+					<div class="col-md-5 col-sm-12">
+						<h1 class="product__title">Samsung Galaxy A52s 5G 16.5 Cm (6.5)</h1>
+						<p class="product__price">309.00 €</p>
+						<p class="product-categories p-b-4px">Categories: <span
+							class="product__category">Smartphones</span>
+						</p>
+
+						<div class="d-flex justify-content-between">
+							<p class="product__condition">Condition: New</p>
+							<p class="product__status">In Stock</p>
 						</div>
-						<div class="col-md-5 col-sm-12">
-							<h1 class="product__title">Samsung Galaxy A52s 5G 16.5 Cm (6.5)</h1>
-							<p class="product__price">309.00 €</p>
-							<p class="product-categories p-b-4px">Categories: <span class="product__category">Smartphones</span>
-							</p>
 
-							<div class="d-flex justify-content-between">
-								<p class="product__condition">Condition: New</p>
-								<p class="product__status">In Stock</p>
-							</div>
-
-							<div class="card-content product-order">
-								<h2 class="product-order__header">Order item</h2>
-								<p class="product-order__quantity">Quantity</p>
-								<div class="d-flex m-b-12px">
-									<div class="input-group product-order__quantity-form m-r-8px">
-										<button class="btn btn-outline-secondary" type="button">
-											<fa-icon [icon]="faMinus"></fa-icon>
-										</button>
-										<input type="text" class="form-control" placeholder=""
-											   aria-label="Example text with button addon">
-										<button class="btn btn-outline-secondary" type="button">
-											<fa-icon [icon]="faPlus"></fa-icon>
-										</button>
-									</div>
-									<button class="product-order__max p-l-16px p-r-16px">Max</button>
+						<div class="card-content product-order">
+							<h2 class="product-order__header">Order item</h2>
+							<p class="product-order__quantity">Quantity</p>
+							<div class="d-flex m-b-12px">
+								<div class="input-group product-order__quantity-form m-r-8px">
+									<button class="btn btn-outline-secondary" type="button">
+										<fa-icon [icon]="faMinus"></fa-icon>
+									</button>
+									<input type="text" class="form-control" placeholder=""
+										   aria-label="Example text with button addon">
+									<button class="btn btn-outline-secondary" type="button">
+										<fa-icon [icon]="faPlus"></fa-icon>
+									</button>
 								</div>
-								<button class="w-100 product-order__cart-button p-12px">Add to Cart</button>
+								<button class="product-order__max p-l-16px p-r-16px">Max</button>
 							</div>
+							<button class="w-100 product-order__cart-button p-12px">Add to Cart</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="row"></div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<ul ngbNav #nav="ngbNav" class="nav-tabs">
+					<li ngbNavItem>
+						<a ngbNavLink>Description</a>
+						<ng-template ngbNavContent>
+							<div class="p-16px">
+								<p>Weight : 189Grams (g)</p>
+								<p>Samsung Galaxy A53 5G SM-A536B. Display diagonal: 16.5 cm (6.5"), Display resolution:
+									2400 x 1080 pixels, Display type: SAMOLED. Processor family: Samsung Exynos,
+									Processor model: 1280. RAM capacity: 6 GB, Internal storage capacity: 128 GB. Rear
+									camera resolution (numeric): 64 MP, Rear camera type: Quad camera. SIM card
+									capability: Hybrid Dual SIM. Operating system installed: Android 12. Battery
+									capacity: 5000 mAh. Product colour: White. Weight: 189 g</p>
+							</div>
+						</ng-template>
+					</li>
+					<li ngbNavItem>
+						<a ngbNavLink>Specifications</a>
+						<ng-template ngbNavContent>
+							<div class="p-16px">
+								<ngb-accordion #acc="ngbAccordion">
+									<ngb-panel id="toggle-1" title="Display">
+										<ng-template ngbPanelContent>
+											<table class="table">
+												<tbody>
+												<tr>
+													<td>Display diagonal:</td>
+													<td>6.5</td>
+												</tr>
+												<tr>
+													<td>Screen shape:</td>
+													<td>Flat screen</td>
+												</tr>
+												</tbody>
+											</table>
+										</ng-template>
+									</ngb-panel>
+									<ngb-panel id="toggle-2" title="Processor">
+										<ng-template ngbPanelContent>
+											<table class="table">
+												<tbody>
+												<tr>
+													<td>Display diagonal:</td>
+													<td>6.5</td>
+												</tr>
+												<tr>
+													<td>Screen shape:</td>
+													<td>Flat screen</td>
+												</tr>
+												</tbody>
+											</table>
+										</ng-template>
+									</ngb-panel>
+								</ngb-accordion>
+							</div>
+						</ng-template>
+					</li>
+					<li ngbNavItem>
+						<a ngbNavLink>Similar Products</a>
+						<ng-template ngbNavContent>
+							<div class="p-16px">
+								<appla-carousel carouselType="recently-viewed"></appla-carousel>
+							</div>
+						</ng-template>
+					</li>
+				</ul>
+				<div [ngbNavOutlet]="nav"></div>
+			</div>
+		</div>
+		<div class="row align-items-center product-seller p-t-16px">
+			<div class="col-md-6">
+				<div class="d-flex align-items-center p-t-16px p-l-16px p-r-16px">
+					<img class="product-seller__logo m-r-16px" src="/assets/images/sellers/tech2.jpeg" alt="">
+					<div class="d-flex flex-column">
+						<span><a href="#">Tech 2 Tech</a></span>
+						<span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 text-end">
+				<button class="product-follow">Follow</button>
+			</div>
+		</div>
 	</section>
 
 	<section>
