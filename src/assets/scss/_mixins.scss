@@ -1,4 +1,5 @@
-@use "vars";
+@use "sass:math";
+@use "vars" as vars;
 
 @mixin make-margins {
   @for $i from 0 through 100 {
@@ -58,17 +59,54 @@
   }
 }
 
-@mixin make-container($padding-x: vars.$base-size * 7) {
-  max-width: 1176px;
-  padding-right: $padding-x;
-  padding-left: $padding-x;
-  margin-right: auto;
-  margin-left: auto;
+@mixin make-container() {
+  padding-left: vars.$base-size * 6;
+  padding-right: vars.$base-size * 6;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
+
+@mixin make-columns($cols) {
+  @for $i from 1 through $cols {
+    .column-#{$i} {
+      flex: 0 0 math.percentage(math.div($i, $cols));
+      max-width: math.percentage(math.div($i, $cols));
+      min-height: 1px;
+      position: relative;
+      padding-left: vars.$base-size * 4;
+      padding-right: vars.$base-size * 4;
+    }
+  }
+}
+
+@mixin make-responsive-columns($suffix, $breakpoint, $cols) {
+  @media screen and (min-width: $breakpoint) {
+    @for $i from 1 through $cols {
+      .column-#{$suffix}-#{$i} {
+        flex: 0 0 math.percentage(math.div($i, $cols));
+        min-height: 1px;
+        max-width: math.percentage(math.div($i, $cols));
+        position: relative;
+        padding-left: vars.$base-size * 4;
+        padding-right: vars.$base-size * 4;
+      }
+    }
+  }
+}
+
+@mixin box-shadow($x-offset, $y-offset, $blur, $spread, $color) {
+  @if ($spread == null) {
+    box-shadow: $x-offset $y-offset $blur $color;
+  } @else {
+    box-shadow: $x-offset $y-offset $blur $spread $color;
+  }
 }
 
 @mixin make-card-content() {
   background: vars.$white;
   padding: vars.$base-size * 5;
   border-radius: vars.$base-size * 5;
-  box-shadow: 0 4px 8px rgb(8 52 119 / 10%);
+  @include box-shadow(0, vars.$base-size, vars.$base-size * 2, null, rgb(8 52 119 / 10%));
 }

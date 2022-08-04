@@ -1,8 +1,9 @@
+// Colors
+
 $steel-blue: #4272B8;
 $dazzled-blue: #345D9B;
 $white: #fff;
 $yellow-orange: #fbb040;
-$base-size: 4px;
 $ghost-white: #fdf9f8;
 $azureish-white:#e2edf6;
 $dark-silver: #707070;
@@ -12,3 +13,17 @@ $lavende-web: #e1edff;
 $water: #d2ecfc;
 $bright-gray: #e4e6ef;
 $american-green: #37b24d;
+
+// App variables
+
+$base-font: Poppins, Helvetica, "sans-serif";
+$base-size: 4px;
+$cols: 12;
+
+$media-breakpoints: (
+        '': 0,
+        small: 576px,
+        medium: 768px,
+        large: 992px,
+        xlarge: 1200px
+);

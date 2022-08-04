@@ -1,0 +1,21 @@
+@use "vars" as vars;
+@use "mixins" as mixins;
+
+.appla-container {
+  @include mixins.make-container();
+  max-width: 85%;
+  margin: auto;
+
+  &-fluid {
+    @include mixins.make-container();
+  }
+}
+
+.appla-row {
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -(vars.$base-size * 4);
+  margin-right: -(vars.$base-size * 4);
+}

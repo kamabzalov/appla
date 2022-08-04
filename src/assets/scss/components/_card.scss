@@ -1,0 +1,5 @@
+@use "~assets/scss/mixins" as mixins;
+
+.card-content {
+  @include mixins.make-card-content;
+}
