@@ -1,7 +1,14 @@
 @use "vars" as vars;
 
 $display: inline, inline-block, block, table, flex, inline-flex, none;
-$align-items: stretch, center, flex-start, flex-end, baseline, initial, inherit;
+$align-items: stretch, center, flex-start, flex-end, baseline;
+$justify-content: flex-start, flex-end, center, space-between, space-around, space-evenly;
+
+@each $value in $display {
+  .display-#{$value} {
+    display: $value !important;
+  }
+}
 
 @each $value in $align-items {
   .align-items-#{$value} {
@@ -9,9 +16,9 @@ $align-items: stretch, center, flex-start, flex-end, baseline, initial, inherit;
   }
 }
 
-@each $value in $display {
-  .display-#{$value} {
-    display: $value !important;
+@each $value in $justify-content {
+  .justify-content-#{$value} {
+    justify-content: $value !important;
   }
 }
 

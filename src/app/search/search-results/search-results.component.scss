@@ -1,11 +1,11 @@
 @use "~assets/scss/vars" as vars;
+@use "~assets/scss/mixins" as mixins;
 
 .button-more {
+  @include mixins.border-radius(vars.$base-size * 5);
   color: vars.$white;
-  border: 1px solid;
-  border-color: vars.$honey-yellow;
+  border: 1px solid vars.$honey-yellow;
   background: vars.$honey-yellow;
-  border-radius: 20px;
   padding: 16px 12px;
 
   &:hover {

@@ -1,4 +1,5 @@
-@use "~assets/scss/vars" as vars;
+@use "~assets/scss/vars";
+@use "~assets/scss/mixins";
 
 .carousel {
   &__icon {
@@ -14,11 +15,9 @@
 
   & .store-offers {
     &__image {
+      @include mixins.centered-content();
       width: 150px;
       height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     &__info {
@@ -49,11 +48,9 @@
 
   & .recently-viewed {
     &__image {
+      @include mixins.centered-content();
       width: 150px;
       height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     &__info {

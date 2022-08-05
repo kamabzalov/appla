@@ -1,15 +1,16 @@
 @use "~assets/scss/vars";
+@use "~assets/scss/mixins";
 
 :host {
   display: flex;
 
   .cart {
     &__icon {
+      @include mixins.border-radius(50%);
       width: vars.$base-size * 8;
       height: vars.$base-size * 8;
       background: vars.$honey-yellow;
       color: vars.$white;
-      border-radius: 50%;
 
       &:after {
         content: unset;

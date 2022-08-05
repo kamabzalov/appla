@@ -1,17 +1,16 @@
 @use "~assets/scss/vars" as vars;
+@use "~assets/scss/mixins" as mixins;
 
 .form-price {
 
   &__icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include mixins.border-radius(50%);
+    @include mixins.centered-content();
     background: vars.$honey-yellow;
     color: vars.$white;
     width: 32px;
     height: 32px;
     line-height: 32px;
-    border-radius: 50%;
   }
 }
 

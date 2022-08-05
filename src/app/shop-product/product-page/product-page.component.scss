@@ -1,4 +1,5 @@
-@use "~assets/scss/vars" as vars;
+@use "~assets/scss/vars";
+@use "~assets/scss/mixins";
 
 .product {
 
@@ -17,17 +18,17 @@
     }
 
     &__max {
+      @include mixins.border-radius(vars.$base-size * 5);
       color: vars.$white;
       background-color: vars.$honey-yellow;
       border: 1px solid vars.$honey-yellow;
-      border-radius: 20px;
     }
 
     &__cart-button {
+      @include mixins.border-radius(vars.$base-size * 5);
       color: vars.$white;
       background-color: vars.$honey-yellow;
       border: 1px solid vars.$honey-yellow;
-      border-radius: 20px;
     }
   }
 
@@ -35,25 +36,25 @@
     border-top: 1px solid vars.$alice-blue;
 
     &__logo {
+      @include mixins.border-radius(50%);
       width: 56px;
       height: 56px;
       border: 1px solid vars.$alice-blue;
-      border-radius: 50%;
     }
   }
 
   &-follow {
+    @include mixins.border-radius(vars.$base-size * 5);
     border: 1px solid vars.$honey-yellow;
     background: vars.$honey-yellow;
     color: vars.$white;
-    border-radius: 20px;
     font-weight: 600;
     padding: .6rem 1rem;
   }
 
   &__image {
+    @include mixins.border-radius(vars.$base-size * 5);
     border: 1px solid vars.$alice-blue;
-    border-radius: 20px;
   }
 
   &__title {

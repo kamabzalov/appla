@@ -1,8 +1,8 @@
 @use "../vars" as vars;
+@use "../mixins" as mixins;
 
 input {
-  border: 1px solid vars.$rich-black;
-  border-radius: 20px;
+  @include mixins.border-radius(vars.$base-size * 5);
   width: 100%;
   padding: .5rem 1rem;
 }

@@ -1,4 +1,5 @@
 @use "~assets/scss/vars" as vars;
+@use "~assets/scss/mixins" as mixins;
 
 .footer {
   background: vars.$alice-blue;
@@ -63,9 +64,9 @@
     width: 75%;
 
     &__login {
+      @include mixins.border-radius(vars.$base-size * 5);
       color: vars.$rich-black;
       border-color: vars.$rich-black;
-      border-radius: vars.$base-size * 5;
       padding: vars.$base-size * 2 vars.$base-size * 5;
       font-size: 11px;
 
@@ -77,9 +78,9 @@
     }
 
     &__sign {
+      @include mixins.border-radius(vars.$base-size * 5);
       color: vars.$white;
       background: vars.$honey-yellow;
-      border-radius: vars.$base-size * 5;
       border-color: vars.$honey-yellow;
       padding: vars.$base-size * 2 vars.$base-size * 5;
       font-size: 11px;
