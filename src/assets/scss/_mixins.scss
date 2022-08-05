@@ -70,7 +70,7 @@
 
 @mixin make-columns($cols) {
   @for $i from 1 through $cols {
-    .column-#{$i} {
+    .appla-column-#{$i} {
       flex: 0 0 math.percentage(math.div($i, $cols));
       max-width: math.percentage(math.div($i, $cols));
       min-height: 1px;
@@ -84,7 +84,7 @@
 @mixin make-responsive-columns($suffix, $breakpoint, $cols) {
   @media screen and (min-width: $breakpoint) {
     @for $i from 1 through $cols {
-      .column-#{$suffix}-#{$i} {
+      .appla-column-#{$suffix}-#{$i} {
         flex: 0 0 math.percentage(math.div($i, $cols));
         min-height: 1px;
         max-width: math.percentage(math.div($i, $cols));

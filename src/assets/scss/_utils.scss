@@ -3,3 +3,12 @@
 .text-orange {
   color: vars.$yellow-orange !important;
 }
+
+$align-items: stretch, center, flex-start, flex-end, baseline, initial, inherit;
+
+@each $value in $align-items {
+  .appla-align-items-#{$value} {
+    align-items: $value !important;
+  }
+}
+
