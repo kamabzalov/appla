@@ -2,6 +2,7 @@
 @use "~assets/scss/mixins";
 
 .header {
+  @include mixins.top-fixed-element();
   &__elements {
     background: vars.$blue-yonder;
 

@@ -3,6 +3,7 @@
 $display: inline, inline-block, block, table, flex, inline-flex, none;
 $align-items: stretch, center, flex-start, flex-end, baseline;
 $justify-content: flex-start, flex-end, center, space-between, space-around, space-evenly;
+$position: static, relative, fixed, absolute, sticky;
 
 @each $value in $display {
   .display-#{$value} {
@@ -19,6 +20,12 @@ $justify-content: flex-start, flex-end, center, space-between, space-around, spa
 @each $value in $justify-content {
   .justify-content-#{$value} {
     justify-content: $value !important;
+  }
+}
+
+@each $value in $position {
+  .position-#{$value} {
+    position: $value !important;
   }
 }
 
