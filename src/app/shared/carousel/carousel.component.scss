@@ -2,12 +2,12 @@
 
 .carousel {
   &__icon {
-    color: vars.$steel-blue;
+    color: vars.$blue-yonder;
   }
 
   &__header {
     font-size: 16px;
-    color: vars.$charcoal;
+    color: vars.$rich-black;
     font-weight: 700;
     margin: 0;
   }
@@ -28,7 +28,7 @@
     }
 
     &__title {
-      color: vars.$charcoal;
+      color: vars.$rich-black;
       font-weight: 700;
       font-size: 14px;
       white-space: initial;
@@ -43,7 +43,7 @@
     }
 
     &__price-item {
-      color: vars.$yellow-orange;
+      color: vars.$honey-yellow;
     }
   }
 
@@ -63,7 +63,7 @@
     }
 
     &__title {
-      color: vars.$charcoal;
+      color: vars.$rich-black;
       font-weight: 700;
       font-size: 14px;
       white-space: initial;
@@ -78,7 +78,7 @@
     }
 
     &__price-item {
-      color: vars.$yellow-orange;
+      color: vars.$honey-yellow;
     }
   }
 

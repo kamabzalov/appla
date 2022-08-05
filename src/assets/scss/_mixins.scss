@@ -70,7 +70,7 @@
 
 @mixin make-columns($cols) {
   @for $i from 1 through $cols {
-    .appla-column-#{$i} {
+    .column-#{$i} {
       flex: 0 0 math.percentage(math.div($i, $cols));
       max-width: math.percentage(math.div($i, $cols));
       min-height: 1px;
@@ -84,7 +84,7 @@
 @mixin make-responsive-columns($suffix, $breakpoint, $cols) {
   @media screen and (min-width: $breakpoint) {
     @for $i from 1 through $cols {
-      .appla-column-#{$suffix}-#{$i} {
+      .column-#{$suffix}-#{$i} {
         flex: 0 0 math.percentage(math.div($i, $cols));
         min-height: 1px;
         max-width: math.percentage(math.div($i, $cols));
@@ -105,8 +105,8 @@
 }
 
 @mixin make-card-content() {
+  @include box-shadow(0, vars.$base-size, vars.$base-size * 2, null, rgb(8 52 119 / 10%));
   background: vars.$white;
   padding: vars.$base-size * 5;
   border-radius: vars.$base-size * 5;
-  @include box-shadow(0, vars.$base-size, vars.$base-size * 2, null, rgb(8 52 119 / 10%));
 }

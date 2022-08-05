@@ -3,7 +3,7 @@
 .product-offers {
 
   &__header {
-    border-bottom: 1px solid vars.$lavender-gray;
+    border-bottom: 1px solid vars.$alice-blue;
   }
 
   &__image {
@@ -12,7 +12,7 @@
   }
 
   &__item {
-    border-bottom: 1px solid vars.$lavender-gray;
+    border-bottom: 1px solid vars.$alice-blue;
 
     &:last-child {
       border: none;
@@ -20,8 +20,8 @@
   }
 
   &__link {
-    background-color: vars.$yellow-orange;
-    border-color: vars.$yellow-orange;
+    background-color: vars.$honey-yellow;
+    border-color: vars.$honey-yellow;
     border-radius: 20px;
     color: vars.$white;
     font-weight: 600;

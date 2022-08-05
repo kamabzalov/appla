@@ -1,6 +1,6 @@
 <div class="aside-widget p-20px">
 	<div class="aside-widget__head p-b-8px m-b-20px">
-		<button type="button" class="aside-widget__toggle d-flex w-100" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+		<button type="button" class="aside-widget__toggle display-flex w-100" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
 				aria-controls="collapseExample">
 			{{widgetHeader}}
 			<fa-icon class="m-l-auto aside-widget__icon" *ngIf="isCollapsed" [icon]="faChevronDown"></fa-icon>

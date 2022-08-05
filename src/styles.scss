@@ -1,3 +1,4 @@
+@use '~bootstrap/scss/bootstrap';
 @use "assets/scss/vars";
 @use "assets/scss/mixins";
 @use "assets/scss/utils";
@@ -5,14 +6,12 @@
 @use "assets/scss/grid";
 @use "assets/scss/components";
 
-@import '~bootstrap/scss/bootstrap';
-
 
 body {
   font-weight: 400;
   font-family: vars.$base-font;
   font-size: vars.$base-size * 3;
-  color: vars.$charcoal;
+  color: vars.$rich-black;
 }
 
 a {

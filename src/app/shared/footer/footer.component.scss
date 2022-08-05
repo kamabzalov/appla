@@ -1,14 +1,14 @@
 @use "~assets/scss/vars" as vars;
 
 .footer {
-  background: vars.$azureish-white;
+  background: vars.$alice-blue;
 
   &-benefits {
-    border-bottom: 1px solid vars.$lavender-gray;
+    border-bottom: 1px solid vars.$alice-blue;
   }
 
   &-benefit {
-    border-right: 1px solid vars.$lavender-gray;
+    border-right: 1px solid vars.$alice-blue;
 
     &.no-border {
       border-right: none;
@@ -26,34 +26,34 @@
     &__description {
       font-size: 11px;
       max-width: 65%;
-      color: vars.$dark-silver;
+      color: vars.$rich-black;
     }
   }
 
   &-separator {
     height: 1px;
-    background: vars.$lavender-gray;
+    background: vars.$alice-blue;
     border: none;
   }
 
   &-menu {
     &__header {
-      color: vars.$charcoal;
+      color: vars.$rich-black;
       font-size: vars.$base-size * 3;
       font-weight: 700;
     }
 
     &__list {
       font-weight: 600;
-      color: vars.$dark-silver;
+      color: vars.$rich-black;
 
       &-item {
         width: 70%;
         font-weight: 600;
-        color: vars.$dark-silver;
+        color: vars.$rich-black;
 
         &:hover {
-          color: vars.$yellow-orange;
+          color: vars.$honey-yellow;
         }
       }
     }
@@ -63,30 +63,30 @@
     width: 75%;
 
     &__login {
-      color: vars.$charcoal;
-      border-color: vars.$charcoal;
+      color: vars.$rich-black;
+      border-color: vars.$rich-black;
       border-radius: vars.$base-size * 5;
       padding: vars.$base-size * 2 vars.$base-size * 5;
       font-size: 11px;
 
       &:hover {
-        background: vars.$yellow-orange;
-        border-color: vars.$yellow-orange;
+        background: vars.$honey-yellow;
+        border-color: vars.$honey-yellow;
         color: vars.$white;
       }
     }
 
     &__sign {
       color: vars.$white;
-      background: vars.$yellow-orange;
+      background: vars.$honey-yellow;
       border-radius: vars.$base-size * 5;
-      border-color: vars.$yellow-orange;
+      border-color: vars.$honey-yellow;
       padding: vars.$base-size * 2 vars.$base-size * 5;
       font-size: 11px;
 
       &:hover {
-        color: vars.$charcoal;
-        border-color: vars.$charcoal;
+        color: vars.$rich-black;
+        border-color: vars.$rich-black;
         background: transparent;
       }
     }
@@ -105,7 +105,7 @@
 
   & .address {
     &__text {
-      color: vars.$charcoal;
+      color: vars.$rich-black;
       border-top: 1px solid rgba(28, 46, 63, 0.2);
       font-weight: 600;
     }

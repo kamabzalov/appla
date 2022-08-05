@@ -1,7 +1,7 @@
 @use "~assets/scss/vars" as vars;
 
 .product-category-tile {
-  background: vars.$lavende-web;
+  background: vars.$alice-blue;
   padding: vars.$base-size * 3;
 
   &__title {
@@ -18,6 +18,6 @@
   }
 
   &__product-price {
-    color: vars.$yellow-orange;
+    color: vars.$honey-yellow;
   }
 }

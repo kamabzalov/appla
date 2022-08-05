@@ -1,14 +1,17 @@
 @use "vars" as vars;
 
-.text-orange {
-  color: vars.$yellow-orange !important;
-}
-
+$display: inline, inline-block, block, table, flex, inline-flex, none;
 $align-items: stretch, center, flex-start, flex-end, baseline, initial, inherit;
 
 @each $value in $align-items {
-  .appla-align-items-#{$value} {
+  .align-items-#{$value} {
     align-items: $value !important;
+  }
+}
+
+@each $value in $display {
+  .display-#{$value} {
+    display: $value !important;
   }
 }
 
