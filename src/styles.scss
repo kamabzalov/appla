@@ -5,11 +5,14 @@
 @use "assets/scss/grid";
 @use "assets/scss/components";
 
+html, body {
+  font-size: vars.$base-size * 3;
+}
+
 
 body {
   font-weight: 400;
   font-family: vars.$base-font;
-  font-size: vars.$base-size * 3;
   color: vars.$rich-black;
 }
 

@@ -1,5 +1,6 @@
 @use "vars" as vars;
 
+$order: 1;
 $display: inline, inline-block, block, table, flex, inline-flex, none;
 $align-items: stretch, center, flex-start, flex-end, baseline;
 $justify-content: flex-start, flex-end, center, space-between, space-around, space-evenly;
@@ -27,5 +28,27 @@ $position: static, relative, fixed, absolute, sticky;
   .position-#{$value} {
     position: $value !important;
   }
+}
+
+@each $prefix, $val in vars.$media-breakpoints {
+  @if ($prefix) {
+    @media (min-width: $val) {
+      .display-#{$prefix}-none {
+        display: none !important;
+      }
+    }
+  } @else {
+    .display-none {
+      display: none !important;
+    }
+  }
+}
+
+@while ($order <= vars.$cols) {
+  .order-#{$order} {
+    order: $order !important;
+  }
+
+  $order: $order + 1;
 }
 

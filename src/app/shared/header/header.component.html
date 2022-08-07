@@ -2,41 +2,41 @@
 	<section class="header__elements p-t-16px p-b-16px">
 		<div class="container">
 			<div class="row align-items-center">
-				<div class="column-media-1 column-small-1 p-0px">
+				<div class="column-medium-1">
 					<a class="header__elements-link" href="/">
 						<img class="header__elements-logo" src="/assets/images/appla.svg" alt="Appla">
 					</a>
 				</div>
-				<div class="display-flex align-items-center column-media-1 column-small-1">
+				<div class="display-flex justify-content-space-around align-items-center column-medium-2">
 					<a class="header__elements-link" target="_blank" href="https://blog.appla.cy/">
 						Appla Lab
 					</a>
-				</div>
-				<div class="display-flex align-items-center column-media-1 column-small-1">
 					<a class="header__elements-link" target="_blank" href="https://blog.appla.cy/merchants/register/">
 						{{ 'HEADER.JOIN_US' | translate }}
 					</a>
 				</div>
-				<div class="display-flex align-items-center column-media-6 column-small-6">
+				<div class="display-flex align-items-center column-medium-12 column-large-6">
 					<appla-search-form></appla-search-form>
 				</div>
-				<div class="display-flex column-media-3 column-small-3">
-					<div class="row">
-						<div class="display-flex column-media-12">
-							<div class="display-flex align-items-center">
-								<appla-languages-dropdown></appla-languages-dropdown>
-								<appla-cart-widget class="m-r-12px"></appla-cart-widget>
-								<div class="display-flex login-actions">
-									<button class="btn btn-outline-primary login-actions__login">Login</button>
-									<a href="/account/register" class="btn btn-primary login-actions__sign">Sign Up </a>
-								</div>
-							</div>
-						</div>
+				<div class="column-medium-3 display-flex align-items-center justify-content-space-between">
+					<appla-languages-dropdown></appla-languages-dropdown>
+					<appla-cart-widget></appla-cart-widget>
+					<div class="login-actions">
+						<button class="btn btn-outline-primary login-actions__login m-r-12px">Login</button>
+						<a href="/account/register" class="btn btn-primary login-actions__sign">Sign Up </a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<appla-navigation></appla-navigation>
+	<section class="header__navigation display-medium-none">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<appla-navigation></appla-navigation>
+				</div>
+			</div>
+		</div>
+	</section>
 </header>
 
