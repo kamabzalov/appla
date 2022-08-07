@@ -25,30 +25,10 @@
     background: vars.$united-nations-blue;
   }
 
-  .login-actions {
-
-    &__login {
-      @include mixins.border-radius(vars.$base-size * 5);
-      color: vars.$white;
-      border-color: vars.$honey-yellow;
-      padding: vars.$base-size * 2 vars.$base-size * 5;
-      font-size: 11px;
-
+  &__user-actions {
+    &-sign {
       &:hover {
-        background: vars.$honey-yellow;
-      }
-    }
-
-    &__sign {
-      @include mixins.border-radius(vars.$base-size * 5);
-      color: vars.$white;
-      background: vars.$honey-yellow;
-      border-color: vars.$honey-yellow;
-      padding: vars.$base-size * 2 vars.$base-size * 5;
-      font-size: 11px;
-
-      &:hover {
-        background: transparent;
+        color: vars.$white;
       }
     }
   }

@@ -5,20 +5,12 @@
   display: flex;
 
   .cart {
-    &__icon {
-      @include mixins.border-radius(50%);
-      width: vars.$base-size * 8;
-      height: vars.$base-size * 8;
-      background: vars.$honey-yellow;
-      color: vars.$white;
-
-      &:after {
-        content: unset;
-      }
-
-      &:hover, &:focus {
-        border-color: transparent;
-      }
+    
+    &:after {
+      content: unset;
     }
+
+
   }
 }
+

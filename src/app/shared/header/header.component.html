@@ -3,13 +3,13 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="column-12 text-center column-medium-2 column-large-1">
-					<a class="header__elements-link" href="/">
+					<a href="/">
 						<img class="header__elements-logo img-responsive" src="/assets/images/appla.svg" alt="Appla">
 					</a>
 				</div>
 				<div class="column-2 display-none display-large-flex justify-content-space-around align-items-center">
 					<a class="header__elements-link" target="_blank" href="https://blog.appla.cy/">
-						Appla Lab
+						{{ 'HEADER.APPLA_LAB' | translate }}
 					</a>
 					<a class="header__elements-link" target="_blank" href="https://blog.appla.cy/merchants/register/">
 						{{ 'HEADER.JOIN_US' | translate }}
@@ -18,15 +18,18 @@
 				<div class="column-12 column-medium-6 column-xlarge-6 display-flex align-items-center">
 					<appla-search-form></appla-search-form>
 				</div>
-				<div class="column-12 column-medium-4 column-large-3 display-flex justify-content-center align-items-center">
+				<div
+					class="column-12 column-medium-4 column-large-3 display-flex justify-content-space-between align-items-center">
 					<appla-languages-dropdown></appla-languages-dropdown>
-					<button class="btn display-inline-flex display-large-none" type="button">
+					<button
+						class="button button_icon button_orange display-inline-flex align-items-center justify-content-center display-large-none"
+						type="button">
 						<fa-icon [icon]="faBars"></fa-icon>
 					</button>
 					<appla-cart-widget></appla-cart-widget>
-					<div class="login-actions m-l-12px display-none display-large-block">
-						<button class="btn btn-outline-primary login-actions__login m-r-12px">Login</button>
-						<a href="/account/register" class="btn btn-primary login-actions__sign">Sign Up </a>
+					<div class="header__user-actions display-none display-large-inline-flex">
+						<button class="button button_transparent button_transparent_outline_orange m-r-8px">Login</button>
+						<a href="/account/register" class="header__user-actions-sign button button_orange">Sign Up</a>
 					</div>
 				</div>
 			</div>

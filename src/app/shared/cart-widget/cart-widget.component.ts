@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -7,12 +7,6 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./cart-widget.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CartWidgetComponent implements OnInit {
+export class CartWidgetComponent {
   faCartShopping = faCartShopping;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

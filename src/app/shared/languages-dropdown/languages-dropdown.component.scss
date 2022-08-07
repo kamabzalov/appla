@@ -7,16 +7,12 @@
     &:after {
       content: unset;
     }
-
-    &:hover, &:focus {
-      border-color: transparent;
-    }
   }
 
   &__icon {
     @include mixins.border-radius(50%);
-    width: vars.$base-size * 8;
-    height: vars.$base-size * 8;
+    width: 100%;
+    height: 100%;
   }
 
   .icon-dropdown {

@@ -1,12 +1,18 @@
 @use "~assets/scss/vars";
 @use "~assets/scss/mixins";
 
+$medium-devices-breakpoint: map-get(vars.$media-breakpoints, 'medium');
+
 :host {
   display: flex;
   width: 100%;
 
   .search-form {
     width: 100%;
+    
+    @media (max-width: $medium-devices-breakpoint) {
+      margin: vars.$base-size * 2;
+    }
 
     &__input {
       @include mixins.border-radius(vars.$base-size * 5 0 0 vars.$base-size * 5);
