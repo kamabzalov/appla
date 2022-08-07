@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { faChevronRight, faTags } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,15 +7,8 @@ import { faChevronRight, faTags } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./category-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoryPageComponent implements OnInit {
+export class CategoryPageComponent {
 
   faChevronRight = faChevronRight;
   faTags = faTags;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
 }

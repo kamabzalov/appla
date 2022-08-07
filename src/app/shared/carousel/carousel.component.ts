@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { faStar, faEye } from '@fortawesome/free-solid-svg-icons';
 import { OwlOptions } from "ngx-owl-carousel-o";
 
@@ -10,7 +10,7 @@ type CarouselType = 'store-offers' | 'recently-viewed' | 'now-trending';
   styleUrls: ['./carousel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
 
   @Input() carouselType: CarouselType;
 
@@ -40,12 +40,6 @@ export class CarouselComponent implements OnInit {
       }
     },
     nav: true
-  }
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
   }
 
 }

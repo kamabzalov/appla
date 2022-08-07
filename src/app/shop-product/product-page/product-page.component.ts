@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { faPlus, faMinus, faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,15 +7,10 @@ import { faPlus, faMinus, faStar } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./product-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductPageComponent implements OnInit {
+export class ProductPageComponent {
 
   faPlus = faPlus;
   faMinus = faMinus;
   faStar = faStar;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

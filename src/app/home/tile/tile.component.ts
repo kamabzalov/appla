@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'appla-tile',
@@ -6,13 +6,8 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./tile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TileComponent implements OnInit {
+export class TileComponent {
 
   @Input() tileColor: 'blue' | 'orange';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

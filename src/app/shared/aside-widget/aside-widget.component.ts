@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -7,18 +7,12 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./aside-widget.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AsideWidgetComponent implements OnInit {
+export class AsideWidgetComponent {
 
   @Input() widgetHeader: string;
 
   faChevronDown = faChevronDown;
   faChevronUp = faChevronUp;
   isCollapsed = false;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 
 }
