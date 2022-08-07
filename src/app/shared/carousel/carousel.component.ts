@@ -11,12 +11,12 @@ type CarouselType = 'store-offers' | 'recently-viewed' | 'now-trending';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarouselComponent {
-  @Input() carouselType: CarouselType;
+  @Input() public carouselType: CarouselType;
 
-  faStar = faStar;
-  faEye = faEye;
+  public faStar = faStar;
+  public faEye = faEye;
 
-  customOptions: OwlOptions = {
+  public customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,

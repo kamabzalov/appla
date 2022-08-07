@@ -10,7 +10,7 @@ export class RestService {
 
   constructor(private http: HttpClient) {}
 
-  getSiteMenu(): Observable<any> {
+  public getSiteMenu(): Observable<any> {
     return this.http.get<any>(`${this.basePath}menu`);
   }
 }

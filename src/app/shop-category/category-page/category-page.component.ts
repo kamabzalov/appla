@@ -8,6 +8,6 @@ import { faChevronRight, faTags } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryPageComponent {
-  faChevronRight = faChevronRight;
-  faTags = faTags;
+  public faChevronRight = faChevronRight;
+  public faTags = faTags;
 }

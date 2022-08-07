@@ -15,7 +15,7 @@ export class LanguagesDropdownComponent {
     translate.setDefaultLang('en');
   }
 
-  setLang(langCode: AppLanguages) {
+  public setLang(langCode: AppLanguages) {
     this.translate.use(langCode);
   }
 }

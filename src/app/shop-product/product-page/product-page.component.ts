@@ -8,7 +8,7 @@ import { faPlus, faMinus, faStar } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPageComponent {
-  faPlus = faPlus;
-  faMinus = faMinus;
-  faStar = faStar;
+  public faPlus = faPlus;
+  public faMinus = faMinus;
+  public faStar = faStar;
 }

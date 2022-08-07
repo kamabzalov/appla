@@ -8,5 +8,5 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  faBars = faBars;
+  public faBars = faBars;
 }

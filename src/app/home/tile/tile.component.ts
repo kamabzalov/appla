@@ -7,5 +7,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TileComponent {
-  @Input() tileColor: 'blue' | 'orange';
+  @Input() public tileColor: 'blue' | 'orange';
 }

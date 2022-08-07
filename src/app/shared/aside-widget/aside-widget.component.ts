@@ -8,9 +8,9 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AsideWidgetComponent {
-  @Input() widgetHeader: string;
+  @Input() public widgetHeader: string;
 
-  faChevronDown = faChevronDown;
-  faChevronUp = faChevronUp;
-  isCollapsed = false;
+  public faChevronDown = faChevronDown;
+  public faChevronUp = faChevronUp;
+  public isCollapsed = false;
 }

@@ -15,10 +15,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
-  facebook = faFacebook;
-  faTwitter = faTwitter;
-  faInstagram = faInstagram;
-  faLinkedin = faLinkedin;
-  faYoutube = faYoutube;
-  faTiktok = faTiktok;
+  public facebook = faFacebook;
+  public faTwitter = faTwitter;
+  public faInstagram = faInstagram;
+  public faLinkedin = faLinkedin;
+  public faYoutube = faYoutube;
+  public faTiktok = faTiktok;
 }

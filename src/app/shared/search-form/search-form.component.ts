@@ -8,5 +8,5 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent {
-  faSearch = faMagnifyingGlass;
+  public faSearch = faMagnifyingGlass;
 }

@@ -8,5 +8,5 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComparePricesComponent {
-  faTruck = faTruck;
+  public faTruck = faTruck;
 }

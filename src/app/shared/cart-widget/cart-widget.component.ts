@@ -8,5 +8,5 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartWidgetComponent {
-  faCartShopping = faCartShopping;
+  public faCartShopping = faCartShopping;
 }
