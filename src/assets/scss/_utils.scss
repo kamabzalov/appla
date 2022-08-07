@@ -5,6 +5,18 @@ $display: inline, inline-block, block, table, flex, inline-flex, none;
 $align-items: stretch, center, flex-start, flex-end, baseline;
 $justify-content: flex-start, flex-end, center, space-between, space-around, space-evenly;
 $position: static, relative, fixed, absolute, sticky;
+$text-align: left, right, center, justify;
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+@each $value in $text-align {
+  .text-#{$value} {
+    text-align: $value !important;
+  }
+}
 
 @each $value in $display {
   .display-#{$value} {
@@ -40,6 +52,22 @@ $position: static, relative, fixed, absolute, sticky;
   } @else {
     .display-none {
       display: none !important;
+    }
+  }
+}
+
+@each $prefix, $val in vars.$media-breakpoints {
+  @each $value in $display {
+    @if ($prefix) {
+      @media (min-width: $val) {
+        .display-#{$prefix}-#{$value} {
+          display: $value !important;
+        }
+      }
+    } @else {
+      .display-#{$value} {
+        display: $value !important;
+      }
     }
   }
 }

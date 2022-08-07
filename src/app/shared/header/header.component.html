@@ -2,12 +2,12 @@
 	<section class="header__elements p-t-16px p-b-16px">
 		<div class="container">
 			<div class="row align-items-center">
-				<div class="column-medium-1">
+				<div class="column-12 text-center column-medium-2 column-large-1">
 					<a class="header__elements-link" href="/">
-						<img class="header__elements-logo" src="/assets/images/appla.svg" alt="Appla">
+						<img class="header__elements-logo img-responsive" src="/assets/images/appla.svg" alt="Appla">
 					</a>
 				</div>
-				<div class="display-flex justify-content-space-around align-items-center column-medium-2">
+				<div class="column-2 display-none display-large-flex justify-content-space-around align-items-center">
 					<a class="header__elements-link" target="_blank" href="https://blog.appla.cy/">
 						Appla Lab
 					</a>
@@ -15,13 +15,16 @@
 						{{ 'HEADER.JOIN_US' | translate }}
 					</a>
 				</div>
-				<div class="display-flex align-items-center column-medium-12 column-large-6">
+				<div class="column-12 column-medium-6 column-xlarge-6 display-flex align-items-center">
 					<appla-search-form></appla-search-form>
 				</div>
-				<div class="column-medium-3 display-flex align-items-center justify-content-space-between">
+				<div class="column-12 column-medium-4 column-large-3 display-flex justify-content-center align-items-center">
 					<appla-languages-dropdown></appla-languages-dropdown>
+					<button class="btn display-inline-flex display-large-none" type="button">
+						<fa-icon [icon]="faBars"></fa-icon>
+					</button>
 					<appla-cart-widget></appla-cart-widget>
-					<div class="login-actions">
+					<div class="login-actions m-l-12px display-none display-large-block">
 						<button class="btn btn-outline-primary login-actions__login m-r-12px">Login</button>
 						<a href="/account/register" class="btn btn-primary login-actions__sign">Sign Up </a>
 					</div>
@@ -29,7 +32,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="header__navigation display-medium-none">
+	<section class="header__navigation display-none display-large-block">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">

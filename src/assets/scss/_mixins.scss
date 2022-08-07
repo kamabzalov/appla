@@ -60,8 +60,8 @@
 }
 
 @mixin make-container() {
-  padding-left: vars.$base-size * 6;
-  padding-right: vars.$base-size * 6;
+  padding-left: vars.$base-size * 3;
+  padding-right: vars.$base-size * 3;
 }
 
 @mixin border-radius($radius...) {

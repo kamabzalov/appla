@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { RestService } from "../../services/rest/rest.service";
-import { Observable } from "rxjs";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'appla-header',
@@ -8,16 +7,7 @@ import { Observable } from "rxjs";
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
-
-  menu$: Observable<any>;
-
-  constructor(private restService: RestService) {
-
-  }
-
-  ngOnInit(): void {
-    // this.menu$ = this.restService.getSiteMenu();
-  }
+export class HeaderComponent {
+  faBars = faBars;
 
 }
