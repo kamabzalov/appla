@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'appla-account-sidebar',
   templateUrl: './account-sidebar.component.html',
   styleUrls: ['./account-sidebar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountSidebarComponent {
-}
+export class AccountSidebarComponent {}

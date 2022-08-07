@@ -8,9 +8,8 @@ describe('AccountRefundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountRefundComponent ]
-    })
-    .compileComponents();
+      declarations: [AccountRefundComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccountRefundComponent);
     component = fixture.componentInstance;

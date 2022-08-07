@@ -1,204 +1,254 @@
 <div class="carousel">
-	<ng-container [ngSwitch]="carouselType">
-		<div class="display-flex align-items-center m-b-20px" *ngSwitchCase="'store-offers'">
-			<fa-icon [icon]="faStar" class="carousel__icon m-r-16px"></fa-icon>
-			<h3 class="carousel__header">Store Offers</h3>
-		</div>
-		<div class="display-flex align-items-center m-b-20px" *ngSwitchCase="'recently-viewed'">
-			<fa-icon [icon]="faEye" class="carousel__icon m-r-16px"></fa-icon>
-			<h3 class="carousel__header">Recently viewed</h3>
-		</div>
-		<div class="display-flex align-items-center m-b-20px" *ngSwitchCase="'now-trending'">
-			<fa-icon [icon]="faStar" class="carousel__icon m-r-16px"></fa-icon>
-			<h3 class="carousel__header">Now trending</h3>
-		</div>
-	</ng-container>
+  <ng-container [ngSwitch]="carouselType">
+    <div
+      class="display-flex align-items-center m-b-20px"
+      *ngSwitchCase="'store-offers'">
+      <fa-icon [icon]="faStar" class="carousel__icon m-r-16px"></fa-icon>
+      <h3 class="carousel__header">Store Offers</h3>
+    </div>
+    <div
+      class="display-flex align-items-center m-b-20px"
+      *ngSwitchCase="'recently-viewed'">
+      <fa-icon [icon]="faEye" class="carousel__icon m-r-16px"></fa-icon>
+      <h3 class="carousel__header">Recently viewed</h3>
+    </div>
+    <div
+      class="display-flex align-items-center m-b-20px"
+      *ngSwitchCase="'now-trending'">
+      <fa-icon [icon]="faStar" class="carousel__icon m-r-16px"></fa-icon>
+      <h3 class="carousel__header">Now trending</h3>
+    </div>
+  </ng-container>
 
-	<ng-container [ngSwitch]="carouselType">
-		<div [className]="carouselType" *ngSwitchCase="'store-offers'">
-			<owl-carousel-o [options]="customOptions">
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="store-offers__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="store-offers__info">
-							<h3 class="store-offers__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="store-offers__price">
-								<h2 class="store-offers__price-title">Prices from:</h2>
-								<p class="store-offers__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="store-offers__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="store-offers__info">
-							<h3 class="store-offers__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="store-offers__price">
-								<h2 class="store-offers__price-title">Prices from:</h2>
-								<p class="store-offers__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="store-offers__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="store-offers__info">
-							<h3 class="store-offers__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="store-offers__price">
-								<h2 class="store-offers__price-title">Prices from:</h2>
-								<p class="store-offers__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-			</owl-carousel-o>
-		</div>
+  <ng-container [ngSwitch]="carouselType">
+    <div [className]="carouselType" *ngSwitchCase="'store-offers'">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="store-offers__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="store-offers__info">
+              <h3 class="store-offers__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="store-offers__price">
+                <h2 class="store-offers__price-title">Prices from:</h2>
+                <p class="store-offers__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="store-offers__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="store-offers__info">
+              <h3 class="store-offers__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="store-offers__price">
+                <h2 class="store-offers__price-title">Prices from:</h2>
+                <p class="store-offers__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="store-offers__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="store-offers__info">
+              <h3 class="store-offers__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="store-offers__price">
+                <h2 class="store-offers__price-title">Prices from:</h2>
+                <p class="store-offers__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
 
-		<div [className]="carouselType" *ngSwitchCase="'recently-viewed'">
-			<owl-carousel-o [options]="customOptions">
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="recently-viewed__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="recently-viewed__info">
-							<h3 class="recently-viewed__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="recently-viewed__price">
-								<h2 class="recently-viewed__price-title">Prices from:</h2>
-								<p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="recently-viewed__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="recently-viewed__info">
-							<h3 class="store-offers__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="recently-viewed__price">
-								<h2 class="recently-viewed__price-title">Prices from:</h2>
-								<p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="recently-viewed__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="recently-viewed__info">
-							<h3 class="recently-viewed__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="recently-viewed__price">
-								<h2 class="recently-viewed__price-title">Prices from:</h2>
-								<p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="recently-viewed__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="recently-viewed__info">
-							<h3 class="recently-viewed__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="recently-viewed__price">
-								<h2 class="recently-viewed__price-title">Prices from:</h2>
-								<p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="recently-viewed__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="recently-viewed__info">
-							<h3 class="recently-viewed__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="recently-viewed__price">
-								<h2 class="recently-viewed__price-title">Prices from:</h2>
-								<p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex">
-						<div class="recently-viewed__image m-r-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<div class="recently-viewed__info">
-							<h3 class="recently-viewed__title">Samsung Galaxy A52s 5G 16.5 cm (6.5)</h3>
-							<p>Available in: 2 stores</p>
-							<div class="recently-viewed__price">
-								<h2 class="recently-viewed__price-title">Prices from:</h2>
-								<p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
-							</div>
-						</div>
-					</div>
-				</ng-template>
-			</owl-carousel-o>
-		</div>
+    <div [className]="carouselType" *ngSwitchCase="'recently-viewed'">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="recently-viewed__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="recently-viewed__info">
+              <h3 class="recently-viewed__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="recently-viewed__price">
+                <h2 class="recently-viewed__price-title">Prices from:</h2>
+                <p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="recently-viewed__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="recently-viewed__info">
+              <h3 class="store-offers__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="recently-viewed__price">
+                <h2 class="recently-viewed__price-title">Prices from:</h2>
+                <p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="recently-viewed__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="recently-viewed__info">
+              <h3 class="recently-viewed__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="recently-viewed__price">
+                <h2 class="recently-viewed__price-title">Prices from:</h2>
+                <p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="recently-viewed__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="recently-viewed__info">
+              <h3 class="recently-viewed__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="recently-viewed__price">
+                <h2 class="recently-viewed__price-title">Prices from:</h2>
+                <p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="recently-viewed__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="recently-viewed__info">
+              <h3 class="recently-viewed__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="recently-viewed__price">
+                <h2 class="recently-viewed__price-title">Prices from:</h2>
+                <p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex">
+            <div class="recently-viewed__image m-r-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <div class="recently-viewed__info">
+              <h3 class="recently-viewed__title">
+                Samsung Galaxy A52s 5G 16.5 cm (6.5)
+              </h3>
+              <p>Available in: 2 stores</p>
+              <div class="recently-viewed__price">
+                <h2 class="recently-viewed__price-title">Prices from:</h2>
+                <p class="recently-viewed__price-item">309.00 € - 380.00 €</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
 
-		<div [className]="carouselType" *ngSwitchCase="'now-trending'">
-			<owl-carousel-o [options]="customOptions">
-				<ng-template carouselSlide>
-					<div class="display-flex flex-column text-center">
-						<div class="w-50 m-auto m-b-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<p class="fw-bold">Mobile Phone Cases</p>
-						<p>133 Products</p>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex flex-column text-center">
-						<div class="w-50 m-auto m-b-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<p class="fw-bold">Mobile Phone Cases</p>
-						<p>133 Products</p>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex flex-column text-center">
-						<div class="w-50 m-auto m-b-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<p class="fw-bold">Mobile Phone Cases</p>
-						<p>133 Products</p>
-					</div>
-				</ng-template>
-				<ng-template carouselSlide>
-					<div class="display-flex flex-column text-center">
-						<div class="w-50 m-auto m-b-16px">
-							<img src="/assets/images/carousel/store-offers/samsung.png" alt="">
-						</div>
-						<p class="fw-bold">Mobile Phone Cases</p>
-						<p>133 Products</p>
-					</div>
-				</ng-template>
-			</owl-carousel-o>
-		</div>
-	</ng-container>
+    <div [className]="carouselType" *ngSwitchCase="'now-trending'">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <div class="display-flex flex-column text-center">
+            <div class="w-50 m-auto m-b-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <p class="fw-bold">Mobile Phone Cases</p>
+            <p>133 Products</p>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex flex-column text-center">
+            <div class="w-50 m-auto m-b-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <p class="fw-bold">Mobile Phone Cases</p>
+            <p>133 Products</p>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex flex-column text-center">
+            <div class="w-50 m-auto m-b-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <p class="fw-bold">Mobile Phone Cases</p>
+            <p>133 Products</p>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="display-flex flex-column text-center">
+            <div class="w-50 m-auto m-b-16px">
+              <img
+                src="/assets/images/carousel/store-offers/samsung.png"
+                alt="" />
+            </div>
+            <p class="fw-bold">Mobile Phone Cases</p>
+            <p>133 Products</p>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </ng-container>
 </div>

@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'appla-account-wishlist',
   templateUrl: './account-wishlist.component.html',
   styleUrls: ['./account-wishlist.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountWishlistComponent {
-}
+export class AccountWishlistComponent {}

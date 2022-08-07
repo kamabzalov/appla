@@ -4,8 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'appla-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SliderComponent {
-
-}
+export class SliderComponent {}

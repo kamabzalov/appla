@@ -5,10 +5,9 @@ import { faChevronRight, faTags } from '@fortawesome/free-solid-svg-icons';
   selector: 'appla-category-page',
   templateUrl: './category-page.component.html',
   styleUrls: ['./category-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryPageComponent {
-
   faChevronRight = faChevronRight;
   faTags = faTags;
 }

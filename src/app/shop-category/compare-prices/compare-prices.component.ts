@@ -5,10 +5,8 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons';
   selector: 'appla-compare-prices',
   templateUrl: './compare-prices.component.html',
   styleUrls: ['./compare-prices.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComparePricesComponent{
-
+export class ComparePricesComponent {
   faTruck = faTruck;
-
 }

@@ -8,9 +8,8 @@ describe('AsideWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AsideWidgetComponent ]
-    })
-    .compileComponents();
+      declarations: [AsideWidgetComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AsideWidgetComponent);
     component = fixture.componentInstance;

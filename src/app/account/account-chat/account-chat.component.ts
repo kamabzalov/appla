@@ -4,8 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'appla-account-chat',
   templateUrl: './account-chat.component.html',
   styleUrls: ['./account-chat.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountChatComponent {
-
-}
+export class AccountChatComponent {}

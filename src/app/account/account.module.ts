@@ -14,7 +14,6 @@ import { AccountRefundComponent } from './account-refund/account-refund.componen
 import { AccountWishlistComponent } from './account-wishlist/account-wishlist.component';
 import { AccountFavoriteMerchantComponent } from './account-favorite-merchant/account-favorite-merchant.component';
 
-
 @NgModule({
   declarations: [
     AccountComponent,
@@ -27,12 +26,8 @@ import { AccountFavoriteMerchantComponent } from './account-favorite-merchant/ac
     AccountTransactionListComponent,
     AccountRefundComponent,
     AccountWishlistComponent,
-    AccountFavoriteMerchantComponent
+    AccountFavoriteMerchantComponent,
   ],
-  imports: [
-    CommonModule,
-    AccountRoutingModule
-  ]
+  imports: [CommonModule, AccountRoutingModule],
 })
-export class AccountModule {
-}
+export class AccountModule {}

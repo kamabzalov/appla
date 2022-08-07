@@ -4,8 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'appla-account-info',
   templateUrl: './account-info.component.html',
   styleUrls: ['./account-info.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountInfoComponent {
-
-}
+export class AccountInfoComponent {}

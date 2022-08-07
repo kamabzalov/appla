@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { faStar, faEye } from '@fortawesome/free-solid-svg-icons';
-import { OwlOptions } from "ngx-owl-carousel-o";
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 type CarouselType = 'store-offers' | 'recently-viewed' | 'now-trending';
 
@@ -8,10 +8,9 @@ type CarouselType = 'store-offers' | 'recently-viewed' | 'now-trending';
   selector: 'appla-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarouselComponent {
-
   @Input() carouselType: CarouselType;
 
   faStar = faStar;
@@ -27,19 +26,18 @@ export class CarouselComponent {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 2
+        items: 2,
       },
       740: {
-        items: 3
+        items: 3,
       },
       940: {
-        items: 4
-      }
+        items: 4,
+      },
     },
-    nav: true
-  }
-
+    nav: true,
+  };
 }

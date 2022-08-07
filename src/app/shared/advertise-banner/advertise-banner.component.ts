@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'appla-advertise-banner',
   templateUrl: './advertise-banner.component.html',
   styleUrls: ['./advertise-banner.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertiseBannerComponent {
-}
+export class AdvertiseBannerComponent {}

@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'appla-account-refund',
   templateUrl: './account-refund.component.html',
   styleUrls: ['./account-refund.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountRefundComponent {
-}
+export class AccountRefundComponent {}

@@ -8,9 +8,8 @@ describe('AccountWishlistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountWishlistComponent ]
-    })
-    .compileComponents();
+      declarations: [AccountWishlistComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccountWishlistComponent);
     component = fixture.componentInstance;

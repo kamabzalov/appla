@@ -8,9 +8,8 @@ describe('ComparePricesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ComparePricesComponent ]
-    })
-    .compileComponents();
+      declarations: [ComparePricesComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ComparePricesComponent);
     component = fixture.componentInstance;

@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'appla-product-category-tile',
   templateUrl: './product-category-tile.component.html',
   styleUrls: ['./product-category-tile.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductCategoryTileComponent {
-}
+export class ProductCategoryTileComponent {}
