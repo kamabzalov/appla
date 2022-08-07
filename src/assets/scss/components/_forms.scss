@@ -1,10 +1,11 @@
-@use "../vars" as vars;
-@use "../mixins" as mixins;
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
 
 input {
   @include mixins.border-radius(vars.$base-size * 5);
+
   border: none;
   outline: none;
   width: 100%;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }

@@ -1,5 +1,5 @@
-@use "~assets/scss/vars" as vars;
-@use "~assets/scss/mixins" as mixins;
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
 
 .footer {
   background: vars.$alice-blue;
@@ -16,7 +16,7 @@
     }
 
     &__image {
-      opacity: .6;
+      opacity: 0.6;
     }
 
     &__title {
@@ -65,6 +65,7 @@
 
     &__login {
       @include mixins.border-radius(vars.$base-size * 5);
+
       color: vars.$rich-black;
       border-color: vars.$rich-black;
       padding: vars.$base-size * 2 vars.$base-size * 5;
@@ -79,6 +80,7 @@
 
     &__sign {
       @include mixins.border-radius(vars.$base-size * 5);
+
       color: vars.$white;
       background: vars.$honey-yellow;
       border-color: vars.$honey-yellow;
@@ -107,7 +109,7 @@
   & .address {
     &__text {
       color: vars.$rich-black;
-      border-top: 1px solid rgba(28, 46, 63, 0.2);
+      border-top: 1px solid rgb(0 0 0 / 20%);
       font-weight: 600;
     }
   }

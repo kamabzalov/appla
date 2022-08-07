@@ -1,11 +1,11 @@
-@use "~assets/scss/vars" as vars;
-@use "~assets/scss/mixins" as mixins;
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
 
 .form-price {
-
   &__icon {
     @include mixins.border-radius(50%);
-    @include mixins.centered-content();
+    @include mixins.centered-content;
+
     background: vars.$honey-yellow;
     color: vars.$white;
     width: 32px;
@@ -15,7 +15,6 @@
 }
 
 .category-products {
-
   &__title {
     font-size: 13px;
     font-weight: 600;

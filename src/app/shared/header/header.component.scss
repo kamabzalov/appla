@@ -1,8 +1,9 @@
-@use "~assets/scss/vars";
-@use "~assets/scss/mixins";
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .header {
-  @include mixins.top-fixed-element();
+  @include mixins.top-fixed-element;
+
   &__elements {
     background: vars.$blue-yonder;
 
@@ -16,7 +17,7 @@
 
     &-logo {
       &:hover {
-        opacity: .8;
+        opacity: 0.8;
       }
     }
   }

@@ -1,9 +1,10 @@
-@use "vars" as vars;
+@use 'vars' as vars;
 
 $order: 1;
 $display: inline, inline-block, block, table, flex, inline-flex, none;
 $align-items: stretch, center, flex-start, flex-end, baseline;
-$justify-content: flex-start, flex-end, center, space-between, space-around, space-evenly;
+$justify-content: flex-start, flex-end, center, space-between, space-around,
+  space-evenly;
 $position: static, relative, fixed, absolute, sticky;
 $text-align: left, right, center, justify;
 
@@ -43,7 +44,7 @@ $text-align: left, right, center, justify;
 }
 
 @each $prefix, $val in vars.$media-breakpoints {
-  @if ($prefix) {
+  @if $prefix {
     @media (min-width: $val) {
       .display-#{$prefix}-none {
         display: none !important;
@@ -58,7 +59,7 @@ $text-align: left, right, center, justify;
 
 @each $prefix, $val in vars.$media-breakpoints {
   @each $value in $display {
-    @if ($prefix) {
+    @if $prefix {
       @media (min-width: $val) {
         .display-#{$prefix}-#{$value} {
           display: $value !important;
@@ -72,11 +73,10 @@ $text-align: left, right, center, justify;
   }
 }
 
-@while ($order <= vars.$cols) {
+@while $order <= vars.$cols {
   .order-#{$order} {
     order: $order !important;
   }
 
   $order: $order + 1;
 }
-

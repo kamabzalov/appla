@@ -1,7 +1,6 @@
-@use "~assets/scss/vars" as vars;
+@use '~assets/scss/vars' as vars;
 
 .product-offers {
-
   &__header {
     border-bottom: 1px solid vars.$alice-blue;
   }
@@ -26,7 +25,4 @@
     font-weight: 600;
     padding: 10px 20px;
   }
-
-
-
 }

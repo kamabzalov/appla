@@ -1,11 +1,11 @@
-@use "vars" as vars;
-@use "mixins" as mixins;
+@use 'vars' as vars;
+@use 'mixins' as mixins;
 
 @include mixins.make-margins;
 @include mixins.make-paddings;
 
 @each $suffix, $breakpoint in vars.$media-breakpoints {
-  @if ($breakpoint < 576) {
+  @if $breakpoint < 576 {
     @include mixins.make-columns(vars.$cols);
   } @else {
     @include mixins.make-responsive-columns($suffix, $breakpoint, vars.$cols);
@@ -13,18 +13,17 @@
 }
 
 .container {
-  @include mixins.make-container();
+  @include mixins.make-container;
+
   max-width: 90%;
   margin: auto;
 
   &-fluid {
-    @include mixins.make-container();
+    @include mixins.make-container;
   }
 }
 
 .row {
-  display: -moz-flex;
-  display: -webkit-flex;
   display: flex;
   flex-wrap: wrap;
   margin-left: -(vars.$base-size * 4);

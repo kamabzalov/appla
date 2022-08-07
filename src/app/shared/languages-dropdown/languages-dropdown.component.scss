@@ -1,22 +1,23 @@
-@use "~assets/scss/vars";
-@use "~assets/scss/mixins";
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .languages-menu {
-
   &__toggle {
-    &:after {
+    &::after {
       content: unset;
     }
   }
 
   &__icon {
     @include mixins.border-radius(50%);
+
     width: 100%;
     height: 100%;
   }
 
   .icon-dropdown {
     @include mixins.border-radius(vars.$base-size);
+
     width: vars.$base-size * 5;
     height: vars.$base-size * 5;
   }

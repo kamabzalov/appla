@@ -1,16 +1,12 @@
-@use "~assets/scss/vars";
-@use "~assets/scss/mixins";
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 :host {
   display: flex;
 
   .cart {
-    
-    &:after {
+    &::after {
       content: unset;
     }
-
-
   }
 }
-

@@ -1,8 +1,9 @@
-@use "~assets/scss/vars" as vars;
-@use "~assets/scss/mixins" as mixins;
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
 
 .button-more {
   @include mixins.border-radius(vars.$base-size * 5);
+
   color: vars.$white;
   border: 1px solid vars.$honey-yellow;
   background: vars.$honey-yellow;

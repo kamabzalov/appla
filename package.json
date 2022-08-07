@@ -11,7 +11,9 @@
     "serve:ssr": "node dist/appla/server/main.js",
     "build:ssr": "ng build && ng run appla:server",
     "prerender": "ng run appla:prerender",
-    "lint": "ng lint --fix"
+    "lint": "ng lint --fix",
+    "style-lint": "npx stylelint \"**/*.scss\"",
+    "prettier": "npx prettier --write ."
   },
   "private": true,
   "dependencies": {
@@ -39,6 +41,7 @@
     "ngx-owl-carousel-o": "^14.0.0",
     "prettier-eslint": "^15.0.1",
     "rxjs": "~7.5.0",
+    "stylelint-config-prettier-scss": "^0.0.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -67,6 +70,11 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "prettier": "^2.7.1",
+    "prettier-stylelint": "^0.4.2",
+    "stylelint": "^14.9.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^26.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
     "typescript": "~4.7.2"
   }
 }

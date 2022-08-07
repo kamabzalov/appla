@@ -1,5 +1,5 @@
-@use "~assets/scss/vars" as vars;
-@use "~assets/scss/mixins" as mixins;
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
 
 .aside-widget {
   background-color: vars.$white;
@@ -17,6 +17,7 @@
 
   &__icon {
     @include mixins.border-radius(50%);
+
     background-color: vars.$honey-yellow;
     color: vars.$white;
     width: 1rem;
