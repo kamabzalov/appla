@@ -1,49 +1,35 @@
-@use "~assets/scss/vars";
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .header {
-  &__controls {
-    background: vars.$steel-blue;
+  @include mixins.top-fixed-element;
+
+  &__elements {
+    background: vars.$blue-yonder;
 
     &-link {
       color: vars.$white;
 
       &:hover {
-        color: vars.$yellow-orange;
+        color: vars.$honey-yellow;
       }
     }
 
     &-logo {
       &:hover {
-        opacity: .8;
+        opacity: 0.8;
       }
     }
   }
 
-  .login-actions {
+  &__navigation {
+    background: vars.$united-nations-blue;
+  }
 
-
-    &__login {
-      color: vars.$white;
-      border-color: vars.$yellow-orange;
-      border-radius: vars.$base-size * 5;
-      padding: vars.$base-size * 2 vars.$base-size * 5;
-      font-size: 11px;
-
+  &__user-actions {
+    &-sign {
       &:hover {
-        background: vars.$yellow-orange;
-      }
-    }
-
-    &__sign {
-      color: vars.$white;
-      background: vars.$yellow-orange;
-      border-radius: vars.$base-size * 5;
-      border-color: vars.$yellow-orange;
-      padding: vars.$base-size * 2 vars.$base-size * 5;
-      font-size: 11px;
-
-      &:hover {
-        background: transparent;
+        color: vars.$white;
       }
     }
   }

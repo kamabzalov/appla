@@ -1,9 +1,9 @@
-@use "~assets/scss/vars" as vars;
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .product {
-
   &-categories {
-    border-bottom: 1px solid vars.$water;
+    border-bottom: 1px solid vars.$alice-blue;
   }
 
   &-order {
@@ -17,68 +17,73 @@
     }
 
     &__max {
+      @include mixins.border-radius(vars.$base-size * 5);
+
       color: vars.$white;
-      background-color: vars.$yellow-orange;
-      border: 1px solid vars.$yellow-orange;
-      border-radius: 20px;
+      background-color: vars.$honey-yellow;
+      border: 1px solid vars.$honey-yellow;
     }
 
     &__cart-button {
+      @include mixins.border-radius(vars.$base-size * 5);
+
       color: vars.$white;
-      background-color: vars.$yellow-orange;
-      border: 1px solid vars.$yellow-orange;
-      border-radius: 20px;
+      background-color: vars.$honey-yellow;
+      border: 1px solid vars.$honey-yellow;
     }
   }
 
   &-seller {
-    border-top: 1px solid vars.$water;
+    border-top: 1px solid vars.$alice-blue;
 
     &__logo {
+      @include mixins.border-radius(50%);
+
       width: 56px;
       height: 56px;
-      border: 1px solid vars.$water;
-      border-radius: 50%;
+      border: 1px solid vars.$alice-blue;
     }
   }
 
   &-follow {
-    border: 1px solid vars.$yellow-orange;
-    background: vars.$yellow-orange;
+    @include mixins.border-radius(vars.$base-size * 5);
+
+    border: 1px solid vars.$honey-yellow;
+    background: vars.$honey-yellow;
     color: vars.$white;
-    border-radius: 20px;
     font-weight: 600;
-    padding: .6rem 1rem;
+    padding: 0.6rem 1rem;
   }
 
   &__image {
-    border: 1px solid vars.$water;
-    border-radius: 20px;
+    @include mixins.border-radius(vars.$base-size * 5);
+
+    border: 1px solid vars.$alice-blue;
   }
 
   &__title {
     text-transform: capitalize;
     font-size: 24px;
-    color: vars.$charcoal;
+    color: vars.$rich-black;
     font-weight: 600;
   }
 
   &__price {
     font-size: 18px;
-    color: vars.$yellow-orange;
+    color: vars.$honey-yellow;
     font-weight: 600;
   }
 
   &__category {
-    color: vars.$yellow-orange;
+    color: vars.$honey-yellow;
     font-weight: 600;
   }
 
   &__condition {
-    color: vars.$steel-blue;
+    color: vars.$blue-yonder;
   }
 
   &__status {
-    color: vars.$american-green;
+    color: vars.$maximum-yellow-red;
   }
 }

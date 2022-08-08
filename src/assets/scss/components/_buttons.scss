@@ -1,0 +1,38 @@
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
+
+.button {
+  @include mixins.border-radius(vars.$base-size * 5);
+
+  border: none;
+  outline: none;
+  background: none;
+  font: {
+    size: 10px;
+    weight: 700;
+  }
+
+  padding: vars.$base-size * 2 vars.$base-size * 5;
+
+  &_orange {
+    background: vars.$honey-yellow;
+    color: vars.$white;
+  }
+
+  &_icon {
+    @include mixins.border-radius(50%);
+
+    width: vars.$base-size * 8;
+    height: vars.$base-size * 8;
+    padding: 0;
+  }
+
+  &_transparent {
+    background: transparent;
+    color: vars.$white;
+
+    &_outline_orange {
+      border: 1px solid vars.$honey-yellow;
+    }
+  }
+}

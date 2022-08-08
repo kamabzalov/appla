@@ -1,28 +1,19 @@
-@use "assets/scss/vars";
-@use "assets/scss/mixins";
-@use "assets/scss/utils";
-@use "assets/scss/fonts";
-@use "assets/scss/grid";
+@use '~bootstrap/scss/bootstrap';
+@use 'assets/scss/vars';
+@use 'assets/scss/utils';
+@use 'assets/scss/fonts';
+@use 'assets/scss/grid';
+@use 'assets/scss/components';
 
-@use "assets/scss/components";
-
-@include mixins.make-margins;
-@include mixins.make-paddings;
-
-@each $suffix, $breakpoint in vars.$media-breakpoints {
-  @if ($breakpoint < 576) {
-    @include mixins.make-columns(vars.$cols);
-  } @else {
-    @include mixins.make-responsive-columns($suffix, $breakpoint, vars.$cols);
-  }
+html,
+body {
+  font-size: vars.$base-size * 3;
 }
 
 body {
   font-weight: 400;
   font-family: vars.$base-font;
-  font-size: vars.$base-size * 3 !important;
-  color: vars.$charcoal;
-  background: vars.$ghost-white;
+  color: vars.$rich-black;
 }
 
 a {

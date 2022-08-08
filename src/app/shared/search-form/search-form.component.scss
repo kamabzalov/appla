@@ -1,4 +1,8 @@
-@use "~assets/scss/vars";
+@use 'sass:map';
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
+
+$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
 :host {
   display: flex;
@@ -7,16 +11,24 @@
   .search-form {
     width: 100%;
 
+    @media (max-width: $medium-devices-breakpoint) {
+      margin: vars.$base-size * 2;
+    }
+
     &__input {
-      border: 1px solid vars.$bright-gray;
-      border-radius: vars.$base-size * 5 0 0 vars.$base-size * 5;
+      @include mixins.border-radius(
+        vars.$base-size * 5 0 0 vars.$base-size * 5
+      );
     }
 
     &__icon {
+      @include mixins.border-radius(
+        0 vars.$base-size * 5 vars.$base-size * 5 0
+      );
+
       font-size: 1rem;
-      border-radius: 0 vars.$base-size * 5 vars.$base-size * 5 0;
-      background: vars.$yellow-orange;
-      border: 1px solid vars.$yellow-orange;
+      background: vars.$honey-yellow;
+      border: 1px solid vars.$honey-yellow;
       cursor: pointer;
       color: vars.$white;
     }

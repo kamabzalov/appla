@@ -1,15 +1,18 @@
-@use "~assets/scss/vars" as vars;
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
 
 .preview-card {
+  @include mixins.border-radius(vars.$base-size * 5);
+
   padding: 10px;
-  border: solid 0 vars.$water;
+  border: solid 0 vars.$alice-blue;
   box-shadow: 0 0 4px 2px rgb(49 53 59 / 12%);
-  border-radius: 20px;
   background-color: white;
 
   &__image {
-    border: solid 1px vars.$water;
-    border-radius: 20px;
+    @include mixins.border-radius(vars.$base-size * 5);
+
+    border: solid 1px vars.$alice-blue;
     padding: 0;
     margin-bottom: 5px;
     width: 100%;
@@ -17,6 +20,6 @@
   }
 
   &__price {
-    color: vars.$yellow-orange;
+    color: vars.$honey-yellow;
   }
 }

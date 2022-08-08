@@ -1,29 +1,23 @@
-// Colors
-
-$steel-blue: #4272B8;
-$dazzled-blue: #345D9B;
+// App colors
+$black: #000;
+$earie-black: #141414;
+$rich-black: #101820;
+$blue-yonder: #4272b8;
+$united-nations-blue: #6792cb;
+$honey-yellow: #f9b233;
+$maximum-yellow-red: #fcbd5f;
+$alice-blue: #f0f4fa;
+$old-lace: #fff7eb;
 $white: #fff;
-$yellow-orange: #fbb040;
-$ghost-white: #fdf9f8;
-$azureish-white:#e2edf6;
-$dark-silver: #707070;
-$lavender-gray: #bcc6d2;
-$charcoal: #394955;
-$lavende-web: #e1edff;
-$water: #d2ecfc;
-$bright-gray: #e4e6ef;
-$american-green: #37b24d;
 
 // App variables
-
-$base-font: Poppins, Helvetica, "sans-serif";
+$base-font: 'Roboto', 'Helvetica', sans-serif;
 $base-size: 4px;
 $cols: 12;
-
 $media-breakpoints: (
-        '': 0,
-        small: 576px,
-        medium: 768px,
-        large: 992px,
-        xlarge: 1200px
+  '': 0,
+  small: 576px,
+  medium: 768px,
+  large: 992px,
+  xlarge: 1200px,
 );

@@ -8,9 +8,8 @@ describe('AccountFavoriteMerchantComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountFavoriteMerchantComponent ]
-    })
-    .compileComponents();
+      declarations: [AccountFavoriteMerchantComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccountFavoriteMerchantComponent);
     component = fixture.componentInstance;

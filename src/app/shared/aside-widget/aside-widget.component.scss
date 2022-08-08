@@ -1,10 +1,11 @@
-@use "~assets/scss/vars" as vars;
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
 
 .aside-widget {
   background-color: vars.$white;
 
   &__head {
-    border-bottom: 1px solid vars.$water;
+    border-bottom: 1px solid vars.$alice-blue;
   }
 
   &__toggle {
@@ -15,9 +16,10 @@
   }
 
   &__icon {
-    background-color: vars.$yellow-orange;
+    @include mixins.border-radius(50%);
+
+    background-color: vars.$honey-yellow;
     color: vars.$white;
-    border-radius: 50%;
     width: 1rem;
     height: 1rem;
     line-height: 1rem;

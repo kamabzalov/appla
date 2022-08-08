@@ -1,5 +1,5 @@
-@use "sass:math";
-@use "vars" as vars;
+@use 'sass:math';
+@use 'vars';
 
 @mixin make-margins {
   @for $i from 0 through 100 {
@@ -60,11 +60,11 @@
 }
 
 @mixin make-container() {
-  padding-left: vars.$base-size * 6;
-  padding-right: vars.$base-size * 6;
+  padding-left: vars.$base-size * 3;
+  padding-right: vars.$base-size * 3;
 }
 
-@mixin border-radius($radius) {
+@mixin border-radius($radius...) {
   border-radius: $radius;
 }
 
@@ -97,16 +97,36 @@
 }
 
 @mixin box-shadow($x-offset, $y-offset, $blur, $spread, $color) {
-  @if ($spread == null) {
-    box-shadow: $x-offset $y-offset $blur $color;
-  } @else {
+  @if $spread {
     box-shadow: $x-offset $y-offset $blur $spread $color;
+  } @else {
+    box-shadow: $x-offset $y-offset $blur $color;
   }
 }
 
 @mixin make-card-content() {
+  @include border-radius(vars.$base-size * 5);
+  @include box-shadow(
+    0,
+    vars.$base-size,
+    vars.$base-size * 2,
+    null,
+    rgb(8 52 119 / 10%)
+  );
+
   background: vars.$white;
   padding: vars.$base-size * 5;
-  border-radius: vars.$base-size * 5;
-  @include box-shadow(0, vars.$base-size, vars.$base-size * 2, null, rgb(8 52 119 / 10%));
+}
+
+@mixin centered-content() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin top-fixed-element() {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }

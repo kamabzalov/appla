@@ -1,19 +1,29 @@
-@use "vars" as vars;
-@use "mixins" as mixins;
+@use 'vars' as vars;
+@use 'mixins' as mixins;
 
-.appla-container {
-  @include mixins.make-container();
-  max-width: 85%;
-  margin: auto;
+@include mixins.make-margins;
+@include mixins.make-paddings;
 
-  &-fluid {
-    @include mixins.make-container();
+@each $suffix, $breakpoint in vars.$media-breakpoints {
+  @if $breakpoint < 576 {
+    @include mixins.make-columns(vars.$cols);
+  } @else {
+    @include mixins.make-responsive-columns($suffix, $breakpoint, vars.$cols);
   }
 }
 
-.appla-row {
-  display: -moz-flex;
-  display: -webkit-flex;
+.container {
+  @include mixins.make-container;
+
+  max-width: 90%;
+  margin: auto;
+
+  &-fluid {
+    @include mixins.make-container;
+  }
+}
+
+.row {
   display: flex;
   flex-wrap: wrap;
   margin-left: -(vars.$base-size * 4);

@@ -1,5 +1,82 @@
-@use "vars" as vars;
+@use 'vars' as vars;
 
-.text-orange {
-  color: vars.$yellow-orange !important;
+$order: 1;
+$display: inline, inline-block, block, table, flex, inline-flex, none;
+$align-items: stretch, center, flex-start, flex-end, baseline;
+$justify-content: flex-start, flex-end, center, space-between, space-around,
+  space-evenly;
+$position: static, relative, fixed, absolute, sticky;
+$text-align: left, right, center, justify;
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+@each $value in $text-align {
+  .text-#{$value} {
+    text-align: $value !important;
+  }
+}
+
+@each $value in $display {
+  .display-#{$value} {
+    display: $value !important;
+  }
+}
+
+@each $value in $align-items {
+  .align-items-#{$value} {
+    align-items: $value !important;
+  }
+}
+
+@each $value in $justify-content {
+  .justify-content-#{$value} {
+    justify-content: $value !important;
+  }
+}
+
+@each $value in $position {
+  .position-#{$value} {
+    position: $value !important;
+  }
+}
+
+@each $prefix, $val in vars.$media-breakpoints {
+  @if $prefix {
+    @media (min-width: $val) {
+      .display-#{$prefix}-none {
+        display: none !important;
+      }
+    }
+  } @else {
+    .display-none {
+      display: none !important;
+    }
+  }
+}
+
+@each $prefix, $val in vars.$media-breakpoints {
+  @each $value in $display {
+    @if $prefix {
+      @media (min-width: $val) {
+        .display-#{$prefix}-#{$value} {
+          display: $value !important;
+        }
+      }
+    } @else {
+      .display-#{$value} {
+        display: $value !important;
+      }
+    }
+  }
+}
+
+@while $order <= vars.$cols {
+  .order-#{$order} {
+    order: $order !important;
+  }
+
+  $order: $order + 1;
 }
