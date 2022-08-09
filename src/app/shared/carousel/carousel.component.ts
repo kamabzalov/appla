@@ -1,8 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { faStar, faEye } from '@fortawesome/free-solid-svg-icons';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-
-type CarouselType = 'store-offers' | 'recently-viewed' | 'now-trending';
 
 @Component({
   selector: 'appla-carousel',
@@ -11,11 +8,6 @@ type CarouselType = 'store-offers' | 'recently-viewed' | 'now-trending';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarouselComponent {
-  @Input() public carouselType: CarouselType;
-
-  public faStar = faStar;
-  public faEye = faEye;
-
   public customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,

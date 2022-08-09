@@ -2,16 +2,6 @@
 @use '~assets/scss/mixins';
 
 .carousel {
-  &__icon {
-    color: vars.$blue-yonder;
-  }
-
-  &__header {
-    font-size: 16px;
-    color: vars.$rich-black;
-    font-weight: 700;
-    margin: 0;
-  }
 
   & .store-offers {
     &__image {

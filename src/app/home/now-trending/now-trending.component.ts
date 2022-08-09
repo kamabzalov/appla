@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'appla-store-offers',
-  templateUrl: './store-offers.component.html',
-  styleUrls: ['./store-offers.component.scss'],
+  selector: 'appla-now-trending',
+  templateUrl: './now-trending.component.html',
+  styleUrls: ['./now-trending.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StoreOffersComponent {
+export class NowTrendingComponent {
   public faStar = faStar;
 }
