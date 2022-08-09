@@ -9,7 +9,12 @@ import { SharedModule } from '../shared/shared.module';
 import { StoreOffersComponent } from './store-offers/store-offers.component';
 
 @NgModule({
-  declarations: [ProductCategoryTileComponent, TileComponent, HomeComponent, StoreOffersComponent],
+  declarations: [
+    ProductCategoryTileComponent,
+    TileComponent,
+    HomeComponent,
+    StoreOffersComponent,
+  ],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
 export class HomeModule {}
