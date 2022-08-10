@@ -5,11 +5,11 @@ import { ComparePricesComponent } from './compare-prices/compare-prices.componen
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'list/:category-slug',
     component: CategoryPageComponent,
   },
   {
-    path: 'product_list',
+    path: 'product_list/:slug',
     component: ComparePricesComponent,
   },
 ];

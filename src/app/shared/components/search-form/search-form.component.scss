@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '~assets/scss/vars';
-@use '~assets/scss/mixins';
+@use '../../../../assets/scss/vars';
+@use '../../../../assets/scss/mixins';
 
 $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
@@ -17,13 +17,13 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
     &__input {
       @include mixins.border-radius(
-        vars.$base-size * 5 0 0 vars.$base-size * 5
+                      vars.$base-size * 5 0 0 vars.$base-size * 5
       );
     }
 
     &__icon {
       @include mixins.border-radius(
-        0 vars.$base-size * 5 vars.$base-size * 5 0
+                      0 vars.$base-size * 5 vars.$base-size * 5 0
       );
 
       font-size: 1rem;

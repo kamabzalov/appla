@@ -3,4 +3,26 @@
     <fa-icon [icon]="faStar" class="now-trending__icon m-r-16px"></fa-icon>
     <h3 class="now-trending__header">Now trending</h3>
   </div>
+
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let trend of trending$ | async">
+      <ng-template carouselSlide>
+        <a
+          [routerLink]="['category/list', trend.slug]"
+          class="now-trending__link display-flex flex-column text-center">
+          <div class="now-trending__image m-b-16px">
+            <img
+              class="now-trending__image-item"
+              [src]="
+                'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+                trend.picture
+              "
+              [alt]="trend.name1" />
+          </div>
+          <p>{{ trend.name1 }}</p>
+          <p>{{ trend.count }}</p>
+        </a>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
 </div>

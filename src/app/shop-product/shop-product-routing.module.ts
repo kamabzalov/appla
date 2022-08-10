@@ -4,7 +4,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':shop-name/:product-slug',
     component: ProductPageComponent,
   },
 ];

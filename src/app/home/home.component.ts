@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { iconSet } from '@app/shared/utils/icons';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'appla-home',
@@ -6,4 +8,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent {
+  public faStar: IconDefinition = iconSet.faStar;
+  public faEye: IconDefinition = iconSet.faEye;
+}

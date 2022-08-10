@@ -1,5 +1,5 @@
-@use '~assets/scss/vars' as vars;
-@use '~assets/scss/mixins' as mixins;
+@use '../../../../assets/scss/vars' as vars;
+@use '../../../../assets/scss/mixins' as mixins;
 
 .aside-widget {
   background-color: vars.$white;

@@ -1,6 +1,12 @@
 @use '~assets/scss/vars' as vars;
 
+:host {
+  display: block;
+  height: 100%;
+}
+
 .tile {
+  height: 100%;
   color: vars.$white;
   text-align: center;
 
@@ -10,9 +16,5 @@
 
   &.orange {
     background: vars.$honey-yellow;
-  }
-
-  &__title {
-    font-size: 23px;
   }
 }

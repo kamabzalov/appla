@@ -1,6 +1,36 @@
 <div class="recently-viewed">
   <div class="display-flex align-items-center m-b-20px">
     <fa-icon [icon]="faEye" class="recently-viewed__icon m-r-16px"></fa-icon>
-    <h3 class="recently-viewed__header">Recently viewed</h3>
+    <h3 class="recently-viewed__header">Recently Viewed</h3>
   </div>
+
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let product of recentlyViewed$ | async">
+      <ng-template carouselSlide>
+        <a
+          [routerLink]="['product', product.store_name, product.slug]"
+          class="recently-viewed-product display-flex flex-direction-column">
+          <div class="recently-viewed__image m-b-16px">
+            <img
+              class="recently-viewed__image-item"
+              [src]="
+                'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+                product.show_picture
+              "
+              [alt]="product.name1" />
+          </div>
+          <div
+            class="display-flex justify-content-space-between flex-direction-column">
+            <h3 class="recently-viewed__title">
+              {{ product.name1 }}
+            </h3>
+            <p class="recently-viewed__price-item">{{ product.price }} €</p>
+            <div class="recently-viewed__price">
+              <p>Available in: {{ product.count_similar }} stores</p>
+            </div>
+          </div>
+        </a>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
 </div>

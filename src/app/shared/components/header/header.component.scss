@@ -1,5 +1,5 @@
-@use '~assets/scss/vars';
-@use '~assets/scss/mixins';
+@use '../../../../assets/scss/vars';
+@use '../../../../assets/scss/mixins';
 
 .header {
   @include mixins.top-fixed-element;

@@ -26,6 +26,6 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -(vars.$base-size * 4);
-  margin-right: -(vars.$base-size * 4);
+  margin-left: -(vars.$base-size * 3);
+  margin-right: -(vars.$base-size * 3);
 }

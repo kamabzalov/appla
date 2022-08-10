@@ -75,8 +75,8 @@
       max-width: math.percentage(math.div($i, $cols));
       min-height: 1px;
       position: relative;
-      padding-left: vars.$base-size * 4;
-      padding-right: vars.$base-size * 4;
+      padding-left: vars.$base-size * 3;
+      padding-right: vars.$base-size * 3;
     }
   }
 }
@@ -89,8 +89,8 @@
         min-height: 1px;
         max-width: math.percentage(math.div($i, $cols));
         position: relative;
-        padding-left: vars.$base-size * 4;
-        padding-right: vars.$base-size * 4;
+        padding-left: vars.$base-size * 3;
+        padding-right: vars.$base-size * 3;
       }
     }
   }
@@ -107,11 +107,11 @@
 @mixin make-card-content() {
   @include border-radius(vars.$base-size * 5);
   @include box-shadow(
-    0,
-    vars.$base-size,
-    vars.$base-size * 2,
-    null,
-    rgb(8 52 119 / 10%)
+                  0,
+                  vars.$base-size,
+                  vars.$base-size * 2,
+                  null,
+                  rgb(8 52 119 / 10%)
   );
 
   background: vars.$white;

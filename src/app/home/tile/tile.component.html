@@ -1,8 +1,5 @@
 <div
   class="tile"
   [ngClass]="{ blue: tileColor === 'blue', orange: tileColor === 'orange' }">
-  <ng-content select="[tile-image]"></ng-content>
-  <p class="tile__title">
-    <ng-content select="[tile-title]"></ng-content>
-  </p>
+  <ng-content></ng-content>
 </div>

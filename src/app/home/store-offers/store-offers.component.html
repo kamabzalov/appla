@@ -3,4 +3,39 @@
     <fa-icon [icon]="faStar" class="store-offers__icon m-r-16px"></fa-icon>
     <h3 class="store-offers__header">Store Offers</h3>
   </div>
+
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let offer of storeOffers$ | async">
+      <ng-template carouselSlide>
+        <a
+          [routerLink]="['category/product_list/', offer.slug]"
+          [queryParams]="{ mpi: offer.master_product_id }"
+          class="store-offers__link display-flex">
+          <div class="store-offers__image m-r-16px">
+            <img
+              [src]="
+                'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+                offer.picture
+              "
+              [alt]="offer.name1" />
+          </div>
+          <div
+            class="store-offers__info display-flex flex-direction-column justify-content-space-between">
+            <div>
+              <h3 class="store-offers__title">
+                {{ offer.name1 }}
+              </h3>
+              <p>Available in: {{ offer.count_store }} stores</p>
+            </div>
+            <div class="store-offers__price">
+              <h2 class="store-offers__price-title">Prices from:</h2>
+              <p class="store-offers__price-item">
+                {{ offer.min_price }} € - {{ offer.max_price }} €
+              </p>
+            </div>
+          </div>
+        </a>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
 </div>
