@@ -24,5 +24,5 @@ export interface ProductInTile {
 export class ProductCategoryTileComponent {
   @Input() public link: string;
   @Input() public title: string;
-  @Input() categoryProducts: ProductInTile[];
+  @Input() entities: ProductInTile[];
 }

@@ -275,40 +275,55 @@
       </div>
     </section>
 
-    <section class="m-b-16px">
-      <div class="row">
+    <section
+      class="m-b-16px"
+      *ngIf="sampleSmartphones$ | async as sampleSmartphones">
+      <div class="row" *ngIf="sampleSmartphones.length">
         <div class="column-12">
           <appla-product-category-tile
+            [entities]="sampleSmartphones"
             title="Smartphones"
             link="/category/list/smartphones-1893"></appla-product-category-tile>
         </div>
       </div>
     </section>
 
-    <section class="m-b-16px">
-      <div class="row">
+    <section
+      class="m-b-16px"
+      *ngIf="sampleKitchenProducts$ | async as sampleKitchenProducts">
+      <div class="row" *ngIf="sampleKitchenProducts.length">
         <div class="column-12">
           <appla-product-category-tile
+            [entities]="sampleKitchenProducts"
             title="Small Kitchen Appliances"
             link="/category/list/small-kitchen-appliances-1315"></appla-product-category-tile>
         </div>
       </div>
     </section>
 
-    <section class="m-b-16px">
-      <div class="row">
+    <section
+      class="m-b-16px"
+      *ngIf="samplePersonalCareProducts$ | async as samplePersonalCareProducts">
+      <div class="row" *ngIf="samplePersonalCareProducts.length">
         <div class="column-12">
           <appla-product-category-tile
+            [entities]="samplePersonalCareProducts"
             title="Personal Care Products"
             link="/category/list/personal-care-products-7604"></appla-product-category-tile>
         </div>
       </div>
     </section>
 
-    <section class="m-b-16px">
-      <div class="row">
+    <section
+      class="m-b-16px"
+      *ngIf="
+        samplePersonalCleaningProducts$
+          | async as samplePersonalCleaningProducts
+      ">
+      <div class="row" *ngIf="samplePersonalCleaningProducts.length">
         <div class="column-12">
           <appla-product-category-tile
+            [entities]="samplePersonalCleaningProducts"
             title="Cleaning Agents, Tools & Supplies"
             link="/category/list/cleaning-agents-tools-supplies-4838"></appla-product-category-tile>
         </div>

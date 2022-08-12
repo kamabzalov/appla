@@ -5,45 +5,27 @@
   </div>
 
   <div class="row">
-    <div class="column-6 column-medium-3 display-flex flex-column text-center">
-      <img
-        class="m-auto m-b-20px product-category-tile__image"
-        src="./assets/images/carousel/store-offers/samsung.png"
-        alt="" />
-      <h3 class="product-category-tile__product-title">
-        Apple iPhone 13 Pro Max 17 cm (6.7)
-      </h3>
-      <p class="product-category-tile__product-price">1 399.00 €</p>
-    </div>
-    <div class="column-6 column-medium-3 display-flex flex-column text-center">
-      <img
-        class="m-auto m-b-20px product-category-tile__image"
-        src="./assets/images/carousel/store-offers/samsung.png"
-        alt="" />
-      <h3 class="product-category-tile__product-title">
-        Apple iPhone 13 Pro Max 17 cm (6.7)
-      </h3>
-      <p class="product-category-tile__product-price">1 399.00 €</p>
-    </div>
-    <div class="column-6 column-medium-3 display-flex flex-column text-center">
-      <img
-        class="m-auto m-b-20px product-category-tile__image"
-        src="./assets/images/carousel/store-offers/samsung.png"
-        alt="" />
-      <h3 class="product-category-tile__product-title">
-        Apple iPhone 13 Pro Max 17 cm (6.7)
-      </h3>
-      <p class="product-category-tile__product-price">1 399.00 €</p>
-    </div>
-    <div class="column-6 column-medium-3 display-flex flex-column text-center">
-      <img
-        class="m-auto m-b-20px product-category-tile__image"
-        src="./assets/images/carousel/store-offers/samsung.png"
-        alt="" />
-      <h3 class="product-category-tile__product-title">
-        Apple iPhone 13 Pro Max 17 cm (6.7)
-      </h3>
-      <p class="product-category-tile__product-price">1 399.00 €</p>
-    </div>
+    <ng-container *ngFor="let entity of entities">
+      <div
+        class="column-6 column-medium-3 display-flex flex-column text-center">
+        <a
+          class="display-block product-category-tile__link"
+          [routerLink]="entity.slug">
+          <img
+            class="m-auto m-b-20px product-category-tile__image"
+            [src]="
+              'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+              entity.data.picture
+            "
+            alt="" />
+          <h3 class="product-category-tile__product-title">
+            {{ entity.name1 }}
+          </h3>
+          <p class="product-category-tile__product-price">
+            {{ entity.min_price }} €
+          </p>
+        </a>
+      </div>
+    </ng-container>
   </div>
 </div>

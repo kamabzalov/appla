@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { StoreOffers } from '@app/home/store-offers/store-offers.component';
 import { RecentlyViewed } from '@app/home/recently-viewed/recently-viewed.component';
 import { Trend } from '@app/home/now-trending/now-trending.component';
+import { ProductInTile } from '@app/home/product-category-tile/product-category-tile.component';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,23 @@ export class RestService {
 
   public getTrends(): Observable<Trend[]> {
     return this.http.get<Trend[]>(`${this.basePath}trending`);
+  }
+
+  public getSampleSmartphones(): Observable<ProductInTile[]> {
+    return this.http.get<ProductInTile[]>(`${this.basePath}sample-smartphones`);
+  }
+
+  public getSampleKitchen(): Observable<ProductInTile[]> {
+    return this.http.get<ProductInTile[]>(`${this.basePath}sample-kitchen`);
+  }
+
+  public getSamplePersonalCareProducts(): Observable<ProductInTile[]> {
+    return this.http.get<ProductInTile[]>(
+      `${this.basePath}sample-personal-care`
+    );
+  }
+
+  public getSampleCleaningProducts(): Observable<ProductInTile[]> {
+    return this.http.get<ProductInTile[]>(`${this.basePath}sample-cleaning`);
   }
 }

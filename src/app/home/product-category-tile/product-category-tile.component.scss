@@ -4,6 +4,10 @@
   background: vars.$alice-blue;
   padding: vars.$base-size * 3;
 
+  &__link {
+    color: inherit;
+  }
+
   &__title {
     font-size: 1.5rem;
   }
