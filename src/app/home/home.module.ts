@@ -7,7 +7,6 @@ import { TileComponent } from './tile/tile.component';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { StoreOffersComponent } from './store-offers/store-offers.component';
-import { RecentlyViewedComponent } from './recently-viewed/recently-viewed.component';
 import { NowTrendingComponent } from './now-trending/now-trending.component';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { NowTrendingComponent } from './now-trending/now-trending.component';
     TileComponent,
     HomeComponent,
     StoreOffersComponent,
-    RecentlyViewedComponent,
     NowTrendingComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule],

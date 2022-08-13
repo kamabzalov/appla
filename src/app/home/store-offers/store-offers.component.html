@@ -8,7 +8,11 @@
     <ng-container *ngFor="let offer of storeOffers$ | async">
       <ng-template carouselSlide>
         <a
-          [routerLink]="['category/product_list/', offer.slug]"
+          routerLink="{{
+            offer.count_store > 1
+              ? 'category/product_list/' + offer.slug
+              : 'product/shop-name/' + offer.slug
+          }}"
           [queryParams]="{ mpi: offer.master_product_id }"
           class="store-offers__link display-flex">
           <div class="store-offers__image m-r-16px">

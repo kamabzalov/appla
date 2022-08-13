@@ -1,19 +1,25 @@
 <div class="container m-t-20px">
-  <section class="product card-content m-b-20px">
+  <section
+    class="product card-content m-b-20px"
+    *ngIf="product$ | async as product">
     <div class="row m-b-16px">
       <div class="col-12">
         <div class="row">
           <div class="col-md-7 col-sm-12">
             <img
-              src="./assets/images/product-page/product-page.jpeg"
+              [src]="
+                'https://storage.googleapis.com/images-appla/production/thumbs_800/' +
+                product.picture[0]
+              "
               class="product__image img-fluid"
               alt="" />
           </div>
           <div class="col-md-5 col-sm-12">
-            <h1 class="product__title">Samsung Galaxy A52s 5G 16.5 Cm (6.5)</h1>
-            <p class="product__price">309.00 €</p>
+            <h1 class="product__title">{{ product.name1 }}</h1>
+            <p class="product__price">{{ product.price }} €</p>
             <p class="product-categories p-b-4px">
-              Categories: <span class="product__category">Smartphones</span>
+              Categories:
+              <span class="product__category">{{ product.category_id }}</span>
             </p>
 
             <div class="display-flex justify-content-between">
@@ -57,16 +63,9 @@
             <a ngbNavLink>Description</a>
             <ng-template ngbNavContent>
               <div class="p-16px">
-                <p>Weight : 189Grams (g)</p>
+                <p>Weight : {{ product.weight }} (g)</p>
                 <p>
-                  Samsung Galaxy A53 5G SM-A536B. Display diagonal: 16.5 cm
-                  (6.5"), Display resolution: 2400 x 1080 pixels, Display type:
-                  SAMOLED. Processor family: Samsung Exynos, Processor model:
-                  1280. RAM capacity: 6 GB, Internal storage capacity: 128 GB.
-                  Rear camera resolution (numeric): 64 MP, Rear camera type:
-                  Quad camera. SIM card capability: Hybrid Dual SIM. Operating
-                  system installed: Android 12. Battery capacity: 5000 mAh.
-                  Product colour: White. Weight: 189 g
+                  {{ product.long_description1 }}
                 </p>
               </div>
             </ng-template>
@@ -109,14 +108,6 @@
                     </ng-template>
                   </ngb-panel>
                 </ngb-accordion>
-              </div>
-            </ng-template>
-          </li>
-          <li ngbNavItem>
-            <a ngbNavLink>Similar Products</a>
-            <ng-template ngbNavContent>
-              <div class="p-16px">
-                <!--                <appla-carousel carouselType="recently-viewed"></appla-carousel>-->
               </div>
             </ng-template>
           </li>

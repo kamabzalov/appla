@@ -9,6 +9,7 @@
       <ng-template carouselSlide>
         <a
           [routerLink]="['category/list', trend.slug]"
+          [queryParams]="{ category_id: trend.category_id }"
           class="now-trending__link display-flex flex-column text-center">
           <div class="now-trending__image m-b-16px">
             <img

@@ -16,6 +16,8 @@ import { AsideWidgetComponent } from './components/aside-widget/aside-widget.com
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RecentlyViewedComponent } from '@app/shared/components/recently-viewed/recently-viewed.component';
+import { RouterModule } from '@angular/router';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -33,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdvertiseBannerComponent,
     PreviewCardComponent,
     AsideWidgetComponent,
+    RecentlyViewedComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     NgbModule,
     FontAwesomeModule,
+    RouterModule,
     CarouselModule,
   ],
   exports: [
@@ -63,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdvertiseBannerComponent,
     PreviewCardComponent,
     AsideWidgetComponent,
+    RecentlyViewedComponent,
   ],
 })
 export class SharedModule {}

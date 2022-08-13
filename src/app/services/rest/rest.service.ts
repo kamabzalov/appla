@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { StoreOffers } from '@app/home/store-offers/store-offers.component';
-import { RecentlyViewed } from '@app/home/recently-viewed/recently-viewed.component';
+import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Trend } from '@app/home/now-trending/now-trending.component';
 import { ProductInTile } from '@app/home/product-category-tile/product-category-tile.component';
+import { CategoryProduct } from '@app/shop-category/category-page/category-page.component';
+import { Product } from '@app/shop-product/product-page/product-page.component';
 
 @Injectable({
   providedIn: 'root',
@@ -48,5 +50,33 @@ export class RestService {
 
   public getSampleCleaningProducts(): Observable<ProductInTile[]> {
     return this.http.get<ProductInTile[]>(`${this.basePath}sample-cleaning`);
+  }
+
+  public getCategoryProductsByCategoryId(
+    categoryId: string,
+    limit = 20,
+    offset = 0
+  ): Observable<CategoryProduct[]> {
+    return this.http
+      .get<CategoryProduct[]>(
+        `${this.basePath}category-products/?id=${categoryId}&limit=${limit}&offset=${offset}`
+      )
+      .pipe(
+        map((result: CategoryProduct[]) => {
+          return result.map(product => {
+            product.picture = JSON.parse(product.picture);
+            return product;
+          });
+        })
+      );
+  }
+
+  public getProductById(productId: any): Observable<any> {
+    return this.http.get<any>(`${this.basePath}product?id=${productId}`).pipe(
+      map((result: Product) => {
+        result.picture = JSON.parse(result.picture);
+        return result;
+      })
+    );
   }
 }

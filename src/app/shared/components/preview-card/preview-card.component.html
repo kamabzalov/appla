@@ -1,11 +1,16 @@
 <div class="preview-card">
   <img
     class="preview-card__image"
-    src="../../../../assets/images/products/laptop.png"
+    [src]="
+      'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+      product.picture[0]
+    "
     alt="" />
   <div>
-    <p class="m-b-4px"><a href="">Laptops</a></p>
-    <p class="preview-card__price m-b-4px">9.00 - 3 725.51</p>
-    <p class="m-b-0px">153 (items)</p>
+    <p class="m-b-4px">
+      <a href="">{{ product.category_id }}</a>
+    </p>
+    <p class="preview-card__price m-b-4px">{{ product.price }} €</p>
+    <p class="m-b-0px">{{ product.length }} (items)</p>
   </div>
 </div>

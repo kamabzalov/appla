@@ -60,23 +60,11 @@
           </div>
 
           <div class="row">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-              <appla-preview-card></appla-preview-card>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-              <appla-preview-card></appla-preview-card>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-              <appla-preview-card></appla-preview-card>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-              <appla-preview-card></appla-preview-card>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-              <appla-preview-card></appla-preview-card>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-              <appla-preview-card></appla-preview-card>
+            <div
+              class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-16px"
+              *ngFor="let productPreview of category$ | async">
+              <appla-preview-card
+                [product]="productPreview"></appla-preview-card>
             </div>
           </div>
         </div>
