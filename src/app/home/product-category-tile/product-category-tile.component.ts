@@ -25,5 +25,5 @@ export class ProductCategoryTileComponent {
   @Input() public link: string;
   @Input() public title: string;
   @Input() public categoryId: string;
-  @Input() entities: ProductInTile[];
+  @Input() public entities: ProductInTile[];
 }
