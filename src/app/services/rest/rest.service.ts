@@ -7,6 +7,7 @@ import { Trend } from '@app/home/now-trending/now-trending.component';
 import { ProductInTile } from '@app/home/product-category-tile/product-category-tile.component';
 import { CategoryProduct } from '@app/shop-category/category-page/category-page.component';
 import { Product } from '@app/shop-product/product-page/product-page.component';
+import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class RestService {
 
   constructor(private http: HttpClient) {}
 
-  public getSiteMenu(): Observable<any> {
+  public getSiteMenu(): Observable<Menu[]> {
     return this.http.get<any>(`${this.basePath}menu`);
   }
 
