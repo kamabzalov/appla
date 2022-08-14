@@ -1,5 +1,5 @@
-@use '../../../../assets/scss/vars' as vars;
-@use '../../../../assets/scss/mixins' as mixins;
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
 
 .footer {
   background: vars.$alice-blue;

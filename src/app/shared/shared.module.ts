@@ -18,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RecentlyViewedComponent } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './components/modal/login/login.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,6 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PreviewCardComponent,
     AsideWidgetComponent,
     RecentlyViewedComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,

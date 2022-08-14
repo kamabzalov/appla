@@ -7,7 +7,7 @@
             class="footer-benefit display-flex flex-column align-items-center">
             <img
               class="footer-benefit__image w-25"
-              src="../../../../assets/images/footer-benefits/CustomerSupport.png"
+              src="/assets/images/footer-benefits/CustomerSupport.png"
               alt="" />
             <span class="footer-benefit__title">Customer Support</span>
             <span class="footer-benefit__description"
@@ -20,7 +20,7 @@
             class="footer-benefit display-flex flex-column align-items-center">
             <img
               class="footer-benefit__image w-25"
-              src="../../../../assets/images/footer-benefits/OnlinePayment.png"
+              src="/assets/images/footer-benefits/OnlinePayment.png"
               alt="" />
             <span class="footer-benefit__title">Online Payment</span>
             <span class="footer-benefit__description"
@@ -33,7 +33,7 @@
             class="footer-benefit display-flex flex-column align-items-center">
             <img
               class="footer-benefit__image w-25"
-              src="../../../../assets/images/footer-benefits/FastDelivery.png"
+              src="/assets/images/footer-benefits/FastDelivery.png"
               alt="" />
             <span class="footer-benefit__title">Fast Delivery</span>
             <span class="footer-benefit__description"
@@ -46,7 +46,7 @@
             class="footer-benefit no-border display-flex flex-column align-items-center">
             <img
               class="footer-benefit__image w-25"
-              src="../../../../assets/images/footer-benefits/Secure.png"
+              src="/assets/images/footer-benefits/Secure.png"
               alt="" />
             <span class="footer-benefit__title">100% Secure</span>
             <span class="footer-benefit__description"
@@ -61,40 +61,58 @@
         <div
           class="col-md-3 col-6 display-flex align-items-center justify-content-center">
           <a href="/">
-            <img src="../../../../assets/images/logo-appla-blue.svg" alt="" />
+            <img src="/assets/images/logo-appla-blue.svg" alt="" />
           </a>
         </div>
         <div class="col-md-3 col-6">
           <h5 class="footer-menu__header m-b-16px">Categories</h5>
           <ul class="list-unstyled footer-menu__list">
             <li>
-              <a class="footer-menu__list-item d-inline-block m-b-12px" href="#"
-                >Category name</a
+              <a
+                class="footer-menu__list-item d-inline-block m-b-12px"
+                [routerLink]="['category/list/clothing-6082']"
+                [queryParams]="{ category_id: 6082 }"
+                >Clothing</a
               >
             </li>
             <li>
-              <a class="footer-menu__list-item d-inline-block m-b-12px" href="#"
-                >Category name</a
+              <a
+                class="footer-menu__list-item d-inline-block m-b-12px"
+                [routerLink]="['category/list/computers-peripherals-2833']"
+                [queryParams]="{ category_id: 2833 }"
+                >Computers & Peripherals</a
               >
             </li>
             <li>
-              <a class="footer-menu__list-item d-inline-block m-b-12px" href="#"
-                >Category name</a
+              <a
+                class="footer-menu__list-item d-inline-block m-b-12px"
+                [routerLink]="['category/list/sport-nutritions-5054']"
+                [queryParams]="{ category_id: 5054 }"
+                >Sport Nutritions</a
               >
             </li>
             <li>
-              <a class="footer-menu__list-item d-inline-block m-b-12px" href="#"
-                >Category name</a
+              <a
+                class="footer-menu__list-item d-inline-block m-b-12px"
+                [routerLink]="['category/list/personal-care-tools-1333']"
+                [queryParams]="{ category_id: 1333 }"
+                >Personal Care Tools</a
               >
             </li>
             <li>
-              <a class="footer-menu__list-item d-inline-block m-b-12px" href="#"
-                >Category name</a
+              <a
+                class="footer-menu__list-item d-inline-block m-b-12px"
+                [routerLink]="['category/list/entertainment-hobby-2836']"
+                [queryParams]="{ category_id: 2836 }"
+                >Entertaiment & Hobby</a
               >
             </li>
             <li>
-              <a class="footer-menu__list-item d-inline-block m-b-12px" href="#"
-                >Category name</a
+              <a
+                class="footer-menu__list-item d-inline-block m-b-12px"
+                [routerLink]="['category/list/pet-care-2248']"
+                [queryParams]="{ category_id: 2248 }"
+                >Pet Care</a
               >
             </li>
           </ul>
@@ -156,6 +174,7 @@
         <div class="col-md-2 col-6">
           <div class="display-flex flex-column login-actions">
             <button
+              (click)="openLoginModal()"
               class="btn btn-outline-primary login-actions__login m-b-12px">
               Login
             </button>

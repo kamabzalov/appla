@@ -7,6 +7,8 @@ import {
   faYoutube,
   faTiktok,
 } from '@fortawesome/free-brands-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '@app/shared/components/modal/login/login.component';
 
 @Component({
   selector: 'appla-footer',
@@ -21,4 +23,10 @@ export class FooterComponent {
   public faLinkedin = faLinkedin;
   public faYoutube = faYoutube;
   public faTiktok = faTiktok;
+
+  constructor(private modalService: NgbModal) {}
+
+  public openLoginModal() {
+    this.modalService.open(LoginComponent);
+  }
 }

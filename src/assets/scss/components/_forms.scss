@@ -1,11 +1,19 @@
 @use '~assets/scss/vars' as vars;
 @use '~assets/scss/mixins' as mixins;
 
+.control-group {
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 input {
   @include mixins.border-radius(vars.$base-size * 5);
 
   border: none;
-  outline: none;
+  outline: 1px solid vars.$alice-blue;
   width: 100%;
   padding: 0.5rem 1rem;
 }
