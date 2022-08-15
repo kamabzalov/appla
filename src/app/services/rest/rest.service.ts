@@ -8,6 +8,7 @@ import { ProductInTile } from '@app/home/product-category-tile/product-category-
 import { CategoryProduct } from '@app/shop-category/category-page/category-page.component';
 import { Product } from '@app/shop-product/product-page/product-page.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
+import { SearchResults } from '@app/search/search-results/search-results.component';
 
 @Injectable({
   providedIn: 'root',
@@ -78,6 +79,12 @@ export class RestService {
         result.picture = JSON.parse(result.picture);
         return result;
       })
+    );
+  }
+
+  public searchInShop(query: string): Observable<SearchResults> {
+    return this.http.get<SearchResults>(
+      `${this.basePath}search?string=${query}`
     );
   }
 }

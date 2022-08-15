@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'appla-search-form',
@@ -9,4 +10,13 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 })
 export class SearchFormComponent {
   public faSearch = faMagnifyingGlass;
+  public searchQuery: string;
+
+  constructor(private router: Router) {}
+
+  public search() {
+    this.router.navigate(['Search'], {
+      queryParams: { string: this.searchQuery },
+    });
+  }
 }

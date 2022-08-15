@@ -1,67 +1,49 @@
-<div class="container m-t-40px">
-  <div class="row m-b-20px">
-    <div class="col-12 text-center">
-      <h1>Results for:</h1>
+<ng-container *ngIf="searchResults$ | async as results">
+  <div class="container m-t-40px">
+    <div class="row m-b-20px">
+      <div class="col-12 text-center">
+        <h1>Results for:</h1>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-12 text-center m-b-20px">
-      <h2>Categories:</h2>
-    </div>
-  </div>
+    <ng-container *ngIf="results.categories">
+      <div class="row">
+        <div class="col-12 text-center m-b-20px">
+          <h2>Categories:</h2>
+        </div>
+      </div>
 
-  <div class="row m-b-20px">
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-  </div>
+      <div class="row m-b-20px">
+        <div
+          class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-8px"
+          *ngFor="let category of results.categories.data">
+          <appla-search-result-card
+            [category]="category"></appla-search-result-card>
+        </div>
+      </div>
+    </ng-container>
 
-  <div class="row">
-    <div class="col-12 text-center m-b-20px">
-      <h2>Products:</h2>
-    </div>
-  </div>
+    <ng-container *ngIf="results.products">
+      <div class="row">
+        <div class="col-12 text-center m-b-20px">
+          <h2>Products:</h2>
+        </div>
+      </div>
 
-  <div class="row">
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px">
-      <appla-preview-card></appla-preview-card>
-    </div>
-  </div>
+      <div class="row">
+        <div
+          class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-8px"
+          *ngFor="let product of results.products">
+          <appla-search-result-card
+            [product]="product"></appla-search-result-card>
+        </div>
+      </div>
 
-  <hr />
+      <hr />
 
-  <div class="text-center">
-    <button class="button-more">Load more</button>
+      <div class="text-center">
+        <button class="button-more">Load more</button>
+      </div>
+    </ng-container>
   </div>
-</div>
+</ng-container>

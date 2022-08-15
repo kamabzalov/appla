@@ -19,6 +19,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RecentlyViewedComponent } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/modal/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -41,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     CommonModule,
+    FormsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
