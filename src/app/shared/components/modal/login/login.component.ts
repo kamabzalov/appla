@@ -1,12 +1,32 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { RestService } from '@app/services/rest/rest.service';
+
+export interface AuthStatus {
+  status: number;
+  msg: string;
+}
 
 @Component({
   selector: 'appla-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  constructor(public activeModal: NgbActiveModal) {}
+  public email: string;
+  public password: string;
+  public showError: boolean;
+
+  constructor(public activeModal: NgbActiveModal, private rest: RestService) {}
+
+  public auth() {
+    this.rest.login(this.email, this.password).subscribe(result => {
+      if (result.status) {
+        this.activeModal.close();
+        this.showError = false;
+      } else {
+        this.showError = true;
+      }
+    });
+  }
 }

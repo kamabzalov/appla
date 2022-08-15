@@ -9,6 +9,7 @@ import { CategoryProduct } from '@app/shop-category/category-page/category-page.
 import { Product } from '@app/shop-product/product-page/product-page.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { SearchResults } from '@app/search/search-results/search-results.component';
+import { AuthStatus } from '@app/shared/components/modal/login/login.component';
 
 @Injectable({
   providedIn: 'root',
@@ -85,6 +86,12 @@ export class RestService {
   public searchInShop(query: string): Observable<SearchResults> {
     return this.http.get<SearchResults>(
       `${this.basePath}search?string=${query}`
+    );
+  }
+
+  public login(email: string, password: string): Observable<AuthStatus> {
+    return this.http.get<AuthStatus>(
+      `${this.basePath}login?email=${email}&password=${password}`
     );
   }
 }
