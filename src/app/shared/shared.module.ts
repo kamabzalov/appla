@@ -61,6 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FontAwesomeModule,
     TranslateModule,
     CarouselModule,
+    FormsModule,
     HeaderComponent,
     FooterComponent,
     SearchFormComponent,

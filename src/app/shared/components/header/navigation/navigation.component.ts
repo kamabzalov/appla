@@ -3,12 +3,12 @@ import { RestService } from '@app/services/rest/rest.service';
 import { Observable } from 'rxjs';
 
 export interface Menu {
-  categories1: string;
-  categories2: string;
-  categories3: string;
-  commercial_products1: string;
-  commercial_products2: string;
-  commercial_products3: string;
+  categories1: object[];
+  categories2: object[];
+  categories3: object[];
+  commercial_products1: object[];
+  commercial_products2: object[];
+  commercial_products3: object[];
   id: string;
   tab_name1: string;
   tab_name2: string;

@@ -61,6 +61,7 @@ export class ProductPageComponent implements OnInit {
   public faPlus = faPlus;
   public faMinus = faMinus;
   public faStar = faStar;
+  public productQuantity: number = 1;
 
   public product$: Observable<Product>;
 
@@ -74,5 +75,16 @@ export class ProductPageComponent implements OnInit {
     if (productId) {
       this.product$ = this.restService.getProductById(productId);
     }
+  }
+
+  public decreaseQuantity() {
+    if (this.productQuantity === 1) {
+      return;
+    }
+    this.productQuantity--;
+  }
+
+  public increaseQuantity() {
+    this.productQuantity++;
   }
 }

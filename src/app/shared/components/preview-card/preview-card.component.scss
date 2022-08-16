@@ -16,10 +16,24 @@
     padding: 0;
     margin-bottom: 5px;
     width: 150px;
+    max-width: 100%;
     height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+  }
+
+  &__name {
+    height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__price {
     color: vars.$honey-yellow;
+  }
+
+  &__link {
+    color: inherit;
   }
 }
