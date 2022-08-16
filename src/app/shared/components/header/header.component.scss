@@ -1,5 +1,5 @@
-@use '../../../../assets/scss/vars';
-@use '../../../../assets/scss/mixins';
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .header {
   @include mixins.top-fixed-element;
@@ -31,6 +31,20 @@
       &:hover {
         color: vars.$white;
       }
+    }
+  }
+
+  .mobile-links {
+    &__item {
+      color: vars.$white;
+    }
+
+    &_blue {
+      background: vars.$dazzled-blue;
+    }
+
+    &_orange {
+      background: vars.$honey-yellow;
     }
   }
 }

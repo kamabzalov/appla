@@ -12,6 +12,6 @@ $large-devices-breakpoint: map.get(vars.$media-breakpoints, 'large');
   }
 
   @media (max-width: $medium-devices-breakpoint) {
-    padding-top: 156px;
+    padding-top: 220px;
   }
 }

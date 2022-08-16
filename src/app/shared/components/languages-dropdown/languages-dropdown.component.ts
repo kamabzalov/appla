@@ -13,6 +13,7 @@ export class LanguagesDropdownComponent {
   constructor(public translate: TranslateService) {
     translate.addLangs(['en', 'ru', 'gre']);
     translate.setDefaultLang('en');
+    translate.use('en');
   }
 
   public setLang(langCode: AppLanguages) {

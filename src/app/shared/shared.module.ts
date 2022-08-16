@@ -13,7 +13,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AdvertiseBannerComponent } from './components/advertise-banner/advertise-banner.component';
 import { PreviewCardComponent } from './components/preview-card/preview-card.component';
 import { AsideWidgetComponent } from './components/aside-widget/aside-widget.component';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RecentlyViewedComponent } from '@app/shared/components/recently-viewed/recently-viewed.component';
@@ -43,18 +43,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     CommonModule,
     FormsModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'en',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
     NgbModule,
     FontAwesomeModule,
     RouterModule,
     CarouselModule,
+    TranslateModule,
   ],
   exports: [
     NgbModule,
