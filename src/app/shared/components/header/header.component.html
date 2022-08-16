@@ -34,7 +34,8 @@
           <appla-languages-dropdown></appla-languages-dropdown>
           <button
             class="button button_icon button_orange display-inline-flex align-items-center justify-content-center display-large-none"
-            type="button">
+            type="button"
+            (click)="openMobilePanel()">
             <fa-icon [icon]="faBars"></fa-icon>
           </button>
           <appla-cart-widget></appla-cart-widget>
@@ -46,7 +47,7 @@
               Login
             </button>
             <a
-              href="/account/register"
+              href="https://appla.cy/account/register"
               class="header__user-actions-sign button button_orange"
               >Sign Up</a
             >

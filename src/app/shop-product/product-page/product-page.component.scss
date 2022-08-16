@@ -59,6 +59,7 @@
     @include mixins.border-radius(vars.$base-size * 5);
 
     border: 1px solid vars.$alice-blue;
+    max-height: 350px;
   }
 
   &__title {

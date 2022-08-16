@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '@app/shared/components/modal/login/login.component';
+import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
 
 @Component({
   selector: 'appla-header',
@@ -12,9 +13,16 @@ import { LoginComponent } from '@app/shared/components/modal/login/login.compone
 export class HeaderComponent {
   public faBars = faBars;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private offCanvas: NgbOffcanvas
+  ) {}
 
   public openLoginModal() {
     this.modalService.open(LoginComponent);
+  }
+
+  public openMobilePanel() {
+    this.offCanvas.open(SidenavComponent);
   }
 }

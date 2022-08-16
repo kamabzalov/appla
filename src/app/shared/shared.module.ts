@@ -20,6 +20,7 @@ import { RecentlyViewedComponent } from '@app/shared/components/recently-viewed/
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/modal/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AsideWidgetComponent,
     RecentlyViewedComponent,
     LoginComponent,
+    SidenavComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PreviewCardComponent,
     AsideWidgetComponent,
     RecentlyViewedComponent,
+    SidenavComponent,
   ],
 })
 export class SharedModule {}
