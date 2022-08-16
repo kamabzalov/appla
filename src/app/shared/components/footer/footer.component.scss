@@ -2,14 +2,14 @@
 @use '~assets/scss/mixins' as mixins;
 
 .footer {
-  background: vars.$alice-blue;
+  background: vars.$azureish-white;
 
   &-benefits {
-    border-bottom: 1px solid vars.$alice-blue;
+    border-bottom: 1px solid vars.$lavender-gray;
   }
 
   &-benefit {
-    border-right: 1px solid vars.$alice-blue;
+    border-right: 1px solid vars.$lavender-gray;
 
     &.no-border {
       border-right: none;

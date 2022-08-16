@@ -21,6 +21,7 @@
 
   &-fluid {
     @include mixins.make-container;
+    max-width: 95%;
   }
 }
 
