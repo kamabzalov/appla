@@ -20,7 +20,7 @@ export class RestService {
   constructor(private http: HttpClient) {}
 
   public getSiteMenu(): Observable<Menu[]> {
-    return this.http.get<any>(`${this.basePath}menu`);
+    return this.http.get<any>(`${this.basePath}menu2`);
   }
 
   public getStoreOffers(): Observable<StoreOffers[]> {

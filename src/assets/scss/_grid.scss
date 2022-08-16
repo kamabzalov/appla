@@ -15,7 +15,8 @@
 .container {
   @include mixins.make-container;
 
-  max-width: 90%;
+  width: 90%;
+  max-width: 1200px;
   margin: auto;
 
   &-fluid {
