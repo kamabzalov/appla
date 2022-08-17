@@ -40,6 +40,10 @@ export class HomeComponent implements OnInit {
       this.getSamplePersonalCareProducts();
       this.getCleaningProducts();
     });
+    this.getSampleSmartphones();
+    this.getSampleKitchenProducts();
+    this.getSamplePersonalCareProducts();
+    this.getCleaningProducts();
   }
 
   private getSampleSmartphones() {

@@ -1,74 +1,84 @@
 <div class="container-fluid m-t-20px">
-  <div class="row">
-    <div class="col-3 d-none d-sm-block">
-      <aside>
-        <div class="m-b-20px">
-          <appla-aside-widget widgetHeader="Categories">
-            <ul class="list-unstyled p-l-20px p-r-20px">
-              <li>Category one</li>
-              <li>Category two</li>
-              <li>Category three</li>
-              <li>Category four</li>
-            </ul>
-          </appla-aside-widget>
-        </div>
+  <ng-container *ngIf="category$ | async as category">
+    <div class="row">
+      <div class="col-3 d-none d-sm-block">
+        <aside>
+          <div class="m-b-20px">
+            <appla-aside-widget widgetHeader="Categories">
+              <ul class="subcategories-list list-unstyled p-r-20px">
+                <li *ngFor="let subcategory of category.subcategories">
+                  <a
+                    class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
+                    [routerLink]="['/category/list', subcategory.slug]"
+                    [queryParams]="{
+                      category_id: subcategory.category_id
+                    }"
+                    >{{ subcategory.name1 }}</a
+                  >
+                </li>
+              </ul>
+            </appla-aside-widget>
+          </div>
 
-        <div>
-          <appla-aside-widget widgetHeader="Price">
-            <form class="form-price">
-              <div class="row">
-                <div class="col-5">
-                  <input type="text" />
+          <div>
+            <appla-aside-widget widgetHeader="Price">
+              <form class="form-price">
+                <div class="row">
+                  <div class="col-5">
+                    <input type="text" />
+                  </div>
+                  <div class="col-5">
+                    <input type="text" />
+                  </div>
+                  <div class="col-2">
+                    <fa-icon
+                      class="form-price__icon"
+                      [icon]="faChevronRight"></fa-icon>
+                  </div>
                 </div>
-                <div class="col-5">
-                  <input type="text" />
-                </div>
-                <div class="col-2">
-                  <fa-icon
-                    class="form-price__icon"
-                    [icon]="faChevronRight"></fa-icon>
+              </form>
+            </appla-aside-widget>
+          </div>
+        </aside>
+      </div>
+      <div class="col-9">
+        <main>
+          <div class="category-products card-content">
+            <div class="row align-items-center">
+              <div class="col-md-9">
+                <div class="display-flex align-items-center">
+                  <fa-icon [icon]="faTags" class="m-r-12px"></fa-icon>
+                  <h1 class="category-products__title m-b-0px">
+                    All categories
+                  </h1>
                 </div>
               </div>
-            </form>
-          </appla-aside-widget>
-        </div>
-      </aside>
-    </div>
-    <div class="col-9">
-      <main>
-        <div class="category-products card-content">
-          <div class="row align-items-center">
-            <div class="col-md-9">
-              <div class="display-flex align-items-center">
-                <fa-icon [icon]="faTags" class="m-r-12px"></fa-icon>
-                <h1 class="category-products__title m-b-0px">All categories</h1>
+              <div class="col-md-3">
+                <appla-search-form></appla-search-form>
               </div>
             </div>
-            <div class="col-md-3">
-              <appla-search-form></appla-search-form>
+
+            <hr />
+
+            <div class="row">
+              <div class="col-12">
+                <h4 class="category-products__summary">
+                  Showing 78654 item(s) : "All Categories"
+                </h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <div
+                class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-16px"
+                *ngFor="let productPreview of category.products">
+                <appla-preview-card
+                  [product]="productPreview"></appla-preview-card>
+              </div>
             </div>
           </div>
-
-          <hr />
-
-          <div class="row">
-            <div class="col-12">
-              <h4 class="category-products__summary">
-                Showing 78654 item(s) : "All Categories"
-              </h4>
-            </div>
-          </div>
-
-          <div class="row">
-            <div
-              class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-16px"
-              *ngFor="let productPreview of category$ | async">
-              <appla-preview-card
-                [product]="productPreview"></appla-preview-card>
-            </div>
-          </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>

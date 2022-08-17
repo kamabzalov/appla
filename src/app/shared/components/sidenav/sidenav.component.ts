@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LoginComponent } from '@app/shared/components/modal/login/login.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,10 +8,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./sidenav.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent {
   constructor(private modalService: NgbModal) {}
-
-  ngOnInit(): void {}
 
   public openLoginModal() {
     this.modalService.open(LoginComponent);

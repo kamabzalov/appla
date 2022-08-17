@@ -5,7 +5,7 @@ import { StoreOffers } from '@app/home/store-offers/store-offers.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Trend } from '@app/home/now-trending/now-trending.component';
 import { ProductInTile } from '@app/home/product-category-tile/product-category-tile.component';
-import { CategoryProduct } from '@app/shop-category/category-page/category-page.component';
+import { Category } from '@app/shop-category/category-page/category-page.component';
 import { Product } from '@app/shop-product/product-page/product-page.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { SearchResults } from '@app/search/search-results/search-results.component';
@@ -59,19 +59,10 @@ export class RestService {
     categoryId: string,
     limit = 20,
     offset = 0
-  ): Observable<CategoryProduct[]> {
-    return this.http
-      .get<CategoryProduct[]>(
-        `${this.basePath}category-products/?id=${categoryId}&limit=${limit}&offset=${offset}`
-      )
-      .pipe(
-        map((result: CategoryProduct[]) => {
-          return result.map(product => {
-            product.picture = JSON.parse(product.picture);
-            return product;
-          });
-        })
-      );
+  ): Observable<Category> {
+    return this.http.get<Category>(
+      `${this.basePath}category-products/?id=${categoryId}&limit=${limit}&offset=${offset}`
+    );
   }
 
   public getProductById(productId: any): Observable<any> {

@@ -12,6 +12,7 @@ export interface ProductInTile {
   min_price: string;
   max_price: string;
   count_similar: string;
+  store_name: string;
   data: { url: string; price: string; picture: string };
 }
 

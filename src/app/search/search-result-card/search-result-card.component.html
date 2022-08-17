@@ -9,7 +9,11 @@
   <div>
     <ng-container *ngIf="category">
       <p class="m-b-4px">
-        <a href="">{{ category.cat_name1 }}</a>
+        <a
+          [routerLink]="['/category/list/', category.slug]"
+          [queryParams]="{ category_id: category.category_id }"
+          >{{ category.cat_name1 }}</a
+        >
       </p>
       <p class="preview-card__price m-b-4px">
         {{ category.price_min }} - {{ category.price_max }} €
