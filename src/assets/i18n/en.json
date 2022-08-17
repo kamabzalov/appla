@@ -1,6 +1,7 @@
 {
   "HEADER": {
     "JOIN_US": "Join Us",
-    "APPLA_LAB": "Appla Lab"
+    "LOGIN": "Login",
+    "SIGN_UP": "Sign Up"
   }
 }
