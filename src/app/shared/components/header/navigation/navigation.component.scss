@@ -1,4 +1,5 @@
-@use '~assets/scss/vars' as vars;
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .nav {
   &-list {
@@ -13,23 +14,59 @@
 
   &-item {
 
-    &__megamenu {
+    &-megamenu {
       display: none;
+
+      &__first-level {
+        font-size: 16px;
+        font-weight: 600;
+        color: vars.$charcoal;
+
+        &:hover {
+          color: vars.$honey-yellow;
+        }
+      }
     }
 
     &:hover {
-      .nav-item__megamenu {
+      .nav-item-megamenu {
         background: vars.$white;
-        display: flex;
+        display: block;
         position: absolute;
         left: 0;
         right: 0;
         width: 100vw;
         min-height: 50vh;
         max-height: 80vh;
+        padding-top: vars.$base-size * 5;
+        padding-bottom: vars.$base-size * 5;
         border-bottom: 2px solid vars.$blue-yonder;
         color: black;
       }
+    }
+  }
+
+  .second-level {
+    &__link {
+      &:hover {
+        color: vars.$honey-yellow;
+      }
+    }
+  }
+
+  .commercial-product {
+    border: 1px solid vars.$water;
+    @include mixins.border-radius(vars.$base-size * 2);
+
+    &__price {
+      background: vars.$honey-yellow;
+      color: vars.$white;
+      font-weight: 600;
+    }
+
+    &__name {
+      color: vars.$rich-black;
+      font-weight: 600;
     }
   }
 

@@ -2,9 +2,55 @@
   <ul class="nav-list navbar-nav flex-row w-100 justify-content-between">
     <li class="nav-list__item nav-item" *ngFor="let menuItem of menu$ | async">
       <a class="nav-link">
-        {{ menuItem.tab_name1 }}
+        {{ menuItem.name1 }}
       </a>
-      <ul class="nav-item__megamenu"></ul>
+      <div class="nav-item-megamenu">
+        <div class="container">
+          <div class="row">
+            <div class="column-3" *ngFor="let firstLevel of menuItem.childs1">
+              <a
+                class="nav-item-megamenu__first-level"
+                [routerLink]="['/category/list', firstLevel.link]"
+                >{{ firstLevel.name }}</a
+              >
+              <ul class="list-unstyled second-level m-t-12px">
+                <li
+                  class="m-b-8px"
+                  *ngFor="let secondLevel of firstLevel.childs">
+                  <a
+                    class="second-level__link"
+                    [routerLink]="['/category/list', secondLevel.value]"
+                    >{{ secondLevel.name }}</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="m-l-auto column-3">
+              <div class="display-flex flex-direction-column">
+                <div
+                  class="commercial-product text-center m-b-12px"
+                  *ngFor="let product of menuItem.commercial_products1">
+                  <a
+                    [routerLink]="[
+                      '/product/',
+                      product.store_slug,
+                      product.slug
+                    ]">
+                    <img
+                      [src]="
+                        'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+                        product.image
+                      "
+                      alt="" />
+                    <p class="commercial-product__price">{{ product.price }}</p>
+                    <p class="commercial-product__name">{{ product.name }}</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </li>
   </ul>
 </nav>

@@ -3,16 +3,35 @@ import { RestService } from '@app/services/rest/rest.service';
 import { Observable } from 'rxjs';
 
 export interface Menu {
-  categories1: object[];
-  categories2: object[];
-  categories3: object[];
-  commercial_products1: object[];
-  commercial_products2: object[];
-  commercial_products3: object[];
-  id: string;
-  tab_name1: string;
-  tab_name2: string;
-  tab_name3: string;
+  childs1: FirstLevel[];
+  childs2: FirstLevel[];
+  childs3: FirstLevel[];
+  commercial_products1: CommercialProduct[];
+  commercial_products2: CommercialProduct[];
+  commercial_products3: CommercialProduct[];
+  id: number;
+  name1: string;
+  name2: string;
+  name3: string;
+}
+
+interface FirstLevel {
+  name: string;
+  link: string;
+  childs: SecondLevel[];
+}
+
+interface SecondLevel {
+  name: string;
+  value: string;
+}
+
+interface CommercialProduct {
+  name: string;
+  slug: string;
+  store_slug: string;
+  price: string;
+  image: string;
 }
 
 @Component({
