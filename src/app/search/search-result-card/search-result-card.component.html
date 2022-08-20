@@ -1,11 +1,20 @@
 <div class="preview-card">
-  <!--  <img-->
-  <!--    class="preview-card__image"-->
-  <!--    [src]="-->
-  <!--      'https://storage.googleapis.com/images-appla/production/thumbs_150/' +-->
-  <!--      entity-->
-  <!--    "-->
-  <!--    alt="" />-->
+  <img
+    *ngIf="category"
+    class="preview-card__image"
+    [src]="
+      'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+      category.picture
+    "
+    [alt]="category.cat_name1" />
+  <img
+    *ngIf="product"
+    class="preview-card__image"
+    [src]="
+      'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+      product.picture
+    "
+    [alt]="product.name1" />
   <div>
     <ng-container *ngIf="category">
       <p class="m-b-4px">
@@ -23,7 +32,7 @@
 
     <ng-container *ngIf="product">
       <p class="m-b-4px">
-        <a href="">{{ product.name1 }}</a>
+        <a [routerLink]="['/product']">{{ product.name1 }}</a>
       </p>
       <p class="preview-card__price m-b-4px">
         {{ product.price_min }} - {{ product.price_max }} €
