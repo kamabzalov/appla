@@ -7,8 +7,9 @@ import { ProductCategoryTileComponent } from '@app/public-site/product-category-
 import { StoreOffersComponent } from '@app/public-site/store-offers/store-offers.component';
 import { TileComponent } from '@app/public-site/tile/tile.component';
 import { SharedModule } from '@app/shared/shared.module';
-import { PageComponent } from './page/page.component';
-import { HomeComponent } from './home/home.component';
+import { PageComponent } from './pages/page.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeComponent } from './home/home.component';
     TileComponent,
     PageComponent,
     HomeComponent,
+    AboutUsComponent,
   ],
   imports: [CommonModule, PublicSiteRoutingModule, SharedModule],
 })
