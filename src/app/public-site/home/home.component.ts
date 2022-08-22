@@ -1,15 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
-import { iconSet } from '@app/shared/utils/icons';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { RestService } from '@app/services/rest/rest.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductInTile } from '@app/home/product-category-tile/product-category-tile.component';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
+import { RestService } from '@app/services/rest/rest.service';
 
 @Component({
   selector: 'appla-home',
@@ -18,28 +10,14 @@ import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  public faStar: IconDefinition = iconSet.faStar;
-  public faEye: IconDefinition = iconSet.faEye;
-  public currentLang: string;
-
   public sampleSmartphones$: Observable<ProductInTile[]>;
   public sampleKitchenProducts$: Observable<ProductInTile[]>;
   public samplePersonalCareProducts$: Observable<ProductInTile[]>;
   public samplePersonalCleaningProducts$: Observable<ProductInTile[]>;
 
-  constructor(
-    private restService: RestService,
-    private translate: TranslateService
-  ) {}
+  constructor(private restService: RestService) {}
 
-  public ngOnInit() {
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.currentLang = event.lang;
-      this.getSampleSmartphones();
-      this.getSampleKitchenProducts();
-      this.getSamplePersonalCareProducts();
-      this.getCleaningProducts();
-    });
+  public ngOnInit(): void {
     this.getSampleSmartphones();
     this.getSampleKitchenProducts();
     this.getSamplePersonalCareProducts();

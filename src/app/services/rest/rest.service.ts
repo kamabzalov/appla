@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { StoreOffers } from '@app/home/store-offers/store-offers.component';
+import { StoreOffers } from '@app/public-site/store-offers/store-offers.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
-import { Trend } from '@app/home/now-trending/now-trending.component';
-import { ProductInTile } from '@app/home/product-category-tile/product-category-tile.component';
+import { Trend } from '@app/public-site/now-trending/now-trending.component';
+import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { Category } from '@app/shop-category/category-page/category-page.component';
 import { Product } from '@app/shop-product/product-page/product-page.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
