@@ -1,56 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountInfoComponent } from './account-info/account-info.component';
-import { AccountComponent } from './account/account.component';
-import { AccountChatComponent } from './account-chat/account-chat.component';
-import { AccountFeedbackComponent } from './account-feedback/account-feedback.component';
-import { AccountNotificationsComponent } from './account-notifications/account-notifications.component';
-import { AccountPaymentListComponent } from './account-payment-list/account-payment-list.component';
-import { AccountTransactionListComponent } from './account-transaction-list/account-transaction-list.component';
-import { AccountRefundComponent } from './account-refund/account-refund.component';
-import { AccountWishlistComponent } from './account-wishlist/account-wishlist.component';
-import { AccountFavoriteMerchantComponent } from './account-favorite-merchant/account-favorite-merchant.component';
+import { LoginComponent } from '@app/account/login/login.component';
+import { RegisterComponent } from '@app/account/register/register.component';
+import { PageComponent } from '@app/account/page/page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AccountComponent,
+    component: PageComponent,
     children: [
       {
         path: '',
-        component: AccountInfoComponent,
+        redirectTo: 'login',
+        pathMatch: 'full',
       },
       {
-        path: 'chat',
-        component: AccountChatComponent,
+        path: 'login',
+        component: LoginComponent,
       },
       {
-        path: 'feedback',
-        component: AccountFeedbackComponent,
-      },
-      {
-        path: 'notification',
-        component: AccountNotificationsComponent,
-      },
-      {
-        path: 'payment_list',
-        component: AccountPaymentListComponent,
-      },
-      {
-        path: 'transaction_list',
-        component: AccountTransactionListComponent,
-      },
-      {
-        path: 'refund',
-        component: AccountRefundComponent,
-      },
-      {
-        path: 'wishlist',
-        component: AccountWishlistComponent,
-      },
-      {
-        path: 'favorite_merchant',
-        component: AccountFavoriteMerchantComponent,
+        path: 'register',
+        component: RegisterComponent,
       },
     ],
   },

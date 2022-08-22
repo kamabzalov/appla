@@ -29,7 +29,7 @@ export class LoginComponent {
       if (result.status) {
         this.activeModal.close();
         this.showError = false;
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/profile-page']);
       } else {
         this.showError = true;
       }

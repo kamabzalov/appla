@@ -7,9 +7,9 @@ import { iconSet } from '@app/shared/utils/icons';
 export interface StoreOffers {
   master_product_id: number;
   count_store: number;
-  category_id: number;
-  min_price: number;
-  max_price: number;
+  category_id: string;
+  min_price: string;
+  max_price: string;
   name1: string;
   name2: string;
   name3: string;

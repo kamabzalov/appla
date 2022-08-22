@@ -9,11 +9,11 @@
               <ul class="subcategories-list list-unstyled p-r-20px">
                 <li *ngFor="let subcategory of category.subcategories">
                   <a
-                    class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
-                    [routerLink]="['/category/list', subcategory.slug]"
                     [queryParams]="{
                       category_id: subcategory.category_id
                     }"
+                    [routerLink]="['/category/list', subcategory.slug]"
+                    class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
                     >{{ subcategory.name1 }}</a
                   >
                 </li>
@@ -33,8 +33,8 @@
                   </div>
                   <div class="col-2">
                     <fa-icon
-                      class="form-price__icon"
-                      [icon]="faChevronRight"></fa-icon>
+                      [icon]="faChevronRight"
+                      class="form-price__icon"></fa-icon>
                   </div>
                 </div>
               </form>
@@ -71,8 +71,8 @@
 
             <div class="row">
               <div
-                class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-16px"
-                *ngFor="let productPreview of category.products">
+                *ngFor="let productPreview of category.products"
+                class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-16px">
                 <appla-preview-card
                   [product]="productPreview"></appla-preview-card>
               </div>

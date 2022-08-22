@@ -27,7 +27,12 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'profile',
+    path: 'profile-page',
+    loadChildren: () =>
+      import('./profile/profile.module').then(m => m.ProfileModule),
+  },
+  {
+    path: 'account',
     loadChildren: () =>
       import('./account/account.module').then(m => m.AccountModule),
   },

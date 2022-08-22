@@ -93,14 +93,11 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
         const categoryId = params['category_id'];
         if (categoryId) {
           this.getCategoryProducts(categoryId);
+        } else {
+          this.getAllCategories();
         }
       }
     );
-  }
-
-  private getCategoryProducts(categoryId: string) {
-    this.category$ =
-      this.restService.getCategoryProductsByCategoryId(categoryId);
   }
 
   public ngOnDestroy() {
@@ -108,4 +105,11 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       this.categoryIdSubscription.unsubscribe();
     }
   }
+
+  private getCategoryProducts(categoryId: string) {
+    this.category$ =
+      this.restService.getCategoryProductsByCategoryId(categoryId);
+  }
+
+  private getAllCategories() {}
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { StoreOffers } from '@app/public-site/store-offers/store-offers.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
@@ -53,6 +53,10 @@ export class RestService {
 
   public getSampleCleaningProducts(): Observable<ProductInTile[]> {
     return this.http.get<ProductInTile[]>(`${this.basePath}sample-cleaning`);
+  }
+
+  public getAllCategories(): Observable<Category[]> {
+    return of([]);
   }
 
   public getCategoryProductsByCategoryId(
