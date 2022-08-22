@@ -10,6 +10,8 @@ import { SharedModule } from '@app/shared/shared.module';
 import { PageComponent } from './pages/page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
     PageComponent,
     HomeComponent,
     AboutUsComponent,
+    PrivacyPolicyComponent,
+    TermsAndConditionsComponent,
   ],
   imports: [CommonModule, PublicSiteRoutingModule, SharedModule],
 })
