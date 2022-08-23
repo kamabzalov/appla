@@ -9,9 +9,6 @@
               <ul class="subcategories-list list-unstyled p-r-20px">
                 <li *ngFor="let subcategory of category.subcategories">
                   <a
-                    [queryParams]="{
-                      category_id: subcategory.category_id
-                    }"
                     [routerLink]="['/category/list', subcategory.slug]"
                     class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
                     >{{ subcategory.name1 }}</a

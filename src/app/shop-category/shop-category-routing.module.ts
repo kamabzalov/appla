@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { ComparePricesComponent } from '@app/shop-category/compare-prices/compare-prices.component';
 
 const routes: Routes = [
   {
@@ -11,10 +12,10 @@ const routes: Routes = [
     path: 'list/:category-slug',
     component: CategoryPageComponent,
   },
-  // {
-  //   path: 'product_list/:slug',
-  //   component: ComparePricesComponent,
-  // },
+  {
+    path: 'product_list/:slug',
+    component: ComparePricesComponent,
+  },
 ];
 
 @NgModule({

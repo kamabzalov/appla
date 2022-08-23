@@ -21,7 +21,7 @@ export interface Trend {
 export class NowTrendingComponent {
   public faStar = iconSet.faStar;
 
-  @Input() trending: Trend[];
+  @Input() public trending: Trend[];
 
   public readonly customOptions: OwlOptions = {
     loop: true,

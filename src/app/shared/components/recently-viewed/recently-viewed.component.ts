@@ -33,7 +33,7 @@ export interface RecentlyViewed {
 export class RecentlyViewedComponent {
   public faEye = iconSet.faEye;
 
-  @Input() recentlyViewed: RecentlyViewed[];
+  @Input() public recentlyViewed: RecentlyViewed[];
 
   public readonly customOptions: OwlOptions = {
     loop: true,

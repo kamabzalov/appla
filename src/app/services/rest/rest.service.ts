@@ -11,6 +11,7 @@ import { Menu } from '@app/shared/components/header/navigation/navigation.compon
 import { SearchResults } from '@app/search/search-results/search-results.component';
 import { AuthStatus } from '@app/shared/components/modal/login/login.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
+import { makeRelativePath } from '@app/shared/utils/functions';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,10 @@ export class RestService {
   public getSlides(): Observable<Slide[]> {
     return this.http.get<Slide[]>(`${this.basePath}home-slider-top`).pipe(
       map((slides: Slide[]) => {
-        return slides;
+        return slides.map(item => ({
+          ...item,
+          link: makeRelativePath(item.link),
+        }));
       })
     );
   }
@@ -65,6 +69,7 @@ export class RestService {
   }
 
   public getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.basePath}`);
     return of([]);
   }
 

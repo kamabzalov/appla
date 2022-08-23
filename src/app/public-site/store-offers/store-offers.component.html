@@ -8,7 +8,6 @@
     <ng-container *ngFor="let offer of storeOffers">
       <ng-template carouselSlide>
         <a
-          [queryParams]="{ mpi: offer.master_product_id }"
           class="store-offers__link display-flex"
           routerLink="{{
             offer.count_store > 1

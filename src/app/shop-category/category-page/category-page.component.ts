@@ -81,6 +81,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   public category$: Observable<Category>;
   public categoryIdSubscription = new Subscription();
+  private categories$: Observable<Category[]>;
 
   constructor(
     private activeRouter: ActivatedRoute,
@@ -111,5 +112,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       this.restService.getCategoryProductsByCategoryId(categoryId);
   }
 
-  private getAllCategories() {}
+  private getAllCategories() {
+    this.categories$ = this.restService.getAllCategories();
+  }
 }

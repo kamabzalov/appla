@@ -24,7 +24,7 @@ export interface StoreOffers {
 export class StoreOffersComponent {
   public readonly faStar = iconSet.faStar;
 
-  @Input() storeOffers: StoreOffers[];
+  @Input() public storeOffers: StoreOffers[];
 
   public readonly customOptions: OwlOptions = {
     loop: true,

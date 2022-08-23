@@ -5,23 +5,23 @@
         <div class="column-12 text-center column-medium-2 column-large-1">
           <a routerLink="/">
             <img
+              alt="Appla"
               class="header__elements-logo img-responsive"
-              src="assets/images/appla.svg"
-              alt="Appla" />
+              src="assets/images/appla.svg" />
           </a>
         </div>
         <div
           class="column-2 display-none display-large-flex justify-content-space-around align-items-center">
           <a
             class="header__elements-link"
-            target="_blank"
-            href="https://blog.appla.cy/">
+            href="https://blog.appla.cy/"
+            target="_blank">
             Appla Lab
           </a>
           <a
             class="header__elements-link"
-            target="_blank"
-            href="https://blog.appla.cy/merchants/register/">
+            href="https://blog.appla.cy/merchants/register/"
+            target="_blank">
             {{ 'HEADER.JOIN_US' | translate }}
           </a>
         </div>
@@ -33,9 +33,9 @@
           class="column-12 column-medium-4 column-large-3 display-flex justify-content-space-between align-items-center">
           <appla-languages-dropdown></appla-languages-dropdown>
           <button
+            (click)="openMobilePanel()"
             class="button button_icon button_orange display-inline-flex align-items-center justify-content-center display-large-none"
-            type="button"
-            (click)="openMobilePanel()">
+            type="button">
             <fa-icon [icon]="faBars"></fa-icon>
           </button>
           <appla-cart-widget></appla-cart-widget>
@@ -47,8 +47,8 @@
               {{ 'HEADER.LOGIN' | translate }}
             </button>
             <a
-              href="https://appla.cy/account/register"
               class="header__user-actions-sign button button_orange"
+              routerLink="/account/register"
               >{{ 'HEADER.SIGN_UP' | translate }}</a
             >
           </div>
@@ -58,7 +58,7 @@
         <div class="column-6 text-center">
           <a
             class="mobile-links__item mobile-links_blue display-block p-8px"
-            href="https://appla.cy/supersale"
+            routerLink="/supersale"
             >Appla Super Sale</a
           >
         </div>
