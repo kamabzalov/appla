@@ -12,61 +12,63 @@ import { Observable, Subscription } from 'rxjs';
 export interface Category {
   products: CategoryProduct[];
   subcategories: Subcategory[];
+  count_products: number;
 }
 
 export interface CategoryProduct {
-  product_id: string;
-  sku: string;
-  name1: string;
-  name2: string;
-  name3: string;
-  price: string;
-  discount: string;
+  category_id: number;
+  comment: string;
+  condition: number;
+  created_date: Date;
+  date_update: Date;
+  delivery_service: number;
+  discount: number;
+  gtin: string;
+  height: number;
+  item_model_number: string;
+  length: number;
   long_description1: string;
   long_description2: string;
   long_description3: string;
-  qty: string;
-  date_update: Date;
-  user_update: string;
-  status: string;
-  store_id: string;
-  category_id: string;
-  picture: string;
-  short_description1: string;
-  short_description2: string;
-  short_description3: string;
-  weight: string;
-  length: string;
-  width: string;
-  height: string;
-  showcase: string;
-  condition: string;
-  min_order: string;
-  shipping_insurance: string;
-  delivery_service: string;
-  weight_unit: string;
-  slug: string;
-  technical_detail: string;
-  item_model_number: string;
   manufacturer: string;
-  original_price: string;
-  vat: string;
-  order_fee: string;
-  master_product_id: string;
-  refund_status: string;
-  refund_days: string;
-  comment: string;
-  product_variant: string;
-  gtin: string;
-  created_date: Date;
-}
-
-export interface Subcategory {
-  category_id: string;
-  slug: string;
+  master_product_id: number;
+  min_order: number;
   name1: string;
   name2: string;
   name3: string;
+  order_fee: number;
+  original_price: number;
+  picture: string;
+  price: number;
+  product_id: number;
+  product_variant: string;
+  qty: number;
+  refund_days: number;
+  refund_status: number;
+  shipping_insurance: number;
+  short_description1: string;
+  short_description2: string;
+  short_description3: string;
+  showcase: number;
+  sku: string;
+  slug: string;
+  status: number;
+  store_id: number;
+  store_slug: string;
+  technical_detail: string;
+  user_update: string;
+  vat: number;
+  weight: number;
+  weight_unit: number;
+  width: number;
+}
+
+export interface Subcategory {
+  category_id: number;
+  name1: string;
+  name2: string;
+  name3: string;
+  slug: string;
 }
 
 @Component({
@@ -79,9 +81,13 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   public faChevronRight = faChevronRight;
   public faTags = faTags;
 
-  public category$: Observable<Category>;
+  public categoryData$: Observable<Category>;
   public categoryIdSubscription = new Subscription();
-  private categories$: Observable<Category[]>;
+
+  private offset = 0;
+
+  private readonly limit = 48;
+  private readonly order = 'date';
 
   constructor(
     private activeRouter: ActivatedRoute,
@@ -95,7 +101,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
         if (categoryId) {
           this.getCategoryProducts(categoryId);
         } else {
-          this.getAllCategories();
+          this.getAllCategories(this.limit, this.offset, this.order);
         }
       }
     );
@@ -108,11 +114,15 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   }
 
   private getCategoryProducts(categoryId: string) {
-    this.category$ =
+    this.categoryData$ =
       this.restService.getCategoryProductsByCategoryId(categoryId);
   }
 
-  private getAllCategories() {
-    this.categories$ = this.restService.getAllCategories();
+  private getAllCategories(limit: number, offset: number, order: string) {
+    this.categoryData$ = this.restService.getAllCategories(
+      limit,
+      offset,
+      order
+    );
   }
 }

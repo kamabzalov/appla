@@ -1,10 +1,10 @@
 <appla-header></appla-header>
 <div class="container-fluid m-t-96px p-t-20px">
-  <ng-container *ngIf="category$ | async as category">
+  <ng-container *ngIf="categoryData$ | async as category">
     <div class="row">
       <div class="col-3 d-none d-sm-block">
         <aside>
-          <div class="m-b-20px">
+          <div class="card-content m-b-20px">
             <appla-aside-widget widgetHeader="Categories">
               <ul class="subcategories-list list-unstyled p-r-20px">
                 <li *ngFor="let subcategory of category.subcategories">
@@ -18,7 +18,7 @@
             </appla-aside-widget>
           </div>
 
-          <div>
+          <div class="card-content">
             <appla-aside-widget widgetHeader="Price">
               <form class="form-price">
                 <div class="row">
@@ -61,7 +61,8 @@
             <div class="row">
               <div class="col-12">
                 <h4 class="category-products__summary">
-                  Showing 78654 item(s) : "All Categories"
+                  Showing {{ category.subcategories.length }} item(s) : "All
+                  Categories"
                 </h4>
               </div>
             </div>

@@ -1,11 +1,11 @@
 <div class="preview-card">
   <img
-    class="preview-card__image"
     [src]="
       'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
-      product.picture[0]
+      product.picture
     "
-    alt="" />
+    alt=""
+    class="preview-card__image" />
   <div>
     <p class="preview-card__name m-b-4px">
       <a class="preview-card__link" href="">{{ product.name1 }}</a>

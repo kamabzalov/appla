@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { StoreOffers } from '@app/public-site/store-offers/store-offers.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Trend } from '@app/public-site/now-trending/now-trending.component';
@@ -68,9 +68,20 @@ export class RestService {
     return this.http.get<ProductInTile[]>(`${this.basePath}sample-cleaning`);
   }
 
-  public getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.basePath}`);
-    return of([]);
+  public getAllCategories(
+    limit: number,
+    offset: number,
+    order: string,
+    slug: string = 'all-categories'
+  ): Observable<Category> {
+    const params = new HttpParams()
+      .set('slug', slug)
+      .set('limit', limit)
+      .set('offset', offset)
+      .set('order', order);
+    return this.http.get<Category>(`${this.basePath}category-products`, {
+      params,
+    });
   }
 
   public getCategoryProductsByCategoryId(
