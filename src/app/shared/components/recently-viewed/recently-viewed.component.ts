@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { iconSet } from '@app/shared/utils/icons';
-import { Observable } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { RestService } from '@app/services/rest/rest.service';
 
 export interface RecentlyViewed {
   active_status: number;
@@ -32,10 +30,10 @@ export interface RecentlyViewed {
   styleUrls: ['./recently-viewed.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RecentlyViewedComponent implements OnInit {
+export class RecentlyViewedComponent {
   public faEye = iconSet.faEye;
 
-  public recentlyViewed$: Observable<RecentlyViewed[]>;
+  @Input() recentlyViewed: RecentlyViewed[];
 
   public readonly customOptions: OwlOptions = {
     loop: true,
@@ -61,10 +59,4 @@ export class RecentlyViewedComponent implements OnInit {
     },
     nav: true,
   };
-
-  constructor(private readonly restService: RestService) {}
-
-  public ngOnInit() {
-    this.recentlyViewed$ = this.restService.getRecentlyViewed();
-  }
 }

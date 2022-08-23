@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { RestService } from '@app/services/rest/rest.service';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { iconSet } from '@app/shared/utils/icons';
 
@@ -23,10 +21,10 @@ export interface StoreOffers {
   styleUrls: ['./store-offers.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StoreOffersComponent implements OnInit {
+export class StoreOffersComponent {
   public readonly faStar = iconSet.faStar;
 
-  public storeOffers$: Observable<StoreOffers[]>;
+  @Input() storeOffers: StoreOffers[];
 
   public readonly customOptions: OwlOptions = {
     loop: true,
@@ -52,10 +50,4 @@ export class StoreOffersComponent implements OnInit {
     },
     nav: true,
   };
-
-  constructor(private readonly restService: RestService) {}
-
-  public ngOnInit() {
-    this.storeOffers$ = this.restService.getStoreOffers();
-  }
 }

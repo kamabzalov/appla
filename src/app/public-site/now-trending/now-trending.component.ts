@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { iconSet } from '@app/shared/utils/icons';
-import { RestService } from '@app/services/rest/rest.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Observable } from 'rxjs';
 
 export interface Trend {
   category_id: number;
@@ -20,10 +18,10 @@ export interface Trend {
   styleUrls: ['./now-trending.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NowTrendingComponent implements OnInit {
+export class NowTrendingComponent {
   public faStar = iconSet.faStar;
 
-  public trending$: Observable<Trend[]>;
+  @Input() trending: Trend[];
 
   public readonly customOptions: OwlOptions = {
     loop: true,
@@ -49,10 +47,4 @@ export class NowTrendingComponent implements OnInit {
     },
     nav: true,
   };
-
-  constructor(private readonly restService: RestService) {}
-
-  public ngOnInit() {
-    this.trending$ = this.restService.getTrends();
-  }
 }

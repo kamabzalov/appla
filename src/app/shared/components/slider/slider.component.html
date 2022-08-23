@@ -1,74 +1,15 @@
 <ngb-carousel>
-  <ng-template ngbSlide>
+  <ng-template *ngFor="let slide of slides" ngbSlide>
     <a
-      [routerLink]="[
-        '/product/Mastoremata/connector-1-2-8221-black-OFF-000001'
-      ]"
-      [queryParams]="{ product_id: 54610 }">
+      [queryParams]="{ product_id: 54610 }"
+      [routerLink]="['/category/list/', slide.link]">
       <img
-        src="/assets/images/slides/slide-1.png"
-        class="img-responsive"
-        alt="Random first slide" />
-    </a>
-  </ng-template>
-  <ng-template ngbSlide>
-    <a
-      [routerLink]="[
-        '/product/Mastoremata/connector-1-2-8221-black-OFF-000001'
-      ]"
-      [queryParams]="{ product_id: 54610 }">
-      <img
-        src="/assets/images/slides/slide-2.png"
-        class="img-responsive"
-        alt="Random first slide" />
-    </a>
-  </ng-template>
-  <ng-template ngbSlide>
-    <a
-      [routerLink]="[
-        '/product/Mastoremata/connector-1-2-8221-black-OFF-000001'
-      ]"
-      [queryParams]="{ product_id: 54610 }">
-      <img
-        src="/assets/images/slides/slide-3.png"
-        class="img-responsive"
-        alt="Random first slide" />
-    </a>
-  </ng-template>
-  <ng-template ngbSlide>
-    <a
-      [routerLink]="[
-        '/product/Mastoremata/connector-1-2-8221-black-OFF-000001'
-      ]"
-      [queryParams]="{ product_id: 54610 }">
-      <img
-        src="/assets/images/slides/slide-4.png"
-        class="img-responsive"
-        alt="Random first slide" />
-    </a>
-  </ng-template>
-  <ng-template ngbSlide>
-    <a
-      [routerLink]="[
-        '/product/Mastoremata/connector-1-2-8221-black-OFF-000001'
-      ]"
-      [queryParams]="{ product_id: 54610 }">
-      <img
-        src="/assets/images/slides/slide-5.png"
-        class="img-responsive"
-        alt="Random first slide" />
-    </a>
-  </ng-template>
-  <ng-template ngbSlide>
-    <a
-      [routerLink]="[
-        '/product/Mastoremata/connector-1-2-8221-black-OFF-000001'
-      ]"
-      [queryParams]="{ product_id: 54610 }">
-      <img
-        src="/assets/images/slides/slide-6.png"
-        class="img-responsive"
-        alt="Random first slide" />
+        [src]="
+          'https://storage.googleapis.com/images-appla/banner/big_' +
+          slide.image
+        "
+        alt=""
+        class="img-responsive" />
     </a>
   </ng-template>
 </ngb-carousel>

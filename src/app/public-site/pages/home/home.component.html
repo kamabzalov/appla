@@ -1,12 +1,14 @@
-<section class="m-b-16px display-none display-medium-block">
-  <appla-slider></appla-slider>
+<section
+  *ngIf="slides$ | async as slides"
+  class="m-b-16px display-none display-medium-block">
+  <appla-slider [slides]="slides"></appla-slider>
 </section>
 
-<section class="m-b-16px">
+<section *ngIf="storeOffers$ | async as storeOffers" class="m-b-16px">
   <div class="container">
     <div class="row">
       <div class="column-12">
-        <appla-store-offers></appla-store-offers>
+        <appla-store-offers [storeOffers]="storeOffers"></appla-store-offers>
       </div>
     </div>
   </div>
@@ -197,11 +199,12 @@
   </div>
 </section>
 
-<section class="m-b-16px">
+<section *ngIf="recentlyViewed$ | async as recentlyViewed" class="m-b-16px">
   <div class="container">
     <div class="row">
       <div class="column-12">
-        <appla-recently-viewed></appla-recently-viewed>
+        <appla-recently-viewed
+          [recentlyViewed]="recentlyViewed"></appla-recently-viewed>
       </div>
     </div>
   </div>
@@ -284,11 +287,11 @@
   </div>
 </section>
 
-<section class="m-b-16px">
+<section *ngIf="trending$ | async as trending" class="m-b-16px">
   <div class="container">
     <div class="row">
       <div class="column-12">
-        <appla-now-trending></appla-now-trending>
+        <appla-now-trending [trending]="trending"></appla-now-trending>
       </div>
     </div>
   </div>

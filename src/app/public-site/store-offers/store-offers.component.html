@@ -5,23 +5,23 @@
   </div>
 
   <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let offer of storeOffers$ | async">
+    <ng-container *ngFor="let offer of storeOffers">
       <ng-template carouselSlide>
         <a
+          [queryParams]="{ mpi: offer.master_product_id }"
+          class="store-offers__link display-flex"
           routerLink="{{
             offer.count_store > 1
               ? 'category/product_list/' + offer.slug
               : 'product/shop-name/' + offer.slug
-          }}"
-          [queryParams]="{ mpi: offer.master_product_id }"
-          class="store-offers__link display-flex">
+          }}">
           <div class="store-offers__image m-r-16px">
             <img
+              [alt]="offer.name1"
               [src]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
                 offer.picture
-              "
-              [alt]="offer.name1" />
+              " />
           </div>
           <div
             class="store-offers__info display-flex flex-direction-column justify-content-space-between">

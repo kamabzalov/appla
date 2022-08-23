@@ -5,20 +5,20 @@
   </div>
 
   <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let product of recentlyViewed$ | async">
+    <ng-container *ngFor="let product of recentlyViewed">
       <ng-template carouselSlide>
         <a
-          [routerLink]="['product', product.store_name, product.slug]"
           [queryParams]="{ product_id: product.product_id }"
+          [routerLink]="['product', product.store_name, product.slug]"
           class="recently-viewed-product display-flex flex-direction-column">
           <div class="recently-viewed__image m-b-16px">
             <img
-              class="recently-viewed__image-item"
+              [alt]="product.name1"
               [src]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
                 product.show_picture
               "
-              [alt]="product.name1" />
+              class="recently-viewed__image-item" />
           </div>
           <div
             class="display-flex justify-content-space-between flex-direction-column">
