@@ -5,9 +5,10 @@ import {
   OnInit,
 } from '@angular/core';
 import { faChevronRight, faTags } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, Subscription } from 'rxjs';
+import { getIdFromSlug } from '@app/shared/utils/functions';
 
 export interface Category {
   products: CategoryProduct[];
@@ -89,22 +90,24 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   private readonly limit = 48;
   private readonly order = 'date';
 
-  constructor(
-    private activeRouter: ActivatedRoute,
-    private restService: RestService
-  ) {}
+  constructor(private router: Router, private restService: RestService) {}
 
   public ngOnInit(): void {
-    this.categoryIdSubscription = this.activeRouter.queryParams.subscribe(
-      params => {
-        const categoryId = params['category_id'];
+    this.categoryIdSubscription = this.router.events.subscribe(route => {
+      if (route instanceof NavigationEnd) {
+        const categoryId = getIdFromSlug(route.urlAfterRedirects);
         if (categoryId) {
-          this.getCategoryProducts(categoryId);
+          this.getCategoryData(this.limit, this.offset, this.order, categoryId);
         } else {
-          this.getAllCategories(this.limit, this.offset, this.order);
+          this.getCategoryData(
+            this.limit,
+            this.offset,
+            this.order,
+            'all-categories'
+          );
         }
       }
-    );
+    });
   }
 
   public ngOnDestroy() {
@@ -113,16 +116,17 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getCategoryProducts(categoryId: string) {
-    this.categoryData$ =
-      this.restService.getCategoryProductsByCategoryId(categoryId);
-  }
-
-  private getAllCategories(limit: number, offset: number, order: string) {
+  private getCategoryData(
+    limit: number,
+    offset: number,
+    order: string,
+    slug: string | number
+  ) {
     this.categoryData$ = this.restService.getAllCategories(
       limit,
       offset,
-      order
+      order,
+      slug
     );
   }
 }

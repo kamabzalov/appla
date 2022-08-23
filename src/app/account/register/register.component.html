@@ -1,1 +1,26 @@
-<p>register works!</p>
+<h3 class="m-b-24px">Sign Up now</h3>
+
+<p class="text-center">
+  Already have an account? <br />
+  <a routerLink="/account/login">Login</a>
+</p>
+
+<form class="login-form m-b-20px">
+  <div class="control-group">
+    <label class="control-group__label" for="email">Email</label>
+    <input
+      class="login-form__input control-group__field"
+      id="email"
+      placeholder="Email"
+      type="email" />
+  </div>
+  <button class="login-form__submit button button_orange w-100">
+    Register
+  </button>
+</form>
+
+<p class="text-center">
+  By registering, I agree to the
+  <a routerLink="/terms">Terms & Conditions</a> and
+  <a routerLink="/privacy">Privacy Policy</a>
+</p>

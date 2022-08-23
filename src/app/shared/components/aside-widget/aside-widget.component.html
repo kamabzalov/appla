@@ -1,20 +1,20 @@
-<div class="aside-widget p-20px">
+<div class="aside-widget">
   <div class="aside-widget__head p-b-8px m-b-20px">
     <button
-      type="button"
-      class="aside-widget__toggle display-flex w-100"
       (click)="collapse.toggle()"
       [attr.aria-expanded]="!isCollapsed"
-      aria-controls="collapseExample">
+      aria-controls="collapseExample"
+      class="aside-widget__toggle display-flex w-100"
+      type="button">
       {{ widgetHeader }}
       <fa-icon
-        class="m-l-auto aside-widget__icon"
         *ngIf="isCollapsed"
-        [icon]="faChevronDown"></fa-icon>
+        [icon]="faChevronDown"
+        class="m-l-auto aside-widget__icon"></fa-icon>
       <fa-icon
-        class="m-l-auto aside-widget__icon"
         *ngIf="!isCollapsed"
-        [icon]="faChevronUp"></fa-icon>
+        [icon]="faChevronUp"
+        class="m-l-auto aside-widget__icon"></fa-icon>
     </button>
   </div>
 

@@ -72,7 +72,7 @@ export class RestService {
     limit: number,
     offset: number,
     order: string,
-    slug: string = 'all-categories'
+    slug: string | number
   ): Observable<Category> {
     const params = new HttpParams()
       .set('slug', slug)
@@ -82,16 +82,6 @@ export class RestService {
     return this.http.get<Category>(`${this.basePath}category-products`, {
       params,
     });
-  }
-
-  public getCategoryProductsByCategoryId(
-    categoryId: string,
-    limit = 20,
-    offset = 0
-  ): Observable<Category> {
-    return this.http.get<Category>(
-      `${this.basePath}category-products/?id=${categoryId}&limit=${limit}&offset=${offset}`
-    );
   }
 
   public getProductById(productId: any): Observable<any> {

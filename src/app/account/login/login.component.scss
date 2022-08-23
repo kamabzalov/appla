@@ -1,0 +1,13 @@
+@use "~assets/scss/vars";
+@use "~assets/scss/mixins";
+
+.login-form {
+
+  &__input {
+    background: vars.$bright-gray;
+  }
+
+  &__submit {
+    @include mixins.border-radius(10px);
+  }
+}
