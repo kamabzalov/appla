@@ -5,11 +5,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { iconSet } from '@app/shared/utils/icons';
 
 export interface StoreOffers {
-  master_product_id: number;
+  category_id: number;
   count_store: number;
-  category_id: string;
-  min_price: string;
-  max_price: string;
+  master_product_id: number;
+  max_price: number;
+  min_price: number;
   name1: string;
   name2: string;
   name3: string;

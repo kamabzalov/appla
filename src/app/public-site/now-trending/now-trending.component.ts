@@ -5,13 +5,13 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable } from 'rxjs';
 
 export interface Trend {
-  category_id: string;
+  category_id: number;
+  count: number;
   name1: string;
   name2: string;
   name3: string;
-  slug: string;
   picture: string;
-  count: string;
+  slug: string;
 }
 
 @Component({

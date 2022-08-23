@@ -1,7 +1,7 @@
 <div class="product-category-tile">
   <div class="display-flex justify-content-between align-items-center m-b-20px">
     <h3 class="product-category-tile__title">{{ title }}</h3>
-    <a [routerLink]="link" [queryParams]="{ category_id: categoryId }"
+    <a [queryParams]="{ category_id: categoryId }" [routerLink]="link"
       >See all</a
     >
   </div>
@@ -11,20 +11,20 @@
       <div
         class="column-6 column-medium-3 display-flex flex-column text-center">
         <a
-          class="display-block product-category-tile__link"
-          [routerLink]="['product', entity.store_name, entity.slug]">
+          [routerLink]="['product', entity.store_slug, entity.product_slug]"
+          class="display-block product-category-tile__link">
           <img
-            class="m-auto m-b-20px product-category-tile__image"
             [src]="
               'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
-              entity.data.picture
+              entity.picture
             "
-            alt="" />
+            alt=""
+            class="m-auto m-b-20px product-category-tile__image" />
           <h3 class="product-category-tile__product-title">
             {{ entity.name1 }}
           </h3>
           <p class="product-category-tile__product-price">
-            {{ entity.min_price }} €
+            {{ entity.price }} €
           </p>
         </a>
       </div>
