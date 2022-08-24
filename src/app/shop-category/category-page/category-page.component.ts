@@ -5,10 +5,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { faChevronRight, faTags } from '@fortawesome/free-solid-svg-icons';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, Subscription } from 'rxjs';
-import { getIdFromSlug } from '@app/shared/utils/functions';
 
 export interface Category {
   products: CategoryProduct[];
@@ -90,23 +89,18 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   private readonly limit = 48;
   private readonly order = 'date';
 
-  constructor(private router: Router, private restService: RestService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private restService: RestService
+  ) {}
 
   public ngOnInit(): void {
-    this.categoryIdSubscription = this.router.events.subscribe(route => {
-      if (route instanceof NavigationEnd) {
-        const categoryId = getIdFromSlug(route.urlAfterRedirects);
-        if (categoryId) {
-          this.getCategoryData(this.limit, this.offset, this.order, categoryId);
-        } else {
-          this.getCategoryData(
-            this.limit,
-            this.offset,
-            this.order,
-            'all-categories'
-          );
-        }
+    this.categoryIdSubscription = this.route.url.subscribe(res => {
+      let slug = 'all-categories';
+      if (res.length && res[1]) {
+        slug = res[1].path;
       }
+      this.getCategoryData(this.limit, this.offset, this.order, slug);
     });
   }
 
@@ -120,7 +114,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     limit: number,
     offset: number,
     order: string,
-    slug: string | number
+    slug: string
   ) {
     this.categoryData$ = this.restService.getAllCategories(
       limit,

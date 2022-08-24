@@ -72,7 +72,7 @@ export class RestService {
     limit: number,
     offset: number,
     order: string,
-    slug: string | number
+    slug: string
   ): Observable<Category> {
     const params = new HttpParams()
       .set('slug', slug)
