@@ -1,11 +1,13 @@
 <div class="preview-card">
-  <img
-    [src]="
-      'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
-      product.picture
-    "
-    alt=""
-    class="preview-card__image" />
+  <a [routerLink]="product.link">
+    <img
+      [src]="
+        'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+        product.picture
+      "
+      alt=""
+      class="preview-card__image" />
+  </a>
   <div>
     <p class="preview-card__name m-b-4px">
       <a class="preview-card__link" href="">{{ product.name1 }}</a>

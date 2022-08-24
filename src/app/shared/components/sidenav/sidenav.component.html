@@ -1,10 +1,13 @@
-<div class="display-flex p-16px">
+<div class="display-flex flex-direction-column p-16px">
   <button
     (click)="openLoginModal()"
-    class="button button_transparent_outline_orange m-r-8px">
+    class="button button_transparent_outline_orange m-b-16px">
     Login
   </button>
-  <a href="https://appla.cy/account/register" class="button button_orange"
+  <a
+    class="button button_orange text-center"
+    href="https://appla.cy/account/register"
     >Sign Up</a
   >
+  <appla-navigation listAlign="column"></appla-navigation>
 </div>

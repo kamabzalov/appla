@@ -1,35 +1,45 @@
 <nav class="nav">
-  <ul class="nav-list navbar-nav flex-row w-100 justify-content-between">
-    <li class="nav-list__item nav-item" *ngFor="let menuItem of menu$ | async">
-      <a class="nav-link">
+  <ul
+    [ngClass]="{
+      'flex-row': listAlign === 'row',
+      'flex-column': listAlign === 'column'
+    }"
+    class="nav-list navbar-nav w-100 justify-content-between">
+    <li
+      *ngFor="let menuItem of menu$ | async"
+      class="nav-list__item nav-item"
+      ngbDropdown>
+      <a class="nav-link" ngbDropdownToggle>
         {{ menuItem.name1 }}
       </a>
-      <div class="nav-item-megamenu">
+      <div class="nav-item-megamenu dropdown-menu-start" ngbDropdownMenu>
         <div class="container">
           <div class="row">
-            <div class="column-3" *ngFor="let firstLevel of menuItem.childs1">
+            <div
+              *ngFor="let firstLevel of menuItem.childs1"
+              class="column-12 column-medium-3">
               <a
-                class="nav-item-megamenu__first-level"
                 [routerLink]="['/category/list', firstLevel.link]"
+                class="nav-item-megamenu__first-level"
                 >{{ firstLevel.name }}</a
               >
               <ul class="list-unstyled second-level m-t-12px">
                 <li
-                  class="m-b-8px"
-                  *ngFor="let secondLevel of firstLevel.childs">
+                  *ngFor="let secondLevel of firstLevel.childs"
+                  class="m-b-8px">
                   <a
-                    class="second-level__link"
                     [routerLink]="['/category/list', secondLevel.value]"
+                    class="second-level__link"
                     >{{ secondLevel.name }}</a
                   >
                 </li>
               </ul>
             </div>
-            <div class="m-l-auto column-3">
+            <div class="m-l-auto column-12 column-medium-3">
               <div class="display-flex flex-direction-column">
                 <div
-                  class="commercial-product text-center m-b-12px"
-                  *ngFor="let product of menuItem.commercial_products1">
+                  *ngFor="let product of menuItem.commercial_products1"
+                  class="commercial-product text-center m-b-12px">
                   <a
                     [routerLink]="[
                       '/product/',

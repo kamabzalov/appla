@@ -1,10 +1,16 @@
 @use '~assets/scss/vars';
 @use '~assets/scss/mixins';
 
+
 .nav {
   &-list {
     &__item {
       color: vars.$white;
+      position: static;
+
+      //@media (max-width: $large-devices-breakpoint) {
+      //  padding-top: 72px;
+      //}
     }
   }
 
@@ -15,7 +21,6 @@
   &-item {
 
     &-megamenu {
-      display: none;
 
       &__first-level {
         font-size: 16px;
@@ -28,21 +33,20 @@
       }
     }
 
-    &:hover {
-      .nav-item-megamenu {
-        background: vars.$white;
-        display: block;
-        position: absolute;
-        left: 0;
-        right: 0;
-        width: 100vw;
-        min-height: 50vh;
-        max-height: 80vh;
-        padding-top: vars.$base-size * 5;
-        padding-bottom: vars.$base-size * 5;
-        border-bottom: 2px solid vars.$blue-yonder;
-        color: black;
-      }
+    .nav-item-megamenu {
+      background: vars.$white;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100vw;
+      min-height: 50vh;
+      max-height: 80vh;
+      overflow-y: scroll;
+      padding-top: vars.$base-size * 5;
+      padding-bottom: vars.$base-size * 5;
+      border-bottom: 2px solid vars.$blue-yonder;
+      color: black;
+      transform: translate3d(0, 97px, 0) !important;
     }
   }
 

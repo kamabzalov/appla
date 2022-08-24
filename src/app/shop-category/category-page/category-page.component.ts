@@ -12,59 +12,69 @@ import { Observable, Subscription } from 'rxjs';
 export interface Category {
   products: CategoryProduct[];
   subcategories: Subcategory[];
+  this_category: CurrentCategory;
   count_products: number;
 }
 
 export interface CategoryProduct {
   category_id: number;
-  comment: string;
-  condition: number;
-  created_date: Date;
+  category_slug: string;
+  count_products: number;
   date_update: Date;
-  delivery_service: number;
-  discount: number;
-  gtin: string;
+  en_description: string;
+  en_product_description: string;
+  en_product_title: string;
+  en_title: string;
+  gr_description: string;
+  gr_product_description: string;
+  gr_product_title: string;
+  gr_title: string;
+  gtin: number;
   height: number;
   item_model_number: string;
   length: number;
+  link: string;
   long_description1: string;
   long_description2: string;
   long_description3: string;
   manufacturer: string;
   master_product_id: number;
-  min_order: number;
+  max_price: number;
+  min_price: number;
   name1: string;
   name2: string;
   name3: string;
-  order_fee: number;
-  original_price: number;
   picture: string;
-  price: number;
-  product_id: number;
-  product_variant: string;
-  qty: number;
-  refund_days: number;
-  refund_status: number;
-  shipping_insurance: number;
+  position: string;
+  price: string;
+  product_ids: number;
+  ru_description: string;
+  ru_product_description: string;
+  ru_product_title: string;
+  ru_title: string;
   short_description1: string;
   short_description2: string;
   short_description3: string;
-  showcase: number;
   sku: string;
-  slug: string;
   status: number;
   store_id: number;
-  store_slug: string;
   technical_detail: string;
-  user_update: string;
-  vat: number;
+  type_id: number;
+  user_update: number;
   weight: number;
-  weight_unit: number;
+  weight_unit: string;
   width: number;
 }
 
 export interface Subcategory {
   category_id: number;
+  name1: string;
+  name2: string;
+  name3: string;
+  slug: string;
+}
+
+export interface CurrentCategory {
   name1: string;
   name2: string;
   name3: string;
@@ -87,7 +97,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   private offset = 0;
 
   private readonly limit = 48;
-  private readonly order = 'date';
+  private readonly order = 'date_update_asc';
 
   constructor(
     private route: ActivatedRoute,
