@@ -30,14 +30,16 @@ jobs:
       run: npm install -g @angular/cli > /dev/null
     - name: NPM build Angular Production
       run: ng build 
-    
+    - name: Delete Existing Files
+      run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.STAGE_USER }}@${{ secrets.SSH_HOST }} 'rm -rf /var/www/html/angular/*'
+
     - name: Compress and Copy New Files to server
       run : |
             pwd
-            cd angular/dist/
+            cd /dist/angular/
             tar -czvf ../../dist.tar.gz ./
             cd ..
             cd ..
             sudo sshpass -p ${{ secrets.STAGE }} scp -v -o StrictHostKeyChecking=no -r dist.tar.gz ${{ secrets.STAGE_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/angular
     - name: Uncompress new Files
-      run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd /var/www/html/angular/ && tar -xzvf dist.tar.gz && rm dist.tar.gz'
+      run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.STAGE_USER }}@${{ secrets.SSH_HOST }} 'cd /var/www/html/angular/ && tar -xzvf dist.tar.gz && rm dist.tar.gz'
