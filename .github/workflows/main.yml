@@ -35,7 +35,9 @@ jobs:
     - name: Compress and Copy New Files to server
       run : |
             pwd
-            cd dist/angular/
+            ls
+            cd dist
+            ls
             pwd
             tar -czvf ../../dist.tar.gz ./
             cd ..
