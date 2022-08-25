@@ -1,0 +1,44 @@
+name: CI
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    # using Ubuntu
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1 #this installs node and npm for us
+      with:
+        node-version: '16.x'
+
+    - uses: actions/cache@v1 # this allows for re-using node_modules caching, making builds a bit faster.
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: NPM Install
+      run: npm install
+    - name: NPM Install Angular
+      run: npm install -g @angular/cli > /dev/null
+    - name: NPM build Angular Production
+      run: ng build --prod
+    - name: Delete Existing Files
+      run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'rm -rf /var/www/html/angular/*'
+
+    - name: Compress and Copy New Files to server
+      run : |
+            cd dist/angular/
+            tar -czvf ../../dist.tar.gz ./
+            cd ..
+            cd ..
+            sudo sshpass -p ${{ secrets.STAGE }} scp -v -o StrictHostKeyChecking=no -r dist.tar.gz ${{ secrets.STAGE_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/angular
+    - name: Uncompress new Files
+      run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd /var/www/html/angular/ && tar -xzvf dist.tar.gz && rm dist.tar.gz'
