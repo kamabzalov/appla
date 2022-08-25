@@ -29,7 +29,7 @@ jobs:
     - name: NPM Install Angular
       run: npm install -g @angular/cli > /dev/null
     - name: NPM build Angular Production
-      run: ng build --prod
+      run: ng build 
     - name: Delete Existing Files
       run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'rm -rf /var/www/html/angular/*'
 
