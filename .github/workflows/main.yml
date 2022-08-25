@@ -32,7 +32,6 @@ jobs:
       run: ng build 
     - name: Delete Existing Files
       run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.STAGE_USER }}@${{ secrets.SSH_HOST }} 'rm -rf /var/www/html/angular/*'
-
     - name: Compress and Copy New Files to server
       run : |
             pwd
