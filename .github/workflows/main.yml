@@ -27,7 +27,9 @@ jobs:
     - name: NPM Install
       run: npm install
     - name: NPM Install Angular
-      run: npm install -g @angular/cli > /dev/null
+      run: npm install -g @angular/cli > /dev/null          
+    - name: add universal express engine
+      run: ng add @nguniversal/express-engine
     - name: NPM build Angular Production
       run: ng run build:ssr
     - name: Delete Existing Files
