@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { faPlus, faMinus, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 export interface Product {
   product_id: string;
@@ -67,17 +67,20 @@ export class ProductPageComponent implements OnInit {
   public productQuantity: number = 1;
 
   public product$: Observable<Product>;
+  public productSlugSubscription: Subscription;
 
   constructor(
-    private activeRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private restService: RestService
   ) {}
 
   public ngOnInit(): void {
-    const productId = this.activeRoute.snapshot.queryParams['product_id'];
-    if (productId) {
-      this.product$ = this.restService.getProductById(productId);
-    }
+    this.productSlugSubscription = this.route.url.subscribe(res => {
+      const slug = res[1].path;
+      if (slug) {
+        this.product$ = this.restService.getProductBySlug(slug);
+      }
+    });
   }
 
   public decreaseQuantity() {

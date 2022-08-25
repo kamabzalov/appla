@@ -84,7 +84,7 @@ export class RestService {
     });
   }
 
-  public getProductById(productId: any): Observable<any> {
+  public getProductBySlug(productId: any): Observable<any> {
     return this.http.get<any>(`${this.basePath}product?id=${productId}`).pipe(
       map((result: Product) => {
         result.picture = JSON.parse(result.picture);
