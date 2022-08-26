@@ -84,13 +84,15 @@ export class RestService {
     });
   }
 
-  public getProductBySlug(productId: any): Observable<any> {
-    return this.http.get<any>(`${this.basePath}product?id=${productId}`).pipe(
-      map((result: Product) => {
-        result.picture = JSON.parse(result.picture);
-        return result;
-      })
-    );
+  public getProductBySlug(productSlug: any): Observable<any> {
+    return this.http
+      .get<any>(`${this.basePath}product?slug=${productSlug}`)
+      .pipe(
+        map((result: Product) => {
+          result.picture = JSON.parse(result.picture);
+          return result;
+        })
+      );
   }
 
   public searchInShop(query: string): Observable<SearchResults> {
