@@ -41,7 +41,7 @@ interface CommercialProduct {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent implements OnInit {
-  public menu$: Observable<Menu[]>;
+  protected menu$: Observable<Menu[]>;
 
   constructor(private restService: RestService) {}
 

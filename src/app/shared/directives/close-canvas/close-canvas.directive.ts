@@ -7,6 +7,7 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 export class CloseCanvasDirective {
   constructor(private offCanvas: NgbOffcanvas) {}
 
+  @HostListener('window:resize', ['$event'])
   @HostListener('click', ['$event.target'])
   private onElemClick() {
     this.offCanvas.dismiss();

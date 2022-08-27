@@ -1,54 +1,108 @@
-<div class="display-flex flex-direction-column p-16px">
-  <button
-    (click)="openLoginModal()"
-    class="button button_transparent_outline_orange m-b-16px">
-    Login
-  </button>
-  <a
-    class="button button_orange text-center m-b-16px"
-    href="https://appla.cy/account/register"
-    >Sign Up</a
-  >
+<div class="display-flex flex-direction-column p-t-16px p-b-16px">
+  <div class="row p-l-16px p-r-16px m-b-16px">
+    <div class="column-6">
+      <button
+        (click)="openLoginModal()"
+        class="button button_transparent_outline_orange w-100">
+        Login
+      </button>
+    </div>
+    <div class="column-6">
+      <a
+        class="button button_orange text-center display-inline-block w-100"
+        href="https://appla.cy/account/register"
+        >Sign Up</a
+      >
+    </div>
+  </div>
 
-  <ul class="sidenav-menu list-no-bullets">
-    <li>
-      <a applaCloseCanvas routerLink="">Cart</a>
+  <ul class="sidenav-menu list-no-bullets p-l-0px">
+    <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="/">Home</a>
     </li>
-    <li>
-      <a routerLink="/category">Categories</a>
+    <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="">Cart</a>
     </li>
-    <li>
-      <a routerLink="/cart">Languages</a>
+    <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a
+        (click)="collapse.toggle()"
+        [attr.aria-expanded]="!isCollapsed"
+        class="sidenav-menu__link"
+        >Categories</a
+      >
+      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            <ul class="list-no-bullets">
+              <li *ngFor="let category of menu$ | async" class="m-b-8px">
+                <a class="sidenav-menu__link">{{ category.name1 }}</a>
+                <ul class="list-no-bullets">
+                  <li *ngFor="let child of category.childs1">
+                    <a
+                      [routerLink]="['/category/list', child.link]"
+                      applaCloseCanvas
+                      class="sidenav-menu__link"
+                      >{{ child.name }}</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </li>
-    <li>
-      <a applaCloseCanvas routerLink="aboutus">About Us</a>
+    <li
+      class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px"
+      ngbDropdown>
+      <a class="sidenav-menu__link" ngbDropdownToggle routerLink="/cart"
+        >Languages</a
+      >
     </li>
-    <li>
-      <a href="https://blog.appla.cy/careers/en/">Careers</a>
+    <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="aboutus"
+        >About Us</a
+      >
     </li>
-    <li>
-      <a applaCloseCanvas href="https://help.appla.cy/">Help &amp; Contact</a>
+    <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a class="sidenav-menu__link" href="https://blog.appla.cy/careers/en/"
+        >Careers</a
+      >
     </li>
-    <li>
-      <a applaCloseCanvas routerLink="/privacy">Privacy Policy</a>
+    <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a
+        applaCloseCanvas
+        class="sidenav-menu__link"
+        href="https://help.appla.cy/"
+        >Help &amp; Contact</a
+      >
     </li>
-    <li>
-      <a applaCloseCanvas routerLink="/terms">Terms</a>
+    <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="/privacy"
+        >Privacy Policy</a
+      >
     </li>
-    <li>
-      <a href="https://blog.appla.cy/faq-en/">FAQ</a>
+    <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="/terms"
+        >Terms</a
+      >
+    </li>
+    <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a class="sidenav-menu__link" href="https://blog.appla.cy/faq-en/">FAQ</a>
     </li>
   </ul>
 
-  <div>
+  <div class="sidenav-contact p-l-16px p-r-16px">
     <h5>Contact Information:</h5>
     <p>
       <fa-icon [icon]="faPhone" class="m-r-12px"></fa-icon>
-      <a href="tel:+35724506800">+357 24506800</a>
+      <a class="sidenav-contact__link" href="tel:+35724506800">+357 24506800</a>
     </p>
     <p>
       <fa-icon [icon]="faEnvelope" class="m-r-12px"></fa-icon>
-      <a href="mailto:contact@appla.cy">Email contact@appla.cy</a>
+      <a class="sidenav-contact__link" href="mailto:contact@appla.cy"
+        >Email contact@appla.cy</a
+      >
     </p>
   </div>
 </div>

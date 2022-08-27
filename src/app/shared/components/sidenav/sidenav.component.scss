@@ -1,0 +1,23 @@
+@use "~assets/scss/vars";
+
+.sidenav-menu {
+  &__link {
+    color: vars.$charcoal;
+    cursor: pointer;
+  }
+
+  &__item {
+    border-top: 5px vars.$gainsboro solid;
+
+    &.no-border {
+      border: none;
+    }
+  }
+}
+
+.sidenav-contact {
+  &__link {
+    color: inherit;
+    cursor: pointer;
+  }
+}
