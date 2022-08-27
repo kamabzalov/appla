@@ -1,149 +1,149 @@
 <appla-header></appla-header>
 <div class="container m-t-96px p-t-20px">
-  <section
-    *ngIf="product$ | async as product"
-    class="product card-content m-b-20px">
-    <div class="row m-b-16px">
-      <div class="col-12">
-        <div class="row">
-          <div class="col-md-5 col-sm-12 text-center">
-            <img
-              [src]="
-                'https://storage.googleapis.com/images-appla/production/thumbs_800/' +
-                product.picture[0]
-              "
-              alt=""
-              class="product__image img-fluid" />
-          </div>
-          <div class="col-md-7 col-sm-12">
-            <h1 class="product__title">{{ product.name1 }}</h1>
-            <p class="product__price">{{ product.price }} €</p>
-            <p class="product-categories p-b-4px">
-              Categories:
-              <span class="product__category">{{
-                product.category_name1
-              }}</span>
-            </p>
+  <!--  <section-->
+  <!--    *ngIf="product$ | async as product"-->
+  <!--    class="product card-content m-b-20px">-->
+  <!--    <div class="row m-b-16px">-->
+  <!--      <div class="col-12">-->
+  <!--        <div class="row">-->
+  <!--          <div class="col-md-5 col-sm-12 text-center">-->
+  <!--            <img-->
+  <!--              [src]="-->
+  <!--                'https://storage.googleapis.com/images-appla/production/thumbs_800/' +-->
+  <!--                product.picture[0]-->
+  <!--              "-->
+  <!--              alt=""-->
+  <!--              class="product__image img-fluid" />-->
+  <!--          </div>-->
+  <!--          <div class="col-md-7 col-sm-12">-->
+  <!--            <h1 class="product__title">{{ product.name1 }}</h1>-->
+  <!--            <p class="product__price">{{ product.price }} €</p>-->
+  <!--            <p class="product-categories p-b-4px">-->
+  <!--              Categories:-->
+  <!--              <span class="product__category">{{-->
+  <!--                product.category_name1-->
+  <!--              }}</span>-->
+  <!--            </p>-->
 
-            <div class="display-flex justify-content-between">
-              <p class="product__condition">Condition: New</p>
-              <p class="product__status">In Stock</p>
-            </div>
+  <!--            <div class="display-flex justify-content-between">-->
+  <!--              <p class="product__condition">Condition: New</p>-->
+  <!--              <p class="product__status">In Stock</p>-->
+  <!--            </div>-->
 
-            <div class="card-content product-order">
-              <h2 class="product-order__header">Order item</h2>
-              <p class="product-order__quantity">Quantity</p>
-              <div class="display-flex m-b-12px">
-                <div class="input-group product-order__quantity-form m-r-8px">
-                  <button
-                    (click)="decreaseQuantity()"
-                    class="btn btn-outline-secondary"
-                    type="button">
-                    <fa-icon [icon]="faMinus"></fa-icon>
-                  </button>
-                  <input
-                    [(ngModel)]="productQuantity"
-                    aria-label="Example text with button addon"
-                    class="form-control"
-                    name="productQuantity"
-                    placeholder=""
-                    type="number" />
-                  <button
-                    (click)="increaseQuantity()"
-                    class="btn btn-outline-secondary"
-                    type="button">
-                    <fa-icon [icon]="faPlus"></fa-icon>
-                  </button>
-                </div>
-                <button class="product-order__max p-l-16px p-r-16px">
-                  Max
-                </button>
-              </div>
-              <button class="w-100 product-order__cart-button p-12px">
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <ul #nav="ngbNav" class="nav-tabs" ngbNav>
-          <li ngbNavItem>
-            <a ngbNavLink>Description</a>
-            <ng-template ngbNavContent>
-              <div class="p-16px">
-                <p>Weight : {{ product.weight }} (g)</p>
-                <p>
-                  {{ product.long_description1 }}
-                </p>
-              </div>
-            </ng-template>
-          </li>
-          <li ngbNavItem>
-            <a ngbNavLink>Specifications</a>
-            <ng-template ngbNavContent>
-              <div class="p-16px">
-                <ngb-accordion #acc="ngbAccordion">
-                  <ngb-panel id="toggle-1" title="Display">
-                    <ng-template ngbPanelContent>
-                      <table class="table">
-                        <tbody>
-                          <tr>
-                            <td>Display diagonal:</td>
-                            <td>6.5</td>
-                          </tr>
-                          <tr>
-                            <td>Screen shape:</td>
-                            <td>Flat screen</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </ng-template>
-                  </ngb-panel>
-                  <ngb-panel id="toggle-2" title="Processor">
-                    <ng-template ngbPanelContent>
-                      <table class="table">
-                        <tbody>
-                          <tr>
-                            <td>Display diagonal:</td>
-                            <td>6.5</td>
-                          </tr>
-                          <tr>
-                            <td>Screen shape:</td>
-                            <td>Flat screen</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </ng-template>
-                  </ngb-panel>
-                </ngb-accordion>
-              </div>
-            </ng-template>
-          </li>
-        </ul>
-        <div [ngbNavOutlet]="nav"></div>
-      </div>
-    </div>
-    <div class="row align-items-center product-seller p-t-16px">
-      <div class="col-md-6">
-        <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
-          <img
-            alt=""
-            class="product-seller__logo m-r-16px"
-            src="/assets/images/sellers/tech2.jpeg" />
-          <div class="display-flex flex-column">
-            <span><a href="#">Tech 2 Tech</a></span>
-            <span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 text-end">
-        <button class="product-follow">Follow</button>
-      </div>
-    </div>
-  </section>
+  <!--            <div class="card-content product-order">-->
+  <!--              <h2 class="product-order__header">Order item</h2>-->
+  <!--              <p class="product-order__quantity">Quantity</p>-->
+  <!--              <div class="display-flex m-b-12px">-->
+  <!--                <div class="input-group product-order__quantity-form m-r-8px">-->
+  <!--                  <button-->
+  <!--                    (click)="decreaseQuantity()"-->
+  <!--                    class="btn btn-outline-secondary"-->
+  <!--                    type="button">-->
+  <!--                    <fa-icon [icon]="faMinus"></fa-icon>-->
+  <!--                  </button>-->
+  <!--                  <input-->
+  <!--                    [(ngModel)]="productQuantity"-->
+  <!--                    aria-label="Example text with button addon"-->
+  <!--                    class="form-control"-->
+  <!--                    name="productQuantity"-->
+  <!--                    placeholder=""-->
+  <!--                    type="number" />-->
+  <!--                  <button-->
+  <!--                    (click)="increaseQuantity()"-->
+  <!--                    class="btn btn-outline-secondary"-->
+  <!--                    type="button">-->
+  <!--                    <fa-icon [icon]="faPlus"></fa-icon>-->
+  <!--                  </button>-->
+  <!--                </div>-->
+  <!--                <button class="product-order__max p-l-16px p-r-16px">-->
+  <!--                  Max-->
+  <!--                </button>-->
+  <!--              </div>-->
+  <!--              <button class="w-100 product-order__cart-button p-12px">-->
+  <!--                Add to Cart-->
+  <!--              </button>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="row">-->
+  <!--      <div class="col-md-12 col-sm-12">-->
+  <!--        <ul #nav="ngbNav" class="nav-tabs" ngbNav>-->
+  <!--          <li ngbNavItem>-->
+  <!--            <a ngbNavLink>Description</a>-->
+  <!--            <ng-template ngbNavContent>-->
+  <!--              <div class="p-16px">-->
+  <!--                <p>Weight : {{ product.weight }} (g)</p>-->
+  <!--                <p>-->
+  <!--                  {{ product.long_description1 }}-->
+  <!--                </p>-->
+  <!--              </div>-->
+  <!--            </ng-template>-->
+  <!--          </li>-->
+  <!--          <li ngbNavItem>-->
+  <!--            <a ngbNavLink>Specifications</a>-->
+  <!--            <ng-template ngbNavContent>-->
+  <!--              <div class="p-16px">-->
+  <!--                <ngb-accordion #acc="ngbAccordion">-->
+  <!--                  <ngb-panel id="toggle-1" title="Display">-->
+  <!--                    <ng-template ngbPanelContent>-->
+  <!--                      <table class="table">-->
+  <!--                        <tbody>-->
+  <!--                          <tr>-->
+  <!--                            <td>Display diagonal:</td>-->
+  <!--                            <td>6.5</td>-->
+  <!--                          </tr>-->
+  <!--                          <tr>-->
+  <!--                            <td>Screen shape:</td>-->
+  <!--                            <td>Flat screen</td>-->
+  <!--                          </tr>-->
+  <!--                        </tbody>-->
+  <!--                      </table>-->
+  <!--                    </ng-template>-->
+  <!--                  </ngb-panel>-->
+  <!--                  <ngb-panel id="toggle-2" title="Processor">-->
+  <!--                    <ng-template ngbPanelContent>-->
+  <!--                      <table class="table">-->
+  <!--                        <tbody>-->
+  <!--                          <tr>-->
+  <!--                            <td>Display diagonal:</td>-->
+  <!--                            <td>6.5</td>-->
+  <!--                          </tr>-->
+  <!--                          <tr>-->
+  <!--                            <td>Screen shape:</td>-->
+  <!--                            <td>Flat screen</td>-->
+  <!--                          </tr>-->
+  <!--                        </tbody>-->
+  <!--                      </table>-->
+  <!--                    </ng-template>-->
+  <!--                  </ngb-panel>-->
+  <!--                </ngb-accordion>-->
+  <!--              </div>-->
+  <!--            </ng-template>-->
+  <!--          </li>-->
+  <!--        </ul>-->
+  <!--        <div [ngbNavOutlet]="nav"></div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="row align-items-center product-seller p-t-16px">-->
+  <!--      <div class="col-md-6">-->
+  <!--        <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">-->
+  <!--          <img-->
+  <!--            alt=""-->
+  <!--            class="product-seller__logo m-r-16px"-->
+  <!--            src="/assets/images/sellers/tech2.jpeg" />-->
+  <!--          <div class="display-flex flex-column">-->
+  <!--            <span><a href="#">Tech 2 Tech</a></span>-->
+  <!--            <span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="col-md-6 text-end">-->
+  <!--        <button class="product-follow">Follow</button>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </section>-->
 
   <section>
     <div class="row">

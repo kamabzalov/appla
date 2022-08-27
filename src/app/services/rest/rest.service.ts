@@ -83,8 +83,13 @@ export class RestService {
     });
   }
 
-  public getProductBySlug(productSlug: any): Observable<any> {
-    return this.http.get<any>(`${this.basePath}product?slug=${productSlug}`);
+  public getProductBySlug(
+    storeSlug: string,
+    productSlug: string
+  ): Observable<any> {
+    return this.http.get<any>(
+      `${this.basePath}product?product_slug=${productSlug}&slug_store=${storeSlug}`
+    );
   }
 
   public searchInShop(query: string): Observable<SearchResults> {

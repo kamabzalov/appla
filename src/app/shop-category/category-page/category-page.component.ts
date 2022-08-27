@@ -19,6 +19,7 @@ export interface Category {
 export interface CategoryProduct {
   category_id: number;
   category_slug: string;
+  count: number;
   count_products: number;
   date_update: Date;
   en_description: string;
@@ -29,7 +30,7 @@ export interface CategoryProduct {
   gr_product_description: string;
   gr_product_title: string;
   gr_title: string;
-  gtin: number;
+  gtin: string;
   height: number;
   item_model_number: string;
   length: number;
@@ -55,14 +56,14 @@ export interface CategoryProduct {
   short_description1: string;
   short_description2: string;
   short_description3: string;
-  sku: string;
+  sku: number;
   status: number;
   store_id: number;
   technical_detail: string;
   type_id: number;
   user_update: number;
   weight: number;
-  weight_unit: string;
+  weight_unit: number;
   width: number;
 }
 
