@@ -6,7 +6,6 @@ import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-
 import { Trend } from '@app/public-site/now-trending/now-trending.component';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { Category } from '@app/shop-category/category-page/category-page.component';
-import { Product } from '@app/shop-product/product-page/product-page.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { SearchResults } from '@app/search/search-results/search-results.component';
 import { AuthStatus } from '@app/shared/components/modal/login/login.component';
@@ -85,14 +84,7 @@ export class RestService {
   }
 
   public getProductBySlug(productSlug: any): Observable<any> {
-    return this.http
-      .get<any>(`${this.basePath}product?slug=${productSlug}`)
-      .pipe(
-        map((result: Product) => {
-          result.picture = JSON.parse(result.picture);
-          return result;
-        })
-      );
+    return this.http.get<any>(`${this.basePath}product?slug=${productSlug}`);
   }
 
   public searchInShop(query: string): Observable<SearchResults> {
@@ -104,6 +96,12 @@ export class RestService {
   public login(email: string, password: string): Observable<AuthStatus> {
     return this.http.get<AuthStatus>(
       `${this.basePath}login?email=${email}&password=${password}`
+    );
+  }
+
+  public getProductOffer(productSlug: string) {
+    return this.http.get<any>(
+      `${this.basePath}product-offers?slug=${productSlug}`
     );
   }
 }

@@ -1,4 +1,5 @@
-<div class="container m-t-20px">
+<appla-header></appla-header>
+<div class="container m-t-96px p-t-20px">
   <section class="compare-prices m-b-20px">
     <div class="row">
       <div class="col-lg-9 col-md-9 col-12">
@@ -7,9 +8,9 @@
             <div class="row">
               <div class="col-lg-3 col-md-6 col-12">
                 <img
+                  alt=""
                   class="img-fluid"
-                  src="./assets/images/compare-prices/pixel.jpeg"
-                  alt="" />
+                  src="./assets/images/compare-prices/pixel.jpeg" />
               </div>
               <div class="col-lg-5 col-md-6 col-12">
                 <p class="fw-semibold">Samsung Galaxy A52s 5G 16.5 cm (6.5)</p>
@@ -25,37 +26,37 @@
         <div class="card-content">
           <div class="compare-prices-rating">
             <div class="m-b-4px">
-              <ngb-rating [rate]="0" [max]="5" [readonly]="true"></ngb-rating>
+              <ngb-rating [max]="5" [rate]="0" [readonly]="true"></ngb-rating>
               | 0 reviews
             </div>
             <h6>0 of 5</h6>
             <div class="display-flex m-b-4px">
               <span class="m-r-8px">5 stars</span>
-              <ngb-progressbar class="flex-grow-1" type="success" [value]="0"
+              <ngb-progressbar [value]="0" class="flex-grow-1" type="success"
                 >default
               </ngb-progressbar>
             </div>
             <div class="display-flex m-b-4px">
               <span class="m-r-8px">4 stars</span>
-              <ngb-progressbar class="flex-grow-1" type="success" [value]="0"
+              <ngb-progressbar [value]="0" class="flex-grow-1" type="success"
                 >default
               </ngb-progressbar>
             </div>
             <div class="display-flex m-b-4px">
               <span class="m-r-8px">3 stars</span>
-              <ngb-progressbar class="flex-grow-1" type="success" [value]="0"
+              <ngb-progressbar [value]="0" class="flex-grow-1" type="success"
                 >default
               </ngb-progressbar>
             </div>
             <div class="display-flex m-b-4px">
               <span class="m-r-8px">2 stars</span>
-              <ngb-progressbar class="flex-grow-1" type="success" [value]="0"
+              <ngb-progressbar [value]="0" class="flex-grow-1" type="success"
                 >default
               </ngb-progressbar>
             </div>
             <div class="display-flex">
               <span class="m-r-8px">1 stars</span>
-              <ngb-progressbar class="flex-grow-1" type="success" [value]="0"
+              <ngb-progressbar [value]="0" class="flex-grow-1" type="success"
                 >default
               </ngb-progressbar>
             </div>
@@ -81,9 +82,9 @@
               <div class="row align-items-center">
                 <div class="col-2">
                   <img
+                    alt=""
                     class="product-offers__image"
-                    src="./assets/images/compare-prices/product-offer.png"
-                    alt="" />
+                    src="./assets/images/compare-prices/product-offer.png" />
                 </div>
                 <div class="col-10">
                   <div class="row justify-content-end align-items-center">
@@ -101,15 +102,15 @@
                       </p>
                       <p>
                         <ngb-rating
-                          [rate]="0"
                           [max]="5"
+                          [rate]="0"
                           [readonly]="true"></ngb-rating>
                         | 0 reviews
                       </p>
                     </div>
                     <div class="col-4 text-end">
                       <p class="text-orange">309.00 €</p>
-                      <a href="#" class="product-offers__link">View offer</a>
+                      <a class="product-offers__link" href="#">View offer</a>
                     </div>
                   </div>
                 </div>
@@ -119,9 +120,9 @@
               <div class="row align-items-center">
                 <div class="col-2">
                   <img
+                    alt=""
                     class="product-offers__image"
-                    src="./assets/images/compare-prices/product-offer.png"
-                    alt="" />
+                    src="./assets/images/compare-prices/product-offer.png" />
                 </div>
                 <div class="col-10">
                   <div class="row justify-content-end align-items-center">
@@ -139,15 +140,15 @@
                       </p>
                       <p>
                         <ngb-rating
-                          [rate]="0"
                           [max]="5"
+                          [rate]="0"
                           [readonly]="true"></ngb-rating>
                         | 0 reviews
                       </p>
                     </div>
                     <div class="col-4 text-end">
                       <p class="text-orange">309.00 €</p>
-                      <a href="#" class="product-offers__link">View offer</a>
+                      <a class="product-offers__link" href="#">View offer</a>
                     </div>
                   </div>
                 </div>
@@ -172,3 +173,4 @@
     </div>
   </section>
 </div>
+<appla-footer></appla-footer>

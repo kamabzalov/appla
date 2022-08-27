@@ -1,10 +1,5 @@
 <nav class="nav">
-  <ul
-    [ngClass]="{
-      'flex-row': listAlign === 'row',
-      'flex-column': listAlign === 'column'
-    }"
-    class="nav-list navbar-nav w-100 justify-content-between">
+  <ul class="nav-list navbar-nav w-100 justify-content-between">
     <li
       *ngFor="let menuItem of menu$ | async"
       class="nav-list__item nav-item"

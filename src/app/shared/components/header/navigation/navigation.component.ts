@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable } from 'rxjs';
 
@@ -47,8 +42,6 @@ interface CommercialProduct {
 })
 export class NavigationComponent implements OnInit {
   public menu$: Observable<Menu[]>;
-
-  @Input() public listAlign: 'row' | 'column' = 'row';
 
   constructor(private restService: RestService) {}
 
