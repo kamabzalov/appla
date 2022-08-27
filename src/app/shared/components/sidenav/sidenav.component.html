@@ -25,12 +25,14 @@
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <a
-        (click)="collapse.toggle()"
-        [attr.aria-expanded]="!isCollapsed"
+        (click)="categoriesCollapse.toggle()"
+        [attr.aria-expanded]="!isCategoriesCollapsed"
         class="sidenav-menu__link"
         >Categories</a
       >
-      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div
+        #categoriesCollapse="ngbCollapse"
+        [(ngbCollapse)]="isCategoriesCollapsed">
         <div class="card">
           <div class="card-body">
             <ul class="list-no-bullets">
@@ -52,12 +54,39 @@
         </div>
       </div>
     </li>
-    <li
-      class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px"
-      ngbDropdown>
-      <a class="sidenav-menu__link" ngbDropdownToggle routerLink="/cart"
+    <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a
+        (click)="langCollapse.toggle()"
+        [attr.aria-expanded]="!isLangCollapse"
+        class="sidenav-menu__link"
         >Languages</a
       >
+      <div #langCollapse="ngbCollapse" [(ngbCollapse)]="isLangCollapse">
+        <div class="card">
+          <div class="card-body">
+            <ul class="sidenav-languages list-no-bullets">
+              <li class="m-b-8px">
+                <img
+                  alt="Uk"
+                  class="sidenav-languages__flag m-r-8px"
+                  src="/assets/images/flags/uk.png" />English
+              </li>
+              <li class="m-b-8px">
+                <img
+                  alt="Uk"
+                  class="sidenav-languages__flag m-r-8px"
+                  src="/assets/images/flags/gr.png" />Greece
+              </li>
+              <li>
+                <img
+                  alt="Uk"
+                  class="sidenav-languages__flag m-r-8px"
+                  src="/assets/images/flags/rs.png" />Russia
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <a applaCloseCanvas class="sidenav-menu__link" routerLink="aboutus"

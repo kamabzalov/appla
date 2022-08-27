@@ -1,4 +1,10 @@
 @use "~assets/scss/vars";
+@use "~assets/scss/mixins";
+
+:host {
+  display: block;
+  overflow-y: scroll;
+}
 
 .sidenav-menu {
   &__link {
@@ -19,5 +25,13 @@
   &__link {
     color: inherit;
     cursor: pointer;
+  }
+}
+
+.sidenav-languages {
+  &__flag {
+    @include mixins.border-radius(50%);
+    width: vars.$base-size * 5;
+    height: vars.$base-size * 5;
   }
 }

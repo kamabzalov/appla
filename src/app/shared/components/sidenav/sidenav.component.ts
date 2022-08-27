@@ -16,7 +16,8 @@ export class SidenavComponent implements OnInit {
   protected faPhone = iconSet.faPhone;
   protected faEnvelope = iconSet.faEnvelope;
   protected menu$: Observable<Menu[]>;
-  protected isCollapsed = true;
+  protected isCategoriesCollapsed = true;
+  protected isLangCollapse = true;
 
   constructor(
     private modalService: NgbModal,
