@@ -1,5 +1,5 @@
-@use '../../../assets/scss/vars';
-@use '../../../assets/scss/mixins';
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .store-offers {
   &__icon {
@@ -15,6 +15,7 @@
 
   &__link {
     color: inherit;
+    max-width: 80%;
   }
 
   &__image {

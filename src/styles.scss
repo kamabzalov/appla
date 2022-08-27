@@ -1,4 +1,5 @@
 @use '~bootstrap/scss/bootstrap';
+@use "sass:map";
 @use 'assets/scss/vars';
 @use 'assets/scss/utils';
 @use 'assets/scss/fonts';
@@ -20,4 +21,19 @@ body {
 
 a {
   text-decoration: none !important;
+}
+
+$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
+$large-devices-breakpoint: map.get(vars.$media-breakpoints, 'large');
+
+.main-content {
+  margin-top: 97px;
+
+  @media (max-width: $large-devices-breakpoint) {
+    margin-top: 105px;
+  }
+
+  @media (max-width: $medium-devices-breakpoint - 1px) {
+    margin-top: 225px;
+  }
 }
