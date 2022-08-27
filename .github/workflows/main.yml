@@ -44,4 +44,4 @@ jobs:
             cd ..
             sudo sshpass -p ${{ secrets.STAGE }} scp -v -o StrictHostKeyChecking=no -r dist.tar.gz ${{ secrets.STAGE_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/angular/dist
     - name: Uncompress new Files
-      run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.STAGE_USER }}@${{ secrets.SSH_HOST }} 'cd /var/www/html/angular/dist/ && tar -xzvf dist.tar.gz && rm dist.tar.gz'
+      run : sudo sshpass -p ${{ secrets.STAGE }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.STAGE_USER }}@${{ secrets.SSH_HOST }} 'cd /var/www/html/angular/dist/ && tar -xzvf dist.tar.gz && rm dist.tar.gz && pm2 restart 0'
