@@ -14,6 +14,12 @@
                 product.product.picture[0]
               "
               class="product__image img-fluid" />
+            <div class="m-t-20px">
+              <appla-additional-product-images
+                [images]="
+                  product.product.picture
+                "></appla-additional-product-images>
+            </div>
           </div>
           <div class="col-md-7 col-sm-12">
             <h1 class="product__title">{{ product.product.name1 }}</h1>

@@ -9,6 +9,11 @@
   box-shadow: 0 0 4px 2px rgb(49 53 59 / 12%);
   background-color: white;
 
+  &__link {
+    color: inherit;
+    cursor: pointer;
+  }
+
   &__image {
     @include mixins.border-radius(vars.$base-size * 5);
 

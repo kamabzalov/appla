@@ -4,10 +4,10 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { faChevronRight, faTags } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, Subscription } from 'rxjs';
+import { iconSet } from '@app/shared/utils/icons';
 
 export interface Category {
   products: CategoryProduct[];
@@ -82,6 +82,21 @@ export interface CurrentCategory {
   slug: string;
 }
 
+const SORTING = [
+  {
+    id: 'date_update_asc',
+    name: 'Newest',
+  },
+  {
+    id: 'price_asc',
+    name: 'Price: Low to High',
+  },
+  {
+    id: 'price_desc',
+    name: 'Price: High to Low',
+  },
+];
+
 @Component({
   selector: 'appla-category-page',
   templateUrl: './category-page.component.html',
@@ -89,16 +104,22 @@ export interface CurrentCategory {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryPageComponent implements OnInit, OnDestroy {
-  public faChevronRight = faChevronRight;
-  public faTags = faTags;
+  protected faChevronRight = iconSet.faChevronRight;
+  protected faTags = iconSet.faTags;
+  protected faMagnifyingGlass = iconSet.faMagnifyingGlass;
+  protected minPrice: number;
+  protected maxPrice: number;
+  protected searchInCategory: string;
+  protected order: string = 'date_update_asc';
+  protected sorting = SORTING;
+  protected categoryData$: Observable<Category>;
 
-  public categoryData$: Observable<Category>;
-  public categoryIdSubscription = new Subscription();
-
+  // eslint-disable-next-line no-magic-numbers
   private offset = 0;
-
+  // eslint-disable-next-line no-magic-numbers
   private readonly limit = 48;
-  private readonly order = 'date_update_asc';
+  private slug = 'all-categories';
+  private categoryIdSubscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -107,11 +128,10 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.categoryIdSubscription = this.route.url.subscribe(res => {
-      let slug = 'all-categories';
       if (res.length && res[1]) {
-        slug = res[1].path;
+        this.slug = res[1].path;
       }
-      this.getCategoryData(this.limit, this.offset, this.order, slug);
+      this.getCategoryData(this.limit, this.offset, this.order, this.slug);
     });
   }
 
@@ -121,17 +141,38 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  protected filterByPrice() {
+    this.getCategoryData(
+      this.limit,
+      this.offset,
+      this.order,
+      this.slug,
+      this.minPrice,
+      this.maxPrice
+    );
+  }
+
+  protected searchProductInCategory() {}
+
+  protected sortProductsBy() {
+    this.getCategoryData(this.limit, this.offset, this.order, this.slug);
+  }
+
   private getCategoryData(
     limit: number,
     offset: number,
     order: string,
-    slug: string
+    slug: string,
+    minPrice?: number,
+    maxPrice?: number
   ) {
     this.categoryData$ = this.restService.getAllCategories(
       limit,
       offset,
       order,
-      slug
+      slug,
+      minPrice,
+      maxPrice
     );
   }
 }

@@ -71,13 +71,21 @@ export class RestService {
     limit: number,
     offset: number,
     order: string,
-    slug: string
+    slug: string,
+    minPrice?: number,
+    maxPrice?: number
   ): Observable<Category> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('slug', slug)
       .set('limit', limit)
       .set('offset', offset)
       .set('order', order);
+    if (minPrice) {
+      params = params.set('min_price', minPrice);
+    }
+    if (maxPrice) {
+      params = params.set('max_price', maxPrice);
+    }
     return this.http.get<Category>(`${this.basePath}category-products`, {
       params,
     });

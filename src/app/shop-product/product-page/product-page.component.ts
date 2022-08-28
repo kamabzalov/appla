@@ -228,6 +228,7 @@ export class ProductPageComponent implements OnInit {
   public faPlus = faPlus;
   public faMinus = faMinus;
   public faStar = faStar;
+  // eslint-disable-next-line no-magic-numbers
   public productQuantity: number = 1;
 
   public product$: Observable<Product>;
@@ -251,16 +252,17 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-  public decreaseQuantity() {
+  protected decreaseQuantity() {
+    // eslint-disable-next-line no-magic-numbers
     if (this.productQuantity === 1) {
       return;
     }
     this.productQuantity--;
   }
 
-  public increaseQuantity() {
+  protected increaseQuantity() {
     this.productQuantity++;
   }
 
-  public setMax() {}
+  protected setMax() {}
 }

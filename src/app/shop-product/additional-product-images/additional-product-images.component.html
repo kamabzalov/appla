@@ -1,1 +1,12 @@
-<p>additional-product-images works!</p>
+<owl-carousel-o [options]="customOptions">
+  <ng-container *ngFor="let image of images">
+    <ng-template [width]="150" carouselSlide>
+      <img
+        [src]="
+          'https://storage.googleapis.com/images-appla/production/thumbs_800/' +
+          image
+        "
+        class="additional-image img-responsive" />
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>

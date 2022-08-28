@@ -28,18 +28,26 @@
 
             <div class="card-content">
               <appla-aside-widget widgetHeader="Price">
-                <form class="form-price">
+                <form (ngSubmit)="filterByPrice()" class="form-price">
                   <div class="row">
                     <div class="col-5">
-                      <input type="text" />
+                      <input
+                        [(ngModel)]="minPrice"
+                        name="minPrice"
+                        type="number" />
                     </div>
                     <div class="col-5">
-                      <input type="text" />
+                      <input
+                        [(ngModel)]="maxPrice"
+                        name="maxPrice"
+                        type="number" />
                     </div>
                     <div class="col-2">
-                      <fa-icon
-                        [icon]="faChevronRight"
-                        class="form-price__icon"></fa-icon>
+                      <button class="button p-0px">
+                        <fa-icon
+                          [icon]="faChevronRight"
+                          class="form-price__icon"></fa-icon>
+                      </button>
                     </div>
                   </div>
                 </form>
@@ -51,7 +59,7 @@
           <main>
             <div class="category-products card-content">
               <div class="row align-items-center">
-                <div class="column-medium-9">
+                <div class="column-medium-4">
                   <div class="display-flex align-items-center">
                     <fa-icon [icon]="faTags" class="m-r-12px"></fa-icon>
                     <h1 class="category-products__title m-b-0px">
@@ -63,8 +71,35 @@
                     </h1>
                   </div>
                 </div>
-                <div class="column-medium-3">
-                  <appla-search-form></appla-search-form>
+                <div class="column-medium-8 display-flex">
+                  <form
+                    (ngSubmit)="searchProductInCategory()"
+                    class="display-flex align-items-center flex-grow-1">
+                    <div class="control-group m-b-0px m-r-12px">
+                      <input
+                        [(ngModel)]="searchInCategory"
+                        name="searchInCategory"
+                        placeholder="Search in Category"
+                        type="text" />
+                    </div>
+                    <button class="button button_orange button_icon p-0px">
+                      <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+                    </button>
+                  </form>
+                  <form class="flex-grow-1">
+                    <div class="control-group">
+                      <select
+                        (change)="sortProductsBy()"
+                        [(ngModel)]="order"
+                        name="sortBy">
+                        <option
+                          *ngFor="let sort of sorting"
+                          [ngValue]="sort.id">
+                          {{ sort.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </form>
                 </div>
               </div>
 
