@@ -1,38 +1,24 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { iconSet } from '@app/shared/utils/icons';
-
-export interface StoreOffers {
-  category_id: number;
-  count_store: number;
-  master_product_id: number;
-  max_price: number;
-  min_price: number;
-  name1: string;
-  name2: string;
-  name3: string;
-  picture: string;
-  slug: string;
-}
+import { SimilarProduct } from '@app/shop-product/product-page/product-page.component';
 
 @Component({
-  selector: 'appla-store-offers',
-  templateUrl: './store-offers.component.html',
-  styleUrls: ['./store-offers.component.scss'],
+  selector: 'appla-similar-products',
+  templateUrl: './similar-products.component.html',
+  styleUrls: ['./similar-products.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StoreOffersComponent {
-  public readonly faStar = iconSet.faStar;
-
-  @Input() public storeOffers: StoreOffers[];
+export class SimilarProductsComponent {
+  @Input() public similarProducts: SimilarProduct[];
 
   protected readonly customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
     dots: false,
     navSpeed: 700,
+    autoWidth: true,
     navText: ['', ''],
     responsive: {
       0: {

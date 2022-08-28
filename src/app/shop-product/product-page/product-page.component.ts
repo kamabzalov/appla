@@ -164,7 +164,7 @@ interface UserStore {
   language_preference: number;
 }
 
-interface SimilarProduct {
+export interface SimilarProduct {
   product_id: number;
   sku: number;
   name1: string;
@@ -261,4 +261,6 @@ export class ProductPageComponent implements OnInit {
   public increaseQuantity() {
     this.productQuantity++;
   }
+
+  public setMax() {}
 }

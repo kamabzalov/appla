@@ -8,7 +8,7 @@
     <ng-container *ngFor="let product of recentlyViewed">
       <ng-template carouselSlide>
         <a
-          [routerLink]="['product', product.store_name, product.slug]"
+          [routerLink]="['product', product.store_slug, product.slug]"
           class="recently-viewed-product display-flex flex-direction-column">
           <div class="recently-viewed__image m-b-16px">
             <img

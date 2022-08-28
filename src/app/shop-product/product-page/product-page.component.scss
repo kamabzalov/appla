@@ -12,19 +12,31 @@
       font-weight: 600;
     }
 
-    &__quantity-form {
+    &-form {
       max-width: 120px;
+
+      &__decrease,
+      &__increase {
+        padding: 8px;
+      }
+
+      &__decrease {
+        @include mixins.border-radius(vars.$base-size * 5 0 0 vars.$base-size * 5);
+      }
+
+      &__increase {
+        @include mixins.border-radius(0 vars.$base-size * 5 vars.$base-size * 5 0);
+      }
+
+      &__input {
+        @include mixins.border-radius(0);
+        outline: none;
+        border-top: vars.$alice-blue 1px solid;
+        border-bottom: vars.$alice-blue 1px solid;
+      }
     }
 
     &__max {
-      @include mixins.border-radius(vars.$base-size * 5);
-
-      color: vars.$white;
-      background-color: vars.$honey-yellow;
-      border: 1px solid vars.$honey-yellow;
-    }
-
-    &__cart-button {
       @include mixins.border-radius(vars.$base-size * 5);
 
       color: vars.$white;
@@ -42,6 +54,12 @@
       width: 56px;
       height: 56px;
       border: 1px solid vars.$alice-blue;
+    }
+
+    &__link {
+      color: inherit;
+      font-weight: bold;
+      text-decoration: none;
     }
   }
 
@@ -78,10 +96,6 @@
   &__category {
     color: vars.$honey-yellow;
     font-weight: 600;
-  }
-
-  &__condition {
-    color: vars.$blue-yonder;
   }
 
   &__status {

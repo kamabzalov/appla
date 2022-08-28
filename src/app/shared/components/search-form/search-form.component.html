@@ -1,10 +1,12 @@
 <form (ngSubmit)="search()" class="search-form display-flex">
-  <input
-    [(ngModel)]="searchQuery"
-    class="search-form__input control-group__field"
-    name="searchQuery"
-    placeholder="I am looking for..."
-    type="text" />
+  <div class="control-group flex-grow-1 m-b-0px">
+    <input
+      [(ngModel)]="searchQuery"
+      class="search-form__input control-group__field"
+      name="searchQuery"
+      placeholder="I am looking for..."
+      type="text" />
+  </div>
   <div class="search-form__icon display-flex align-items-center p-8px">
     <button class="search-form__button button p-0px">
       <fa-icon [icon]="faSearch"></fa-icon>

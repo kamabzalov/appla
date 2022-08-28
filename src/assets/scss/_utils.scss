@@ -103,3 +103,9 @@ $text-colors: (
     color: $value !important;
   }
 }
+
+@for $i from 1 through vars.$cols {
+  .flex-grow-#{$i} {
+    flex-grow: $i !important;
+  }
+}

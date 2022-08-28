@@ -1,0 +1,42 @@
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
+
+.similar-products {
+
+  &__link {
+    color: inherit;
+    max-width: 80%;
+  }
+
+  &__image {
+    @include mixins.centered-content;
+
+    width: 150px;
+    height: 150px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    color: vars.$rich-black;
+    font-weight: 700;
+    font-size: 14px;
+    white-space: initial;
+    text-transform: capitalize;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__price-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__price-item {
+    color: vars.$honey-yellow;
+  }
+}

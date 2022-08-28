@@ -1,0 +1,28 @@
+<div class="similar-products">
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let product of similarProducts">
+      <ng-template [width]="320" carouselSlide>
+        <a
+          [routerLink]="['/product', product.store_slug, product.slug]"
+          class="similar-products__link display-flex">
+          <div class="similar-products__image m-r-16px">
+            <img
+              [alt]="product.name1"
+              [src]="
+                'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+                product.picture[0]
+              " />
+          </div>
+          <div class="similar-products__info">
+            <h3 class="similar-products__title">
+              {{ product.name1 }}
+            </h3>
+            <div class="similar-products__price">
+              <p class="similar-products__price-item">{{ product.price }} €</p>
+            </div>
+          </div>
+        </a>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
