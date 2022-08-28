@@ -8,7 +8,11 @@ import { SimilarProductsComponent } from './similar-products/similar-products.co
 import { AdditionalProductImagesComponent } from './additional-product-images/additional-product-images.component';
 
 @NgModule({
-  declarations: [ProductPageComponent, SimilarProductsComponent, AdditionalProductImagesComponent],
+  declarations: [
+    ProductPageComponent,
+    SimilarProductsComponent,
+    AdditionalProductImagesComponent,
+  ],
   imports: [CommonModule, SharedModule, ShopProductRoutingModule],
 })
 export class ShopProductModule {}
