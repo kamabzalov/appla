@@ -21,11 +21,15 @@
       }
 
       &__decrease {
-        @include mixins.border-radius(vars.$base-size * 5 0 0 vars.$base-size * 5);
+        @include mixins.border-radius(
+          vars.$base-size * 5 0 0 vars.$base-size * 5
+        );
       }
 
       &__increase {
-        @include mixins.border-radius(0 vars.$base-size * 5 vars.$base-size * 5 0);
+        @include mixins.border-radius(
+          0 vars.$base-size * 5 vars.$base-size * 5 0
+        );
       }
 
       &__input {

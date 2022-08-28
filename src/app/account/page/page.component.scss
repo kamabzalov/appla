@@ -1,10 +1,9 @@
-@use "~assets/scss/vars";
-@use "~assets/scss/mixins";
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .account {
   background: vars.$blue-yonder;
   height: 100vh;
-  
 
   &-languages {
     &__item {

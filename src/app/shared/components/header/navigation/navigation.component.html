@@ -15,6 +15,7 @@
               class="column-12 column-medium-3">
               <a
                 [routerLink]="['/category/list', firstLevel.link]"
+                applaCloseDropdown
                 class="nav-item-megamenu__first-level"
                 >{{ firstLevel.name }}</a
               >
@@ -24,6 +25,7 @@
                   class="m-b-8px">
                   <a
                     [routerLink]="['/category/list', secondLevel.value]"
+                    applaCloseDropdown
                     class="second-level__link"
                     >{{ secondLevel.name }}</a
                   >
@@ -40,7 +42,8 @@
                       '/product/',
                       product.store_slug,
                       product.slug
-                    ]">
+                    ]"
+                    applaCloseDropdown>
                     <img
                       [src]="
                         'https://storage.googleapis.com/images-appla/production/thumbs_150/' +

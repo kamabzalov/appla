@@ -17,6 +17,7 @@
   }
 }
 
-input, select {
+input,
+select {
   @include mixins.appla-input();
 }

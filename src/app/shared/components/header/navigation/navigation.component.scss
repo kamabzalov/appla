@@ -1,7 +1,6 @@
 @use '~assets/scss/vars';
 @use '~assets/scss/mixins';
 
-
 .nav {
   &-list {
     &__item {
@@ -19,9 +18,7 @@
   }
 
   &-item {
-
     &-megamenu {
-
       &__first-level {
         font-size: 16px;
         font-weight: 600;
@@ -73,5 +70,4 @@
       font-weight: 600;
     }
   }
-
 }

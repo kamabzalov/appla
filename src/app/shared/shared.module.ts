@@ -22,6 +22,7 @@ import { LoginComponent } from './components/modal/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CloseCanvasDirective } from './directives/close-canvas/close-canvas.directive';
+import { CloseDropdownDirective } from './directives/close-dropdown/close-dropdown.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     SidenavComponent,
     CloseCanvasDirective,
+    CloseDropdownDirective,
   ],
   imports: [
     CommonModule,
