@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { faTruck } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
+import { iconSet } from '@app/shared/utils/icons';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'appla-compare-prices',
@@ -10,10 +15,10 @@ import { RestService } from '@app/services/rest/rest.service';
   styleUrls: ['./compare-prices.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComparePricesComponent implements OnInit {
-  public faTruck = faTruck;
-
-  private productSlugSubscription: Subscription;
+export class ComparePricesComponent implements OnInit, OnDestroy {
+  protected faTruck = iconSet.faTruck;
+  protected productOffer$: Observable<any>;
+  private productOfferUrl$: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,11 +26,21 @@ export class ComparePricesComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.productSlugSubscription = this.route.url.subscribe(res => {
-      const slug = res[1].path;
-      if (slug) {
-        this.restService.getProductOffer(slug).subscribe();
+    this.productOfferUrl$ = combineLatest(
+      this.route.queryParams,
+      this.route.params
+    ).subscribe(res => {
+      if (res && res.length > 1) {
+        const mdi = res[0]['mpi'];
+        const productSlug = res[1]['slug'];
+        this.productOffer$ = this.restService.getProductOffer(productSlug, mdi);
       }
     });
+  }
+
+  public ngOnDestroy() {
+    if (this.productOfferUrl$) {
+      this.productOfferUrl$.unsubscribe();
+    }
   }
 }

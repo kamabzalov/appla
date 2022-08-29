@@ -1,10 +1,11 @@
-import { faEye } from '@fortawesome/free-solid-svg-icons/faEye';
-import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
-import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
-import { faTags } from '@fortawesome/free-solid-svg-icons/faTags';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faEye } from '@fortawesome/free-solid-svg-icons/faEye';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
+import { faTags } from '@fortawesome/free-solid-svg-icons/faTags';
+import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 
 export const iconSet = {
   faEye,
@@ -14,4 +15,5 @@ export const iconSet = {
   faChevronRight,
   faTags,
   faMagnifyingGlass,
+  faTruck,
 };
