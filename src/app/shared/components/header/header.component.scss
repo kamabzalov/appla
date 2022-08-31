@@ -4,6 +4,10 @@
 .header {
   @include mixins.top-fixed-element;
 
+  &__top-text {
+    color: vars.$white;
+  }
+
   &__elements {
     background: vars.$blue-yonder;
 

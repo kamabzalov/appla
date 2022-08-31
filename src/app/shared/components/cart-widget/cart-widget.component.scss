@@ -1,5 +1,8 @@
+@use "sass:map";
 @use '~assets/scss/vars';
 @use '~assets/scss/mixins';
+
+$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
 :host {
   display: flex;
@@ -11,6 +14,10 @@
 
     &-dropdown {
       min-width: 350px;
+
+      @media (max-width: $medium-devices-breakpoint) {
+        transform: translate3d(15%, 15%, 0) !important;
+      }
     }
   }
 }

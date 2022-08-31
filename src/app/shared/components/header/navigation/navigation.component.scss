@@ -6,10 +6,6 @@
     &__item {
       color: vars.$white;
       position: static;
-
-      //@media (max-width: $large-devices-breakpoint) {
-      //  padding-top: 72px;
-      //}
     }
   }
 
@@ -37,13 +33,13 @@
       right: 0;
       width: 100vw;
       min-height: 50vh;
-      max-height: 80vh;
+      max-height: 475px;
       overflow-y: scroll;
       padding-top: vars.$base-size * 5;
       padding-bottom: vars.$base-size * 5;
       border-bottom: 2px solid vars.$blue-yonder;
       color: black;
-      transform: translate3d(0, 97px, 0) !important;
+      transform: translate3d(0, 127px, 0) !important;
     }
   }
 

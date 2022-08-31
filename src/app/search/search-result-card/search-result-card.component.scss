@@ -8,6 +8,7 @@
   border: solid 0 vars.$alice-blue;
   box-shadow: 0 0 4px 2px rgb(49 53 59 / 12%);
   background-color: white;
+  height: 280px;
 
   &__image {
     @include mixins.border-radius(vars.$base-size * 5);

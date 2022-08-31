@@ -30,6 +30,7 @@ export class ComparePricesComponent implements OnInit, OnDestroy {
       this.route.queryParams,
       this.route.params
     ).subscribe(res => {
+      // eslint-disable-next-line no-magic-numbers
       if (res && res.length > 1) {
         const mdi = res[0]['mpi'];
         const productSlug = res[1]['slug'];

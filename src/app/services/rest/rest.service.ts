@@ -11,60 +11,83 @@ import { Slide } from '@app/shared/components/slider/slider.component';
 import { makeRelativePath } from '@app/shared/utils/functions';
 import { Category } from '@app/shop-category/category-page/category-page.component';
 import { map, Observable } from 'rxjs';
+import { Product } from '@app/shop-product/product-page/product-page.component';
+
+interface BackendResponse {
+  data: any;
+  message: string;
+  status: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
-  private basePath = 'https://stage.appla.cy/';
+  private basePath = 'https://stage.appla.cy/Angular/';
 
   constructor(private http: HttpClient) {}
 
   public getSiteMenu(): Observable<Menu[]> {
-    return this.http.get<Menu[]>(`${this.basePath}menu`);
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Header/top_menu`)
+      .pipe(map(response => response.data));
   }
 
   public getSlides(): Observable<Slide[]> {
-    return this.http.get<Slide[]>(`${this.basePath}home-slider-top`).pipe(
-      map((slides: Slide[]) => {
-        return slides.map(item => ({
-          ...item,
-          link: makeRelativePath(item.link),
-        }));
-      })
-    );
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Home/home_slider_top`)
+      .pipe(
+        map((slides: BackendResponse) => {
+          return (slides.data as Slide[]).map(item => ({
+            ...item,
+            link: makeRelativePath(item.link),
+          }));
+        })
+      );
   }
 
   public getStoreOffers(): Observable<StoreOffers[]> {
-    return this.http.get<StoreOffers[]>(`${this.basePath}store-offers`);
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Home/get_store_offers`)
+      .pipe(map(response => response.data));
   }
 
   public getRecentlyViewed(): Observable<RecentlyViewed[]> {
-    return this.http.get<RecentlyViewed[]>(
-      `${this.basePath}recently?store_id=false&user_id=&name=name1`
-    );
+    return this.http
+      .get<BackendResponse>(
+        `${this.basePath}Home/get_recently_viewed?store_id=false&user_id=&name=name1`
+      )
+      .pipe(map(response => response.data));
   }
 
   public getTrends(): Observable<Trend[]> {
-    return this.http.get<Trend[]>(`${this.basePath}trending`);
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Home/get_now_trending`)
+      .pipe(map(response => response.data));
   }
 
   public getSampleSmartphones(): Observable<ProductInTile[]> {
-    return this.http.get<ProductInTile[]>(`${this.basePath}sample-smartphones`);
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Home/sample_smartphones`)
+      .pipe(map(response => response.data));
   }
 
   public getSampleKitchen(): Observable<ProductInTile[]> {
-    return this.http.get<ProductInTile[]>(`${this.basePath}sample-kitchen`);
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Home/sample_kitchen`)
+      .pipe(map(response => response.data));
   }
 
   public getSamplePersonalCareProducts(): Observable<ProductInTile[]> {
-    return this.http.get<ProductInTile[]>(
-      `${this.basePath}sample-personal-care`
-    );
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Home/sample_personal_care`)
+      .pipe(map(response => response.data));
   }
 
   public getSampleCleaningProducts(): Observable<ProductInTile[]> {
-    return this.http.get<ProductInTile[]>(`${this.basePath}sample-cleaning`);
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Home/sample_cleaning`)
+      .pipe(map(response => response.data));
   }
 
   public getAllCategories(
@@ -86,24 +109,31 @@ export class RestService {
     if (maxPrice) {
       params = params.set('max_price', maxPrice);
     }
-    return this.http.get<Category>(`${this.basePath}category-products`, {
-      params,
-    });
+    return this.http
+      .get<BackendResponse>(
+        `${this.basePath}Categories/get_category_products`,
+        {
+          params,
+        }
+      )
+      .pipe(map(response => response.data));
   }
 
   public getProductBySlug(
     storeSlug: string,
     productSlug: string
-  ): Observable<any> {
-    return this.http.get<any>(
-      `${this.basePath}product?product_slug=${productSlug}&slug_store=${storeSlug}`
-    );
+  ): Observable<Product> {
+    return this.http
+      .get<BackendResponse>(
+        `${this.basePath}Products/get_product?product_slug=${productSlug}&slug_store=${storeSlug}`
+      )
+      .pipe(map(response => response.data));
   }
 
   public searchInShop(query: string): Observable<SearchResults> {
-    return this.http.get<SearchResults>(
-      `${this.basePath}search?string=${query}`
-    );
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Search?string=${query}`)
+      .pipe(map(response => response.data));
   }
 
   public login(email: string, password: string): Observable<AuthStatus> {
@@ -113,8 +143,10 @@ export class RestService {
   }
 
   public getProductOffer(productSlug: string, masterProductId: number) {
-    return this.http.get<any>(
-      `${this.basePath}product-offers?slug=${productSlug}?mpi=${masterProductId}`
-    );
+    return this.http
+      .get<BackendResponse>(
+        `${this.basePath}Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}`
+      )
+      .pipe(map(response => response.data));
   }
 }

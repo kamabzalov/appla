@@ -110,7 +110,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   protected minPrice: number;
   protected maxPrice: number;
   protected searchInCategory: string;
-  protected order: string = 'date_update_asc';
+  protected order: string = 'date';
   protected sorting = SORTING;
   protected categoryData$: Observable<Category>;
 

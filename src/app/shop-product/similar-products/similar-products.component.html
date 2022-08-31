@@ -4,13 +4,13 @@
       <ng-template [width]="320" carouselSlide>
         <a
           [routerLink]="['/product', product.store_slug, product.slug]"
-          class="similar-products__link display-flex">
-          <div class="similar-products__image m-r-16px">
+          class="similar-products__link display-flex flex-direction-column align-items-center">
+          <div class="similar-products__image m-b-16px">
             <img
               [alt]="product.name1"
               [src]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
-                product.picture[0]
+                product.picture
               " />
           </div>
           <div class="similar-products__info">

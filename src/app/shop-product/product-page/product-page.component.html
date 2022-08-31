@@ -1,5 +1,5 @@
 <appla-header></appla-header>
-<div class="container m-t-96px p-t-20px">
+<div class="container m-t-132px p-t-20px">
   <section
     *ngIf="product$ | async as product"
     class="product card-content m-b-20px">
@@ -26,8 +26,10 @@
             <p class="product__price">{{ product.product.price }} €</p>
             <p class="product-categories p-b-4px">
               Categories:
-              <ng-container *ngFor="let category of product.arr_cats">
+              <ng-container
+                *ngFor="let category of product.arr_cats; let last = last">
                 <a
+                  *ngIf="last"
                   [routerLink]="['/category/list', category.slug]"
                   class="product__category"
                   >{{ category.name1 }}</a

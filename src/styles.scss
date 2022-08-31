@@ -23,17 +23,18 @@ a {
   text-decoration: none !important;
 }
 
+
 $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 $large-devices-breakpoint: map.get(vars.$media-breakpoints, 'large');
 
 .main-content {
-  margin-top: 97px;
+  margin-top: 126px;
 
   @media (max-width: $large-devices-breakpoint) {
-    margin-top: 105px;
+    margin-top: 145px;
   }
 
   @media (max-width: $medium-devices-breakpoint - 1px) {
-    margin-top: 225px;
+    margin-top: 300px;
   }
 }

@@ -10,27 +10,31 @@
       <div class="nav-item-megamenu dropdown-menu-start" ngbDropdownMenu>
         <div class="container">
           <div class="row">
-            <div
-              *ngFor="let firstLevel of menuItem.childs1"
-              class="column-12 column-medium-3">
-              <a
-                [routerLink]="['/category/list', firstLevel.link]"
-                applaCloseDropdown
-                class="nav-item-megamenu__first-level"
-                >{{ firstLevel.name }}</a
-              >
-              <ul class="list-unstyled second-level m-t-12px">
-                <li
-                  *ngFor="let secondLevel of firstLevel.childs"
-                  class="m-b-8px">
+            <div class="column-12 column-medium-9">
+              <div class="row">
+                <div
+                  *ngFor="let firstLevel of menuItem.childs1"
+                  class="column-12 column-medium-3">
                   <a
-                    [routerLink]="['/category/list', secondLevel.value]"
+                    [routerLink]="['/category/list', firstLevel.link]"
                     applaCloseDropdown
-                    class="second-level__link"
-                    >{{ secondLevel.name }}</a
+                    class="nav-item-megamenu__first-level"
+                    >{{ firstLevel.name }}</a
                   >
-                </li>
-              </ul>
+                  <ul class="list-unstyled second-level m-t-12px">
+                    <li
+                      *ngFor="let secondLevel of firstLevel.childs"
+                      class="m-b-8px">
+                      <a
+                        [routerLink]="['/category/list', secondLevel.value]"
+                        applaCloseDropdown
+                        class="second-level__link"
+                        >{{ secondLevel.name }}</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
             <div class="m-l-auto column-12 column-medium-3">
               <div class="display-flex flex-direction-column">
