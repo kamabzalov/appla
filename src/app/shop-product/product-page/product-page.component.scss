@@ -34,6 +34,7 @@
 
       &__input {
         @include mixins.border-radius(0);
+
         outline: none;
         border-top: vars.$alice-blue 1px solid;
         border-bottom: vars.$alice-blue 1px solid;

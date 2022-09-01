@@ -24,7 +24,6 @@ a {
   text-decoration: none !important;
 }
 
-
 $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 $large-devices-breakpoint: map.get(vars.$media-breakpoints, 'large');
 

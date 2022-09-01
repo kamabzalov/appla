@@ -19,6 +19,7 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
       @include mixins.border-radius(
         vars.$base-size * 5 0 0 vars.$base-size * 5
       );
+
       outline: none;
     }
 

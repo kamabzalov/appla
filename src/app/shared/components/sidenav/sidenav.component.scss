@@ -31,6 +31,7 @@
 .sidenav-languages {
   &__flag {
     @include mixins.border-radius(50%);
+
     width: vars.$base-size * 5;
     height: vars.$base-size * 5;
   }

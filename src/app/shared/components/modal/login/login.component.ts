@@ -11,7 +11,6 @@ export interface AuthStatus {
 @Component({
   selector: 'appla-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   public email: string;
