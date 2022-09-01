@@ -96,7 +96,8 @@ export class RestService {
     order: string,
     slug: string,
     minPrice?: number,
-    maxPrice?: number
+    maxPrice?: number,
+    searchQuery?: string
   ): Observable<Category> {
     let params = new HttpParams()
       .set('slug', slug)
@@ -108,6 +109,9 @@ export class RestService {
     }
     if (maxPrice) {
       params = params.set('max_price', maxPrice);
+    }
+    if (searchQuery) {
+      params = params.set('search', searchQuery);
     }
     return this.http
       .get<BackendResponse>(

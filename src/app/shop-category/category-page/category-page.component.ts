@@ -110,7 +110,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   protected minPrice: number;
   protected maxPrice: number;
   protected searchInCategory: string;
-  protected order: string = 'date';
+  protected order: string = 'date_update_asc';
   protected sorting = SORTING;
   protected categoryData$: Observable<Category>;
 
@@ -152,7 +152,17 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     );
   }
 
-  protected searchProductInCategory() {}
+  protected searchProductInCategory() {
+    this.getCategoryData(
+      this.limit,
+      this.offset,
+      this.order,
+      this.slug,
+      this.minPrice,
+      this.maxPrice,
+      this.searchInCategory
+    );
+  }
 
   protected sortProductsBy() {
     this.getCategoryData(this.limit, this.offset, this.order, this.slug);
@@ -164,7 +174,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     order: string,
     slug: string,
     minPrice?: number,
-    maxPrice?: number
+    maxPrice?: number,
+    searchQuery?: string
   ) {
     this.categoryData$ = this.restService.getAllCategories(
       limit,
@@ -172,7 +183,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       order,
       slug,
       minPrice,
-      maxPrice
+      maxPrice,
+      searchQuery
     );
   }
 }
