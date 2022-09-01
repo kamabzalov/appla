@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CloseCanvasDirective } from './directives/close-canvas/close-canvas.directive';
 import { CloseDropdownDirective } from './directives/close-dropdown/close-dropdown.directive';
+import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SidenavComponent,
     CloseCanvasDirective,
     CloseDropdownDirective,
+    ScrollTopComponent,
   ],
   imports: [
     CommonModule,
@@ -72,6 +74,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PreviewCardComponent,
     AsideWidgetComponent,
     RecentlyViewedComponent,
+    ScrollTopComponent,
     SidenavComponent,
     CloseCanvasDirective,
   ],
