@@ -10,6 +10,7 @@
 html,
 body {
   font-size: vars.$base-size * 3;
+  height: 100%;
 }
 
 body {
@@ -29,6 +30,7 @@ $large-devices-breakpoint: map.get(vars.$media-breakpoints, 'large');
 
 .main-content {
   margin-top: 126px;
+  min-height: 100%;
 
   @media (max-width: $large-devices-breakpoint) {
     margin-top: 145px;
