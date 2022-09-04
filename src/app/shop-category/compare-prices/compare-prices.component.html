@@ -1,22 +1,36 @@
 <appla-header></appla-header>
-<div class="main-content container p-t-20px">
+<div
+  *ngIf="productOffer$ | async as offer"
+  class="main-content container p-t-20px">
   <section class="m-b-20px">
+    <div class="row">
+      <div class="column-12 m-b-12px">
+        <a routerLink="/category/list/{{ offer.category.slug }}">{{
+          offer.category.name1
+        }}</a>
+      </div>
+    </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-12">
         <div class="card-content">
           <div class="compare-prices-product">
             <div class="row">
-              <div class="col-lg- 3 col-md-6 col-12">
+              <div class="col-lg-3 col-md-3 col-12">
                 <img
                   alt=""
                   class="img-fluid"
-                  src="./assets/images/compare-prices/pixel.jpeg" />
+                  src="https://storage.googleapis.com/images-appla/production/thumbs_150/{{
+                    offer.master_product_info.picture
+                  }}" />
               </div>
-              <div class="col-lg-5 col-md-6 col-12">
-                <p class="fw-semibold">Samsung Galaxy A52s 5G 16.5 cm (6.5)</p>
+              <div class="col-lg-9 col-md-9 col-12">
+                <p class="fw-semibold">{{ offer.master_product_info.name1 }}</p>
                 <p>Product specification</p>
-                <p>Weight: 189 Grams (g)</p>
-                <p>View 2 offer s, from 309.00 €</p>
+                <p>Weight: {{ offer.master_product_info.weight }} g</p>
+                <p>
+                  View {{ offer.stories.length }} offers, from
+                  {{ offer.master_product_info.price }} €
+                </p>
               </div>
             </div>
           </div>

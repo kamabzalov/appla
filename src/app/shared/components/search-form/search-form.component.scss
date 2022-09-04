@@ -17,24 +17,21 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
     &__input {
       @include mixins.border-radius(
-        vars.$base-size * 5 0 0 vars.$base-size * 5
+          vars.$base-size * 5 0 0 vars.$base-size * 5
       );
 
       outline: none;
     }
-
-    &__icon {
+    
+    &__button {
       @include mixins.border-radius(
-        0 vars.$base-size * 5 vars.$base-size * 5 0
+          0 vars.$base-size * 5 vars.$base-size * 5 0
       );
 
       font-size: 1rem;
       background: vars.$honey-yellow;
       border: 1px solid vars.$honey-yellow;
       cursor: pointer;
-    }
-
-    &__button {
       color: vars.$white;
     }
   }

@@ -119,7 +119,7 @@ const SORTING = [
 export class CategoryPageComponent implements OnInit, OnDestroy {
   protected faChevronRight = iconSet.faChevronRight;
   protected faTags = iconSet.faTags;
-  protected faMagnifyingGlass = iconSet.faMagnifyingGlass;
+  protected faSearch = iconSet.faMagnifyingGlass;
   protected minPrice: number;
   protected maxPrice: number;
   protected searchInCategory: string;
@@ -200,7 +200,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     maxPrice?: number,
     searchQuery?: string
   ) {
-    this.categoryData$ = this.restService.getAllCategories(
+    this.categoryData$ = this.restService.getAllProductCategories(
       limit,
       offset,
       order,

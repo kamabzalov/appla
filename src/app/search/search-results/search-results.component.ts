@@ -31,7 +31,7 @@ export interface SearchProduct {
   cat_name2: string;
   cat_name3: string;
   manufacturer: string;
-  master_product_id: string;
+  master_product_id: number;
   name1: string;
   name2: string;
   name3: string;
@@ -48,6 +48,12 @@ export interface SearchProduct {
   _not_used_lexem: string;
   _used_lexem: string;
   _used_words: string;
+}
+
+export interface Slugs {
+  category_slug: string;
+  product_slug: string;
+  store_slug: string;
 }
 
 @Component({

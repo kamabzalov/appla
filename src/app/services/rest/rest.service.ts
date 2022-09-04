@@ -6,6 +6,7 @@ import { StoreOffers } from '@app/public-site/store-offers/store-offers.componen
 import {
   SearchProduct,
   SearchResults,
+  Slugs,
 } from '@app/search/search-results/search-results.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { AuthStatus } from '@app/shared/components/modal/login/login.component';
@@ -18,6 +19,7 @@ import {
 } from '@app/shop-category/category-page/category-page.component';
 import { map, Observable, share } from 'rxjs';
 import { Product } from '@app/shop-product/product-page/product-page.component';
+import { ProductOffer } from '@app/shop-category/compare-prices/compare-prices.component';
 
 interface BackendResponse {
   data: any;
@@ -97,7 +99,7 @@ export class RestService {
       .pipe(map(response => response.data));
   }
 
-  public getAllCategories(
+  public getAllProductCategories(
     limit: number,
     offset: number,
     order: string,
@@ -171,11 +173,20 @@ export class RestService {
     );
   }
 
-  public getProductOffer(productSlug: string, masterProductId: number) {
+  public getProductOffer(
+    productSlug: string,
+    masterProductId: number
+  ): Observable<ProductOffer> {
     return this.http
       .get<BackendResponse>(
         `${this.basePath}Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}`
       )
+      .pipe(map(response => response.data));
+  }
+
+  public getProductByMasterId(id: number): Observable<Slugs[]> {
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Search/mpi_to_slug?mpi=${id}`)
       .pipe(map(response => response.data));
   }
 }
