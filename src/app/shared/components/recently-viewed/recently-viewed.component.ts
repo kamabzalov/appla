@@ -35,14 +35,14 @@ export class RecentlyViewedComponent {
 
   @Input() public recentlyViewed: RecentlyViewed[];
 
-  public readonly customOptions: OwlOptions = {
+  protected readonly customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+    touchDrag: false,
+    pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['<button>&#x2039;</button>', '<button>&#x203A;</button>'],
     responsive: {
       0: {
         items: 1,

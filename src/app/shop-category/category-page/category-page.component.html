@@ -26,7 +26,7 @@
               </appla-aside-widget>
             </div>
 
-            <div class="card-content">
+            <div class="card-content m-b-20px">
               <appla-aside-widget widgetHeader="Price">
                 <form (ngSubmit)="filterByPrice()" class="form-price">
                   <div class="row">
@@ -52,6 +52,21 @@
                   </div>
                 </form>
               </appla-aside-widget>
+            </div>
+
+            <div class="card-content">
+              <div *ngFor="let filter of category.filters" class="m-b-20px">
+                <appla-aside-widget [widgetHeader]="filter.filterKey">
+                  <ng-container
+                    *ngFor="let obj of filter.filterValue | keyvalue">
+                    <div
+                      class="display-flex justify-content-space-between p-l-4px p-r-12px m-b-8px">
+                      <span>{{ obj.value }}</span>
+                      <input (change)="handleFilter(filter)" type="checkbox" />
+                    </div>
+                  </ng-container>
+                </appla-aside-widget>
+              </div>
             </div>
           </aside>
         </div>

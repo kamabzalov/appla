@@ -19,6 +19,7 @@ interface FirstLevel {
   name: string;
   link: string;
   childs: SecondLevel[];
+  toggle: boolean;
 }
 
 interface SecondLevel {
@@ -47,5 +48,9 @@ export class NavigationComponent implements OnInit {
 
   public ngOnInit(): void {
     this.menu$ = this.restService.getSiteMenu();
+  }
+
+  protected toggleMore(menuLevel: FirstLevel) {
+    menuLevel.toggle = true ? !menuLevel.toggle : false;
   }
 }

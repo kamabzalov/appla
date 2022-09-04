@@ -32,6 +32,55 @@ export interface Product {
   user: string;
 }
 
+export interface SimilarProduct {
+  product_id: number;
+  sku: number;
+  name1: string;
+  name2: string;
+  name3: string;
+  price: number;
+  discount: number;
+  long_description1: number;
+  long_description2: number;
+  long_description3: number;
+  qty: number;
+  date_update: number;
+  user_update: number;
+  status: number;
+  store_id: number;
+  category_id: number;
+  picture: string[];
+  short_description1: string;
+  short_description2: string;
+  short_description3: string;
+  weight: number;
+  length: number;
+  width: number;
+  height: number;
+  showcase: string;
+  condition: number;
+  min_order: number;
+  shipping_insurance: number;
+  delivery_service: number;
+  weight_unit: number;
+  slug: string;
+  technical_detail: any;
+  item_model_number: string;
+  manufacturer: string;
+  original_price: number;
+  vat: number;
+  order_fee: number;
+  master_product_id: number;
+  refund_status: number;
+  refund_days: number;
+  comment: number;
+  product_variant: string;
+  gtin: number;
+  created_date: Date;
+  star: number;
+  store_slug: number;
+}
+
 interface ProductDetails {
   product_id: number;
   sku: number;
@@ -162,55 +211,6 @@ interface UserStore {
   created_at: Date;
   account_beneficiary: string;
   language_preference: number;
-}
-
-export interface SimilarProduct {
-  product_id: number;
-  sku: number;
-  name1: string;
-  name2: string;
-  name3: string;
-  price: number;
-  discount: number;
-  long_description1: number;
-  long_description2: number;
-  long_description3: number;
-  qty: number;
-  date_update: number;
-  user_update: number;
-  status: number;
-  store_id: number;
-  category_id: number;
-  picture: string[];
-  short_description1: string;
-  short_description2: string;
-  short_description3: string;
-  weight: number;
-  length: number;
-  width: number;
-  height: number;
-  showcase: string;
-  condition: number;
-  min_order: number;
-  shipping_insurance: number;
-  delivery_service: number;
-  weight_unit: number;
-  slug: string;
-  technical_detail: any;
-  item_model_number: string;
-  manufacturer: string;
-  original_price: number;
-  vat: number;
-  order_fee: number;
-  master_product_id: number;
-  refund_status: number;
-  refund_days: number;
-  comment: number;
-  product_variant: string;
-  gtin: number;
-  created_date: Date;
-  star: number;
-  store_slug: number;
 }
 
 interface CanonicalData {

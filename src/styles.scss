@@ -2,10 +2,14 @@
 @use 'sass:map';
 @use 'assets/scss/vars';
 @use 'assets/scss/utils';
+@use 'assets/scss/mixins';
 @use 'assets/scss/fonts';
 @use 'assets/scss/grid';
 @use 'assets/scss/components';
 @use 'assets/scss/typography';
+
+$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
+$large-devices-breakpoint: map.get(vars.$media-breakpoints, 'large');
 
 html,
 body {
@@ -24,8 +28,25 @@ a {
   text-decoration: none !important;
 }
 
-$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
-$large-devices-breakpoint: map.get(vars.$media-breakpoints, 'large');
+.owl-carousel {
+  margin: 0 vars.$base-size * 8;
+}
+
+.owl-theme {
+  & .owl-nav {
+    .owl-prev, .owl-next {
+      width: vars.$base-size * 8;
+      height: vars.$base-size * 8;
+      @include mixins.border-radius(50%);
+      background: vars.$honey-yellow;
+      color: vars.$white;
+
+      &:hover {
+        background: vars.$honey-yellow;
+      }
+    }
+  }
+}
 
 .main-content {
   margin-top: 126px;

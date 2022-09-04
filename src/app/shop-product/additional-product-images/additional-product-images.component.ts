@@ -11,14 +11,13 @@ export class AdditionalProductImagesComponent {
   @Input() public images: string[];
 
   protected readonly customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+    touchDrag: false,
+    pullDrag: false,
     dots: false,
     navSpeed: 700,
-    autoWidth: true,
-    navText: ['', ''],
+    navText: ['<button>&#x2039;</button>', '<button>&#x203A;</button>'],
     responsive: {
       0: {
         items: 1,

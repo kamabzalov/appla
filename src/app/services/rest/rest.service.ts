@@ -9,7 +9,10 @@ import { AuthStatus } from '@app/shared/components/modal/login/login.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
 import { makeRelativePath } from '@app/shared/utils/functions';
-import { Category } from '@app/shop-category/category-page/category-page.component';
+import {
+  Category,
+  ProductFilter,
+} from '@app/shop-category/category-page/category-page.component';
 import { map, Observable } from 'rxjs';
 import { Product } from '@app/shop-product/product-page/product-page.component';
 
@@ -120,7 +123,19 @@ export class RestService {
           params,
         }
       )
-      .pipe(map(response => response.data));
+      .pipe(
+        map(response => {
+          const filters: any = (response.data as Category).filters;
+          const filterKeys = Object.keys(filters);
+          const productFilters: ProductFilter[] = filterKeys.map(key => {
+            return {
+              filterKey: key,
+              filterValue: filters[key],
+            };
+          });
+          return { ...response.data, filters: productFilters };
+        })
+      );
   }
 
   public getProductBySlug(

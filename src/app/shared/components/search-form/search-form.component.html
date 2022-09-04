@@ -2,6 +2,7 @@
   <div class="control-group flex-grow-1 m-b-0px">
     <input
       [(ngModel)]="searchQuery"
+      [ngbTypeahead]="searchTypeAhead"
       class="search-form__input control-group__field"
       name="searchQuery"
       placeholder="I am looking for..."

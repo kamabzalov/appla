@@ -13,7 +13,7 @@
             <div class="column-12 column-medium-9">
               <div class="row">
                 <div
-                  *ngFor="let firstLevel of menuItem.childs1"
+                  *ngFor="let firstLevel of menuItem.childs1; let i = index"
                   class="column-12 column-medium-3">
                   <a
                     [routerLink]="['/category/list', firstLevel.link]"
@@ -23,7 +23,10 @@
                   >
                   <ul class="list-unstyled second-level m-t-12px">
                     <li
-                      *ngFor="let secondLevel of firstLevel.childs"
+                      *ngFor="
+                        let secondLevel of firstLevel.childs
+                          | slice: 0:(firstLevel.toggle ? undefined : 8)
+                      "
                       class="m-b-8px">
                       <a
                         [routerLink]="['/category/list', secondLevel.value]"
@@ -33,6 +36,11 @@
                       >
                     </li>
                   </ul>
+                  <button
+                    (click)="toggleMore(firstLevel)"
+                    class="button p-0px text-orange show-more">
+                    {{ firstLevel.toggle ? 'Show less' : 'Show more' }}
+                  </button>
                 </div>
               </div>
             </div>

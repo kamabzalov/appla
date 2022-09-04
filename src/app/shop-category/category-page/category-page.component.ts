@@ -13,58 +13,60 @@ export interface Category {
   products: CategoryProduct[];
   subcategories: Subcategory[];
   this_category: CurrentCategory;
+  filters: ProductFilter[];
   count_products: number;
 }
 
 export interface CategoryProduct {
-  category_id: number;
-  category_slug: string;
-  count: number;
-  count_products: number;
-  date_update: Date;
-  en_description: string;
-  en_product_description: string;
-  en_product_title: string;
-  en_title: string;
-  gr_description: string;
-  gr_product_description: string;
-  gr_product_title: string;
-  gr_title: string;
-  gtin: string;
-  height: number;
-  item_model_number: string;
-  length: number;
-  link: string;
-  long_description1: string;
-  long_description2: string;
-  long_description3: string;
-  manufacturer: string;
+  updates: string;
   master_product_id: number;
-  max_price: number;
-  min_price: number;
+  category_id: number;
+  sku: number;
+  gtin: string;
   name1: string;
   name2: string;
   name3: string;
-  picture: string;
-  position: string;
-  price: string;
-  product_ids: number;
-  ru_description: string;
-  ru_product_description: string;
-  ru_product_title: string;
-  ru_title: string;
+  long_description1: string;
+  long_description2: string;
+  long_description3: string;
   short_description1: string;
   short_description2: string;
   short_description3: string;
-  sku: number;
-  status: number;
-  store_id: number;
-  technical_detail: string;
-  type_id: number;
-  user_update: number;
   weight: number;
   weight_unit: number;
+  length: number;
   width: number;
+  height: number;
+  item_model_number: number;
+  manufacturer: string;
+  technical_detail: string;
+  date_update: Date;
+  user_update: number;
+  status: number;
+  picture: string;
+  price: number;
+  type_id: number;
+  store_id: number;
+  position: string;
+  en_title: string;
+  gr_title: string;
+  ru_title: string;
+  en_description: string;
+  gr_description: string;
+  ru_description: string;
+  en_product_title: string;
+  gr_product_title: string;
+  ru_product_title: string;
+  en_product_description: string;
+  gr_product_description: string;
+  ru_product_description: string;
+  category_slug: string;
+  count_products: number;
+  min_price: number;
+  max_price: number;
+  product_ids: number;
+  count_all_products: number;
+  to_link: ToLink[];
 }
 
 export interface Subcategory {
@@ -80,6 +82,17 @@ export interface CurrentCategory {
   name2: string;
   name3: string;
   slug: string;
+}
+
+export interface ProductFilter {
+  filterKey: string;
+  filterValue: { [key: number]: string };
+}
+
+interface ToLink {
+  store_slug: string;
+  product_slug: string;
+  category_slug: string;
 }
 
 const SORTING = [
@@ -110,6 +123,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   protected minPrice: number;
   protected maxPrice: number;
   protected searchInCategory: string;
+  protected productFilters: ProductFilter[] = [];
   protected order: string = 'date_update_asc';
   protected sorting = SORTING;
   protected categoryData$: Observable<Category>;
@@ -166,6 +180,10 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   protected sortProductsBy() {
     this.getCategoryData(this.limit, this.offset, this.order, this.slug);
+  }
+
+  protected handleFilter(filter: ProductFilter) {
+    this.productFilters.push(filter);
   }
 
   private getCategoryData(

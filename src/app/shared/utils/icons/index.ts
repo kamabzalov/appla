@@ -7,6 +7,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
 import { faTags } from '@fortawesome/free-solid-svg-icons/faTags';
 import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 
 export const iconSet = {
   faEye,
@@ -18,4 +19,5 @@ export const iconSet = {
   faMagnifyingGlass,
   faTruck,
   faChevronUp,
+  faChevronLeft,
 };

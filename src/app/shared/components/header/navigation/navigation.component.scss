@@ -33,7 +33,6 @@
       right: 0;
       width: 100vw;
       min-height: 50vh;
-      max-height: 475px;
       overflow-y: scroll;
       padding-top: vars.$base-size * 5;
       padding-bottom: vars.$base-size * 5;
@@ -65,5 +64,10 @@
       color: vars.$rich-black;
       font-weight: 600;
     }
+  }
+
+  .show-more {
+    font-size: 1rem;
+    font-weight: normal;
   }
 }
