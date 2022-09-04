@@ -82,68 +82,35 @@
 
   <section class="m-b-20px">
     <div class="product-offers">
-      <h4 class="text-orange">Offers (2)</h4>
+      <h4 class="text-orange">Offers ({{ offer.stories.length }})</h4>
       <div class="row">
         <div class="col-12">
           <div class="card-content">
-            <div class="product-offers__header m-b-16px">
-              <h5>Compare prices: Samsung Galaxy A52s 5G 16.5 cm (6.5)</h5>
+            <div class="product-offers__header">
+              <h5>Compare prices: {{ offer.master_product_info.name1 }}</h5>
               <p>Recommended Offers</p>
             </div>
-
-            <div class="product-offers__item p-b-16px">
+            <div
+              *ngFor="let store of offer.stories"
+              class="product-offers__item p-t-16px">
               <div class="row align-items-center">
                 <div class="col-2">
                   <img
                     alt=""
                     class="product-offers__image"
-                    src="./assets/images/compare-prices/product-offer.png" />
+                    src="https://storage.googleapis.com/images-appla/profile_picture/{{
+                      store.avatar
+                    }}" />
                 </div>
                 <div class="col-10">
                   <div class="row justify-content-end align-items-center">
                     <div class="col-4">
                       <p class="fw-bolder">
-                        <a href="">Tech 2 Tech</a>
-                      </p>
-                      <p>Samsung Galaxy A52s 5G 16.5 cm (6.5)</p>
-                    </div>
-                    <div class="col-4">
-                      <p class="badge bg-success">In Stock</p>
-                      <p>
-                        <fa-icon [icon]="faTruck"></fa-icon>
-                        Shipping not included
+                        <a href="">{{ store.name }}</a>
                       </p>
                       <p>
-                        <ngb-rating
-                          [max]="5"
-                          [rate]="0"
-                          [readonly]="true"></ngb-rating>
-                        | 0 reviews
+                        {{ offer.master_product_info.name1 }}
                       </p>
-                    </div>
-                    <div class="col-4 text-end">
-                      <p class="text-orange">309.00 €</p>
-                      <a class="product-offers__link" href="#">View offer</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-offers__item">
-              <div class="row align-items-center">
-                <div class="col-2">
-                  <img
-                    alt=""
-                    class="product-offers__image"
-                    src="./assets/images/compare-prices/product-offer.png" />
-                </div>
-                <div class="col-10">
-                  <div class="row justify-content-end align-items-center">
-                    <div class="col-4">
-                      <p class="fw-bolder">
-                        <a href="">Tech 2 Tech</a>
-                      </p>
-                      <p>Samsung Galaxy A52s 5G 16.5 cm (6.5)</p>
                     </div>
                     <div class="col-4">
                       <p class="badge bg-success">In Stock</p>

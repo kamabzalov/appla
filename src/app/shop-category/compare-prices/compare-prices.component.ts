@@ -86,7 +86,46 @@ interface ProductOfferInfo {
   ru_product_description: string;
 }
 
-interface ProductOfferStores {}
+interface ProductOfferStores {
+  ACSApiKey: string;
+  ACSCompanyID: string;
+  ACSCompanyPassword: number;
+  ACSUserID: string;
+  ACSUserPassword: number;
+  Billing_Code: string;
+  acs_station_id: string;
+  active: number;
+  address: string;
+  avatar: string;
+  banner: string;
+  billingCode: string;
+  changed_delivery: string;
+  city: string;
+  country: string;
+  custom_order_fee: number;
+  date_update: Date;
+  delivery_method: number;
+  description: string;
+  employee: string;
+  free_delivery: number;
+  lang_preference: number;
+  latitude: string;
+  longitude: string;
+  max_delivery: number;
+  min_delivery: number;
+  name: string;
+  order_fee: number;
+  phone: number;
+  postal_code: number;
+  product_slug: string;
+  rule_preference: string;
+  slug: string;
+  state: string;
+  status: number;
+  store_id: number;
+  user_frontend_id: number;
+  user_update: number;
+}
 
 @Component({
   selector: 'appla-compare-prices',
