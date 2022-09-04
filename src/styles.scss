@@ -34,7 +34,8 @@ a {
 
 .owl-theme {
   & .owl-nav {
-    .owl-prev, .owl-next {
+    .owl-prev,
+    .owl-next {
       width: vars.$base-size * 8;
       height: vars.$base-size * 8;
       @include mixins.border-radius(50%);
