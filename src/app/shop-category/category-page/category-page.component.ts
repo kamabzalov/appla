@@ -186,6 +186,11 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     this.productFilters.push(filter);
   }
 
+  protected loadMoreProducts() {
+    this.offset = this.offset + this.limit;
+    this.getCategoryData(this.limit, this.offset, this.order, this.slug);
+  }
+
   private getCategoryData(
     limit: number,
     offset: number,

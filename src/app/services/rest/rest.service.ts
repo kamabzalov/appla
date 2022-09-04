@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Trend } from '@app/public-site/now-trending/now-trending.component';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { StoreOffers } from '@app/public-site/store-offers/store-offers.component';
-import { SearchResults } from '@app/search/search-results/search-results.component';
+import {
+  SearchProduct,
+  SearchResults,
+} from '@app/search/search-results/search-results.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { AuthStatus } from '@app/shared/components/modal/login/login.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
@@ -13,7 +16,7 @@ import {
   Category,
   ProductFilter,
 } from '@app/shop-category/category-page/category-page.component';
-import { map, Observable } from 'rxjs';
+import { map, Observable, share } from 'rxjs';
 import { Product } from '@app/shop-product/product-page/product-page.component';
 
 interface BackendResponse {
@@ -40,6 +43,7 @@ export class RestService {
     return this.http
       .get<BackendResponse>(`${this.basePath}Home/home_slider_top`)
       .pipe(
+        share(),
         map((slides: BackendResponse) => {
           return (slides.data as Slide[]).map(item => ({
             ...item,
@@ -153,6 +157,12 @@ export class RestService {
     return this.http
       .get<BackendResponse>(`${this.basePath}Search?string=${query}`)
       .pipe(map(response => response.data));
+  }
+
+  public searchProducts(query: string): Observable<SearchProduct[]> {
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Search?string=${query}`)
+      .pipe(map(response => (response.data as SearchResults).products));
   }
 
   public login(email: string, password: string): Observable<AuthStatus> {

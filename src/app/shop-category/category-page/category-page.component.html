@@ -54,7 +54,7 @@
               </appla-aside-widget>
             </div>
 
-            <div class="card-content">
+            <div *ngIf="category.filters.length" class="card-content">
               <div *ngFor="let filter of category.filters" class="m-b-20px">
                 <appla-aside-widget [widgetHeader]="filter.filterKey">
                   <ng-container
@@ -72,7 +72,7 @@
         </div>
         <div class="column-12 column-small-9">
           <main>
-            <div class="category-products card-content">
+            <div class="category-products m-b-20px card-content">
               <div class="row align-items-center">
                 <div class="column-medium-4">
                   <div class="display-flex align-items-center">
@@ -142,6 +142,12 @@
                     [product]="productPreview"></appla-preview-card>
                 </div>
               </div>
+            </div>
+
+            <div class="text-center">
+              <button (click)="loadMoreProducts()" class="button button_orange">
+                Load more
+              </button>
             </div>
           </main>
         </div>

@@ -19,7 +19,7 @@ export class SimilarProductsComponent {
     dots: false,
     navSpeed: 700,
     autoWidth: true,
-    navText: ['', ''],
+    navText: ['<button>&#x2039;</button>', '<button>&#x203A;</button>'],
     responsive: {
       0: {
         items: 1,

@@ -97,7 +97,21 @@
           <li ngbNavItem>
             <a ngbNavLink>Specifications</a>
             <ng-template ngbNavContent>
-              <div class="p-16px"></div>
+              <div class="p-16px">
+                <ngb-accordion #acc="ngbAccordion">
+                  <ngb-panel
+                    *ngFor="let spec of product.technical_detail | keyvalue"
+                    [title]="spec.key">
+                    <ng-template ngbPanelContent>
+                      <ng-container *ngFor="let k of spec.value | keyvalue">
+                        <p>
+                          <strong>{{ k.key }}:</strong> {{ k.value }}
+                        </p>
+                      </ng-container>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
             </ng-template>
           </li>
           <li ngbNavItem>

@@ -57,15 +57,17 @@ export interface SearchProduct {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchResultsComponent implements OnInit {
+  public searchResults$: Observable<SearchResults>;
+
   constructor(
     private activeRoute: ActivatedRoute,
     private restService: RestService
   ) {}
 
-  public searchResults$: Observable<SearchResults>;
-
   public ngOnInit() {
-    const searchString = this.activeRoute.snapshot.queryParams['string'];
-    this.searchResults$ = this.restService.searchInShop(searchString);
+    this.activeRoute.queryParams.subscribe(
+      params =>
+        (this.searchResults$ = this.restService.searchInShop(params['string']))
+    );
   }
 }

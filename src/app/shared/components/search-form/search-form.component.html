@@ -1,15 +1,22 @@
 <form (ngSubmit)="search()" class="search-form display-flex">
   <div class="control-group flex-grow-1 m-b-0px">
+    <ng-template #rt let-r="result" let-t="term">
+      <ngb-highlight [result]="r.name1" [term]="t"></ngb-highlight>
+    </ng-template>
+
     <input
       [(ngModel)]="searchQuery"
+      [inputFormatter]="formatter"
       [ngbTypeahead]="searchTypeAhead"
+      [resultFormatter]="formatter"
+      [resultTemplate]="rt"
       class="search-form__input control-group__field"
       name="searchQuery"
       placeholder="I am looking for..."
       type="text" />
   </div>
   <div class="search-form__icon display-flex align-items-center p-8px">
-    <button class="search-form__button button p-0px">
+    <button class="search-form__button button p-0px" type="submit">
       <fa-icon [icon]="faSearch"></fa-icon>
     </button>
   </div>

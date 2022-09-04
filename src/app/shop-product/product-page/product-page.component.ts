@@ -26,7 +26,7 @@ export interface Product {
   additional_header: string;
   similar_short: SimilarProduct[];
   name: string;
-  technical_detail: string;
+  technical_detail: { [key: string]: any };
   product_detail: boolean;
   canonical_link: CanonicalData;
   user: string;
