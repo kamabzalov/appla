@@ -35,6 +35,7 @@ export class SearchResultCardComponent implements OnDestroy {
     this.subscription = this.restService
       .getProductByMasterId(product.master_product_id)
       .subscribe(result => {
+        // eslint-disable-next-line no-magic-numbers
         if (result.length === 1) {
           this.router.navigate([
             `/product/${result[0].store_slug}/${result[0].product_slug}`,
