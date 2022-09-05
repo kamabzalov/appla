@@ -7,7 +7,7 @@ import {
 import {
   SearchCategory,
   SearchProduct,
-} from '@app/search/search-results/search-results.component';
+} from '@app/public-site/search/search-results/search-results.component';
 import { RestService } from '@app/services/rest/rest.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';

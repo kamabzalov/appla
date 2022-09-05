@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryPageComponent } from './category-page/category-page.component';
-import { ComparePricesComponent } from '@app/shop-category/compare-prices/compare-prices.component';
+import { ComparePricesComponent } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
+import { CategoryPageComponent } from '@app/public-site/shop-category/category-page/category-page.component';
 
 const routes: Routes = [
   {

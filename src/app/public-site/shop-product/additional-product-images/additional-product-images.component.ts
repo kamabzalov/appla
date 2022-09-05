@@ -12,6 +12,7 @@ export class AdditionalProductImagesComponent {
 
   protected readonly customOptions: OwlOptions = {
     loop: true,
+    autoWidth: true,
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,

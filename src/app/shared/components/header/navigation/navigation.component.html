@@ -38,6 +38,7 @@
                   </ul>
                   <button
                     (click)="toggleMore(firstLevel)"
+                    *ngIf="firstLevel.childs"
                     class="button p-0px text-orange show-more">
                     {{ firstLevel.toggle ? 'Show less' : 'Show more' }}
                   </button>
@@ -62,7 +63,9 @@
                         product.image
                       "
                       alt="" />
-                    <p class="commercial-product__price">{{ product.price }}</p>
+                    <p class="commercial-product__price">
+                      From {{ product.price }} €
+                    </p>
                     <p class="commercial-product__name">{{ product.name }}</p>
                   </a>
                 </div>

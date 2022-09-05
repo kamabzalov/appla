@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { SimilarProduct } from '@app/shop-product/product-page/product-page.component';
+import { SimilarProduct } from '@app/public-site/shop-product/product-page/product-page.component';
 
 @Component({
   selector: 'appla-similar-products',

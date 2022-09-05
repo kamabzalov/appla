@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CategoryProduct } from '@app/shop-category/category-page/category-page.component';
+import { CategoryProduct } from '@app/public-site/shop-category/category-page/category-page.component';
 
 @Component({
   selector: 'appla-preview-card',

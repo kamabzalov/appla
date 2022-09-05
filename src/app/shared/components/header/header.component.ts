@@ -19,7 +19,7 @@ export class HeaderComponent {
   ) {}
 
   public openLoginModal() {
-    this.modalService.open(LoginComponent);
+    this.modalService.open(LoginComponent, { centered: true });
   }
 
   public openMobilePanel() {

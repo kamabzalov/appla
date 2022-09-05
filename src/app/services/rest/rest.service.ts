@@ -7,19 +7,19 @@ import {
   SearchProduct,
   SearchResults,
   Slugs,
-} from '@app/search/search-results/search-results.component';
+} from '@app/public-site/search/search-results/search-results.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { AuthStatus } from '@app/shared/components/modal/login/login.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
 import { makeRelativePath } from '@app/shared/utils/functions';
+import { map, Observable, share } from 'rxjs';
+import { Product } from '@app/public-site/shop-product/product-page/product-page.component';
+import { ProductOffer } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
 import {
   Category,
   ProductFilter,
-} from '@app/shop-category/category-page/category-page.component';
-import { map, Observable, share } from 'rxjs';
-import { Product } from '@app/shop-product/product-page/product-page.component';
-import { ProductOffer } from '@app/shop-category/compare-prices/compare-prices.component';
+} from '@app/public-site/shop-category/category-page/category-page.component';
 
 interface BackendResponse {
   data: any;

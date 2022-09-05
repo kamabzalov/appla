@@ -1,5 +1,4 @@
-<appla-header></appla-header>
-<div class="container m-t-132px p-t-20px">
+<div class="container p-t-28px">
   <section
     *ngIf="product$ | async as product"
     class="product card-content m-b-20px">
@@ -68,7 +67,9 @@
                     <fa-icon [icon]="faPlus"></fa-icon>
                   </button>
                 </form>
-                <button (click)="setMax()" class="button button_orange">
+                <button
+                  (click)="setMax(product.product.qty)"
+                  class="button button_orange">
                   Max
                 </button>
               </div>
@@ -164,4 +165,3 @@
     </div>
   </section>
 </div>
-<appla-footer></appla-footer>

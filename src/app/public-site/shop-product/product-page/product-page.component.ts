@@ -264,5 +264,7 @@ export class ProductPageComponent implements OnInit {
     this.productQuantity++;
   }
 
-  protected setMax() {}
+  protected setMax(qty: number) {
+    this.productQuantity = qty;
+  }
 }

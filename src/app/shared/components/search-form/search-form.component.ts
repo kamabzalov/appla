@@ -8,7 +8,7 @@ import {
 } from 'rxjs';
 import { RestService } from '@app/services/rest/rest.service';
 import { iconSet } from '@app/shared/utils/icons';
-import { SearchProduct } from '@app/search/search-results/search-results.component';
+import { SearchProduct } from '@app/public-site/search/search-results/search-results.component';
 
 @Component({
   selector: 'appla-search-form',

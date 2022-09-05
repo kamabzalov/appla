@@ -1,5 +1,5 @@
-@use '~assets/scss/vars' as vars;
-@use '~assets/scss/mixins' as mixins;
+@use '../../../../assets/scss/vars' as vars;
+@use '../../../../assets/scss/mixins' as mixins;
 
 .preview-card {
   @include mixins.border-radius(vars.$base-size * 5);

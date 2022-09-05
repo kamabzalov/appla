@@ -8,25 +8,6 @@ const routes: Routes = [
       import('./public-site/public-site.module').then(m => m.PublicSiteModule),
   },
   {
-    path: 'Search',
-    loadChildren: () =>
-      import('./search/search.module').then(m => m.SearchModule),
-  },
-  {
-    path: 'category',
-    loadChildren: () =>
-      import('./shop-category/shop-category.module').then(
-        m => m.ShopCategoryModule
-      ),
-  },
-  {
-    path: 'product',
-    loadChildren: () =>
-      import('./shop-product/shop-product.module').then(
-        m => m.ShopProductModule
-      ),
-  },
-  {
     path: 'profile-page',
     loadChildren: () =>
       import('./profile/profile.module').then(m => m.ProfileModule),
