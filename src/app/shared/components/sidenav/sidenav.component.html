@@ -1,4 +1,16 @@
-<div class="display-flex flex-direction-column p-t-16px p-b-16px">
+<div class="display-flex flex-direction-column p-b-16px">
+  <div class="sidenav-header position-relative m-b-16px">
+    <button
+      (click)="closeSideNav()"
+      class="button sidenav-header__close"
+      type="button">
+      &times;
+    </button>
+    <img
+      alt="Appla"
+      class="img-responsive"
+      src="./assets/images/mob-header.png" />
+  </div>
   <div class="row p-l-16px p-r-16px m-b-16px">
     <div class="column-6">
       <button

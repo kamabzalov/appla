@@ -6,6 +6,15 @@
   overflow-y: scroll;
 }
 
+.sidenav-header {
+  &__close {
+    position: absolute;
+    font-size: 2rem;
+    color: vars.$white;
+    z-index: 3;
+  }
+}
+
 .sidenav-menu {
   &__link {
     color: vars.$charcoal;

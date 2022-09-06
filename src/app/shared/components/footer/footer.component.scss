@@ -1,15 +1,27 @@
-@use '~assets/scss/vars' as vars;
-@use '~assets/scss/mixins' as mixins;
+@use 'sass:map';
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
+
+$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
+
 
 .footer {
   background: vars.$azureish-white;
 
   &-benefits {
     border-bottom: 1px solid vars.$lavender-gray;
+
+    @media (max-width: $medium-devices-breakpoint) {
+      border: none;
+    }
   }
 
   &-benefit {
     border-right: 1px solid vars.$lavender-gray;
+
+    @media (max-width: $medium-devices-breakpoint) {
+      border: none;
+    }
 
     &.no-border {
       border-right: none;

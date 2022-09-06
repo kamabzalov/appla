@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { LoginComponent } from '@app/shared/components/modal/login/login.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { iconSet } from '@app/shared/utils/icons';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable } from 'rxjs';
@@ -21,14 +21,20 @@ export class SidenavComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private restService: RestService
+    private restService: RestService,
+    protected offcanvas: NgbOffcanvas
   ) {}
 
   public ngOnInit() {
     this.menu$ = this.restService.getSiteMenu();
   }
 
-  public openLoginModal() {
+  protected openLoginModal() {
     this.modalService.open(LoginComponent);
+  }
+
+  protected closeSideNav() {
+    console.log('call');
+    this.offcanvas.dismiss();
   }
 }

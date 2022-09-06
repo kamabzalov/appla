@@ -33,7 +33,7 @@ export class StoreOffersComponent {
     pullDrag: true,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['<button>&#x2039;</button>', '<button>&#x203A;</button>'],
     responsive: {
       0: {
         items: 1,
