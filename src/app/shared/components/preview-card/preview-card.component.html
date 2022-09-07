@@ -12,12 +12,16 @@
         <a class="preview-card__link" href="">{{ product.name1 }}</a>
       </p>
       <p class="preview-card__price m-b-4px">
-        <ng-container *ngIf="product.price; else masterProductPrice">
+        <ng-container
+          *ngIf="
+            product.price && product.count_products === 1;
+            else masterProductPrice
+          ">
           {{ product.price }}
         </ng-container>
 
         <ng-template #masterProductPrice>
-          {{ product.max_price }}
+          {{ product.min_price }} - {{ product.max_price }}
         </ng-template>
         €
       </p>

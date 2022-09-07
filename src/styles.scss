@@ -30,6 +30,10 @@ a {
 
 .owl-carousel {
   margin: 0 vars.$base-size * 8;
+
+  @media (max-width: $medium-devices-breakpoint) {
+    margin: 0;
+  }
 }
 
 .owl-theme {

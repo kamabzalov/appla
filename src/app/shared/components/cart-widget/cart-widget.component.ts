@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { iconSet } from '@app/shared/utils/icons';
 
 @Component({
   selector: 'appla-cart-widget',
@@ -8,5 +8,5 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartWidgetComponent {
-  public faCartShopping = faCartShopping;
+  public faCartShopping = iconSet.faCartShopping;
 }

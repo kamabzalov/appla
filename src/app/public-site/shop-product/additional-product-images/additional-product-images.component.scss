@@ -1,8 +1,9 @@
-.owl-carousel.owl-drag .owl-item {
-  width: auto !important;
-}
+@use '~assets/scss/vars';
 
-.additional-image {
-  max-width: 120px;
-  cursor: pointer;
+.additional-item {
+  margin: 0 vars.$base-size * 3;
+
+  &__image {
+    cursor: pointer;
+  }
 }

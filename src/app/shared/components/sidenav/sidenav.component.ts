@@ -15,6 +15,11 @@ import { Menu } from '@app/shared/components/header/navigation/navigation.compon
 export class SidenavComponent implements OnInit {
   protected faPhone = iconSet.faPhone;
   protected faEnvelope = iconSet.faEnvelope;
+  protected faCart = iconSet.faCartShopping;
+  protected faHouse = iconSet.faHouse;
+  protected faBookOpen = iconSet.faBookOpen;
+  protected faEarthAmericas = iconSet.faEarthAmericas;
+  protected faCircleInfo = iconSet.faCircleInfo;
   protected menu$: Observable<Menu[]>;
   protected isCategoriesCollapsed = true;
   protected isLangCollapse = true;

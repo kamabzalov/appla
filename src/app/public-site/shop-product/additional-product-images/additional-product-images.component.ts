@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -9,6 +15,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class AdditionalProductImagesComponent {
   @Input() public images: string[];
+  @Output() public onChangeActiveImage = new EventEmitter<string>();
 
   protected readonly customOptions: OwlOptions = {
     loop: true,
@@ -21,13 +28,13 @@ export class AdditionalProductImagesComponent {
     navText: ['<button>&#x2039;</button>', '<button>&#x203A;</button>'],
     responsive: {
       0: {
-        items: 1,
+        items: 2,
       },
       400: {
         items: 2,
       },
       740: {
-        items: 3,
+        items: 4,
       },
       940: {
         items: 4,
@@ -35,4 +42,8 @@ export class AdditionalProductImagesComponent {
     },
     nav: true,
   };
+
+  protected setActiveImage(image: string) {
+    this.onChangeActiveImage.emit(image);
+  }
 }

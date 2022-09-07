@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { faMinus, faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 
 export interface Product {
   title: string;
@@ -233,6 +233,7 @@ export class ProductPageComponent implements OnInit {
 
   public product$: Observable<Product>;
   public productSlugSubscription: Subscription;
+  protected mainPage: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -244,10 +245,13 @@ export class ProductPageComponent implements OnInit {
       const storeSlug = res[0].path;
       const productSlug = res[1].path;
       if (storeSlug && productSlug) {
-        this.product$ = this.restService.getProductBySlug(
-          storeSlug,
-          productSlug
-        );
+        this.product$ = this.restService
+          .getProductBySlug(storeSlug, productSlug)
+          .pipe(
+            tap(res => {
+              this.mainPage = res.product.picture[0];
+            })
+          );
       }
     });
   }
@@ -266,5 +270,9 @@ export class ProductPageComponent implements OnInit {
 
   protected setMax(qty: number) {
     this.productQuantity = qty;
+  }
+
+  protected setActive($event: string) {
+    this.mainPage = $event;
   }
 }

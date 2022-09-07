@@ -9,6 +9,11 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons/faCartShopping';
+import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
+import { faBookOpen } from '@fortawesome/free-solid-svg-icons/faBookOpen';
+import { faEarthAmericas } from '@fortawesome/free-solid-svg-icons/faEarthAmericas';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons/faCircleInfo';
 
 export const iconSet = {
   faEye,
@@ -22,4 +27,9 @@ export const iconSet = {
   faChevronUp,
   faChevronLeft,
   faBars,
+  faCartShopping,
+  faHouse,
+  faBookOpen,
+  faEarthAmericas,
+  faCircleInfo,
 };

@@ -33,7 +33,7 @@ export class NowTrendingComponent {
     navText: ['<button>&#x2039;</button>', '<button>&#x203A;</button>'],
     responsive: {
       0: {
-        items: 1,
+        items: 2,
       },
       400: {
         items: 2,

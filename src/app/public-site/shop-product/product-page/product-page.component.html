@@ -10,11 +10,12 @@
               [alt]="product.product.name1"
               [src]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_800/' +
-                product.product.picture[0]
+                mainPage
               "
               class="product__image img-fluid" />
             <div class="product__additional-images m-t-20px">
               <appla-additional-product-images
+                (onChangeActiveImage)="setActive($event)"
                 [images]="
                   product.product.picture
                 "></appla-additional-product-images>

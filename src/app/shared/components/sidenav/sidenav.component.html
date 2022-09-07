@@ -30,12 +30,15 @@
 
   <ul class="sidenav-menu list-no-bullets p-l-0px">
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <fa-icon [icon]="faHouse" class="m-r-12px"></fa-icon>
       <a applaCloseCanvas class="sidenav-menu__link" routerLink="/">Home</a>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <fa-icon [icon]="faCart" class="m-r-12px"></fa-icon>
       <a applaCloseCanvas class="sidenav-menu__link" routerLink="">Cart</a>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <fa-icon [icon]="faBookOpen" class="m-r-12px"></fa-icon>
       <a
         (click)="categoriesCollapse.toggle()"
         [attr.aria-expanded]="!isCategoriesCollapsed"
@@ -67,6 +70,7 @@
       </div>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <fa-icon [icon]="faEarthAmericas" class="m-r-12px"></fa-icon>
       <a
         (click)="langCollapse.toggle()"
         [attr.aria-expanded]="!isLangCollapse"
@@ -101,6 +105,7 @@
       </div>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <fa-icon [icon]="faCircleInfo" class="m-r-12px"></fa-icon>
       <a applaCloseCanvas class="sidenav-menu__link" routerLink="aboutus"
         >About Us</a
       >

@@ -38,7 +38,7 @@
                   </ul>
                   <button
                     (click)="toggleMore(firstLevel)"
-                    *ngIf="firstLevel.childs"
+                    *ngIf="firstLevel.childs && firstLevel.childs.length > 9"
                     class="button p-0px text-orange show-more">
                     {{ firstLevel.toggle ? 'Show less' : 'Show more' }}
                   </button>
