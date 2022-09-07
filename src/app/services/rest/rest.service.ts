@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Trend } from '@app/public-site/now-trending/now-trending.component';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { StoreOffers } from '@app/public-site/store-offers/store-offers.component';
@@ -33,11 +33,16 @@ interface BackendResponse {
 export class RestService {
   private basePath = 'https://stage.appla.cy/Angular/';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject('DEFAULT_LANG') private language: string
+  ) {}
 
   public getSiteMenu(): Observable<Menu[]> {
     return this.http
-      .get<BackendResponse>(`${this.basePath}Header/top_menu`)
+      .get<BackendResponse>(
+        `${this.basePath}Header/top_menu?lang_id=${this.language}`
+      )
       .pipe(map(response => response.data));
   }
 
