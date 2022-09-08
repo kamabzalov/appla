@@ -15,7 +15,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class AdditionalProductImagesComponent {
   @Input() public images: string[];
-  @Output() public onChangeActiveImage = new EventEmitter<string>();
+  @Output() public changeActiveImage = new EventEmitter<string>();
 
   protected readonly customOptions: OwlOptions = {
     loop: true,
@@ -44,6 +44,6 @@ export class AdditionalProductImagesComponent {
   };
 
   protected setActiveImage(image: string) {
-    this.onChangeActiveImage.emit(image);
+    this.changeActiveImage.emit(image);
   }
 }

@@ -15,7 +15,7 @@
               class="product__image img-fluid" />
             <div class="product__additional-images m-t-20px">
               <appla-additional-product-images
-                (onChangeActiveImage)="setActive($event)"
+                (changeActiveImage)="setActive($event)"
                 [images]="
                   product.product.picture
                 "></appla-additional-product-images>
