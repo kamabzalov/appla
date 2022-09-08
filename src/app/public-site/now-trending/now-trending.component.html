@@ -8,7 +8,7 @@
     <ng-container *ngFor="let trend of trending">
       <ng-template carouselSlide>
         <a
-          [routerLink]="['category/list', trend.slug]"
+          [routerLink]="['./category/list', trend.slug]"
           class="now-trending__link display-flex flex-column text-center">
           <div class="now-trending__image m-b-16px">
             <img

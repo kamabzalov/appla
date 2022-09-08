@@ -31,7 +31,7 @@
   <ul class="sidenav-menu list-no-bullets p-l-0px">
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faHouse" class="m-r-12px"></fa-icon>
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="/">Home</a>
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./">Home</a>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faCart" class="m-r-12px"></fa-icon>
@@ -56,7 +56,7 @@
                 <ul class="list-no-bullets">
                   <li *ngFor="let child of category.childs1">
                     <a
-                      [routerLink]="['/category/list', child.link]"
+                      [routerLink]="['./category/list', child.link]"
                       applaCloseCanvas
                       class="sidenav-menu__link"
                       >{{ child.name }}</a
@@ -106,7 +106,7 @@
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faCircleInfo" class="m-r-12px"></fa-icon>
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="aboutus"
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./aboutus"
         >About Us</a
       >
     </li>
@@ -124,12 +124,12 @@
       >
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="/privacy"
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./privacy"
         >Privacy Policy</a
       >
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="/terms"
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./terms"
         >Terms</a
       >
     </li>

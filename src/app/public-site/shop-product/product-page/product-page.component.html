@@ -30,7 +30,7 @@
                 *ngFor="let category of product.arr_cats; let last = last">
                 <a
                   *ngIf="last"
-                  [routerLink]="['/category/list', category.slug]"
+                  [routerLink]="['./category/list', category.slug]"
                   class="product__category"
                   >{{ category.name1 }}</a
                 >

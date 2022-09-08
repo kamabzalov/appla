@@ -60,7 +60,7 @@
       <div class="row">
         <div
           class="col-md-3 col-6 display-flex align-items-center justify-content-center">
-          <a href="/">
+          <a routerLink="./">
             <img alt="" src="/assets/images/logo-appla-blue.svg" />
           </a>
         </div>
@@ -69,42 +69,42 @@
           <ul class="list-unstyled footer-menu__list">
             <li>
               <a
-                [routerLink]="['category/list/clothing-6082']"
+                [routerLink]="['./category/list/clothing-6082']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 >Clothing</a
               >
             </li>
             <li>
               <a
-                [routerLink]="['category/list/computers-peripherals-2833']"
+                [routerLink]="['./category/list/computers-peripherals-2833']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 >Computers & Peripherals</a
               >
             </li>
             <li>
               <a
-                [routerLink]="['category/list/sport-nutritions-5054']"
+                [routerLink]="['./category/list/sport-nutritions-5054']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 >Sport Nutritions</a
               >
             </li>
             <li>
               <a
-                [routerLink]="['category/list/personal-care-tools-1333']"
+                [routerLink]="['./category/list/personal-care-tools-1333']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 >Personal Care Tools</a
               >
             </li>
             <li>
               <a
-                [routerLink]="['category/list/entertainment-hobby-2836']"
+                [routerLink]="['./category/list/entertainment-hobby-2836']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 >Entertaiment & Hobby</a
               >
             </li>
             <li>
               <a
-                [routerLink]="['category/list/pet-care-2248']"
+                [routerLink]="['./category/list/pet-care-2248']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 >Pet Care</a
               >
@@ -117,7 +117,7 @@
             <li>
               <a
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                routerLink="/aboutus"
+                routerLink="./aboutus"
                 >About Us</a
               >
             </li>
@@ -140,14 +140,14 @@
             <li>
               <a
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                routerLink="/privacy"
+                routerLink="./privacy"
                 >Privacy Policy</a
               >
             </li>
             <li>
               <a
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                routerLink="/terms"
+                routerLink="./terms"
                 >Terms & Conditions</a
               >
             </li>
@@ -190,7 +190,7 @@
             </button>
             <a
               class="btn btn-primary login-actions__sign"
-              href="/account/register"
+              routerLink="./account/register"
               >Sign Up
             </a>
           </div>

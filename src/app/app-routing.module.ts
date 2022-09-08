@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { setAppLang } from '@app/app.module';
 
 const routes: Routes = [
   {
-    path: ':lang',
+    path: '',
+    redirectTo: setAppLang(),
+    pathMatch: 'full',
+  },
+  {
+    path: ':langCode',
     loadChildren: () =>
       import('./public-site/public-site.module').then(m => m.PublicSiteModule),
   },
   {
-    path: ':lang/profile-page',
+    path: ':langCode/profile-page',
     loadChildren: () =>
       import('./profile/profile.module').then(m => m.ProfileModule),
   },
   {
-    path: ':lang/account',
+    path: ':langCode/account',
     loadChildren: () =>
       import('./account/account.module').then(m => m.AccountModule),
   },

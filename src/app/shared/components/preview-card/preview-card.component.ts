@@ -21,8 +21,8 @@ export class PreviewCardComponent {
       this.productLink =
         // eslint-disable-next-line no-magic-numbers
         val.count_products > 1
-          ? `/category/product_list/${val.to_link[0].product_slug}?mpi=${val.master_product_id}`
-          : `/product/${val.to_link[0].store_slug}/${val.to_link[0].product_slug}`;
+          ? `./category/product_list/${val.to_link[0].product_slug}?mpi=${val.master_product_id}`
+          : `./product/${val.to_link[0].store_slug}/${val.to_link[0].product_slug}`;
       this._product = val;
     }
   }

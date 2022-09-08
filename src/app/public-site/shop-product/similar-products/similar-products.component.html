@@ -3,7 +3,7 @@
     <ng-container *ngFor="let product of similarProducts">
       <ng-template [width]="320" carouselSlide>
         <a
-          [routerLink]="['/product', product.store_slug, product.slug]"
+          [routerLink]="['./product', product.store_slug, product.slug]"
           class="similar-products__link display-flex flex-direction-column align-items-center">
           <div class="similar-products__image m-b-16px">
             <img
