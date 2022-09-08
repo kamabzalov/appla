@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Trend } from '@app/public-site/now-trending/now-trending.component';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { StoreOffers } from '@app/public-site/store-offers/store-offers.component';
@@ -20,6 +20,10 @@ import {
   Category,
   ProductFilter,
 } from '@app/public-site/shop-category/category-page/category-page.component';
+import {
+  AppLanguage,
+  AppLanguages,
+} from '@app/shared/components/languages-dropdown/languages-dropdown.component';
 
 interface BackendResponse {
   data: any;
@@ -27,22 +31,25 @@ interface BackendResponse {
   status: string;
 }
 
+let langId = AppLanguages.find(lang => lang.code === 'el')?.id;
+
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
   private basePath = 'https://stage.appla.cy/Angular/';
 
-  constructor(
-    private http: HttpClient,
-    @Inject('DEFAULT_LANG') private language: string
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  public getSiteMenu(): Observable<Menu[]> {
+  public getSiteMenu(langCode?: string): Observable<Menu[]> {
+    const lang: AppLanguage | undefined = AppLanguages.find(
+      lang => lang.code === langCode
+    );
+    if (lang) {
+      langId = lang.id;
+    }
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Header/top_menu?lang_id=${this.language}`
-      )
+      .get<BackendResponse>(`${this.basePath}Header/top_menu?lang_id=${langId}`)
       .pipe(map(response => response.data));
   }
 

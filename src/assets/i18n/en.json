@@ -1,7 +1,13 @@
 {
   "HEADER": {
+    "TOP_TEXT": "Appla.cy - The leading online product comparison platform in Cyprus! - Check before you buy!",
     "JOIN_US": "Join Us",
     "LOGIN": "Login",
-    "SIGN_UP": "Sign Up"
+    "SIGN_UP": "Sign Up",
+    "DROPDOWN__LANGUAGE": {
+      "EN": "English",
+      "EL": "Greek",
+      "RU": "Russian"
+    }
   }
 }

@@ -9,12 +9,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-enum Languages {
-  GREEK = 'el',
-  ENGLISH = 'en',
-  RUSSIAN = 'ru',
-}
-
 export function setAppLang(langCode?: string): string {
   return langCode ? `/${langCode}` : `/el`;
 }
@@ -37,7 +31,6 @@ export function setAppLang(langCode?: string): string {
     SharedModule,
     NgbModule,
   ],
-  providers: [{ provide: 'DEFAULT_LANG', useValue: setAppLang() }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

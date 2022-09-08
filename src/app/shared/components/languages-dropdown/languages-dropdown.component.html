@@ -6,29 +6,29 @@
     <img
       alt="UK"
       class="languages-menu__icon"
-      src="assets/images/flags/uk.png" />
+      src="assets/images/flags/{{ currentLang.code }}.png" />
   </button>
   <div class="p-12px" ngbDropdownMenu>
     <button (click)="setLang('en')" ngbDropdownItem>
       <img
         alt="UK"
         class="icon-dropdown m-r-8px"
-        src="assets/images/flags/uk.png" />
-      <span>English</span>
+        src="/assets/images/flags/en.png" />
+      <span>{{ 'HEADER.DROPDOWN__LANGUAGE.EN' | translate }}</span>
     </button>
     <button (click)="setLang('el')" ngbDropdownItem>
       <img
         alt="Greece"
         class="icon-dropdown m-r-8px"
-        src="assets/images/flags/gr.png" />
-      <span>Greece</span>
+        src="/assets/images/flags/el.png" />
+      <span>{{ 'HEADER.DROPDOWN__LANGUAGE.EL' | translate }}</span>
     </button>
     <button (click)="setLang('ru')" ngbDropdownItem>
       <img
         alt="Russia"
         class="icon-dropdown m-r-8px"
-        src="assets/images/flags/rs.png" />
-      <span>Russian</span>
+        src="/assets/images/flags/ru.png" />
+      <span>{{ 'HEADER.DROPDOWN__LANGUAGE.RU' | translate }}</span>
     </button>
   </div>
 </div>

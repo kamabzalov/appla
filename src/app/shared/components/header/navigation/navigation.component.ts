@@ -1,18 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RestService } from '@app/services/rest/rest.service';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Menu {
-  childs1: FirstLevel[];
-  childs2: FirstLevel[];
-  childs3: FirstLevel[];
-  commercial_products1: CommercialProduct[];
-  commercial_products2: CommercialProduct[];
-  commercial_products3: CommercialProduct[];
   id: number;
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
+  childs: FirstLevel[];
+  commercial_products: CommercialProduct[];
 }
 
 interface FirstLevel {
@@ -44,13 +39,18 @@ interface CommercialProduct {
 export class NavigationComponent implements OnInit {
   protected menu$: Observable<Menu[]>;
 
-  constructor(private restService: RestService) {}
+  constructor(
+    private restService: RestService,
+    private translate: TranslateService
+  ) {}
 
   public ngOnInit(): void {
-    this.menu$ = this.restService.getSiteMenu();
+    this.menu$ = this.translate.onLangChange.pipe(
+      switchMap(lang => this.restService.getSiteMenu(lang.lang))
+    );
   }
 
   protected toggleMore(menuLevel: FirstLevel) {
-    menuLevel.toggle = true ? !menuLevel.toggle : false;
+    menuLevel.toggle = !menuLevel.toggle;
   }
 }

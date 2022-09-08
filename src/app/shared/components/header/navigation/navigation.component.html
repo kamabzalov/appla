@@ -5,7 +5,7 @@
       class="nav-list__item nav-item"
       ngbDropdown>
       <a class="nav-link" ngbDropdownToggle>
-        {{ menuItem.name1 }}
+        {{ menuItem.name }}
       </a>
       <div class="nav-item-megamenu dropdown-menu-start" ngbDropdownMenu>
         <div class="container">
@@ -13,7 +13,7 @@
             <div class="column-12 column-medium-9">
               <div class="row">
                 <div
-                  *ngFor="let firstLevel of menuItem.childs1; let i = index"
+                  *ngFor="let firstLevel of menuItem.childs; let i = index"
                   class="column-12 column-medium-3">
                   <a
                     [routerLink]="['./category/list', firstLevel.link]"
@@ -48,7 +48,7 @@
             <div class="m-l-auto column-12 column-medium-3">
               <div class="display-flex flex-direction-column">
                 <div
-                  *ngFor="let product of menuItem.commercial_products1"
+                  *ngFor="let product of menuItem.commercial_products"
                   class="commercial-product text-center m-b-12px">
                   <a
                     [routerLink]="[

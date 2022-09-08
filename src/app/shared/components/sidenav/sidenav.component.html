@@ -52,9 +52,9 @@
           <div class="card-body">
             <ul class="list-no-bullets">
               <li *ngFor="let category of menu$ | async" class="m-b-8px">
-                <a class="sidenav-menu__link">{{ category.name1 }}</a>
+                <a class="sidenav-menu__link">{{ category.name }}</a>
                 <ul class="list-no-bullets">
-                  <li *ngFor="let child of category.childs1">
+                  <li *ngFor="let child of category.childs">
                     <a
                       [routerLink]="['./category/list', child.link]"
                       applaCloseCanvas
@@ -85,19 +85,19 @@
                 <img
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
-                  src="/assets/images/flags/uk.png" />English
+                  src="/src/assets/images/flags/en.png" />English
               </li>
               <li class="m-b-8px">
                 <img
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
-                  src="/assets/images/flags/gr.png" />Greece
+                  src="/src/assets/images/flags/el.png" />Greece
               </li>
               <li>
                 <img
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
-                  src="/assets/images/flags/rs.png" />Russia
+                  src="/src/assets/images/flags/ru.png" />Russia
               </li>
             </ul>
           </div>
