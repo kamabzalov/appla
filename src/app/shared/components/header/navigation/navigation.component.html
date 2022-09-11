@@ -16,9 +16,11 @@
                   *ngFor="let firstLevel of menuItem.childs; let i = index"
                   class="column-12 column-medium-3">
                   <a
-                    [routerLink]="['./category/list', firstLevel.link]"
                     applaCloseDropdown
                     class="nav-item-megamenu__first-level"
+                    routerLink="/{{ appLanguage }}/category/list/{{
+                      firstLevel.link
+                    }}"
                     >{{ firstLevel.name }}</a
                   >
                   <ul class="list-unstyled second-level m-t-12px">
@@ -29,9 +31,11 @@
                       "
                       class="m-b-8px">
                       <a
-                        [routerLink]="['./category/list', secondLevel.value]"
                         applaCloseDropdown
                         class="second-level__link"
+                        routerLink="/{{ appLanguage }}/category/list/{{
+                          secondLevel.value
+                        }}"
                         >{{ secondLevel.name }}</a
                       >
                     </li>

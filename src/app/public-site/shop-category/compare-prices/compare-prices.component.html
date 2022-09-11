@@ -154,21 +154,21 @@
   <section class="m-b-20px" id="product-spec">
     <div class="card-content">
       <h5>Product Specifications</h5>
-      <!--      <ngb-accordion #acc="ngbAccordion">-->
-      <!--        <ngb-panel-->
-      <!--          *ngFor="-->
-      <!--            let spec of offer.master_product_info.technical_detail | keyvalue-->
-      <!--          "-->
-      <!--          [title]="spec.key">-->
-      <!--          <ng-template ngbPanelContent>-->
-      <!--            <ng-container *ngFor="let k of spec.value | keyvalue">-->
-      <!--              <p>-->
-      <!--                <strong>{{ k.key }}:</strong> {{ k.value }}-->
-      <!--              </p>-->
-      <!--            </ng-container>-->
-      <!--          </ng-template>-->
-      <!--        </ngb-panel>-->
-      <!--      </ngb-accordion>-->
+      <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel
+          *ngFor="
+            let spec of offer.master_product_info.technical_detail | keyvalue
+          "
+          [title]="spec.key">
+          <ng-template ngbPanelContent>
+            <ng-container *ngFor="let k of spec.value | keyvalue">
+              <p>
+                <strong>{{ k.key }}:</strong> {{ k.value }}
+              </p>
+            </ng-container>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
     </div>
   </section>
 </div>

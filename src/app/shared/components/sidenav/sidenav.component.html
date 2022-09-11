@@ -56,9 +56,11 @@
                 <ul class="list-no-bullets">
                   <li *ngFor="let child of category.childs">
                     <a
-                      [routerLink]="['./category/list', child.link]"
                       applaCloseCanvas
                       class="sidenav-menu__link"
+                      routerLink="/{{ appLanguage }}/category/list/{{
+                        child.link
+                      }}"
                       >{{ child.name }}</a
                     >
                   </li>
@@ -85,19 +87,19 @@
                 <img
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
-                  src="/src/assets/images/flags/en.png" />English
+                  src="/assets/images/flags/en.png" />English
               </li>
               <li class="m-b-8px">
                 <img
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
-                  src="/src/assets/images/flags/el.png" />Greece
+                  src="/assets/images/flags/el.png" />Greece
               </li>
               <li>
                 <img
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
-                  src="/src/assets/images/flags/ru.png" />Russia
+                  src="/assets/images/flags/ru.png" />Russia
               </li>
             </ul>
           </div>
@@ -106,7 +108,10 @@
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faCircleInfo" class="m-r-12px"></fa-icon>
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./aboutus"
+      <a
+        applaCloseCanvas
+        class="sidenav-menu__link"
+        routerLink="/{{ appLanguage }}/aboutus"
         >About Us</a
       >
     </li>
@@ -124,12 +129,18 @@
       >
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./privacy"
+      <a
+        applaCloseCanvas
+        class="sidenav-menu__link"
+        routerLink="/{{ appLanguage }}/privacy"
         >Privacy Policy</a
       >
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./terms"
+      <a
+        applaCloseCanvas
+        class="sidenav-menu__link"
+        routerLink="/{{ appLanguage }}terms"
         >Terms</a
       >
     </li>

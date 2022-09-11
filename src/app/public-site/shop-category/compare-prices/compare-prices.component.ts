@@ -65,7 +65,7 @@ interface ProductOfferInfo {
   height: number;
   item_model_number: number;
   manufacturer: string;
-  technical_detail: any;
+  technical_detail: { [key: string]: any };
   date_update: Date;
   user_update: number;
   status: number;

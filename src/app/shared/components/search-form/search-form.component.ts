@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -21,10 +21,15 @@ export class SearchFormComponent {
   protected searchQuery: any;
   protected resultsProducts$: Observable<SearchProduct[]>;
 
-  constructor(private router: Router, private restService: RestService) {}
+  constructor(
+    private router: Router,
+    private restService: RestService,
+    private route: ActivatedRoute
+  ) {}
 
   public search() {
     this.router.navigate(['Search'], {
+      relativeTo: this.route,
       queryParams: {
         string:
           typeof this.searchQuery === 'string'

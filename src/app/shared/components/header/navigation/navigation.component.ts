@@ -38,6 +38,7 @@ interface CommercialProduct {
 })
 export class NavigationComponent implements OnInit {
   protected menu$: Observable<Menu[]>;
+  protected appLanguage: string;
 
   constructor(
     private restService: RestService,
@@ -45,6 +46,7 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.appLanguage = this.languageService.currentAppLang$.getValue().code;
     this.menu$ = this.languageService.currentAppLang$.pipe(
       switchMap(lang => this.restService.getSiteMenu())
     );
