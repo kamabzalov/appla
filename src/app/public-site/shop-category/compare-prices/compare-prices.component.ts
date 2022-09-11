@@ -140,6 +140,7 @@ interface ProductOfferStores {
 export class ComparePricesComponent implements OnInit, OnDestroy {
   protected faTruck = iconSet.faTruck;
   protected productOffer$: Observable<ProductOffer>;
+  // eslint-disable-next-line no-magic-numbers
   protected maxRating: number = 5;
   protected appLang: string;
   private productOfferUrl$: Subscription;
