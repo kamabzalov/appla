@@ -9,7 +9,6 @@ import {
   Slugs,
 } from '@app/public-site/search/search-results/search-results.component';
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
-import { AuthStatus } from '@app/shared/components/modal/login/login.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
 import { makeRelativePath } from '@app/shared/utils/functions';
@@ -194,10 +193,11 @@ export class RestService {
       .pipe(map(response => (response.data as SearchResults).products));
   }
 
-  public login(email: string, password: string): Observable<AuthStatus> {
-    return this.http.get<AuthStatus>(
-      `${this.basePath}login?email=${email}&password=${password}`
-    );
+  public login(email: string, password: string): Observable<BackendResponse> {
+    return this.http.post<BackendResponse>(`${this.basePath}Auth/doSignin`, {
+      email,
+      password,
+    });
   }
 
   public getProductOffer(

@@ -86,9 +86,7 @@ export interface SimilarProduct {
 interface ProductDetails {
   product_id: number;
   sku: number;
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
   price: number;
   discount: number;
   long_description1: string;

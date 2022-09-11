@@ -25,13 +25,7 @@ export class LoginComponent {
 
   public auth() {
     this.rest.login(this.email, this.password).subscribe(result => {
-      if (result.status) {
-        this.activeModal.close();
-        this.showError = false;
-        this.router.navigate(['/profile-page']);
-      } else {
-        this.showError = true;
-      }
+      this.showError = result.status === 'failed';
     });
   }
 }
