@@ -39,7 +39,6 @@ export class SidenavComponent implements OnInit {
   }
 
   protected closeSideNav() {
-    console.log('call');
     this.offcanvas.dismiss();
   }
 }

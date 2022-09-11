@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { setAppLang } from '@app/app.module';
+import { setAppLang } from '@app/services/language/language.service';
 
 const routes: Routes = [
   {
@@ -30,6 +30,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabledBlocking',
       scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
     }),
   ],
   exports: [RouterModule],

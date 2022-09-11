@@ -135,7 +135,7 @@
       <div class="col-md-6">
         <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
           <img
-            *ngIf="product.store.avatar"
+            *ngIf="product.store_avatar"
             [alt]="product.store.name"
             [src]="
               'https://storage.googleapis.com/images-appla/profile_picture/' +
@@ -145,7 +145,7 @@
           <div class="display-flex flex-column">
             <span
               ><a class="product-seller__link" href="#">{{
-                product.store.name
+                product.store_name
               }}</a></span
             >
             <span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>

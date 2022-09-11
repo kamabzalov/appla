@@ -1,27 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { setAppLang } from '@app/app.module';
-
-export interface AppLanguage {
-  id: number;
-  code: 'en' | 'el' | 'ru';
-}
-
-export const AppLanguages: AppLanguage[] = [
-  {
-    id: 1,
-    code: 'en',
-  },
-  {
-    id: 2,
-    code: 'el',
-  },
-  {
-    id: 3,
-    code: 'ru',
-  },
-];
+import {
+  AppLanguage,
+  AppLanguages,
+  LanguageService,
+  setAppLang,
+} from '@app/services/language/language.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'appla-languages-dropdown',
@@ -29,13 +14,16 @@ export const AppLanguages: AppLanguage[] = [
   styleUrls: ['./languages-dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LanguagesDropdownComponent {
-  protected currentLang: AppLanguage = AppLanguages[1];
+export class LanguagesDropdownComponent implements OnInit {
+  protected currentLang$: Observable<AppLanguage>;
 
-  constructor(public translate: TranslateService, private router: Router) {
-    const langs = AppLanguages.map(item => item.code);
-    translate.addLangs(langs);
-    translate.use('el');
+  constructor(
+    private router: Router,
+    private languageService: LanguageService
+  ) {}
+
+  public ngOnInit() {
+    this.currentLang$ = this.languageService.currentAppLang$;
   }
 
   protected setLang(langCode: string) {
@@ -43,8 +31,8 @@ export class LanguagesDropdownComponent {
     setAppLang(langCode);
     const newLang = AppLanguages.find(lang => lang.code == langCode);
     if (newLang) {
-      this.currentLang = newLang;
-      this.translate.use(langCode);
+      this.languageService.currentAppLang$.next(newLang);
+      this.languageService.setLanguage(langCode);
     }
   }
 }

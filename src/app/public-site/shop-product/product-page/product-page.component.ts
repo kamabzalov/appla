@@ -5,6 +5,8 @@ import { RestService } from '@app/services/rest/rest.service';
 import { Observable, Subscription, tap } from 'rxjs';
 
 export interface Product {
+  store_name: string;
+  store_avatar: string;
   title: string;
   description: string;
   page: string;

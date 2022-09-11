@@ -9,14 +9,16 @@
                 <li>
                   <a
                     class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
-                    routerLink="./category"
+                    routerLink="/{{ appLang }}/category"
                     >All Categories</a
                   >
                 </li>
                 <li *ngFor="let subcategory of category.subcategories">
                   <a
-                    [routerLink]="['./category/list', subcategory.slug]"
                     class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
+                    routerLink="/{{ appLang }}/category/list/{{
+                      subcategory.slug
+                    }}"
                     >{{ subcategory.name1 }}</a
                   >
                 </li>
@@ -76,8 +78,8 @@
                   <fa-icon [icon]="faTags" class="m-r-12px"></fa-icon>
                   <h1 class="category-products__title m-b-0px">
                     {{
-                      category.this_category.name1
-                        ? category.this_category.name1
+                      category.this_category.name
+                        ? category.this_category.name
                         : 'All Categories'
                     }}
                   </h1>
@@ -121,8 +123,8 @@
               <div class="column-12">
                 <h4 class="category-products__summary">
                   Showing {{ category.count_products }} item(s) : "{{
-                    category.this_category.name1
-                      ? category.this_category.name1
+                    category.this_category.name
+                      ? category.this_category.name
                       : 'All Categories'
                   }}"
                 </h4>

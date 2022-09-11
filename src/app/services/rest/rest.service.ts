@@ -20,10 +20,7 @@ import {
   Category,
   ProductFilter,
 } from '@app/public-site/shop-category/category-page/category-page.component';
-import {
-  AppLanguage,
-  AppLanguages,
-} from '@app/shared/components/languages-dropdown/languages-dropdown.component';
+import { LanguageService } from '@app/services/language/language.service';
 
 interface BackendResponse {
   data: any;
@@ -31,23 +28,19 @@ interface BackendResponse {
   status: string;
 }
 
-let langId = AppLanguages.find(lang => lang.code === 'el')?.id;
-
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
   private basePath = 'https://stage.appla.cy/Angular/';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private languageService: LanguageService
+  ) {}
 
-  public getSiteMenu(langCode?: string): Observable<Menu[]> {
-    const lang: AppLanguage | undefined = AppLanguages.find(
-      lang => lang.code === langCode
-    );
-    if (lang) {
-      langId = lang.id;
-    }
+  public getSiteMenu(): Observable<Menu[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(`${this.basePath}Header/top_menu?lang_id=${langId}`)
       .pipe(map(response => response.data));
@@ -68,46 +61,65 @@ export class RestService {
   }
 
   public getStoreOffers(): Observable<StoreOffers[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
-      .get<BackendResponse>(`${this.basePath}Home/get_store_offers`)
+      .get<BackendResponse>(
+        `${this.basePath}Home/get_store_offers?lang_id=${langId}`
+      )
       .pipe(map(response => response.data));
   }
 
   public getRecentlyViewed(): Observable<RecentlyViewed[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Home/get_recently_viewed?store_id=false&user_id=&name=name1`
+        `${this.basePath}Home/get_recently_viewed?store_id=false&user_id=&name=name1&lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
 
   public getTrends(): Observable<Trend[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
-      .get<BackendResponse>(`${this.basePath}Home/get_now_trending`)
+      .get<BackendResponse>(
+        `${this.basePath}Home/get_now_trending?lang_id=${langId}`
+      )
       .pipe(map(response => response.data));
   }
 
   public getSampleSmartphones(): Observable<ProductInTile[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
-      .get<BackendResponse>(`${this.basePath}Home/sample_smartphones`)
+      .get<BackendResponse>(
+        `${this.basePath}Home/sample_smartphones?lang_id=${langId}`
+      )
       .pipe(map(response => response.data));
   }
 
   public getSampleKitchen(): Observable<ProductInTile[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
-      .get<BackendResponse>(`${this.basePath}Home/sample_kitchen`)
+      .get<BackendResponse>(
+        `${this.basePath}Home/sample_kitchen?lang_id=${langId}`
+      )
       .pipe(map(response => response.data));
   }
 
   public getSamplePersonalCareProducts(): Observable<ProductInTile[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
-      .get<BackendResponse>(`${this.basePath}Home/sample_personal_care`)
+      .get<BackendResponse>(
+        `${this.basePath}Home/sample_personal_care?lang_id=${langId}`
+      )
       .pipe(map(response => response.data));
   }
 
   public getSampleCleaningProducts(): Observable<ProductInTile[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
-      .get<BackendResponse>(`${this.basePath}Home/sample_cleaning`)
+      .get<BackendResponse>(
+        `${this.basePath}Home/sample_cleaning?lang_id=${langId}`
+      )
       .pipe(map(response => response.data));
   }
 
@@ -134,6 +146,8 @@ export class RestService {
     if (searchQuery) {
       params = params.set('search', searchQuery);
     }
+    const langId = this.languageService.currentAppLang$.getValue().id;
+    params = params.set('lang_id', langId);
     return this.http
       .get<BackendResponse>(
         `${this.basePath}Categories/get_category_products`,
@@ -160,9 +174,10 @@ export class RestService {
     storeSlug: string,
     productSlug: string
   ): Observable<Product> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Products/get_product?product_slug=${productSlug}&slug_store=${storeSlug}`
+        `${this.basePath}Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }

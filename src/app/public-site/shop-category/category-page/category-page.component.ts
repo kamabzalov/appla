@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
+import { LanguageService } from '@app/services/language/language.service';
 
 export interface Category {
   products: CategoryProduct[];
@@ -78,9 +79,7 @@ export interface Subcategory {
 }
 
 export interface CurrentCategory {
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
   slug: string;
 }
 
@@ -125,6 +124,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   protected searchInCategory: string;
   protected productFilters: ProductFilter[] = [];
   protected order: string = 'date_update_asc';
+  protected appLang: string;
   protected sorting = SORTING;
   protected categoryData$: Observable<Category>;
 
@@ -137,10 +137,12 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private restService: RestService
+    private restService: RestService,
+    private languageService: LanguageService
   ) {}
 
   public ngOnInit(): void {
+    this.appLang = this.languageService.currentAppLang$.getValue().code;
     this.categoryIdSubscription = this.route.url.subscribe(res => {
       if (res.length && res[1]) {
         this.slug = res[1].path;

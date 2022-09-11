@@ -9,7 +9,7 @@
       class="preview-card__image" />
     <div>
       <p class="preview-card__name m-b-4px">
-        <a class="preview-card__link" href="">{{ product.name1 }}</a>
+        {{ product.name1 }}
       </p>
       <p class="preview-card__price m-b-4px">
         <ng-container
@@ -21,7 +21,7 @@
         </ng-container>
 
         <ng-template #masterProductPrice>
-          {{ product.min_price }} - {{ product.max_price }}
+          {{ product.min_price }}
         </ng-template>
         €
       </p>

@@ -6,7 +6,7 @@
     <img
       alt="UK"
       class="languages-menu__icon"
-      src="assets/images/flags/{{ currentLang.code }}.png" />
+      src="assets/images/flags/{{ (currentLang$ | async)?.code }}.png" />
   </button>
   <div class="p-12px" ngbDropdownMenu>
     <button (click)="setLang('en')" ngbDropdownItem>

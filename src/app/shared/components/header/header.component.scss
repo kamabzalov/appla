@@ -1,8 +1,14 @@
+@use 'sass:map';
 @use '~assets/scss/vars';
 @use '~assets/scss/mixins';
 
+$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
+
 .header {
-  @include mixins.top-fixed-element;
+
+  @media (min-width: $medium-devices-breakpoint) {
+    @include mixins.top-fixed-element;
+  }
 
   &__top-text {
     color: vars.$white;

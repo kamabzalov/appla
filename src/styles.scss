@@ -24,8 +24,10 @@ body {
   background: vars.$ghost-white;
 }
 
-a {
+a, .appla-link {
   text-decoration: none !important;
+  color: vars.$blue-yonder;
+  cursor: pointer;
 }
 
 .owl-carousel {
@@ -58,10 +60,7 @@ a {
   min-height: 100%;
 
   @media (max-width: $large-devices-breakpoint) {
-    margin-top: 145px;
+    margin-top: 0;
   }
 
-  @media (max-width: $medium-devices-breakpoint - 1px) {
-    margin-top: 280px;
-  }
 }

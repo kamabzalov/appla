@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CategoryProduct } from '@app/public-site/shop-category/category-page/category-page.component';
+import { LanguageService } from '@app/services/language/language.service';
 
 @Component({
   selector: 'appla-preview-card',
@@ -9,6 +10,12 @@ import { CategoryProduct } from '@app/public-site/shop-category/category-page/ca
 })
 export class PreviewCardComponent {
   protected productLink: string;
+  private appLanguage: string;
+
+  constructor(private languageService: LanguageService) {
+    this.appLanguage = languageService.currentAppLang$.getValue().code;
+  }
+
   private _product: CategoryProduct;
 
   public get product() {
@@ -21,8 +28,8 @@ export class PreviewCardComponent {
       this.productLink =
         // eslint-disable-next-line no-magic-numbers
         val.count_products > 1
-          ? `./category/product_list/${val.to_link[0].product_slug}?mpi=${val.master_product_id}`
-          : `./product/${val.to_link[0].store_slug}/${val.to_link[0].product_slug}`;
+          ? `/${this.appLanguage}/category/product_list/${val.to_link[0].product_slug}?mpi=${val.master_product_id}`
+          : `/${this.appLanguage}/product/${val.to_link[0].store_slug}/${val.to_link[0].product_slug}`;
       this._product = val;
     }
   }

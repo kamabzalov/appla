@@ -1,4 +1,4 @@
-<div *ngIf="productOffer$ | async as offer" class="container">
+<div *ngIf="productOffer$ | async as offer" class="container p-t-20px">
   <section class="m-b-20px">
     <div class="row">
       <div class="column-12 m-b-12px">
@@ -8,21 +8,23 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-9 col-md-9 col-12">
-        <div class="card-content">
+      <div class="column-12 column-medium-9">
+        <div class="card-content m-b-12px">
           <div class="compare-prices-product">
             <div class="row">
-              <div class="col-lg-3 col-md-3 col-12">
+              <div class="column-medium-3">
                 <img
-                  alt=""
+                  alt="{{ offer.master_product_info.name1 }}"
                   class="img-fluid"
                   src="https://storage.googleapis.com/images-appla/production/thumbs_150/{{
                     offer.master_product_info.picture
                   }}" />
               </div>
-              <div class="col-lg-9 col-md-9 col-12">
+              <div class="column-12 column-medium-9">
                 <p class="fw-semibold">{{ offer.master_product_info.name1 }}</p>
-                <p>Product specification</p>
+                <p (click)="goToProductSpec()" class="appla-link">
+                  Product specification
+                </p>
                 <p>Weight: {{ offer.master_product_info.weight }} g</p>
                 <p>
                   View {{ offer.stories.length }} offers, from
@@ -33,14 +35,17 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-3 col-12">
+      <div class="column-12 column-medium-3">
         <div class="card-content">
           <div class="compare-prices-rating">
             <div class="m-b-4px">
-              <ngb-rating [max]="5" [rate]="0" [readonly]="true"></ngb-rating>
-              | 0 reviews
+              <ngb-rating
+                [max]="maxRating"
+                [rate]="offer.rating"
+                [readonly]="true"></ngb-rating>
+              | {{ offer.rating }} reviews
             </div>
-            <h6>0 of 5</h6>
+            <h6>{{ offer.rating }} of {{ maxRating }}</h6>
             <div class="display-flex m-b-4px">
               <span class="m-r-8px">5 stars</span>
               <ngb-progressbar [value]="0" class="flex-grow-1" type="success"
@@ -81,7 +86,7 @@
     <div class="product-offers">
       <h4 class="text-orange">Offers ({{ offer.stories.length }})</h4>
       <div class="row">
-        <div class="col-12">
+        <div class="column-12">
           <div class="card-content">
             <div class="product-offers__header">
               <h5>Compare prices: {{ offer.master_product_info.name1 }}</h5>
@@ -91,17 +96,17 @@
               *ngFor="let store of offer.stories"
               class="product-offers__item p-t-16px">
               <div class="row align-items-center">
-                <div class="col-2">
+                <div class="column-2 display-none display-medium-block">
                   <img
-                    alt=""
+                    alt="{{ store.name }}"
                     class="product-offers__image"
                     src="https://storage.googleapis.com/images-appla/profile_picture/{{
                       store.avatar
                     }}" />
                 </div>
-                <div class="col-10">
+                <div class="column-12 column-medium-10">
                   <div class="row justify-content-end align-items-center">
-                    <div class="col-4">
+                    <div class="column-12 column-medium-4">
                       <p class="fw-bolder">
                         <a href="">{{ store.name }}</a>
                       </p>
@@ -109,7 +114,7 @@
                         {{ offer.master_product_info.name1 }}
                       </p>
                     </div>
-                    <div class="col-4">
+                    <div class="column-12 column-medium-4">
                       <p class="badge bg-success">In Stock</p>
                       <p>
                         <fa-icon [icon]="faTruck"></fa-icon>
@@ -118,14 +123,23 @@
                       <p>
                         <ngb-rating
                           [max]="5"
-                          [rate]="0"
+                          [rate]="store.raiting"
                           [readonly]="true"></ngb-rating>
-                        | 0 reviews
+                        | {{ store.raiting }} reviews
                       </p>
                     </div>
-                    <div class="col-4 text-end">
-                      <p class="text-orange">309.00 €</p>
-                      <a class="product-offers__link" href="#">View offer</a>
+                    <div
+                      class="column-12 column-medium-4 display-flex flex-direction-column">
+                      <p class="text-orange text-center">
+                        {{ store.product_price }} €
+                      </p>
+                      <a
+                        class="button button_orange"
+                        routerLink="/{{ appLang }}/product/{{ store.slug }}/{{
+                          store.product_slug
+                        }}"
+                        >View offer</a
+                      >
                     </div>
                   </div>
                 </div>
@@ -137,10 +151,24 @@
     </div>
   </section>
 
-  <section class="m-b-20px">
+  <section class="m-b-20px" id="product-spec">
     <div class="card-content">
       <h5>Product Specifications</h5>
-      <p>Coming soon</p>
+      <!--      <ngb-accordion #acc="ngbAccordion">-->
+      <!--        <ngb-panel-->
+      <!--          *ngFor="-->
+      <!--            let spec of offer.master_product_info.technical_detail | keyvalue-->
+      <!--          "-->
+      <!--          [title]="spec.key">-->
+      <!--          <ng-template ngbPanelContent>-->
+      <!--            <ng-container *ngFor="let k of spec.value | keyvalue">-->
+      <!--              <p>-->
+      <!--                <strong>{{ k.key }}:</strong> {{ k.value }}-->
+      <!--              </p>-->
+      <!--            </ng-container>-->
+      <!--          </ng-template>-->
+      <!--        </ngb-panel>-->
+      <!--      </ngb-accordion>-->
     </div>
   </section>
 </div>

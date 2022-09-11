@@ -1,4 +1,4 @@
-@use '../../../../assets/scss/vars' as vars;
+@use '~assets/scss/vars';
 
 .product-offers {
   &__header {
@@ -17,12 +17,5 @@
       border: none;
     }
   }
-
-  &__link {
-    background-color: vars.$honey-yellow;
-    border-color: vars.$honey-yellow;
-    color: vars.$white;
-    font-weight: 600;
-    padding: 10px 20px;
-  }
+  
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, switchMap } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '@app/services/language/language.service';
 
 export interface Menu {
   id: number;
@@ -41,12 +41,12 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private restService: RestService,
-    private translate: TranslateService
+    private languageService: LanguageService
   ) {}
 
   public ngOnInit(): void {
-    this.menu$ = this.translate.onLangChange.pipe(
-      switchMap(lang => this.restService.getSiteMenu(lang.lang))
+    this.menu$ = this.languageService.currentAppLang$.pipe(
+      switchMap(lang => this.restService.getSiteMenu())
     );
   }
 

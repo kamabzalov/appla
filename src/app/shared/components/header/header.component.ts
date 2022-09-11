@@ -11,7 +11,7 @@ import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.compone
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  public faBars = faBars;
+  protected faBars = faBars;
 
   constructor(
     private modalService: NgbModal,

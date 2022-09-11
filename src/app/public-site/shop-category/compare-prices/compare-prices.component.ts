@@ -4,14 +4,16 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { iconSet } from '@app/shared/utils/icons';
 import { combineLatest, Observable, Subscription } from 'rxjs';
+import { LanguageService } from '@app/services/language/language.service';
 
 export interface ProductOffer {
   category: ProductOfferCategory;
   master_product_info: ProductOfferInfo;
+  rating: number;
   stories: ProductOfferStores[];
 }
 
@@ -87,6 +89,8 @@ interface ProductOfferInfo {
 }
 
 interface ProductOfferStores {
+  product_price: number;
+  raiting: number;
   ACSApiKey: string;
   ACSCompanyID: string;
   ACSCompanyPassword: number;
@@ -136,23 +140,28 @@ interface ProductOfferStores {
 export class ComparePricesComponent implements OnInit, OnDestroy {
   protected faTruck = iconSet.faTruck;
   protected productOffer$: Observable<ProductOffer>;
+  protected maxRating: number = 5;
+  protected appLang: string;
   private productOfferUrl$: Subscription;
 
   constructor(
     private route: ActivatedRoute,
-    private restService: RestService
+    private router: Router,
+    private restService: RestService,
+    private languageService: LanguageService
   ) {}
 
   public ngOnInit() {
+    this.appLang = this.languageService.currentAppLang$.getValue().code;
     this.productOfferUrl$ = combineLatest(
       this.route.queryParams,
       this.route.params
     ).subscribe(res => {
       // eslint-disable-next-line no-magic-numbers
       if (res && res.length > 1) {
-        const mdi = res[0]['mpi'];
+        const mpi = +res[0]['mpi'];
         const productSlug = res[1]['slug'];
-        this.productOffer$ = this.restService.getProductOffer(productSlug, mdi);
+        this.productOffer$ = this.restService.getProductOffer(productSlug, mpi);
       }
     });
   }
@@ -160,6 +169,17 @@ export class ComparePricesComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     if (this.productOfferUrl$) {
       this.productOfferUrl$.unsubscribe();
+    }
+  }
+
+  protected goToProductSpec() {
+    const queryParams = this.route.snapshot.queryParams;
+    if (queryParams && queryParams['mpi']) {
+      this.router.navigate([], {
+        fragment: 'product-spec',
+        queryParams: { mpi: queryParams['mpi'] },
+        relativeTo: this.route,
+      });
     }
   }
 }

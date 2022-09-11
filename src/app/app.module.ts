@@ -9,10 +9,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-export function setAppLang(langCode?: string): string {
-  return langCode ? `/${langCode}` : `/el`;
-}
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
