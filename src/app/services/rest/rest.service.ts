@@ -31,7 +31,7 @@ interface BackendResponse {
   providedIn: 'root',
 })
 export class RestService {
-  private basePath = 'https://stage.appla.cy/Angular/';
+  private basePath = 'https://stage.appla.cy/';
 
   constructor(
     private http: HttpClient,
@@ -41,13 +41,15 @@ export class RestService {
   public getSiteMenu(): Observable<Menu[]> {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
-      .get<BackendResponse>(`${this.basePath}Header/top_menu?lang_id=${langId}`)
+      .get<BackendResponse>(
+        `${this.basePath}Angular/Header/top_menu?lang_id=${langId}`
+      )
       .pipe(map(response => response.data));
   }
 
   public getSlides(): Observable<Slide[]> {
     return this.http
-      .get<BackendResponse>(`${this.basePath}Home/home_slider_top`)
+      .get<BackendResponse>(`${this.basePath}Angular/Home/home_slider_top`)
       .pipe(
         share(),
         map((slides: BackendResponse) => {
@@ -63,7 +65,7 @@ export class RestService {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Home/get_store_offers?lang_id=${langId}`
+        `${this.basePath}Angular/Home/get_store_offers?lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
@@ -72,7 +74,7 @@ export class RestService {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Home/get_recently_viewed?store_id=false&user_id=&name=name1&lang_id=${langId}`
+        `${this.basePath}Angular/Home/get_recently_viewed?store_id=false&user_id=&name=name1&lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
@@ -81,7 +83,7 @@ export class RestService {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Home/get_now_trending?lang_id=${langId}`
+        `${this.basePath}Angular/Home/get_now_trending?lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
@@ -90,7 +92,7 @@ export class RestService {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Home/sample_smartphones?lang_id=${langId}`
+        `${this.basePath}Angular/Home/sample_smartphones?lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
@@ -99,7 +101,7 @@ export class RestService {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Home/sample_kitchen?lang_id=${langId}`
+        `${this.basePath}Angular/Home/sample_kitchen?lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
@@ -108,7 +110,7 @@ export class RestService {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Home/sample_personal_care?lang_id=${langId}`
+        `${this.basePath}Angular/Home/sample_personal_care?lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
@@ -117,7 +119,7 @@ export class RestService {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Home/sample_cleaning?lang_id=${langId}`
+        `${this.basePath}Angular/Home/sample_cleaning?lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
@@ -149,7 +151,7 @@ export class RestService {
     params = params.set('lang_id', langId);
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Categories/get_category_products`,
+        `${this.basePath}Angular/Categories/get_category_products`,
         {
           params,
         }
@@ -176,28 +178,48 @@ export class RestService {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId}`
+        `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId}`
       )
       .pipe(map(response => response.data));
   }
 
   public searchInShop(query: string): Observable<SearchResults> {
     return this.http
-      .get<BackendResponse>(`${this.basePath}Search?string=${query}`)
+      .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`)
       .pipe(map(response => response.data));
   }
 
   public searchProducts(query: string): Observable<SearchProduct[]> {
     return this.http
-      .get<BackendResponse>(`${this.basePath}Search?string=${query}`)
+      .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`)
       .pipe(map(response => (response.data as SearchResults).products));
   }
 
   public login(email: string, password: string): Observable<BackendResponse> {
-    return this.http.post<BackendResponse>(`${this.basePath}Auth/doSignin`, {
-      email,
-      password,
-    });
+    return this.http.post<BackendResponse>(
+      `${this.basePath}Angular/Auth/doSignin`,
+      {
+        email,
+        password,
+      }
+    );
+  }
+
+  public register(email: string): Observable<BackendResponse> {
+    return this.http.post<BackendResponse>(
+      `${this.basePath}Angular/Auth/doSignup`,
+      { email }
+    );
+  }
+
+  public isAuthorized(): Observable<BackendResponse> {
+    return this.http.get<BackendResponse>(
+      `${this.basePath}Angular/Auth/checkAuth`
+    );
+  }
+
+  public logout(): Observable<BackendResponse> {
+    return this.http.get<BackendResponse>(`${this.basePath}logout`);
   }
 
   public getProductOffer(
@@ -206,14 +228,16 @@ export class RestService {
   ): Observable<ProductOffer> {
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}`
+        `${this.basePath}Angular/Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}`
       )
       .pipe(map(response => response.data));
   }
 
   public getProductByMasterId(id: number): Observable<Slugs[]> {
     return this.http
-      .get<BackendResponse>(`${this.basePath}Search/mpi_to_slug?mpi=${id}`)
+      .get<BackendResponse>(
+        `${this.basePath}Angular/Search/mpi_to_slug?mpi=${id}`
+      )
       .pipe(map(response => response.data));
   }
 }

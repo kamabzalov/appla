@@ -44,16 +44,34 @@
           <appla-cart-widget></appla-cart-widget>
           <div
             class="header__user-actions display-none display-large-inline-flex">
-            <button
-              (click)="openLoginModal()"
-              class="button button_transparent button_transparent_outline_orange m-r-8px">
-              {{ 'HEADER.LOGIN' | translate }}
-            </button>
-            <a
-              class="header__user-actions-sign button button_orange"
-              routerLink="./account/register"
-              >{{ 'HEADER.SIGN_UP' | translate }}</a
-            >
+            <ng-container *ngIf="!isLogin; else profileMenu">
+              <button
+                (click)="openLoginModal()"
+                class="button button_transparent button_transparent_outline_orange m-r-8px">
+                {{ 'HEADER.LOGIN' | translate }}
+              </button>
+              <a
+                class="header__user-actions-sign button button_orange"
+                routerLink="./account/register"
+                >{{ 'HEADER.SIGN_UP' | translate }}</a
+              >
+            </ng-container>
+            <ng-template #profileMenu>
+              <div ngbDropdown>
+                <button class="button p-0px m-r-8px" ngbDropdownToggle>
+                  <img
+                    alt="Profile"
+                    class="profile-image"
+                    height="32"
+                    src="/assets/images/profile/profile.png"
+                    width="32" />
+                </button>
+                <div ngbDropdownMenu>
+                  <a ngbDropdownItem routerLink="./profile-page">Profile</a>
+                  <button (click)="logout()" ngbDropdownItem>Logout</button>
+                </div>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>

@@ -5,9 +5,10 @@ import { AccountRoutingModule } from './account-routing.module';
 import { PageComponent } from './page/page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PageComponent, LoginComponent, RegisterComponent],
-  imports: [CommonModule, AccountRoutingModule],
+  imports: [CommonModule, AccountRoutingModule, FormsModule],
 })
 export class AccountModule {}
