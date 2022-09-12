@@ -14,6 +14,12 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons/faBookOpen';
 import { faEarthAmericas } from '@fortawesome/free-solid-svg-icons/faEarthAmericas';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons/faCircleInfo';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons/faFacebook';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
+import { faTiktok } from '@fortawesome/free-brands-svg-icons/faTiktok';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 
 export const iconSet = {
   faEye,
@@ -32,4 +38,10 @@ export const iconSet = {
   faBookOpen,
   faEarthAmericas,
   faCircleInfo,
+  faFacebook,
+  faTwitter,
+  faInstagram,
+  faLinkedin,
+  faYoutube,
+  faTiktok,
 };

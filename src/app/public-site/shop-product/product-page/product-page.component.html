@@ -23,7 +23,7 @@
           </div>
           <div class="col-md-7 col-sm-12">
             <h1 class="product__title">{{ product.product.name }}</h1>
-            <p class="product__price">{{ product.product.price }} €</p>
+            <p class="product__price">{{ product.product.price | currency }}</p>
             <p class="product-categories p-b-4px">
               Categories:
               <ng-container
@@ -63,7 +63,7 @@
                       type="number" />
                   </div>
                   <button
-                    (click)="increaseQuantity()"
+                    (click)="increaseQuantity(product.product.qty)"
                     class="product-order-form__increase button button_orange">
                     <fa-icon [icon]="faPlus"></fa-icon>
                   </button>

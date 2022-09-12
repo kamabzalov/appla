@@ -17,13 +17,12 @@
             product.price && product.count_products === 1;
             else masterProductPrice
           ">
-          {{ product.price }}
+          {{ product.price | currency }}
         </ng-container>
 
         <ng-template #masterProductPrice>
-          {{ product.min_price }}
+          {{ product.min_price | currency }}
         </ng-template>
-        €
       </p>
       <p class="m-b-0px">Available in {{ product.count_products }} (items)</p>
     </div>

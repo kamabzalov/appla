@@ -15,120 +15,62 @@ export interface ProductOffer {
   master_product_info: ProductOfferInfo;
   rating: number;
   stories: ProductOfferStores[];
+  similar_short: ProductOfferSimilar[];
 }
 
 interface ProductOfferCategory {
   category_id: number;
-  parent_id: number;
-  name1: string;
-  name2: string;
-  name3: string;
-  picture: string;
   level: number;
-  date_update: Date;
-  user_update: number;
-  status: number;
+  name: string;
+  parent_id: number;
+  picture: string;
+  product_variant: string;
+  search_field: string;
   slug: string;
-  specification_data: any;
-  search_field: any;
-  product_variant: any;
-  specification_data_ru: any;
-  search_field_ru: any;
-  specification_data_gr: any;
-  search_field_gr: any;
-  en_title: string;
-  gr_title: string;
-  ru_title: string;
-  en_description: string;
-  gr_description: string;
-  ru_description: string;
 }
 
 interface ProductOfferInfo {
+  technical_detail: { [key: string]: any };
   master_product_id: number;
   category_id: number;
-  sku: number;
-  gtin: string;
-  name1: string;
-  name2: string;
-  name3: string;
-  long_description1: string;
-  long_description2: string;
-  long_description3: string;
-  short_description1: string;
-  short_description2: string;
-  short_description3: string;
-  weight: number;
-  weight_unit: number;
-  length: number;
-  width: number;
-  height: number;
+  name: string;
+  long_description: string;
+  short_description: string;
   item_model_number: number;
   manufacturer: string;
-  technical_detail: { [key: string]: any };
-  date_update: Date;
-  user_update: number;
-  status: number;
   picture: string;
-  price: number;
-  type_id: number;
-  store_id: number;
-  position: string;
-  en_title: string;
-  gr_title: string;
-  ru_title: string;
-  en_description: string;
-  gr_description: string;
-  ru_description: string;
-  en_product_title: string;
-  gr_product_title: string;
-  ru_product_title: string;
-  en_product_description: string;
-  gr_product_description: string;
-  ru_product_description: string;
 }
 
 interface ProductOfferStores {
-  product_price: number;
-  raiting: number;
-  ACSApiKey: string;
-  ACSCompanyID: string;
-  ACSCompanyPassword: number;
-  ACSUserID: string;
-  ACSUserPassword: number;
-  Billing_Code: string;
-  acs_station_id: string;
+  store_id: number;
+  name: string;
   active: number;
-  address: string;
   avatar: string;
-  banner: string;
-  billingCode: string;
-  changed_delivery: string;
-  city: string;
-  country: string;
-  custom_order_fee: number;
-  date_update: Date;
   delivery_method: number;
   description: string;
-  employee: string;
   free_delivery: number;
-  lang_preference: number;
-  latitude: string;
-  longitude: string;
   max_delivery: number;
   min_delivery: number;
-  name: string;
-  order_fee: number;
-  phone: number;
-  postal_code: number;
-  product_slug: string;
-  rule_preference: string;
-  slug: string;
-  state: string;
-  status: number;
-  store_id: number;
+  store_slug: string;
   user_frontend_id: number;
-  user_update: number;
+  product_slug: string;
+  product_id: number;
+  price: number;
+  raiting: number;
+}
+
+interface ProductOfferSimilar {
+  product_id: number;
+  name: string;
+  picture: string;
+  price: number;
+  discount: number;
+  qty: number;
+  store_id: number;
+  category_id: number;
+  product_slug: string;
+  stars: number;
+  store_slug: string;
 }
 
 @Component({

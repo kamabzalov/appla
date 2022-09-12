@@ -241,7 +241,7 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.productSlugSubscription = this.route.url.subscribe(res => {
+    this.route.url.subscribe(res => {
       const storeSlug = res[0].path;
       const productSlug = res[1].path;
       if (storeSlug && productSlug) {
@@ -264,7 +264,10 @@ export class ProductPageComponent implements OnInit {
     this.productQuantity--;
   }
 
-  protected increaseQuantity() {
+  protected increaseQuantity(qty: number) {
+    if (this.productQuantity === qty) {
+      return;
+    }
     this.productQuantity++;
   }
 

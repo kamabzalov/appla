@@ -1,7 +1,7 @@
 <header class="header">
   <section class="header__elements p-t-16px p-b-16px">
     <div class="container">
-      <p class="text-center header__top-text">
+      <p *ngIf="isMainPage" class="text-center header__top-text">
         {{ 'HEADER.TOP_TEXT' | translate }}
       </p>
       <div class="row align-items-center">

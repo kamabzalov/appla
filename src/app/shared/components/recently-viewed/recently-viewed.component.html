@@ -24,7 +24,9 @@
             <h3 class="recently-viewed__title">
               {{ product.name1 }}
             </h3>
-            <p class="recently-viewed__price-item">{{ product.price }} €</p>
+            <p class="recently-viewed__price-item">
+              {{ product.price | currency }}
+            </p>
             <div class="recently-viewed__price">
               <p>Available in: {{ product.count_similar }} stores</p>
             </div>

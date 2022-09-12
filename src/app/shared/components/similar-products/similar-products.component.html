@@ -18,7 +18,9 @@
               {{ product.name1 }}
             </h3>
             <div class="similar-products__price">
-              <p class="similar-products__price-item">{{ product.price }} €</p>
+              <p class="similar-products__price-item">
+                {{ product.price | currency }}
+              </p>
             </div>
           </div>
         </a>

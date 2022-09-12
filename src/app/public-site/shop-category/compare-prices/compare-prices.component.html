@@ -3,7 +3,7 @@
     <div class="row">
       <div class="column-12 m-b-12px">
         <a routerLink="./category/list/{{ offer.category.slug }}">{{
-          offer.category.name1
+          offer.category.name
         }}</a>
       </div>
     </div>
@@ -14,21 +14,21 @@
             <div class="row">
               <div class="column-medium-3">
                 <img
-                  alt="{{ offer.master_product_info.name1 }}"
+                  alt="{{ offer.master_product_info.name }}"
                   class="img-fluid"
                   src="https://storage.googleapis.com/images-appla/production/thumbs_150/{{
                     offer.master_product_info.picture
                   }}" />
               </div>
               <div class="column-12 column-medium-9">
-                <p class="fw-semibold">{{ offer.master_product_info.name1 }}</p>
+                <p class="fw-semibold">{{ offer.master_product_info.name }}</p>
                 <p (click)="goToProductSpec()" class="appla-link">
                   Product specification
                 </p>
-                <p>Weight: {{ offer.master_product_info.weight }} g</p>
+                <!--                <p>Weight: {{ offer.master_product_info. }} g</p>-->
                 <p>
                   View {{ offer.stories.length }} offers, from
-                  {{ offer.master_product_info.price }} €
+                  <!--                  {{ offer.master_product_info.price }} €-->
                 </p>
               </div>
             </div>
@@ -89,7 +89,7 @@
         <div class="column-12">
           <div class="card-content">
             <div class="product-offers__header">
-              <h5>Compare prices: {{ offer.master_product_info.name1 }}</h5>
+              <h5>Compare prices: {{ offer.master_product_info.name }}</h5>
               <p>Recommended Offers</p>
             </div>
             <div
@@ -111,7 +111,7 @@
                         <a href="">{{ store.name }}</a>
                       </p>
                       <p>
-                        {{ offer.master_product_info.name1 }}
+                        {{ offer.master_product_info.name }}
                       </p>
                     </div>
                     <div class="column-12 column-medium-4">
@@ -131,13 +131,13 @@
                     <div
                       class="column-12 column-medium-4 display-flex flex-direction-column">
                       <p class="text-orange text-center">
-                        {{ store.product_price }} €
+                        {{ store.price | currency }}
                       </p>
                       <a
                         class="button button_orange"
-                        routerLink="/{{ appLang }}/product/{{ store.slug }}/{{
-                          store.product_slug
-                        }}"
+                        routerLink="/{{ appLang }}/product/{{
+                          store.store_slug
+                        }}/{{ store.product_slug }}"
                         >View offer</a
                       >
                     </div>
@@ -169,6 +169,14 @@
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
+    </div>
+  </section>
+
+  <section>
+    <div class="card-content">
+      <h5>Similar Products</h5>
+      <appla-similar-products
+        [similarProducts]="offer.similar_short"></appla-similar-products>
     </div>
   </section>
 </div>

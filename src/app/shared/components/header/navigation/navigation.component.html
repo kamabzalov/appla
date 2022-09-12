@@ -55,12 +55,10 @@
                   *ngFor="let product of menuItem.commercial_products"
                   class="commercial-product text-center m-b-12px">
                   <a
-                    [routerLink]="[
-                      './product/',
-                      product.store_slug,
-                      product.slug
-                    ]"
-                    applaCloseDropdown>
+                    applaCloseDropdown
+                    routerLink="/{{ appLanguage }}/product/{{
+                      product.store_slug
+                    }}/{{ product.slug }}">
                     <img
                       [src]="
                         'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
@@ -68,7 +66,7 @@
                       "
                       alt="" />
                     <p class="commercial-product__price">
-                      From {{ product.price }} €
+                      From&nbsp;{{ product.price | currency }}
                     </p>
                     <p class="commercial-product__name">{{ product.name }}</p>
                   </a>

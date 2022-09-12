@@ -24,6 +24,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CloseCanvasDirective } from './directives/close-canvas/close-canvas.directive';
 import { CloseDropdownDirective } from './directives/close-dropdown/close-dropdown.directive';
 import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
+import { SimilarProductsComponent } from '@app/shared/components/similar-products/similar-products.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -47,6 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CloseCanvasDirective,
     CloseDropdownDirective,
     ScrollTopComponent,
+    SimilarProductsComponent,
   ],
   imports: [
     CommonModule,
@@ -75,6 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AsideWidgetComponent,
     RecentlyViewedComponent,
     ScrollTopComponent,
+    SimilarProductsComponent,
     SidenavComponent,
     CloseCanvasDirective,
   ],

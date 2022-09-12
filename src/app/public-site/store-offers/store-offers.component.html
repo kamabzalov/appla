@@ -36,7 +36,8 @@
             <div class="store-offers__price">
               <h2 class="store-offers__price-title">Prices from:</h2>
               <p class="store-offers__price-item">
-                {{ offer.min_price }} € - {{ offer.max_price }} €
+                {{ offer.min_price | currency }} -
+                {{ offer.max_price | currency }}
               </p>
             </div>
           </div>

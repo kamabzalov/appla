@@ -180,63 +180,81 @@ export class RestService {
       .get<BackendResponse>(
         `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId}`
       )
-      .pipe(map(response => response.data));
+      .pipe(
+        map(response => {
+          console.log(response);
+          return response.data;
+        })
+      );
   }
 
   public searchInShop(query: string): Observable<SearchResults> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`)
       .pipe(map(response => response.data));
   }
 
   public searchProducts(query: string): Observable<SearchProduct[]> {
+    const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
-      .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`)
+      .get<BackendResponse>(
+        `${this.basePath}Angular/Search?string=${query}&lang_id=${langId}`
+      )
       .pipe(map(response => (response.data as SearchResults).products));
   }
 
   public login(email: string, password: string): Observable<BackendResponse> {
+    const lang_id = this.languageService.currentAppLang$.getValue().id;
     return this.http.post<BackendResponse>(
       `${this.basePath}Angular/Auth/doSignin`,
       {
         email,
         password,
+        lang_id,
       }
     );
   }
 
   public register(email: string): Observable<BackendResponse> {
+    const lang_id = this.languageService.currentAppLang$.getValue().id;
     return this.http.post<BackendResponse>(
       `${this.basePath}Angular/Auth/doSignup`,
-      { email }
+      { email, lang_id }
     );
   }
 
   public isAuthorized(): Observable<BackendResponse> {
+    const lang_id = this.languageService.currentAppLang$.getValue().id;
     return this.http.get<BackendResponse>(
-      `${this.basePath}Angular/Auth/checkAuth`
+      `${this.basePath}Angular/Auth/checkAuth?lang_id=${lang_id}`
     );
   }
 
   public logout(): Observable<BackendResponse> {
-    return this.http.get<BackendResponse>(`${this.basePath}logout`);
+    const lang_id = this.languageService.currentAppLang$.getValue().id;
+    return this.http.get<BackendResponse>(
+      `${this.basePath}logout?lang_id=${lang_id}`
+    );
   }
 
   public getProductOffer(
     productSlug: string,
     masterProductId: number
   ): Observable<ProductOffer> {
+    const lang_id = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}`
+        `${this.basePath}Angular/Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}&lang_id=${lang_id}`
       )
       .pipe(map(response => response.data));
   }
 
   public getProductByMasterId(id: number): Observable<Slugs[]> {
+    const lang_id = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Search/mpi_to_slug?mpi=${id}`
+        `${this.basePath}Angular/Search/mpi_to_slug?mpi=${id}&lang_id=${lang_id}`
       )
       .pipe(map(response => response.data));
   }
