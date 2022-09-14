@@ -12,7 +12,7 @@
                 'https://storage.googleapis.com/images-appla/production/thumbs_800/' +
                 mainPage
               "
-              class="product__image img-fluid" />
+              class="product__image img-fluid"/>
             <div class="product__additional-images m-t-20px">
               <appla-additional-product-images
                 (changeActiveImage)="setActive($event)"
@@ -32,7 +32,7 @@
                   *ngIf="last"
                   [routerLink]="['./category/list', category.slug]"
                   class="product__category"
-                  >{{ category.name1 }}</a
+                >{{ category.name1 }}</a
                 >
               </ng-container>
             </p>
@@ -60,7 +60,7 @@
                       aria-label="Example text with button addon"
                       class="product-order-form__input control-group__field"
                       name="productQuantity"
-                      type="number" />
+                      type="number"/>
                   </div>
                   <button
                     (click)="increaseQuantity(product.product.qty)"
@@ -141,11 +141,11 @@
               'https://storage.googleapis.com/images-appla/profile_picture/' +
               product.store.avatar
             "
-            class="product-seller__logo m-r-16px" />
+            class="product-seller__logo m-r-16px"/>
           <div class="display-flex flex-column">
             <span
-              ><a class="product-seller__link" href="#">{{
-                product.store_name
+            ><a class="product-seller__link" href="#">{{
+              product.store_name
               }}</a></span
             >
             <span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>

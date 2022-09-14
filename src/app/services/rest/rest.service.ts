@@ -11,8 +11,7 @@ import {
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
-import { makeRelativePath } from '@app/shared/utils/functions';
-import { map, Observable, share } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from '@app/public-site/shop-product/product-page/product-page.component';
 import { ProductOffer } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
 import {
@@ -50,15 +49,7 @@ export class RestService {
   public getSlides(): Observable<Slide[]> {
     return this.http
       .get<BackendResponse>(`${this.basePath}Angular/Home/home_slider_top`)
-      .pipe(
-        share(),
-        map((slides: BackendResponse) => {
-          return (slides.data as Slide[]).map(item => ({
-            ...item,
-            link: makeRelativePath(item.link),
-          }));
-        })
-      );
+      .pipe(map(response => response.data));
   }
 
   public getStoreOffers(): Observable<StoreOffers[]> {
@@ -180,12 +171,7 @@ export class RestService {
       .get<BackendResponse>(
         `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId}`
       )
-      .pipe(
-        map(response => {
-          console.log(response);
-          return response.data;
-        })
-      );
+      .pipe(map(response => response.data));
   }
 
   public searchInShop(query: string): Observable<SearchResults> {

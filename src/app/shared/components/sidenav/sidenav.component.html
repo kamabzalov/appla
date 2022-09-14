@@ -48,27 +48,11 @@
       <div
         #categoriesCollapse="ngbCollapse"
         [(ngbCollapse)]="isCategoriesCollapsed">
-        <div class="card">
-          <div class="card-body">
-            <ul class="list-no-bullets">
-              <li *ngFor="let category of menu$ | async" class="m-b-8px">
-                <a class="sidenav-menu__link">{{ category.name }}</a>
-                <ul class="list-no-bullets">
-                  <li *ngFor="let child of category.childs">
-                    <a
-                      applaCloseCanvas
-                      class="sidenav-menu__link"
-                      routerLink="/{{ appLanguage }}/category/list/{{
-                        child.link
-                      }}"
-                      >{{ child.name }}</a
-                    >
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <ul class="list-no-bullets p-l-20px p-t-20px p-r-20px">
+          <li *ngFor="let category of menu$ | async" class="m-b-8px">
+            <a class="sidenav-menu__link">{{ category.name }}</a>
+          </li>
+        </ul>
       </div>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">

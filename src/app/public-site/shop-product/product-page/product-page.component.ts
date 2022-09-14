@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { faMinus, faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { Observable, Subscription, tap } from 'rxjs';
+import { Observable, Subscription, switchMap, tap } from 'rxjs';
+import { iconSet } from '@app/shared/utils/icons';
 
 export interface Product {
   store_name: string;
@@ -224,16 +229,16 @@ interface CanonicalData {
   styleUrls: ['./product-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductPageComponent implements OnInit {
-  public faPlus = faPlus;
-  public faMinus = faMinus;
-  public faStar = faStar;
+export class ProductPageComponent implements OnInit, OnDestroy {
+  public faPlus = iconSet.faPlus;
+  public faMinus = iconSet.faMinus;
+  public faStar = iconSet.faStar;
   // eslint-disable-next-line no-magic-numbers
   public productQuantity: number = 1;
-
-  public product$: Observable<Product>;
-  public productSlugSubscription: Subscription;
+  protected product$: Observable<Product>;
   protected mainPage: string;
+
+  private productSlugSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -241,19 +246,17 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.route.url.subscribe(res => {
-      const storeSlug = res[0].path;
-      const productSlug = res[1].path;
-      if (storeSlug && productSlug) {
-        this.product$ = this.restService
-          .getProductBySlug(storeSlug, productSlug)
-          .pipe(
-            tap(res => {
-              this.mainPage = res.product.picture[0];
-            })
-          );
-      }
-    });
+    this.product$ = this.route.url.pipe(
+      switchMap(url => {
+        return this.getProductData(url[0].path, url[1].path);
+      })
+    );
+  }
+
+  public ngOnDestroy() {
+    if (this.productSlugSubscription) {
+      this.productSlugSubscription.unsubscribe();
+    }
   }
 
   protected decreaseQuantity() {
@@ -277,5 +280,16 @@ export class ProductPageComponent implements OnInit {
 
   protected setActive($event: string) {
     this.mainPage = $event;
+  }
+
+  private getProductData(
+    storeSlug: string,
+    productSlug: string
+  ): Observable<Product> {
+    return this.restService.getProductBySlug(storeSlug, productSlug).pipe(
+      tap(res => {
+        this.mainPage = res.product.picture[0];
+      })
+    );
   }
 }

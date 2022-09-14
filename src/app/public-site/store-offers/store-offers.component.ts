@@ -8,9 +8,7 @@ export interface StoreOffers {
   master_product_id: number;
   max_price: number;
   min_price: number;
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
   picture: string;
   slug: string;
 }

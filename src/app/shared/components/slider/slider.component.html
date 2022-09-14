@@ -1,6 +1,6 @@
 <ngb-carousel>
   <ng-template *ngFor="let slide of slides" ngbSlide>
-    <a [routerLink]="'./' + slide.link">
+    <a class="display-block" href="{{ slide.link }}">
       <img
         [src]="
           'https://storage.googleapis.com/images-appla/banner/big_' +

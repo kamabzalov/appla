@@ -1,5 +1,8 @@
-@use '../../../../assets/scss/vars';
-@use '../../../../assets/scss/mixins';
+@use 'sass:map';
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
+
+$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
 .languages-menu {
   &__toggle {
@@ -25,6 +28,10 @@
   &.dropdown {
     .dropdown-menu {
       @include mixins.border-radius(vars.$base-size * 5);
+
+      @media (max-width: $medium-devices-breakpoint) {
+        transform: translate3d(60px, 34px, 0px) !important;
+      }
 
       & .dropdown-item {
         padding: vars.$base-size * 3 vars.$base-size * 4;

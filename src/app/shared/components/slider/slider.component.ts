@@ -2,18 +2,18 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 export interface Slide {
   banner_id: number;
-  link: string;
-  image: string;
-  sod: Date;
+  click: string;
+  date: Date;
   eod: Date;
-  status: number;
+  image: string;
+  keyword: string;
   lang_id: number;
+  link: string;
   page: string;
   position: number;
-  click: string;
+  sod: Date;
+  status: number;
   type: string;
-  keyword: string;
-  date: Date;
 }
 
 @Component({

@@ -6,6 +6,10 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
 .header {
 
+  @media (max-width: $medium-devices-breakpoint) {
+    margin-bottom: vars.$base-size * 5;
+  }
+
   @media (min-width: $medium-devices-breakpoint) {
     @include mixins.top-fixed-element;
   }
