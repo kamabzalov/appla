@@ -2,59 +2,132 @@
 @use 'vars';
 
 @mixin make-margins {
-  @for $i from 0 through 300 {
-    $i: $i * vars.$base-size;
-    .m-t-#{$i} {
-      margin-top: $i !important;
-    }
-    .m-r-#{$i} {
-      margin-right: $i !important;
-    }
-    .m-b-#{$i} {
-      margin-bottom: $i !important;
-    }
-    .m-l-#{$i} {
-      margin-left: $i !important;
-    }
-    .m-#{$i} {
-      margin: $i !important;
+
+  @each $prefix, $val in vars.$media-breakpoints {
+    @if $val != 0 {
+      @media (max-width: $val) {
+
+        @for $i from 0 through 300 {
+          $i: $i * vars.$base-size;
+          .m-#{$prefix}-t-#{$i} {
+            margin-top: $i !important;
+          }
+          .m-#{$prefix}-r-#{$i} {
+            margin-right: $i !important;
+          }
+          .m-#{$prefix}-b-#{$i} {
+            margin-bottom: $i !important;
+          }
+          .m-#{$prefix}-l-#{$i} {
+            margin-left: $i !important;
+          }
+          .m-#{$prefix}-#{$i} {
+            margin: $i !important;
+          }
+        }
+
+        .m-#{$prefix}-t-auto {
+          margin-top: auto !important;
+        }
+
+        .m-#{$prefix}-r-auto {
+          margin-right: auto !important;
+        }
+
+        .m-#{$prefix}-b-auto {
+          margin-bottom: auto !important;
+        }
+
+        .m-#{$prefix}-l-auto {
+          margin-left: auto !important;
+        }
+      }
+    } @else {
+      @for $i from 0 through 300 {
+        $i: $i * vars.$base-size;
+        .m-t-#{$i} {
+          margin-top: $i !important;
+        }
+        .m-r-#{$i} {
+          margin-right: $i !important;
+        }
+        .m-b-#{$i} {
+          margin-bottom: $i !important;
+        }
+        .m-l-#{$i} {
+          margin-left: $i !important;
+        }
+        .m-#{$i} {
+          margin: $i !important;
+        }
+      }
+
+      .m-t-auto {
+        margin-top: auto !important;
+      }
+
+      .m-r-auto {
+        margin-right: auto !important;
+      }
+
+      .m-b-auto {
+        margin-bottom: auto !important;
+      }
+
+      .m-l-auto {
+        margin-left: auto !important;
+      }
     }
   }
 
-  .m-t-auto {
-    margin-top: auto !important;
-  }
-
-  .m-r-auto {
-    margin-right: auto !important;
-  }
-
-  .m-b-auto {
-    margin-bottom: auto !important;
-  }
-
-  .m-l-auto {
-    margin-left: auto !important;
-  }
 }
 
 @mixin make-paddings {
-  @for $i from 0 through 300 {
-    $i: $i * vars.$base-size;
-    .p-t-#{$i} {
-      padding-top: $i !important;
-    }
-    .p-r-#{$i} {
-      padding-right: $i !important;
-    }
-    .p-b-#{$i} {
-      padding-bottom: $i !important;
-    }
-    .p-l-#{$i} {
-      padding-left: $i !important;
-    }
-    .p-#{$i} {
-      padding: $i !important;
+  @each $prefix, $val in vars.$media-breakpoints {
+    @if $val != 0 {
+      @media (max-width: $val) {
+
+        @for $i from 0 through 300 {
+          $i: $i * vars.$base-size;
+          .p-#{$prefix}-t-#{$i} {
+            padding-top: $i !important;
+          }
+          .p-#{$prefix}-r-#{$i} {
+            padding-right: $i !important;
+          }
+          .p-#{$prefix}-b-#{$i} {
+            padding-bottom: $i !important;
+          }
+          .p-#{$prefix}-l-#{$i} {
+            padding-left: $i !important;
+          }
+          .p-#{$prefix}-#{$i} {
+            padding: $i !important;
+          }
+        }
+
+      }
+    } @else {
+
+      @for $i from 0 through 300 {
+        $i: $i * vars.$base-size;
+        .p-t-#{$i} {
+          padding-top: $i !important;
+        }
+        .p-r-#{$i} {
+          padding-right: $i !important;
+        }
+        .p-b-#{$i} {
+          padding-bottom: $i !important;
+        }
+        .p-l-#{$i} {
+          padding-left: $i !important;
+        }
+        .p-#{$i} {
+          padding: $i !important;
+        }
+      }
+
     }
   }
 }
@@ -107,11 +180,11 @@
 @mixin make-card-content() {
   @include border-radius(vars.$base-size * 5);
   @include box-shadow(
-    0,
-    vars.$base-size,
-    vars.$base-size * 2,
-    null,
-    rgb(8 52 119 / 10%)
+      0,
+      vars.$base-size,
+      vars.$base-size * 2,
+      null,
+      rgb(8 52 119 / 10%)
   );
 
   background: vars.$white;

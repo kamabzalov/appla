@@ -19,6 +19,10 @@
   max-width: 1176px;
   margin: auto;
 
+  @media (max-width: map-get(vars.$media-breakpoints, 'medium')) {
+    width: 100%;
+  }
+
   &-fluid {
     @include mixins.make-container;
 
