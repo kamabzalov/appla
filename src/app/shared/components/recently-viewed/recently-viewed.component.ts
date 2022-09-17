@@ -10,14 +10,13 @@ export interface RecentlyViewed {
   count_similar: number;
   item_model_number: string;
   manufacturer: string;
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
+  picture: string[];
   price: number;
   product_id: number;
+  product_slug: string;
   qty: number;
   show_picture: string;
-  slug: string;
   state: string;
   store_id: number;
   store_name: string;

@@ -4,10 +4,35 @@
     "JOIN_US": "Συνεργασία",
     "LOGIN": "Σύνδεση",
     "SIGN_UP": "Εγγραφή",
-    "DROPDOWN__LANGUAGE": {
+    "DROPDOWN_LANGUAGE": {
       "EN": "Αγγλικά",
       "EL": "Ελληνικά",
       "RU": "Ρωσική"
     }
+  },
+  "STORE-OFFERS": {
+    "LABEL": "Προσφορές Καταστημάτων",
+    "AVAILABLE_IN": "Διαθέσιμο σε:",
+    "SHOPS": "Καταστήματα",
+    "PRICES_FROM": "Τιμές από:"
+  },
+  "HOME-TILES": {
+    "SYSTEM_COMPONENTS": "Εξαρτήματα Συστήματος",
+    "FASHION": "Μόδα",
+    "SMARTPHONES": "Έξυπνα Τηλέφωνα",
+    "MONITORS": "Οθόνες",
+    "BEAUTY_AND_HEALTHCARE": "Ομορφιά & Υγεία",
+    "PETS": "Κατοικίδια Ζώα",
+    "KITCHEN_APPLIANCES": "Συσκευές Κουζίνας",
+    "SPORTS_AND_EXERCISE": "Αθλητισμός & Άσκηση",
+    "PERFUMES": "Αρώματα",
+    "MAKEUP": "Μακιγιάζ",
+    "JEWELLERY": "Κοσμήματα",
+    "TOYS": "Παιχνίδια"
+  },
+  "RECENTLY-VIEWED": {
+    "LABEL": "Είδατε πρόσφατα",
+    "AVAILABLE_IN": "Διαθέσιμο σε:",
+    "SHOPS": "Καταστήματα"
   }
 }

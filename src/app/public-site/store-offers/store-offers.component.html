@@ -1,7 +1,7 @@
 <div class="store-offers">
   <div class="display-flex align-items-center m-b-20px">
     <fa-icon [icon]="faStar" class="store-offers__icon m-r-16px"></fa-icon>
-    <h3 class="store-offers__header">Store Offers</h3>
+    <h3 class="store-offers__header">{{ 'STORE-OFFERS.LABEL' | translate }}</h3>
   </div>
 
   <owl-carousel-o [options]="customOptions">
@@ -31,10 +31,15 @@
               <h3 class="store-offers__title">
                 {{ offer.name }}
               </h3>
-              <p>Available in: {{ offer.count_store }} stores</p>
+              <p>
+                {{ 'STORE-OFFERS.AVAILABLE_IN' | translate }}
+                {{ offer.count_store }} {{ 'STORE-OFFERS.SHOPS' | translate }}
+              </p>
             </div>
             <div class="store-offers__price">
-              <h2 class="store-offers__price-title">Prices from:</h2>
+              <h2 class="store-offers__price-title">
+                {{ 'STORE-OFFERS.PRICES_FROM' | translate }}
+              </h2>
               <p class="store-offers__price-item">
                 {{ offer.min_price | currency }} -
                 {{ offer.max_price | currency }}

@@ -4,10 +4,35 @@
     "JOIN_US": "Присоединяйтесь",
     "LOGIN": "Войти",
     "SIGN_UP": "Регистрация",
-    "DROPDOWN__LANGUAGE": {
+    "DROPDOWN_LANGUAGE": {
       "EN": "Английский",
       "EL": "Греческий",
       "RU": "Русский"
     }
+  },
+  "STORE-OFFERS": {
+    "LABEL": "Предложения магазина",
+    "AVAILABLE_IN": "Доступно в:",
+    "SHOPS": "магазинах",
+    "PRICES_FROM": "Цены от:"
+  },
+  "HOME-TILES": {
+    "SYSTEM_COMPONENTS": "Системные компоненты",
+    "FASHION": "Мода",
+    "SMARTPHONES": "Смартфоны",
+    "MONITORS": "Мониторы",
+    "BEAUTY_AND_HEALTHCARE": "Красота и здоровье",
+    "PETS": "Домашние питомцы",
+    "KITCHEN_APPLIANCES": "Кухонные приборы",
+    "SPORTS_AND_EXERCISE": "Спорт и тренировки",
+    "PERFUMES": "Парфюм",
+    "MAKEUP": "Макияж",
+    "JEWELLERY": "Ювелирные изделия",
+    "TOYS": "Игры и игрушки"
+  },
+  "RECENTLY-VIEWED": {
+    "LABEL": "Недавно просмотренные",
+    "AVAILABLE_IN": "Доступно в:",
+    "SHOPS": "магазинах"
   }
 }
