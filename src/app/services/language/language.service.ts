@@ -40,6 +40,10 @@ export class LanguageService {
   }
 
   public setLanguage(langCode: string) {
+    const newLang = AppLanguages.find(lang => lang.code == langCode);
+    if (newLang) {
+      this.currentAppLang$.next(newLang);
+    }
     this.translate.use(langCode);
   }
 }

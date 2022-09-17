@@ -45,4 +45,9 @@ export class SidenavComponent implements OnInit {
   protected closeSideNav() {
     this.offcanvas.dismiss();
   }
+
+  protected setLang(langCode: string) {
+    this.languageService.setLanguage(langCode);
+    this.offcanvas.dismiss();
+  }
 }

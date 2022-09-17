@@ -25,6 +25,7 @@ import { CloseCanvasDirective } from './directives/close-canvas/close-canvas.dir
 import { CloseDropdownDirective } from './directives/close-dropdown/close-dropdown.directive';
 import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
 import { SimilarProductsComponent } from '@app/shared/components/similar-products/similar-products.component';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -58,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterModule,
     CarouselModule,
     TranslateModule,
+    NgxImageZoomModule,
   ],
   exports: [
     NgbModule,
@@ -65,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule,
     CarouselModule,
     FormsModule,
+    NgxImageZoomModule,
     HeaderComponent,
     FooterComponent,
     SearchFormComponent,

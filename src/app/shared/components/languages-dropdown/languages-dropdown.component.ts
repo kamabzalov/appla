@@ -2,11 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   AppLanguage,
-  AppLanguages,
   LanguageService,
   setAppLang,
 } from '@app/services/language/language.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'appla-languages-dropdown',
@@ -23,16 +22,14 @@ export class LanguagesDropdownComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.currentLang$ = this.languageService.currentAppLang$;
+    this.currentLang$ = this.languageService.currentAppLang$.pipe(
+      tap(lang => this.router.navigate([`/${lang.code}`]))
+    );
   }
 
   protected setLang(langCode: string) {
     this.router.navigate([`/${langCode}`]);
     setAppLang(langCode);
-    const newLang = AppLanguages.find(lang => lang.code == langCode);
-    if (newLang) {
-      this.languageService.currentAppLang$.next(newLang);
-      this.languageService.setLanguage(langCode);
-    }
+    this.languageService.setLanguage(langCode);
   }
 }
