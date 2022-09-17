@@ -9,10 +9,12 @@
               alt=""
               class="footer-benefit__image w-25"
               src="/assets/images/footer-benefits/CustomerSupport.png" />
-            <span class="footer-benefit__title">Customer Support</span>
-            <span class="footer-benefit__description"
-              >Comprehensive support for customers and suppliers</span
-            >
+            <span class="footer-benefit__title">{{
+              'FOOTER.CUSTOMER_SUPPORT' | translate
+            }}</span>
+            <span class="footer-benefit__description">{{
+              'FOOTER.CUSTOMER_SUPPORT_DESC' | translate
+            }}</span>
           </div>
         </div>
         <div class="column-6 column-medium-3 text-center">
@@ -22,10 +24,12 @@
               alt=""
               class="footer-benefit__image w-25"
               src="/assets/images/footer-benefits/OnlinePayment.png" />
-            <span class="footer-benefit__title">Online Payment</span>
-            <span class="footer-benefit__description"
-              >Friendly and fast purchasing process</span
-            >
+            <span class="footer-benefit__title">{{
+              'FOOTER.ONLINE_PAYMENTS' | translate
+            }}</span>
+            <span class="footer-benefit__description">{{
+              'FOOTER.ONLINE_PAYMENTS_DESC' | translate
+            }}</span>
           </div>
         </div>
         <div class="column-6 column-medium-3 text-center">
@@ -35,10 +39,12 @@
               alt=""
               class="footer-benefit__image w-25"
               src="/assets/images/footer-benefits/FastDelivery.png" />
-            <span class="footer-benefit__title">Fast Delivery</span>
-            <span class="footer-benefit__description"
-              >Fast and flexible delivery of your choice</span
-            >
+            <span class="footer-benefit__title">{{
+              'FOOTER.DELIVERY' | translate
+            }}</span>
+            <span class="footer-benefit__description">{{
+              'FOOTER.DELIVERY_DESC' | translate
+            }}</span>
           </div>
         </div>
         <div class="column-6 column-medium-3 text-center">
@@ -48,10 +54,12 @@
               alt=""
               class="footer-benefit__image w-25"
               src="/assets/images/footer-benefits/Secure.png" />
-            <span class="footer-benefit__title">100% Secure</span>
-            <span class="footer-benefit__description"
-              >Secure and safe purchase</span
-            >
+            <span class="footer-benefit__title">{{
+              'FOOTER.SECURE' | translate
+            }}</span>
+            <span class="footer-benefit__description">{{
+              'FOOTER.SECURE_DESC' | translate
+            }}</span>
           </div>
         </div>
       </div>
@@ -65,60 +73,64 @@
           </a>
         </div>
         <div class="col-md-3 col-6">
-          <h5 class="footer-menu__header m-b-16px">Categories</h5>
+          <h5 class="footer-menu__header m-b-16px">
+            {{ 'FOOTER.CATEGORIES' | translate }}
+          </h5>
           <ul class="list-unstyled footer-menu__list">
             <li>
               <a
                 [routerLink]="['./category/list/clothing-6082']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                >Clothing</a
+                >{{ 'FOOTER.CLOTHING' | translate }}</a
               >
             </li>
             <li>
               <a
                 [routerLink]="['./category/list/computers-peripherals-2833']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                >Computers & Peripherals</a
+                >{{ 'FOOTER.COMPUTERS' | translate }}</a
               >
             </li>
             <li>
               <a
                 [routerLink]="['./category/list/sport-nutritions-5054']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                >Sport Nutritions</a
+                >{{ 'FOOTER.SPORT_NUTRITIONS' | translate }}</a
               >
             </li>
             <li>
               <a
                 [routerLink]="['./category/list/personal-care-tools-1333']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                >Personal Care Tools</a
+                >{{ 'FOOTER.PERSONAL_CARE' | translate }}</a
               >
             </li>
             <li>
               <a
                 [routerLink]="['./category/list/entertainment-hobby-2836']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                >Entertaiment & Hobby</a
+                >{{ 'FOOTER.HOBBY' | translate }}</a
               >
             </li>
             <li>
               <a
                 [routerLink]="['./category/list/pet-care-2248']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
-                >Pet Care</a
+                >{{ 'FOOTER.PET_CARE' | translate }}</a
               >
             </li>
           </ul>
         </div>
         <div class="col-md-2 col-6">
-          <h5 class="footer-menu__header m-b-16px">Usefull Links</h5>
+          <h5 class="footer-menu__header m-b-16px">
+            {{ 'FOOTER.USEFUL_LINKS' | translate }}
+          </h5>
           <ul class="list-unstyled footer-menu__list">
             <li>
               <a
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 routerLink="./aboutus"
-                >About Us</a
+                >{{ 'FOOTER.ABOUT_US' | translate }}</a
               >
             </li>
             <li>
@@ -126,7 +138,7 @@
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 href="https://blog.appla.cy/careers/en/"
                 target="_blank"
-                >Careers</a
+                >{{ 'FOOTER.CAREERS' | translate }}</a
               >
             </li>
             <li>
@@ -134,21 +146,21 @@
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 href="https://help.appla.cy/"
                 target="_blank"
-                >Help & Contact</a
+                >{{ 'FOOTER.HELP' | translate }}</a
               >
             </li>
             <li>
               <a
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 routerLink="./privacy"
-                >Privacy Policy</a
+                >{{ 'FOOTER.PRIVACY' | translate }}</a
               >
             </li>
             <li>
               <a
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 routerLink="./terms"
-                >Terms & Conditions</a
+                >{{ 'FOOTER.TERMS' | translate }}</a
               >
             </li>
             <li>
@@ -156,26 +168,28 @@
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 href="https://blog.appla.cy/faq-en/"
                 target="_blank"
-                >FAQ</a
+                >{{ 'FOOTER.FAQ' | translate }}</a
               >
             </li>
           </ul>
         </div>
         <div class="col-md-2 col-6">
-          <h5 class="footer-menu__header m-b-16px">Contact information</h5>
+          <h5 class="footer-menu__header m-b-16px">
+            {{ 'FOOTER.CONTACT_INFO' | translate }}
+          </h5>
           <ul class="list-unstyled footer-menu__list">
             <li>
               <a
                 class="footer-menu__list-item d-inline-block m-b-12px w-100"
                 href="tel:+35724506800"
-                >Tel. +357 24506800</a
+                >{{ 'FOOTER.TEL' | translate }} +357 24506800</a
               >
             </li>
             <li>
               <a
                 class="footer-menu__list-item d-inline-block m-b-12px w-100"
                 href="mailto:contact@appla.cy"
-                >Email: contact@appla.cy</a
+                >{{ 'FOOTER.EMAIL' | translate }} contact@appla.cy</a
               >
             </li>
           </ul>
@@ -186,19 +200,21 @@
             <button
               (click)="openLoginModal()"
               class="btn btn-outline-primary login-actions__login m-b-12px">
-              Login
+              {{ 'FOOTER.LOGIN' | translate }}
             </button>
             <a
               class="btn btn-primary login-actions__sign"
               routerLink="./account/register"
-              >Sign Up
+              >{{ 'FOOTER.REGISTER' | translate }}
             </a>
           </div>
         </div>
       </div>
     </section>
     <section class="social text-center">
-      <h5 class="social__header text-uppercase m-b-16px">Follow Appla</h5>
+      <h5 class="social__header text-uppercase m-b-16px">
+        {{ 'FOOTER.FOLLOW_APPLA' | translate }}
+      </h5>
       <ul class="list-inline">
         <li class="list-inline-item">
           <a
@@ -250,9 +266,7 @@
         </li>
       </ul>
       <p *ngIf="isMainPage">
-        Appla.cy is the leading online shopping platform in Cyprus. The biggest
-        marketplace of the island with thousands of products delivered
-        island-wide.
+        {{ 'FOOTER.BOTTOM_TEXT' | translate }}
       </p>
     </section>
     <section class="address text-center m-t-24px">
