@@ -1,7 +1,9 @@
 <div class="product-category-tile">
   <div class="display-flex justify-content-between align-items-center m-b-20px">
     <h3 class="product-category-tile__title">{{ title }}</h3>
-    <a [routerLink]="link">See all</a>
+    <a [routerLink]="link">{{
+      'HOME-PRODUCT-CATEGORIES.SEE_ALL' | translate
+    }}</a>
   </div>
 
   <div class="row">
@@ -12,14 +14,14 @@
           [routerLink]="['./product', entity.store_slug, entity.product_slug]"
           class="display-block product-category-tile__link">
           <img
+            [alt]="entity.name"
             [src]="
               'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
               entity.picture
             "
-            alt=""
             class="m-auto m-b-20px product-category-tile__image" />
           <h3 class="product-category-tile__product-title">
-            {{ entity.name1 }}
+            {{ entity.name }}
           </h3>
           <p class="product-category-tile__product-price">
             {{ entity.price | currency }}

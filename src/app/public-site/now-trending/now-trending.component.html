@@ -1,7 +1,7 @@
 <div class="now-trending">
   <div class="display-flex align-items-center m-b-20px">
     <fa-icon [icon]="faStar" class="now-trending__icon m-r-16px"></fa-icon>
-    <h3 class="now-trending__header">Now trending</h3>
+    <h3 class="now-trending__header">{{ 'NOW_TRENDING.LABEL' | translate }}</h3>
   </div>
 
   <owl-carousel-o [options]="customOptions">
@@ -12,15 +12,15 @@
           class="now-trending__link display-flex flex-column text-center">
           <div class="now-trending__image m-b-16px">
             <img
-              [alt]="trend.name1"
+              [alt]="trend.name"
               [src]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
                 trend.picture
               "
               class="now-trending__image-item" />
           </div>
-          <p>{{ trend.name1 }}</p>
-          <p>{{ trend.count }} products</p>
+          <p>{{ trend.name }}</p>
+          <p>{{ trend.count }} {{ 'NOW_TRENDING.PRODUCTS' | translate }}</p>
         </a>
       </ng-template>
     </ng-container>

@@ -28,11 +28,26 @@
     "PERFUMES": "Парфюм",
     "MAKEUP": "Макияж",
     "JEWELLERY": "Ювелирные изделия",
-    "TOYS": "Игры и игрушки"
+    "TOYS": "Игры и игрушки",
+    "BACKPACKS": "Рюкзаки",
+    "OFFICES": "Офисные столы",
+    "PRINTERS": "Принтеры и сканнеры",
+    "ALL_IN_ONE": "Моноблоки",
+    "HAIR_STYLING": "Инструменты для укладки волос"
   },
   "RECENTLY-VIEWED": {
     "LABEL": "Недавно просмотренные",
     "AVAILABLE_IN": "Доступно в:",
     "SHOPS": "магазинах"
+  },
+  "NOW_TRENDING": {
+    "LABEL": "Популярное",
+    "PRODUCTS": "товаров"
+  },
+  "HOME-PRODUCT-CATEGORIES": {
+    "SMARTPHONES": "Смартфоны",
+    "PERSONAL_CARE": "Личная гигиена",
+    "CLEANING_AGENTS": "Чистящие Средства, Инструментарий И Расходные Материалы Для Уборки",
+    "SEE_ALL": "Посмотреть все"
   }
 }

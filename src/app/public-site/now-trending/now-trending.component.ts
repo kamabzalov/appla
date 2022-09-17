@@ -5,9 +5,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export interface Trend {
   category_id: number;
   count: number;
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
   picture: string;
   slug: string;
 }

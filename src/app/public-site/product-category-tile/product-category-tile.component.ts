@@ -1,16 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 export interface ProductInTile {
-  master_product_id: string;
-  name1: string;
-  name2: string;
-  name3: string;
+  category_name: string;
+  master_product_id: number;
+  name: string;
   picture: string;
   price: number;
   product_slug: string;
   slug: string;
   store_slug: string;
-  url: string;
 }
 
 @Component({

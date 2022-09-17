@@ -28,11 +28,26 @@
     "PERFUMES": "Αρώματα",
     "MAKEUP": "Μακιγιάζ",
     "JEWELLERY": "Κοσμήματα",
-    "TOYS": "Παιχνίδια"
+    "TOYS": "Παιχνίδια",
+    "BACKPACKS": "Σακίδια Πλάτης",
+    "OFFICES": "Τραπέζια Γραφείου",
+    "PRINTERS": "Εκτυπωτές & Σαρωτές",
+    "ALL_IN_ONE": "Σταθμοί Εργασίας",
+    "HAIR_STYLING": "Εργαλεία Μαλλιών"
   },
   "RECENTLY-VIEWED": {
     "LABEL": "Είδατε πρόσφατα",
     "AVAILABLE_IN": "Διαθέσιμο σε:",
     "SHOPS": "Καταστήματα"
+  },
+  "NOW_TRENDING": {
+    "LABEL": "Δημοφιλή προϊόντα",
+    "PRODUCTS": "Προϊόντα"
+  },
+  "HOME-PRODUCT-CATEGORIES": {
+    "SMARTPHONES": "Έξυπνα Τηλέφωνα",
+    "PERSONAL_CARE": "Προσωπική Φροντίδα",
+    "CLEANING_AGENTS": "Μέσα Καθαρισμού, Εργαλεία & Υλικά",
+    "SEE_ALL": "Προβολή όλων"
   }
 }

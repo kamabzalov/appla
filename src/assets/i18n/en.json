@@ -28,11 +28,26 @@
     "PERFUMES": "Perfumes",
     "MAKEUP": "Makeup",
     "JEWELLERY": "Jewellery",
-    "TOYS": "Games and toys"
+    "TOYS": "Games and toys",
+    "BACKPACKS": "Backpacks",
+    "OFFICES": "Offices",
+    "PRINTERS": "Printers",
+    "ALL_IN_ONE": "All-in-One PCs & Workstations",
+    "HAIR_STYLING": "Hair styling tools"
   },
   "RECENTLY-VIEWED": {
     "LABEL": "Recently viewed",
     "AVAILABLE_IN": "Available in:",
     "SHOPS": "shops"
+  },
+  "NOW_TRENDING": {
+    "LABEL": "Now trending",
+    "PRODUCTS": "products"
+  },
+  "HOME-PRODUCT-CATEGORIES": {
+    "SMARTPHONES": "Smartphones",
+    "PERSONAL_CARE": "Personal Care Products",
+    "CLEANING_AGENTS": "Cleaning Agents, Tools & Supplies",
+    "SEE_ALL": "See all"
   }
 }
