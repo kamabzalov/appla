@@ -24,26 +24,30 @@ interface ProductOfferCategory {
   name: string;
   parent_id: number;
   picture: string;
-  product_variant: string;
-  search_field: string;
+  product_variant: string[];
+  search_field: string[];
   slug: string;
 }
 
 interface ProductOfferInfo {
   technical_detail: { [key: string]: any };
-  master_product_id: number;
   category_id: number;
-  name: string;
-  long_description: string;
-  short_description: string;
+  height: number;
   item_model_number: number;
+  length: number;
+  long_description: string;
   manufacturer: string;
+  master_product_id: number;
+  min_price: number;
+  name: string;
   picture: string;
+  short_description: string;
+  weight: number;
+  weight_unit: number;
+  width: number;
 }
 
 interface ProductOfferStores {
-  store_id: number;
-  name: string;
   active: number;
   avatar: string;
   delivery_method: number;
@@ -51,25 +55,27 @@ interface ProductOfferStores {
   free_delivery: number;
   max_delivery: number;
   min_delivery: number;
+  name: string;
+  price: number;
+  product_id: number;
+  product_slug: string;
+  raiting: number;
+  store_id: number;
   store_slug: string;
   user_frontend_id: number;
-  product_slug: string;
-  product_id: number;
-  price: number;
-  raiting: number;
 }
 
-interface ProductOfferSimilar {
-  product_id: number;
+export interface ProductOfferSimilar {
+  category_id: number;
+  discount: number;
   name: string;
   picture: string;
   price: number;
-  discount: number;
-  qty: number;
-  store_id: number;
-  category_id: number;
+  product_id: number;
   product_slug: string;
+  qty: number;
   stars: number;
+  store_id: number;
   store_slug: string;
 }
 

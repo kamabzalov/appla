@@ -1,7 +1,9 @@
-@use '../../../../assets/scss/vars';
-@use '../../../../assets/scss/mixins';
+@use '~assets/scss/vars';
+@use '~assets/scss/mixins';
 
 .similar-products {
+  overflow-x: hidden;
+
   &__link {
     color: inherit;
     max-width: 80%;

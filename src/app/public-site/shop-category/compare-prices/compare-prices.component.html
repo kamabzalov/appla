@@ -1,4 +1,4 @@
-<div *ngIf="productOffer$ | async as offer" class="container p-t-20px">
+<div *ngIf="productOffer$ | async as offer" class="container">
   <section class="m-b-20px">
     <div class="row">
       <div class="column-12 m-b-12px">
@@ -23,12 +23,18 @@
               <div class="column-12 column-medium-9">
                 <p class="fw-semibold">{{ offer.master_product_info.name }}</p>
                 <p (click)="goToProductSpec()" class="appla-link">
-                  Product specification
+                  {{ 'COMPARE-PRICES-PAGE.PRODUCT_SPEС' | translate }}
                 </p>
-                <!--                <p>Weight: {{ offer.master_product_info. }} g</p>-->
                 <p>
-                  View {{ offer.stories.length }} offers, from
-                  <!--                  {{ offer.master_product_info.price }} €-->
+                  {{ 'COMPARE-PRICES-PAGE.WEIGHT' | translate }}:
+                  {{ offer.master_product_info.weight }} g
+                </p>
+                <p>
+                  {{ 'COMPARE-PRICES-PAGE.VIEW' | translate }}
+                  {{ offer.stories.length }}
+                  {{ 'COMPARE-PRICES-PAGE.OFFERS' | translate }},
+                  {{ 'COMPARE-PRICES-PAGE.FROM' | translate }}
+                  {{ offer.master_product_info.min_price | currency }}
                 </p>
               </div>
             </div>
@@ -43,7 +49,8 @@
                 [max]="maxRating"
                 [rate]="offer.rating"
                 [readonly]="true"></ngb-rating>
-              | {{ offer.rating }} reviews
+              | {{ offer.rating }}
+              {{ 'COMPARE-PRICES-PAGE.REVIEWS' | translate }}
             </div>
             <h6>{{ offer.rating }} of {{ maxRating }}</h6>
             <div class="display-flex m-b-4px">
@@ -84,13 +91,20 @@
 
   <section class="m-b-20px">
     <div class="product-offers">
-      <h4 class="text-orange">Offers ({{ offer.stories.length }})</h4>
+      <h4 class="text-orange">
+        {{ 'COMPARE-PRICES-PAGE.OFFERS_HEADER' | translate }} ({{
+          offer.stories.length
+        }})
+      </h4>
       <div class="row">
         <div class="column-12">
           <div class="card-content">
             <div class="product-offers__header">
-              <h5>Compare prices: {{ offer.master_product_info.name }}</h5>
-              <p>Recommended Offers</p>
+              <h5>
+                {{ 'COMPARE-PRICES-PAGE.COMPARE_PRICES' | translate }}:
+                {{ offer.master_product_info.name }}
+              </h5>
+              <p>{{ 'COMPARE-PRICES-PAGE.RECOMMENDED_OFFERS' | translate }}</p>
             </div>
             <div
               *ngFor="let store of offer.stories"
@@ -115,17 +129,20 @@
                       </p>
                     </div>
                     <div class="column-12 column-medium-4">
-                      <p class="badge bg-success">In Stock</p>
+                      <p class="badge bg-success">
+                        {{ 'COMPARE-PRICES-PAGE.IN_STOCK' | translate }}
+                      </p>
                       <p>
                         <fa-icon [icon]="faTruck"></fa-icon>
-                        Shipping not included
+                        {{ 'COMPARE-PRICES-PAGE.SHIPPING' | translate }}
                       </p>
                       <p>
                         <ngb-rating
                           [max]="5"
                           [rate]="store.raiting"
                           [readonly]="true"></ngb-rating>
-                        | {{ store.raiting }} reviews
+                        | {{ store.raiting }}
+                        {{ 'COMPARE-PRICES-PAGE.REVIEWS' | translate }}
                       </p>
                     </div>
                     <div
@@ -138,7 +155,7 @@
                         routerLink="/{{ appLang }}/product/{{
                           store.store_slug
                         }}/{{ store.product_slug }}"
-                        >View offer</a
+                        >{{ 'COMPARE-PRICES-PAGE.VIEW_OFFER' | translate }}</a
                       >
                     </div>
                   </div>
@@ -153,7 +170,7 @@
 
   <section class="m-b-20px" id="product-spec">
     <div class="card-content">
-      <h5>Product Specifications</h5>
+      <h5>{{ 'COMPARE-PRICES-PAGE.PRODUCT_SPEС' | translate }}</h5>
       <ngb-accordion #acc="ngbAccordion">
         <ngb-panel
           *ngFor="
@@ -174,7 +191,7 @@
 
   <section>
     <div class="card-content">
-      <h5>Similar Products</h5>
+      <h5>{{ 'COMPARE-PRICES-PAGE.SIMILAR_PRODUCTS' | translate }}</h5>
       <appla-similar-products
         [similarProducts]="offer.similar_short"></appla-similar-products>
     </div>

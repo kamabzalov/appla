@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { SimilarProduct } from '@app/public-site/shop-product/product-page/product-page.component';
+import { ProductOfferSimilar } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
 
 @Component({
   selector: 'appla-similar-products',
@@ -8,7 +10,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SimilarProductsComponent {
-  @Input() public similarProducts: any[];
+  @Input() public similarProducts: SimilarProduct[] | ProductOfferSimilar[];
 
   protected readonly customOptions: OwlOptions = {
     loop: false,

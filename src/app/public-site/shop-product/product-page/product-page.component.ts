@@ -10,20 +10,15 @@ import { Observable, Subscription, switchMap, tap } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 
 export interface Product {
-  store_name: string;
-  store_avatar: string;
   title: string;
   description: string;
   page: string;
-  cart: any[];
   product: ProductDetails;
-  product_variant: any[];
+  product_variant: ProductVariant[];
   arr_cats: ProductCategory[];
   category_slug: string;
   fav_store: number;
   wish: number;
-  store: StoreData;
-  user_store: UserStore;
   feedbacks: any[];
   feedbacks_count: number;
   sold: number;
@@ -32,190 +27,79 @@ export interface Product {
   seller_feedback: number;
   additional_header: string;
   similar_short: SimilarProduct[];
-  name: string;
   technical_detail: { [key: string]: any };
   product_detail: boolean;
   canonical_link: CanonicalData;
   user: string;
+  is_login: boolean;
 }
 
 export interface SimilarProduct {
-  product_id: number;
-  sku: number;
-  name1: string;
-  name2: string;
-  name3: string;
-  price: number;
-  discount: number;
-  long_description1: number;
-  long_description2: number;
-  long_description3: number;
-  qty: number;
-  date_update: number;
-  user_update: number;
-  status: number;
-  store_id: number;
   category_id: number;
-  picture: string[];
-  short_description1: string;
-  short_description2: string;
-  short_description3: string;
-  weight: number;
-  length: number;
-  width: number;
-  height: number;
-  showcase: string;
-  condition: number;
-  min_order: number;
-  shipping_insurance: number;
-  delivery_service: number;
-  weight_unit: number;
-  slug: string;
-  technical_detail: any;
-  item_model_number: string;
-  manufacturer: string;
-  original_price: number;
-  vat: number;
-  order_fee: number;
-  master_product_id: number;
-  refund_status: number;
-  refund_days: number;
-  comment: number;
-  product_variant: string;
-  gtin: number;
-  created_date: Date;
-  star: number;
-  store_slug: number;
+  discount: number;
+  name: string;
+  picture: string;
+  price: number;
+  product_id: number;
+  product_slug: string;
+  qty: number;
+  sold_count: number;
+  stars: number;
+  store_id: number;
+  store_slug: string;
+}
+
+interface ProductVariant {
+  product_variant_id: number;
+  product_id: number;
+  product_variant: { [key: string]: any };
+  price: number;
+  quantity: number;
+  sku: string;
+  store_id: number;
+  user_create: number;
+  user_update: number;
+  date_create: Date;
+  date_update: Date;
+  status: number;
 }
 
 interface ProductDetails {
   product_id: number;
-  sku: number;
   name: string;
-  price: number;
-  discount: number;
-  long_description1: string;
-  long_description2: string;
-  long_description3: string;
   qty: number;
-  date_update: string;
-  user_update: string;
-  status: number;
-  store_id: number;
-  category_id: number;
+  price: number;
+  technical_detail: { [key: string]: any };
+  master_product_id: number;
   picture: string[];
-  short_description1: string;
-  short_description2: string;
-  short_description3: string;
   weight: number;
   length: number;
   width: number;
   height: number;
-  showcase: string;
-  condition: number;
-  min_order: number;
-  shipping_insurance: number;
-  delivery_service: number;
   weight_unit: number;
-  slug: string;
-  technical_detail: string;
-  item_model_number: string;
+  min_order: number;
+  delivery_service: number;
+  item_model_number: number;
   manufacturer: string;
-  original_price: number;
-  vat: number;
-  order_fee: number;
-  master_product_id: number;
-  refund_status: number;
-  refund_days: number;
-  comment: string;
-  product_variant: string;
-  gtin: string;
-  created_date: string;
+  condition: number;
+  short_description: string;
+  product_slug: string;
+  category_id: number;
   category_name: string;
-  category_name2: string;
-  category_name3: string;
+  category_slug: string;
+  store_id: number;
   store_name: string;
   store_slug: string;
   state: string;
   store_avatar: string;
   store_city: number;
+  product_variant_id: number;
 }
 
 interface ProductCategory {
   cat_id: number;
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
   slug: string;
-}
-
-interface StoreData {
-  store_id: number;
-  name: string;
-  address: string;
-  postal_code: number;
-  phone: number;
-  longitude: number;
-  latitude: number;
-  active: number;
-  date_update: Date;
-  user_update: number;
-  status: number;
-  user_frontend_id: number;
-  avatar: string;
-  city: number;
-  state: string;
-  slug: number;
-  order_fee: number;
-  country: string;
-  acs_station_id: string;
-  ACSApiKey: string;
-  billingCode: number;
-  ACSCompanyID: string;
-  ACSCompanyPassword: number;
-  ACSUserID: number;
-  ACSUserPassword: number;
-  Billing_Code: string;
-  employee: string;
-  lang_preference: number;
-  custom_order_fee: number;
-  delivery_method: number;
-  min_delivery: number;
-  max_delivery: number;
-  free_delivery: number;
-  banner: string;
-  description: string;
-  changed_delivery: number;
-  rule_preference: string;
-}
-
-interface UserStore {
-  user_frontend_id: number;
-  avatar: string;
-  unique_code: string;
-  name: string;
-  gender: string;
-  address: string;
-  email: string;
-  password: string;
-  phone: string;
-  birth: string;
-  point_reward: number;
-  device_id: number;
-  active: number;
-  date_update: Date;
-  user_update: Date;
-  status: number;
-  login_type: string;
-  uuid: number;
-  language_id: number;
-  appla_cash: number;
-  account_number: number;
-  bank_name: string;
-  account_name: string;
-  created_at: Date;
-  account_beneficiary: string;
-  language_preference: number;
 }
 
 interface CanonicalData {
@@ -281,6 +165,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   protected setActive($event: string) {
     this.mainPage = $event;
   }
+
+  protected followStore() {}
 
   private getProductData(
     storeSlug: string,

@@ -80,5 +80,20 @@
     "REGISTER": "Sign Up",
     "FOLLOW_APPLA": "Follow Appla",
     "BOTTOM_TEXT": "Appla.cy is the leading online shopping platform in Cyprus. The biggest marketplace of the island with thousands of products delivered island-wide."
+  },
+  "COMPARE_PRICES_PAGE": {
+    "PRODUCT_SPEС": "Product Specifications",
+    "WEIGHT": "Weight",
+    "VIEW": "View",
+    "OFFERS": "shops",
+    "FROM": "from",
+    "OFFERS_HEADER": "Offers",
+    "REVIEWS": "reviews",
+    "COMPARE_PRICES": "Compare prices",
+    "RECOMMENDED_OFFERS": "Recommended Offers",
+    "IN_STOCK": "In stock",
+    "SHIPPING": "Shipping not included",
+    "VIEW_OFFER": "View offer",
+    "SIMILAR_PRODUCTS": "Similar products"
   }
 }
