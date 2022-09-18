@@ -1,44 +1,48 @@
-<div class="preview-card">
-  <ng-container *ngIf="category; else productTmpl">
-    <button class="button p-0px text-left" type="button">
-      <img
-        [alt]="category.name"
-        [src]="
-          'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
-          category.picture
-        "
-        class="preview-card__image" />
-      <div>
-        <p class="m-b-4px">{{ category.name }}</p>
-        <p class="preview-card__price m-b-4px">
-          {{ category.price_min | currency }} -
-          {{ category.price_max | currency }}
-        </p>
-        <p class="m-b-0px">{{ category._cnt }} (items)</p>
-      </div>
-    </button>
-  </ng-container>
+<ng-container *ngIf="categories; else productTmpl">
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let category of categories">
+      <ng-template carouselSlide>
+        <button class="button text-left" type="button">
+          <img
+            [alt]="category.name"
+            [src]="
+              'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+              category.picture
+            "
+            class="preview-card__image" />
+          <div>
+            <p class="m-b-4px">{{ category.name }}</p>
+            <p class="preview-card__price m-b-4px">
+              {{ category.price_min | currency }} -
+              {{ category.price_max | currency }}
+            </p>
+            <p class="m-b-0px">{{ category._cnt }} (items)</p>
+          </div>
+        </button>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</ng-container>
 
-  <ng-template #productTmpl>
-    <button
-      (click)="goToProduct(product)"
-      class="button p-0px text-left"
-      type="button">
-      <img
-        [alt]="product.name"
-        [src]="
-          'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
-          product.picture
-        "
-        class="preview-card__image" />
-      <p class="m-b-4px">
-        {{ product.name }}
-      </p>
-      <p class="preview-card__price m-b-4px">
-        {{ product.price_min | currency }} - {{ product.price_max | currency }}
-      </p>
-      <p class="m-b-4px">Caregory: {{ product.name }}</p>
-      <p class="m-b-0px">Brand: {{ product.manufacturer }}</p>
-    </button>
-  </ng-template>
-</div>
+<ng-template #productTmpl>
+  <button
+    (click)="goToProduct(product)"
+    class="button p-0px text-left"
+    type="button">
+    <img
+      [alt]="product.name"
+      [src]="
+        'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
+        product.picture
+      "
+      class="preview-card__image" />
+    <p class="m-b-4px">
+      {{ product.name }}
+    </p>
+    <p class="preview-card__price m-b-4px">
+      {{ product.price_min | currency }} - {{ product.price_max | currency }}
+    </p>
+    <p class="m-b-4px">Caregory: {{ product.name }}</p>
+    <p class="m-b-0px">Brand: {{ product.manufacturer }}</p>
+  </button>
+</ng-template>

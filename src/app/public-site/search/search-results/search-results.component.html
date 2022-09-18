@@ -6,38 +6,35 @@
       </div>
     </div>
 
-    <ng-container *ngIf="results.categories">
-      <div class="row">
-        <div class="col-12 text-center m-b-20px">
-          <h2>Categories:</h2>
+    <section class="m-b-20px">
+      <ng-container *ngIf="results.categories">
+        <div class="row">
+          <div class="col-12 text-center m-b-20px">
+            <h2>Categories:</h2>
+          </div>
         </div>
-      </div>
+        <appla-search-result-card
+          [categories]="results.categories.data"></appla-search-result-card>
+      </ng-container>
+    </section>
 
-      <div class="row m-b-20px">
-        <div
-          *ngFor="let category of results.categories.data"
-          class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-8px">
-          <appla-search-result-card
-            [category]="category"></appla-search-result-card>
+    <section>
+      <ng-container *ngIf="results.products">
+        <div class="row">
+          <div class="column-12 text-center m-b-20px">
+            <h2>Products:</h2>
+          </div>
         </div>
-      </div>
-    </ng-container>
 
-    <ng-container *ngIf="results.products">
-      <div class="row">
-        <div class="col-12 text-center m-b-20px">
-          <h2>Products:</h2>
+        <div class="row">
+          <div
+            *ngFor="let product of results.products"
+            class="column-12 column-small-2 p-8-px m-b-8px">
+            <appla-search-result-card
+              [product]="product"></appla-search-result-card>
+          </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div
-          *ngFor="let product of results.products"
-          class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 p-8-px m-b-8px">
-          <appla-search-result-card
-            [product]="product"></appla-search-result-card>
-        </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </section>
   </div>
 </ng-container>

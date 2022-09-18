@@ -11,6 +11,7 @@ import {
 import { RestService } from '@app/services/rest/rest.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'appla-search-result-card',
@@ -19,8 +20,32 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchResultCardComponent implements OnDestroy {
-  @Input() public category: SearchCategory;
+  @Input() public categories: SearchCategory[];
   @Input() public product: SearchProduct;
+  protected readonly customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['<button>&#x2039;</button>', '<button>&#x203A;</button>'],
+    responsive: {
+      0: {
+        items: 2,
+      },
+      400: {
+        items: 2,
+      },
+      740: {
+        items: 6,
+      },
+      940: {
+        items: 6,
+      },
+    },
+    nav: true,
+  };
   private subscription: Subscription;
 
   constructor(private restService: RestService, private router: Router) {}

@@ -46,6 +46,7 @@ export class SearchFormComponent {
       debounceTime(750),
       distinctUntilChanged(),
       switchMap(query => {
+        console.log(query);
         this.resultsProducts$ = this.restService
           .searchProducts(query)
           .pipe(
