@@ -57,7 +57,9 @@ export interface Slugs {
 })
 export class SearchResultsComponent implements OnInit {
   public searchResults$: Observable<SearchResults>;
+  // eslint-disable-next-line no-magic-numbers
   private limit: number = 24;
+  // eslint-disable-next-line no-magic-numbers
   private offset: number = 0;
   private query: string;
   private categoryIdSubscription: Subscription;
