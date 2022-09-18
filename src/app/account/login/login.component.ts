@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { RestService } from '@app/services/rest/rest.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'appla-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private localizeRouterService: LocalizeRouterService,
-    private restService: RestService
+    private restService: RestService,
+    private router: Router
   ) {}
 
   public ngOnInit() {
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
     this.restService.login(this.email, this.password).subscribe(result => {
       this.showError = result.status === 'failed';
       if (result.status === 'success') {
+        this.router.navigate([`${this.appLang}`]);
       }
     });
   }

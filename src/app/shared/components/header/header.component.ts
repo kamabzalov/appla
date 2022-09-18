@@ -12,6 +12,7 @@ import { RestService } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'appla-header',
@@ -30,19 +31,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private offCanvas: NgbOffcanvas,
     private cdr: ChangeDetectorRef,
     private restService: RestService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) {}
 
   public ngOnInit() {
+    this.cookieService.set('Test', 'Hello World');
+    const cookieValue = this.cookieService.get('Test');
+    console.log(cookieValue);
     this.router$ = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // eslint-disable-next-line no-magic-numbers
         this.isMainPage = event.url.split('/').length === 2;
-        // this.setCurrentUrl();
         this.cdr.markForCheck();
       }
     });
     this.restService.isAuthorized().subscribe(res => {
+      console.log(this.cookieService.getAll());
+      console.log(document.cookie);
       this.isLogin = res.status === 'success';
     });
   }

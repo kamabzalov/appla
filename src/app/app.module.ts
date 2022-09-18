@@ -20,6 +20,7 @@ import {
   LocalizeRouterSettings,
 } from '@gilsdav/ngx-translate-router';
 import { localizeBrowserLoaderFactory } from '@app/localize-browser.loader';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -59,6 +60,7 @@ import { localizeBrowserLoaderFactory } from '@app/localize-browser.loader';
       useValue: 'en-GB',
     },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })
