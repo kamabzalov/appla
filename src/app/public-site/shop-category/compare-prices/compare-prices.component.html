@@ -2,9 +2,12 @@
   <section class="m-b-20px">
     <div class="row">
       <div class="column-12 m-b-12px">
-        <a routerLink="./category/list/{{ offer.category.slug }}">{{
-          offer.category.name
-        }}</a>
+        <ng-container *ngFor="let breadcrumb of offer.arr_cats">
+          <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
+            breadcrumb.slug
+          }}</a>
+          /
+        </ng-container>
       </div>
     </div>
     <div class="row">

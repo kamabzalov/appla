@@ -11,11 +11,19 @@ import { combineLatest, Observable, Subscription } from 'rxjs';
 import { LanguageService } from '@app/services/language/language.service';
 
 export interface ProductOffer {
+  arr_cats: Breadcrumb[];
   category: ProductOfferCategory;
   master_product_info: ProductOfferInfo;
   rating: number;
   stories: ProductOfferStores[];
   similar_short: ProductOfferSimilar[];
+}
+
+interface Breadcrumb {
+  cat_id: number;
+  name: string;
+  parent_id: number;
+  slug: string;
 }
 
 interface ProductOfferCategory {

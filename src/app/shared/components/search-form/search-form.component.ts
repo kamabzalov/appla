@@ -3,12 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
   debounceTime,
   distinctUntilChanged,
+  map,
   Observable,
   switchMap,
 } from 'rxjs';
 import { RestService } from '@app/services/rest/rest.service';
 import { iconSet } from '@app/shared/utils/icons';
-import { SearchProduct } from '@app/public-site/search/search-results/search-results.component';
+import {
+  SearchCategory,
+  SearchProduct,
+} from '@app/public-site/search/search-results/search-results.component';
 
 @Component({
   selector: 'appla-search-form',
@@ -18,8 +22,8 @@ import { SearchProduct } from '@app/public-site/search/search-results/search-res
 })
 export class SearchFormComponent {
   protected faSearch = iconSet.faMagnifyingGlass;
-  protected searchQuery: any;
-  protected resultsProducts$: Observable<SearchProduct[]>;
+  protected searchQuery: SearchCategory | SearchProduct;
+  protected resultsProducts$: Observable<any[]>;
 
   constructor(
     private router: Router,
@@ -31,10 +35,7 @@ export class SearchFormComponent {
     this.router.navigate(['Search'], {
       relativeTo: this.route,
       queryParams: {
-        string:
-          typeof this.searchQuery === 'string'
-            ? this.searchQuery
-            : this.searchQuery.name1,
+        string: this.searchQuery.name,
       },
     });
   }
@@ -45,12 +46,16 @@ export class SearchFormComponent {
       debounceTime(750),
       distinctUntilChanged(),
       switchMap(query => {
-        this.resultsProducts$ = this.restService.searchProducts(query);
+        this.resultsProducts$ = this.restService
+          .searchProducts(query)
+          .pipe(
+            map(results => [...results.categories.data, ...results.products])
+          );
         return this.resultsProducts$;
       })
     );
 
-  protected formatter(result: SearchProduct): string {
-    return result.name1;
+  protected formatter(result: SearchProduct | SearchCategory): string {
+    return result.name;
   }
 }

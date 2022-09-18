@@ -95,5 +95,13 @@
     "SHIPPING": "Доставка не включена",
     "VIEW_OFFER": "Просмотреть предложение",
     "SIMILAR_PRODUCTS": "Похожие товары"
+  },
+  "CATEGORY-PAGE": {
+    "CATEGORIES_LABEL": "Категории",
+    "ALL_CATEGORIES": "All categories",
+    "FILTER_PRICE": "Цена",
+    "SHOWING": "Отображено",
+    "SHOWING_ITEMS": "штук",
+    "LOAD_MORE": "Загрузить больше"
   }
 }

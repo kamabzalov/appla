@@ -95,5 +95,13 @@
     "SHIPPING": "Δεν περιλαμβάνονται τα έξοδα αποστολής",
     "VIEW_OFFER": "Προβολή προϊόντος Προσφορά",
     "SIMILAR_PRODUCTS": "Παρόμοια Προϊόντα"
+  },
+  "CATEGORY-PAGE": {
+    "CATEGORIES_LABEL": "ΚΑΤΗΓΟΡΙΕΣ",
+    "ALL_CATEGORIES": "Όλες οι κατηγορίες",
+    "FILTER_PRICE": "ΤΙΜΗ",
+    "SHOWING": "Εμφανίζονται",
+    "SHOWING_ITEMS": "Προϊόντα",
+    "LOAD_MORE": "Φόρτωσε περισσότερα"
   }
 }

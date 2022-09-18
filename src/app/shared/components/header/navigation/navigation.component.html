@@ -18,9 +18,9 @@
                   <a
                     applaCloseDropdown
                     class="nav-item-megamenu__first-level"
-                    routerLink="/{{ appLanguage }}/category/list/{{
-                      firstLevel.link
-                    }}"
+                    routerLink="/{{
+                      (appLanguage$ | async)?.code
+                    }}/category/list/{{ firstLevel.link }}"
                     >{{ firstLevel.name }}</a
                   >
                   <ul class="list-unstyled second-level m-t-12px">
@@ -33,9 +33,9 @@
                       <a
                         applaCloseDropdown
                         class="second-level__link"
-                        routerLink="/{{ appLanguage }}/category/list/{{
-                          secondLevel.value
-                        }}"
+                        routerLink="/{{
+                          (appLanguage$ | async)?.code
+                        }}/category/list/{{ secondLevel.value }}"
                         >{{ secondLevel.name }}</a
                       >
                     </li>
@@ -56,7 +56,7 @@
                   class="commercial-product text-center m-b-12px">
                   <a
                     applaCloseDropdown
-                    routerLink="/{{ appLanguage }}/product/{{
+                    routerLink="/{{ (appLanguage$ | async)?.code }}/product/{{
                       product.store_slug
                     }}/{{ product.slug }}">
                     <img

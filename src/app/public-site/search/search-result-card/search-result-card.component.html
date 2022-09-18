@@ -2,14 +2,14 @@
   <ng-container *ngIf="category; else productTmpl">
     <button class="button p-0px text-left" type="button">
       <img
-        [alt]="category.cat_name1"
+        [alt]="category.name"
         [src]="
           'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
           category.picture
         "
         class="preview-card__image" />
       <div>
-        <p class="m-b-4px">{{ category.cat_name1 }}</p>
+        <p class="m-b-4px">{{ category.name }}</p>
         <p class="preview-card__price m-b-4px">
           {{ category.price_min | currency }} -
           {{ category.price_max | currency }}
@@ -25,19 +25,19 @@
       class="button p-0px text-left"
       type="button">
       <img
-        [alt]="product.name1"
+        [alt]="product.name"
         [src]="
           'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
           product.picture
         "
         class="preview-card__image" />
       <p class="m-b-4px">
-        {{ product.name1 }}
+        {{ product.name }}
       </p>
       <p class="preview-card__price m-b-4px">
         {{ product.price_min | currency }} - {{ product.price_max | currency }}
       </p>
-      <p class="m-b-4px">Caregory: {{ product.cat_name1 }}</p>
+      <p class="m-b-4px">Caregory: {{ product.name }}</p>
       <p class="m-b-0px">Brand: {{ product.manufacturer }}</p>
     </button>
   </ng-template>

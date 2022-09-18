@@ -95,5 +95,13 @@
     "SHIPPING": "Shipping not included",
     "VIEW_OFFER": "View offer",
     "SIMILAR_PRODUCTS": "Similar products"
+  },
+  "CATEGORY-PAGE": {
+    "CATEGORIES_LABEL": "Categories",
+    "ALL_CATEGORIES": "All categories",
+    "FILTER_PRICE": "Price",
+    "SHOWING": "Showing",
+    "SHOWING_ITEMS": "item(s)",
+    "LOAD_MORE": "Load more"
   }
 }

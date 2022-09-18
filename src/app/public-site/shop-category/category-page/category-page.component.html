@@ -1,33 +1,44 @@
 <section class="container-fluid p-t-20px">
   <ng-container *ngIf="categoryData$ | async as category">
     <div class="row">
-      <div class="column-3 display-none display-small-block">
-        <aside>
+      <div class="column-12 column-small-3">
+        <aside class="m-b-20px m-b-small-0px">
           <div class="card-content m-b-20px">
-            <appla-aside-widget widgetHeader="Categories">
+            <appla-aside-widget
+              widgetHeader="{{ 'CATEGORY-PAGE.CATEGORIES_LABEL' | translate }}">
               <ul class="subcategories-list list-unstyled p-r-20px">
                 <li>
                   <a
                     class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
                     routerLink="/{{ appLang }}/category"
-                    >All Categories</a
+                    >{{ 'CATEGORY-PAGE.ALL_CATEGORIES' | translate }}</a
                   >
                 </li>
-                <li *ngFor="let subcategory of category.subcategories">
+                <li>
                   <a
                     class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
-                    routerLink="/{{ appLang }}/category/list/{{
-                      subcategory.slug
-                    }}"
-                    >{{ subcategory.name1 }}</a
+                    routerLink="/{{ category.this_category.slug }}/category"
+                    >{{ category.this_category.name }}</a
                   >
+                  <ul class="list-unstyled p-l-12px">
+                    <li *ngFor="let subcategory of category.subcategories">
+                      <a
+                        class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
+                        routerLink="/{{ appLang }}/category/list/{{
+                          subcategory.slug
+                        }}"
+                        >{{ subcategory.name }}</a
+                      >
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </appla-aside-widget>
           </div>
 
           <div class="card-content m-b-20px">
-            <appla-aside-widget widgetHeader="Price">
+            <appla-aside-widget
+              widgetHeader="{{ 'CATEGORY-PAGE.FILTER_PRICE' | translate }}">
               <form (ngSubmit)="filterByPrice()" class="form-price">
                 <div class="row">
                   <div class="col-5">
@@ -61,7 +72,9 @@
                   <div
                     class="display-flex justify-content-space-between p-l-4px p-r-12px m-b-8px">
                     <span>{{ obj.value }}</span>
-                    <input (change)="handleFilter(filter)" type="checkbox" />
+                    <input
+                      (change)="handleFilter(filter.filterKey, obj.value)"
+                      type="checkbox" />
                   </div>
                 </ng-container>
               </appla-aside-widget>
@@ -122,7 +135,8 @@
             <div class="row">
               <div class="column-12">
                 <h4 class="category-products__summary">
-                  Showing {{ category.count_products }} item(s) : "{{
+                  {{ 'CATEGORY-PAGE.SHOWING' | translate }}
+                  {{ category.count_products }} item(s) : "{{
                     category.this_category.name
                       ? category.this_category.name
                       : 'All Categories'
@@ -141,9 +155,9 @@
             </div>
           </div>
 
-          <div class="text-center">
+          <div *ngIf="category.products.length" class="text-center">
             <button (click)="loadMoreProducts()" class="button button_orange">
-              Load more
+              {{ 'CATEGORY-PAGE.LOAD_MORE' | translate }}
             </button>
           </div>
         </main>

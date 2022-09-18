@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { LanguageService } from '@app/services/language/language.service';
 
@@ -19,63 +19,24 @@ export interface Category {
 }
 
 export interface CategoryProduct {
-  updates: string;
-  master_product_id: number;
-  category_id: number;
-  sku: number;
-  gtin: string;
-  name1: string;
-  name2: string;
-  name3: string;
-  long_description1: string;
-  long_description2: string;
-  long_description3: string;
-  short_description1: string;
-  short_description2: string;
-  short_description3: string;
-  weight: number;
-  weight_unit: number;
-  length: number;
-  width: number;
-  height: number;
-  item_model_number: number;
-  manufacturer: string;
-  technical_detail: string;
-  date_update: Date;
-  user_update: number;
-  status: number;
-  picture: string;
-  price: number;
-  type_id: number;
-  store_id: number;
-  position: string;
-  en_title: string;
-  gr_title: string;
-  ru_title: string;
-  en_description: string;
-  gr_description: string;
-  ru_description: string;
-  en_product_title: string;
-  gr_product_title: string;
-  ru_product_title: string;
-  en_product_description: string;
-  gr_product_description: string;
-  ru_product_description: string;
   category_slug: string;
-  count_products: number;
-  min_price: number;
-  max_price: number;
-  product_ids: number;
   count_all_products: number;
+  count_products: number;
+  master_product_id: number;
+  max_price: number;
+  min_price: number;
+  name: string;
+  picture: string;
+  product_ids: number;
+  updates: string;
   to_link: ToLink[];
 }
 
 export interface Subcategory {
   category_id: number;
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
   slug: string;
+  specification_data: any[];
 }
 
 export interface CurrentCategory {
@@ -89,9 +50,9 @@ export interface ProductFilter {
 }
 
 interface ToLink {
-  store_slug: string;
-  product_slug: string;
   category_slug: string;
+  product_slug: string;
+  store_slug: string;
 }
 
 const SORTING = [
@@ -119,14 +80,14 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   protected faChevronRight = iconSet.faChevronRight;
   protected faTags = iconSet.faTags;
   protected faSearch = iconSet.faMagnifyingGlass;
-  protected minPrice: number;
-  protected maxPrice: number;
+  protected minPrice: number | null;
+  protected maxPrice: number | null;
   protected searchInCategory: string;
   protected productFilters: ProductFilter[] = [];
   protected order: string = 'date_update_asc';
   protected appLang: string;
   protected sorting = SORTING;
-  protected categoryData$: Observable<Category>;
+  protected categoryData$: Observable<Category | null>;
 
   // eslint-disable-next-line no-magic-numbers
   private offset = 0;
@@ -134,6 +95,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   private readonly limit = 48;
   private slug = 'all-categories';
   private categoryIdSubscription = new Subscription();
+  private categorySubject$: BehaviorSubject<Category | null> =
+    new BehaviorSubject<Category | null>(null);
 
   constructor(
     private route: ActivatedRoute,
@@ -143,10 +106,13 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.appLang = this.languageService.currentAppLang$.getValue().code;
+    this.categoryData$ = this.categorySubject$.asObservable();
     this.categoryIdSubscription = this.route.url.subscribe(res => {
       if (res.length && res[1]) {
         this.slug = res[1].path;
       }
+      this.minPrice = null;
+      this.maxPrice = null;
       this.getCategoryData(this.limit, this.offset, this.order, this.slug);
     });
   }
@@ -184,11 +150,20 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     this.getCategoryData(this.limit, this.offset, this.order, this.slug);
   }
 
-  protected handleFilter(filter: ProductFilter) {
-    this.productFilters.push(filter);
+  protected handleFilter(filterKey: string, filterValue: string) {
+    const isFound = this.productFilters.find(
+      item => item.filterKey === filterKey
+    );
+    if (!isFound) {
+      this.productFilters.push({ filterKey, filterValue });
+    } else {
+      // this.productFilters.splice(this.productFilters.indexOf(filterKey), 1);
+    }
+    console.log(this.productFilters);
   }
 
   protected loadMoreProducts() {
+    // eslint-disable-next-line no-magic-numbers
     this.offset = this.offset + this.limit;
     this.getCategoryData(this.limit, this.offset, this.order, this.slug);
   }
@@ -198,18 +173,30 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     offset: number,
     order: string,
     slug: string,
-    minPrice?: number,
-    maxPrice?: number,
+    minPrice?: number | null,
+    maxPrice?: number | null,
     searchQuery?: string
   ) {
-    this.categoryData$ = this.restService.getAllProductCategories(
-      limit,
-      offset,
-      order,
-      slug,
-      minPrice,
-      maxPrice,
-      searchQuery
-    );
+    this.restService
+      .getAllProductCategories(
+        limit,
+        offset,
+        order,
+        slug,
+        minPrice,
+        maxPrice,
+        searchQuery
+      )
+      .subscribe(res => {
+        const currentCategories = this.categorySubject$.getValue();
+        if (currentCategories && res) {
+          currentCategories.products = currentCategories.products.concat(
+            res.products
+          );
+          this.categorySubject$.next(currentCategories);
+        } else {
+          this.categorySubject$.next(res);
+        }
+      });
   }
 }

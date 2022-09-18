@@ -1,7 +1,7 @@
 <form (ngSubmit)="search()" class="search-form display-flex">
   <div class="control-group flex-grow-1 m-b-0px">
     <ng-template #rt let-r="result" let-t="term">
-      <ngb-highlight [result]="r.name1" [term]="t"></ngb-highlight>
+      <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
     </ng-template>
 
     <input

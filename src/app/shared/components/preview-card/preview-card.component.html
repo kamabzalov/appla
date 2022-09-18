@@ -9,19 +9,20 @@
       class="preview-card__image" />
     <div>
       <p class="preview-card__name m-b-4px">
-        {{ product.name1 }}
+        {{ product.name }}
       </p>
       <p class="preview-card__price m-b-4px">
         <ng-container
           *ngIf="
-            product.price && product.count_products === 1;
+            product.min_price && product.count_products === 1;
             else masterProductPrice
           ">
-          {{ product.price | currency }}
+          {{ product.min_price | currency }}
         </ng-container>
 
         <ng-template #masterProductPrice>
-          {{ product.min_price | currency }}
+          {{ product.min_price | currency }} -
+          {{ product.max_price | currency }}
         </ng-template>
       </p>
       <p class="m-b-0px">Available in {{ product.count_products }} (items)</p>

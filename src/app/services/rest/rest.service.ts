@@ -4,7 +4,6 @@ import { Trend } from '@app/public-site/now-trending/now-trending.component';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { StoreOffers } from '@app/public-site/store-offers/store-offers.component';
 import {
-  SearchProduct,
   SearchResults,
   Slugs,
 } from '@app/public-site/search/search-results/search-results.component';
@@ -120,9 +119,9 @@ export class RestService {
     offset: number,
     order: string,
     slug: string,
-    minPrice?: number,
-    maxPrice?: number,
-    searchQuery?: string
+    minPrice?: number | null,
+    maxPrice?: number | null,
+    searchQuery?: string | undefined
   ): Observable<Category> {
     let params = new HttpParams()
       .set('slug', slug)
@@ -181,13 +180,13 @@ export class RestService {
       .pipe(map(response => response.data));
   }
 
-  public searchProducts(query: string): Observable<SearchProduct[]> {
+  public searchProducts(query: string): Observable<SearchResults> {
     const langId = this.languageService.currentAppLang$.getValue().id;
     return this.http
       .get<BackendResponse>(
         `${this.basePath}Angular/Search?string=${query}&lang_id=${langId}`
       )
-      .pipe(map(response => (response.data as SearchResults).products));
+      .pipe(map(response => response.data));
   }
 
   public login(email: string, password: string): Observable<BackendResponse> {
@@ -211,9 +210,8 @@ export class RestService {
   }
 
   public isAuthorized(): Observable<BackendResponse> {
-    const lang_id = this.languageService.currentAppLang$.getValue().id;
     return this.http.get<BackendResponse>(
-      `${this.basePath}Angular/Auth/checkAuth?lang_id=${lang_id}`
+      `${this.basePath}Angular/Auth/checkAuth`
     );
   }
 

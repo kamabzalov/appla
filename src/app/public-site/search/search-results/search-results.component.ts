@@ -14,10 +14,8 @@ export interface SearchCategoryResult {
 }
 
 export interface SearchCategory {
-  cat_name1: string;
-  cat_name2: string;
-  cat_name3: string;
   category_id: number;
+  name: string;
   pic: string;
   picture: string;
   price_max: number;
@@ -27,20 +25,15 @@ export interface SearchCategory {
 }
 
 export interface SearchProduct {
-  cat_name1: string;
-  cat_name2: string;
-  cat_name3: string;
   manufacturer: string;
   master_product_id: number;
-  name1: string;
-  name2: string;
-  name3: string;
+  name: string;
   name_all_lower: string;
   not_used_words: string;
   picture: string;
-  price_max: string;
-  price_min: string;
-  similarity_: string;
+  price_max: number;
+  price_min: number;
+  similarity_: number;
   sort_cat: string;
   str_tsquery: string;
   str_tsvector: string;

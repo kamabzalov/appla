@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RestService } from '@app/services/rest/rest.service';
 import { distinctUntilChanged, Observable, switchMap } from 'rxjs';
-import { LanguageService } from '@app/services/language/language.service';
+import {
+  AppLanguage,
+  LanguageService,
+} from '@app/services/language/language.service';
 
 export interface Menu {
   id: number;
@@ -38,7 +41,7 @@ interface CommercialProduct {
 })
 export class NavigationComponent implements OnInit {
   protected menu$: Observable<Menu[]>;
-  protected appLanguage: string;
+  protected appLanguage$: Observable<AppLanguage>;
 
   constructor(
     private restService: RestService,
@@ -46,7 +49,7 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.appLanguage = this.languageService.currentAppLang$.getValue().code;
+    this.appLanguage$ = this.languageService.currentAppLang$.asObservable();
     this.menu$ = this.languageService.currentAppLang$.pipe(
       distinctUntilChanged(),
       switchMap(_ => this.restService.getSiteMenu())
