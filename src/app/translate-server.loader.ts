@@ -20,12 +20,11 @@ export class TranslateServerLoader implements TranslateLoader {
       const assetsFolder = join(
         process.cwd(),
         'dist',
-        'localize', // Your project name here
+        'appla',
         'browser',
         'assets',
         this.prefix
       );
-
       const jsonData = JSON.parse(
         fs.readFileSync(`${assetsFolder}/${lang}${this.suffix}`, 'utf8')
       );

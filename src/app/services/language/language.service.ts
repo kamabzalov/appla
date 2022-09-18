@@ -32,7 +32,6 @@ export class LanguageService {
   constructor(public translate: TranslateService) {
     const langs = AppLanguages.map(item => item.code);
     translate.addLangs(langs);
-    translate.use('el');
   }
 
   public setLanguage(langCode: string) {

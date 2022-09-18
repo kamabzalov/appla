@@ -112,7 +112,8 @@ export class ComparePricesComponent implements OnInit, OnDestroy {
     this.appLang = this.languageService.currentAppLang$.getValue().code;
     this.productOfferUrl$ = combineLatest(
       this.route.queryParams,
-      this.route.params
+      this.route.params,
+      this.languageService.currentAppLang$.asObservable()
     ).subscribe(res => {
       // eslint-disable-next-line no-magic-numbers
       if (res && res.length > 1) {

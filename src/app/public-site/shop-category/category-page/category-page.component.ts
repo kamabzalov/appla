@@ -6,9 +6,9 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
-import { LanguageService } from '@app/services/language/language.service';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 
 export interface Category {
   products: CategoryProduct[];
@@ -85,10 +85,9 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   protected searchInCategory: string;
   protected productFilters: ProductFilter[] = [];
   protected order: string = 'date_update_asc';
-  protected appLang: string;
   protected sorting = SORTING;
   protected categoryData$: Observable<Category | null>;
-
+  protected appLang: string;
   // eslint-disable-next-line no-magic-numbers
   private offset = 0;
   // eslint-disable-next-line no-magic-numbers
@@ -101,14 +100,12 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private restService: RestService,
-    private languageService: LanguageService
+    private localizeRouterService: LocalizeRouterService
   ) {}
 
   public ngOnInit(): void {
-    this.appLang = this.languageService.currentAppLang$.getValue().code;
-    this.categoryData$ = this.categorySubject$
-      .asObservable()
-      .pipe(tap(res => console.log(res)));
+    this.appLang = this.localizeRouterService.parser.currentLang;
+    this.categoryData$ = this.categorySubject$.asObservable();
     this.route.url.subscribe(res => {
       if (res.length && res[1]) {
         this.slug = res[1].path;
@@ -166,9 +163,18 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   }
 
   protected loadMoreProducts() {
-    // eslint-disable-next-line no-magic-numbers
     this.offset = this.offset + this.limit;
-    this.getCategoryData(this.limit, this.offset, this.order, this.slug);
+    this.restService
+      .getAllProductCategories(this.limit, this.offset, this.order, this.slug)
+      .subscribe(res => {
+        const currentCategories = this.categorySubject$.getValue();
+        if (currentCategories) {
+          currentCategories.products = currentCategories.products.concat(
+            res.products
+          );
+          this.categorySubject$.next(currentCategories);
+        }
+      });
   }
 
   private getCategoryData(
@@ -191,16 +197,5 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
         searchQuery
       )
       .subscribe(res => this.categorySubject$.next(res));
-    // .subscribe(res => {
-    //   const currentCategories = this.categorySubject$.getValue();
-    //   if (currentCategories && res) {
-    //     currentCategories.products = currentCategories.products.concat(
-    //       res.products
-    //     );
-    //     this.categorySubject$.next(currentCategories);
-    //   } else {
-    //     this.categorySubject$.next(res);
-    //   }
-    // });
   }
 }

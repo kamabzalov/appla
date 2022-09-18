@@ -32,6 +32,7 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.currentLang = this.localizeRouterService.parser.currentLang;
+    this.languageService.setLanguage(this.currentLang);
 
     this.routerSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -47,15 +48,31 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
   }
 
   protected setLang(langCode?: string) {
-    // eslint-disable-next-line no-magic-numbers
+    let newUrl;
     if (langCode) {
       this.currentLang = langCode;
       this.languageService.setLanguage(langCode);
-      const urlPath = this.router.url.split('/').slice(2);
+      const mpi = this.route.snapshot.queryParams['mpi'];
+      const urlPath = this.router.url
+        .split('/')
+        // eslint-disable-next-line no-magic-numbers
+        .slice(2)
+        .map(item => {
+          // eslint-disable-next-line no-magic-numbers
+          if (item.split('?').length > 1) {
+            return item.split('?')[0];
+          }
+          return item;
+        });
       if (urlPath.length) {
-        this.router.navigate([`/${langCode}/${urlPath.join('/')}`]);
+        newUrl = `/${langCode}/${urlPath.join('/')}`;
       } else {
-        this.router.navigate([`/${langCode}`]);
+        newUrl = `/${langCode}`;
+      }
+      if (mpi) {
+        this.router.navigate([newUrl], { queryParams: { mpi } });
+      } else {
+        this.router.navigate([newUrl]);
       }
     }
   }
