@@ -116,6 +116,13 @@
     "DESCRIPTION": "By registering, I agree to the",
     "TERMS": "Terms & Conditions",
     "AND": "and",
-    "PRIVACY": "Πολιτική Απορρήτου"
+    "PRIVACY": "Privacy Policy"
+  },
+  "LOGIN-PAGE": {
+    "LABEL": "Login",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "NOT_HAVE_ACCOUNT": "Don't have an account?",
+    "SIGN_UP": "Sign up"
   }
 }

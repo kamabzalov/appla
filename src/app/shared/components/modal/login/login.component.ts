@@ -12,9 +12,9 @@ export interface AuthStatus {
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  public email: string;
-  public password: string;
-  public showError: boolean;
+  protected showError: boolean;
+  protected email: string;
+  protected password: string;
 
   constructor(
     public activeModal: NgbActiveModal,

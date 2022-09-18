@@ -16,14 +16,19 @@ export class PageComponent {
   ) {}
 
   protected setLang(lang: 'en' | 'el' | 'ru') {
-    // setAppLang(lang);
     this.languageService.setLanguage(lang);
-    const activeUrl = this.router.url.split('/');
-    const currentLang = this.route.snapshot.params['langCode'];
-    const newPathUrl = activeUrl
+    const urlPath = this.router.url
+      .split('/')
       // eslint-disable-next-line no-magic-numbers
-      .slice(activeUrl.indexOf(currentLang) + 1)
-      .join('/');
-    // this.router.navigate([`/${lang}/${newPathUrl}`]);
+      .slice(2)
+      .map(item => {
+        // eslint-disable-next-line no-magic-numbers
+        if (item.split('?').length > 1) {
+          return item.split('?')[0];
+        }
+        return item;
+      });
+    const newUrl = `/${lang}/${urlPath.join('/')}`;
+    this.router.navigate([newUrl]);
   }
 }

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { LanguageService } from '@app/services/language/language.service';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { RestService } from '@app/services/rest/rest.service';
 
 @Component({
   selector: 'appla-login',
@@ -9,10 +10,24 @@ import { LanguageService } from '@app/services/language/language.service';
 })
 export class LoginComponent implements OnInit {
   protected appLang: string;
+  protected showError: boolean;
+  protected email: string;
+  protected password: string;
 
-  constructor(private languageService: LanguageService) {}
+  constructor(
+    private localizeRouterService: LocalizeRouterService,
+    private restService: RestService
+  ) {}
 
   public ngOnInit() {
-    this.appLang = this.languageService.currentAppLang$.getValue().code;
+    this.appLang = this.localizeRouterService.parser.currentLang;
+  }
+
+  protected login() {
+    this.restService.login(this.email, this.password).subscribe(result => {
+      this.showError = result.status === 'failed';
+      if (result.status === 'success') {
+      }
+    });
   }
 }

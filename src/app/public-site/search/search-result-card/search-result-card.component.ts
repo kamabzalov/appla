@@ -12,6 +12,7 @@ import { RestService } from '@app/services/rest/rest.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 
 @Component({
   selector: 'appla-search-result-card',
@@ -22,6 +23,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class SearchResultCardComponent implements OnDestroy {
   @Input() public categories: SearchCategory[];
   @Input() public product: SearchProduct;
+  protected currentLang: string;
   protected readonly customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -48,7 +50,11 @@ export class SearchResultCardComponent implements OnDestroy {
   };
   private subscription: Subscription;
 
-  constructor(private restService: RestService, private router: Router) {}
+  constructor(
+    private restService: RestService,
+    private router: Router,
+    private localizeRouterService: LocalizeRouterService
+  ) {}
 
   public ngOnDestroy() {
     if (this.subscription) {
@@ -57,14 +63,22 @@ export class SearchResultCardComponent implements OnDestroy {
   }
 
   protected goToProduct(product: SearchProduct) {
+    this.currentLang = this.localizeRouterService.parser.currentLang;
     this.subscription = this.restService
       .getProductByMasterId(product.master_product_id)
       .subscribe(result => {
         // eslint-disable-next-line no-magic-numbers
         if (result.length === 1) {
           this.router.navigate([
-            `/product/${result[0].store_slug}/${result[0].product_slug}`,
+            `/${this.currentLang}/product/${result[0].store_slug}/${result[0].product_slug}`,
           ]);
+        } else {
+          this.router.navigate(
+            [
+              `/${this.currentLang}/category/product_list/${result[0].product_slug}`,
+            ],
+            { queryParams: { mpi: product.master_product_id } }
+          );
         }
       });
   }
