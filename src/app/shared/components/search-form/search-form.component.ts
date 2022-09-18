@@ -22,7 +22,7 @@ import {
 })
 export class SearchFormComponent {
   protected faSearch = iconSet.faMagnifyingGlass;
-  protected searchQuery: SearchCategory | SearchProduct;
+  protected searchQuery: SearchCategory | SearchProduct | null;
   protected resultsProducts$: Observable<any[]>;
 
   constructor(
@@ -32,12 +32,14 @@ export class SearchFormComponent {
   ) {}
 
   public search() {
-    this.router.navigate(['Search'], {
-      relativeTo: this.route,
-      queryParams: {
-        string: this.searchQuery.name,
-      },
-    });
+    this.router
+      .navigate(['Search'], {
+        relativeTo: this.route,
+        queryParams: {
+          string: this.searchQuery ? this.searchQuery.name : '',
+        },
+      })
+      .then(_ => (this.searchQuery = null));
   }
 
   protected searchTypeAhead = (text$: Observable<string>) =>
@@ -46,7 +48,6 @@ export class SearchFormComponent {
       debounceTime(750),
       distinctUntilChanged(),
       switchMap(query => {
-        console.log(query);
         this.resultsProducts$ = this.restService
           .searchProducts(query)
           .pipe(

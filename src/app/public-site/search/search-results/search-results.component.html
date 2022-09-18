@@ -18,7 +18,7 @@
       </ng-container>
     </section>
 
-    <section>
+    <section class="m-b-20px">
       <ng-container *ngIf="results.products">
         <div class="row">
           <div class="column-12 text-center m-b-20px">
@@ -36,5 +36,13 @@
         </div>
       </ng-container>
     </section>
+
+    <div class="row">
+      <div class="column-12 text-center">
+        <button (click)="loadMoreProducts()" class="button button_orange">
+          {{ 'SEARCH-PAGE.LOAD_MORE' | translate }}
+        </button>
+      </div>
+    </div>
   </div>
 </ng-container>

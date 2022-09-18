@@ -69,4 +69,6 @@ export class SearchResultsComponent implements OnInit {
         (this.searchResults$ = this.restService.searchInShop(params['string']))
     );
   }
+
+  protected loadMoreProducts() {}
 }

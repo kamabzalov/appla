@@ -148,15 +148,18 @@ export class RestService {
       )
       .pipe(
         map(response => {
-          const filters: any = (response.data as Category).filters;
-          const filterKeys = Object.keys(filters);
-          const productFilters: ProductFilter[] = filterKeys.map(key => {
-            return {
-              filterKey: key,
-              filterValue: filters[key],
-            };
-          });
-          return { ...response.data, filters: productFilters };
+          if (response.data.filter) {
+            const filters: any = (response.data as Category).filters;
+            const filterKeys = Object.keys(filters);
+            const productFilters: ProductFilter[] = filterKeys.map(key => {
+              return {
+                filterKey: key,
+                filterValue: filters[key],
+              };
+            });
+            return { ...response.data, filters: productFilters };
+          }
+          return response.data;
         })
       );
   }

@@ -50,7 +50,7 @@
         [(ngbCollapse)]="isCategoriesCollapsed">
         <ul class="list-no-bullets p-l-20px p-t-20px p-r-20px">
           <li *ngFor="let category of menu$ | async" class="m-b-8px">
-            <a class="sidenav-menu__link">{{ category.name }}</a>
+            <a class="sidenav-menu__link" routerLink="">{{ category.name }}</a>
           </li>
         </ul>
       </div>

@@ -103,5 +103,19 @@
     "SHOWING": "Showing",
     "SHOWING_ITEMS": "item(s)",
     "LOAD_MORE": "Load more"
+  },
+  "SEARCH-PAGE": {
+    "LOAD_MORE": "Load more"
+  },
+  "REGISTER-PAGE": {
+    "SIGN_UP": "Sign Up now",
+    "ALREADY_HAVE_ACCOUNT": "Already have an account?",
+    "LOGIN": "Login",
+    "EMAIL": "Email",
+    "REGISTER": "Register",
+    "DESCRIPTION": "By registering, I agree to the",
+    "TERMS": "Terms & Conditions",
+    "AND": "and",
+    "PRIVACY": "Πολιτική Απορρήτου"
   }
 }

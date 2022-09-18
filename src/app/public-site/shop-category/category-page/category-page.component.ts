@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { LanguageService } from '@app/services/language/language.service';
 
@@ -106,8 +106,10 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.appLang = this.languageService.currentAppLang$.getValue().code;
-    this.categoryData$ = this.categorySubject$.asObservable();
-    this.categoryIdSubscription = this.route.url.subscribe(res => {
+    this.categoryData$ = this.categorySubject$
+      .asObservable()
+      .pipe(tap(res => console.log(res)));
+    this.route.url.subscribe(res => {
       if (res.length && res[1]) {
         this.slug = res[1].path;
       }
@@ -121,6 +123,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     if (this.categoryIdSubscription) {
       this.categoryIdSubscription.unsubscribe();
     }
+    this.categorySubject$.next(null);
+    this.categorySubject$.complete();
   }
 
   protected filterByPrice() {
@@ -159,7 +163,6 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     } else {
       // this.productFilters.splice(this.productFilters.indexOf(filterKey), 1);
     }
-    console.log(this.productFilters);
   }
 
   protected loadMoreProducts() {
@@ -187,16 +190,17 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
         maxPrice,
         searchQuery
       )
-      .subscribe(res => {
-        const currentCategories = this.categorySubject$.getValue();
-        if (currentCategories && res) {
-          currentCategories.products = currentCategories.products.concat(
-            res.products
-          );
-          this.categorySubject$.next(currentCategories);
-        } else {
-          this.categorySubject$.next(res);
-        }
-      });
+      .subscribe(res => this.categorySubject$.next(res));
+    // .subscribe(res => {
+    //   const currentCategories = this.categorySubject$.getValue();
+    //   if (currentCategories && res) {
+    //     currentCategories.products = currentCategories.products.concat(
+    //       res.products
+    //     );
+    //     this.categorySubject$.next(currentCategories);
+    //   } else {
+    //     this.categorySubject$.next(res);
+    //   }
+    // });
   }
 }

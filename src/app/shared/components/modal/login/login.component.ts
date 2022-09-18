@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from '@app/services/rest/rest.service';
 
 export interface AuthStatus {
@@ -16,13 +16,18 @@ export class LoginComponent {
   public password: string;
   public showError: boolean;
 
-  constructor(public activeModal: NgbActiveModal, private rest: RestService) {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    private rest: RestService,
+    private offCanvas: NgbOffcanvas
+  ) {}
 
   public auth() {
     this.rest.login(this.email, this.password).subscribe(result => {
       this.showError = result.status === 'failed';
       if (result.status === 'success') {
         this.activeModal.dismiss(result.status);
+        this.offCanvas.dismiss();
       }
     });
   }

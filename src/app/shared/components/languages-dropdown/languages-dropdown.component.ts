@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   AppLanguage,
   LanguageService,
@@ -18,6 +18,7 @@ export class LanguagesDropdownComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private languageService: LanguageService
   ) {}
 
@@ -28,8 +29,14 @@ export class LanguagesDropdownComponent implements OnInit {
   }
 
   protected setLang(langCode: string) {
-    this.router.navigate([`/${langCode}`]);
     setAppLang(langCode);
     this.languageService.setLanguage(langCode);
+    const activeUrl = this.router.url.split('/');
+    const currentLang = this.route.snapshot.params['langCode'];
+    const newPathUrl = activeUrl
+      // eslint-disable-next-line no-magic-numbers
+      .slice(activeUrl.indexOf(currentLang) + 1)
+      .join('/');
+    this.router.navigate([`/${langCode}/${newPathUrl}`]);
   }
 }

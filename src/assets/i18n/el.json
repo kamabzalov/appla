@@ -103,5 +103,19 @@
     "SHOWING": "Εμφανίζονται",
     "SHOWING_ITEMS": "Προϊόντα",
     "LOAD_MORE": "Φόρτωσε περισσότερα"
+  },
+  "SEARCH-PAGE": {
+    "LOAD_MORE": "Φόρτωσε περισσότερα"
+  },
+  "REGISTER-PAGE": {
+    "SIGN_UP": "Εγγραφείτε τώρα!",
+    "ALREADY_HAVE_ACCOUNT": "Έχετε είδη λογαριασμό;",
+    "LOGIN": "Σύνδεση",
+    "EMAIL": "Ηλεκτρονικό Ταχυδρομείο",
+    "REGISTER": "Εγγραφή",
+    "DESCRIPTION": "Με την εγγραφή μου στην Appla, συμφωνώ με τους",
+    "TERMS": "Όρους και Προϋποθέσεις",
+    "AND": "και",
+    "PRIVACY": "Privacy Policy"
   }
 }
