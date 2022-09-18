@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { Observable } from 'rxjs';
+import { filter, Observable, Subscription } from 'rxjs';
 
 export interface SearchResults {
   categories: SearchCategoryResult;
@@ -57,18 +57,34 @@ export interface Slugs {
 })
 export class SearchResultsComponent implements OnInit {
   public searchResults$: Observable<SearchResults>;
+  private limit: number = 24;
+  private offset: number = 0;
+  private query: string;
+  private categoryIdSubscription: Subscription;
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private restService: RestService
+    private restService: RestService,
+    private router: Router
   ) {}
 
   public ngOnInit() {
+    this.query = this.activeRoute.snapshot.queryParams['string'];
     this.activeRoute.queryParams.subscribe(
       params =>
         (this.searchResults$ = this.restService.searchInShop(params['string']))
     );
+    this.categoryIdSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(
+        _ => (this.searchResults$ = this.restService.searchInShop(this.query))
+      );
   }
 
-  protected loadMoreProducts() {}
+  protected loadMoreProducts() {
+    this.offset = this.offset + this.limit;
+    this.restService
+      .searchInShop(this.query, this.limit, this.offset)
+      .subscribe(res => console.log(res));
+  }
 }

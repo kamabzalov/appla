@@ -178,12 +178,21 @@ export class RestService {
       .pipe(map(response => response.data));
   }
 
-  public searchInShop(query: string): Observable<SearchResults> {
+  public searchInShop(
+    query: string,
+    limit?: number,
+    offset?: number
+  ): Observable<SearchResults> {
     const langId = this.getLangId();
+    let params = new HttpParams().set('lang_id', langId);
+    if (limit && offset) {
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Search?string=${query}&lang_id=${langId}`
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`, {
+        params,
+      })
       .pipe(map(response => response.data));
   }
 

@@ -52,7 +52,7 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
     if (langCode) {
       this.currentLang = langCode;
       this.languageService.setLanguage(langCode);
-      const mpi = this.route.snapshot.queryParams['mpi'];
+      const queryParams = this.route.snapshot.queryParams;
       const urlPath = this.router.url
         .split('/')
         // eslint-disable-next-line no-magic-numbers
@@ -69,8 +69,8 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
       } else {
         newUrl = `/${langCode}`;
       }
-      if (mpi) {
-        this.router.navigate([newUrl], { queryParams: { mpi } });
+      if (queryParams) {
+        this.router.navigate([newUrl], { queryParams: queryParams });
       } else {
         this.router.navigate([newUrl]);
       }

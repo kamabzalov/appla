@@ -93,7 +93,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   // eslint-disable-next-line no-magic-numbers
   private readonly limit = 48;
   private slug = 'all-categories';
-  private categoryIdSubscription = new Subscription();
+  private categoryIdSubscription: Subscription;
   private categorySubject$: BehaviorSubject<Category | null> =
     new BehaviorSubject<Category | null>(null);
 
@@ -106,7 +106,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.appLang = this.localizeRouterService.parser.currentLang;
     this.categoryData$ = this.categorySubject$.asObservable();
-    this.route.url.subscribe(res => {
+    this.categoryIdSubscription = this.route.url.subscribe(res => {
       if (res.length && res[1]) {
         this.slug = res[1].path;
       }
