@@ -14,8 +14,6 @@ import { AdvertiseBannerComponent } from './components/advertise-banner/advertis
 import { PreviewCardComponent } from './components/preview-card/preview-card.component';
 import { AsideWidgetComponent } from './components/aside-widget/aside-widget.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RecentlyViewedComponent } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/modal/login/login.component';
@@ -26,10 +24,7 @@ import { CloseDropdownDirective } from './directives/close-dropdown/close-dropdo
 import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
 import { SimilarProductsComponent } from '@app/shared/components/similar-products/similar-products.component';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 
 @NgModule({
   declarations: [
@@ -60,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CarouselModule,
     TranslateModule,
     NgxImageZoomModule,
+    LocalizeRouterModule,
   ],
   exports: [
     NgbModule,

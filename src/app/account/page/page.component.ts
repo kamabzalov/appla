@@ -1,8 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  LanguageService,
-  setAppLang,
-} from '@app/services/language/language.service';
+import { LanguageService } from '@app/services/language/language.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -19,7 +16,7 @@ export class PageComponent {
   ) {}
 
   protected setLang(lang: 'en' | 'el' | 'ru') {
-    setAppLang(lang);
+    // setAppLang(lang);
     this.languageService.setLanguage(lang);
     const activeUrl = this.router.url.split('/');
     const currentLang = this.route.snapshot.params['langCode'];
@@ -27,6 +24,6 @@ export class PageComponent {
       // eslint-disable-next-line no-magic-numbers
       .slice(activeUrl.indexOf(currentLang) + 1)
       .join('/');
-    this.router.navigate([`/${lang}/${newPathUrl}`]);
+    // this.router.navigate([`/${lang}/${newPathUrl}`]);
   }
 }

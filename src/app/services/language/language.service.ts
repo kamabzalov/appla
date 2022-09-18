@@ -22,10 +22,6 @@ export const AppLanguages: AppLanguage[] = [
   },
 ];
 
-export function setAppLang(langCode?: string): string {
-  return langCode ? `/${langCode}` : `/el`;
-}
-
 @Injectable({
   providedIn: 'root',
 })

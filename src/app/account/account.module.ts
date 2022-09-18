@@ -7,9 +7,16 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
+import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 
 @NgModule({
   declarations: [PageComponent, LoginComponent, RegisterComponent],
-  imports: [CommonModule, AccountRoutingModule, FormsModule, SharedModule],
+  imports: [
+    CommonModule,
+    AccountRoutingModule,
+    FormsModule,
+    SharedModule,
+    LocalizeRouterModule,
+  ],
 })
 export class AccountModule {}

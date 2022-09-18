@@ -31,6 +31,8 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-brands-svg-icons": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "@gilsdav/ngx-translate-router": "^5.1.0",
+    "@gilsdav/ngx-translate-router-http-loader": "^2.0.0",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@nguniversal/express-engine": "^14.1.0",
     "@ngx-translate/core": "^14.0.0",

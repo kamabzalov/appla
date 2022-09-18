@@ -6,7 +6,7 @@
       </p>
       <div class="row align-items-center">
         <div class="column-12 text-center column-medium-2 column-large-1">
-          <a routerLink="./">
+          <a [routerLink]="'/' | localize">
             <img
               alt="Appla"
               class="header__elements-logo img-responsive"
@@ -51,8 +51,8 @@
                 {{ 'HEADER.LOGIN' | translate }}
               </button>
               <a
+                [routerLink]="'account/register' | localize"
                 class="header__user-actions-sign button button_orange"
-                routerLink="./account/register"
                 >{{ 'HEADER.SIGN_UP' | translate }}</a
               >
             </ng-container>

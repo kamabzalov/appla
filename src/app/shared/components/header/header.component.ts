@@ -5,13 +5,13 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '@app/shared/components/modal/login/login.component';
 import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
 import { RestService } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { iconSet } from '@app/shared/utils/icons';
 
 @Component({
   selector: 'appla-header',
@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  protected faBars = faBars;
+  protected faBars = iconSet.faBars;
   protected isLogin: boolean = false;
   protected isMainPage: boolean = true;
   private router$: Subscription;
@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         // eslint-disable-next-line no-magic-numbers
         this.isMainPage = event.url.split('/').length === 2;
+        // this.setCurrentUrl();
         this.cdr.markForCheck();
       }
     });
