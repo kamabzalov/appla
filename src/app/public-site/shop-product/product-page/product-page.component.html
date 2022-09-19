@@ -76,7 +76,9 @@
                   Max
                 </button>
               </div>
-              <button class="w-50 button button_orange p-12px">
+              <button
+                (click)="addToCart(productQuantity, product.product.product_id)"
+                class="w-50 button button_orange p-12px">
                 Add to Cart
               </button>
             </div>

@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, Subscription, switchMap, tap } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
+import { ToastService } from '@app/services/toast/toast.service';
 
 export interface Product {
   title: string;
@@ -126,7 +127,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private restService: RestService
+    private restService: RestService,
+    private toastService: ToastService
   ) {}
 
   public ngOnInit(): void {
@@ -166,7 +168,27 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     this.mainPage = $event;
   }
 
-  protected followStore() {}
+  protected addToCart(productQuantity: number, product_id: number) {
+    this.restService.addToCart(productQuantity, product_id).subscribe(res => {
+      if (res.status === 'success') {
+        this.showSuccess();
+      }
+    });
+  }
+
+  protected followStore() {
+    this.toastService.show('You will follow this shop', {
+      classname: 'bg-success text-light',
+      delay: 2000,
+    });
+  }
+
+  private showSuccess() {
+    this.toastService.show('Product added to cart', {
+      classname: 'bg-success text-light',
+      delay: 2000,
+    });
+  }
 
   private getProductData(
     storeSlug: string,

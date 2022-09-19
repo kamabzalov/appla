@@ -260,6 +260,16 @@ export class RestService {
       .pipe(map(response => response.data));
   }
 
+  public addToCart(qty: number, product_id: number) {
+    return this.http.post<BackendResponse>(
+      `${this.basePath}/Angular/Cart/addToCart`,
+      {
+        qty,
+        product_id,
+      }
+    );
+  }
+
   private getLangId(): number {
     const lang = AppLanguages.find(
       lang => lang.code === this.localizeRouterService.parser.currentLang
