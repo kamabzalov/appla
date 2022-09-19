@@ -22,7 +22,7 @@ import {
 })
 export class SearchFormComponent {
   protected faSearch = iconSet.faMagnifyingGlass;
-  protected searchQuery: SearchCategory | SearchProduct | null;
+  protected searchQuery: SearchCategory | SearchProduct | string | null;
   protected resultsProducts$: Observable<any[]>;
 
   constructor(
@@ -32,14 +32,19 @@ export class SearchFormComponent {
   ) {}
 
   public search() {
-    this.router
-      .navigate(['Search'], {
-        relativeTo: this.route,
-        queryParams: {
-          string: this.searchQuery ? this.searchQuery.name : '',
-        },
-      })
-      .then(_ => (this.searchQuery = null));
+    let query;
+    if (typeof this.searchQuery === 'string') {
+      query = this.searchQuery;
+    } else {
+      query = this.searchQuery?.name;
+    }
+    this.router.navigate(['Search'], {
+      relativeTo: this.route,
+      queryParams: {
+        string: query,
+      },
+    });
+    this.searchQuery = '';
   }
 
   protected searchTypeAhead = (text$: Observable<string>) =>

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { filter, Observable, Subscription } from 'rxjs';
@@ -55,7 +60,7 @@ export interface Slugs {
   styleUrls: ['./search-results.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy {
   public searchResults$: Observable<SearchResults>;
   // eslint-disable-next-line no-magic-numbers
   private limit: number = 24;
@@ -78,15 +83,22 @@ export class SearchResultsComponent implements OnInit {
     );
     this.categoryIdSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(
-        _ => (this.searchResults$ = this.restService.searchInShop(this.query))
-      );
+      .subscribe((res: any) => {
+        this.query = res.urlAfterRedirects.split('?string=')[1];
+        this.searchResults$ = this.restService.searchInShop(this.query);
+      });
+  }
+
+  public ngOnDestroy() {
+    if (this.categoryIdSubscription) {
+      this.categoryIdSubscription.unsubscribe();
+    }
   }
 
   protected loadMoreProducts() {
     this.offset = this.offset + this.limit;
     this.restService
       .searchInShop(this.query, this.limit, this.offset)
-      .subscribe(res => console.log(res));
+      .subscribe();
   }
 }

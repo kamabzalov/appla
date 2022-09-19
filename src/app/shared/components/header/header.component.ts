@@ -36,9 +36,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
-    this.cookieService.set('Test', 'Hello World');
-    const cookieValue = this.cookieService.get('Test');
-    console.log(cookieValue);
     this.router$ = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // eslint-disable-next-line no-magic-numbers
@@ -47,8 +44,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
     this.restService.isAuthorized().subscribe(res => {
-      console.log(this.cookieService.getAll());
-      console.log(document.cookie);
       this.isLogin = res.status === 'success';
     });
   }
