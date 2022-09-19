@@ -40,6 +40,7 @@
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
     "express": "^4.15.2",
+    "ngx-cookie-backend": "^6.0.1",
     "ngx-cookie-service": "^14.0.1",
     "ngx-cookie-service-ssr": "^14.0.1",
     "ngx-image-zoom": "^1.0.1",

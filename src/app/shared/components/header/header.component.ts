@@ -12,7 +12,7 @@ import { RestService } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
-import { CookieService } from 'ngx-cookie-service';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 @Component({
   selector: 'appla-header',
@@ -32,10 +32,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private restService: RestService,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: SsrCookieService
   ) {}
 
   public ngOnInit() {
+    console.log(this.cookieService.getAll());
     this.router$ = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // eslint-disable-next-line no-magic-numbers
@@ -45,6 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
     this.restService.isAuthorized().subscribe(res => {
       this.isLogin = res.status === 'success';
+      console.log(this.cookieService.getAll());
     });
   }
 

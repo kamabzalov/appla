@@ -11,6 +11,7 @@ import { existsSync } from 'fs';
 import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -24,6 +25,7 @@ export function app(): express.Express {
   server.engine(
     'html',
     ngExpressEngine({
+      inlineCriticalCss: false,
       bootstrap: AppServerModule,
     })
   );
@@ -47,8 +49,8 @@ export function app(): express.Express {
       req,
       providers: [
         { provide: APP_BASE_HREF, useValue: req.baseUrl },
-        { provide: 'REQUEST', useValue: req },
-        { provide: 'RESPONSE', useValue: res },
+        { provide: REQUEST, useValue: req },
+        { provide: RESPONSE, useValue: res },
       ],
     });
   });

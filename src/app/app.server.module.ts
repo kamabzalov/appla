@@ -20,6 +20,7 @@ import {
 import { Location } from '@angular/common';
 import { localizeServerLoaderFactory } from '@app/localize-server.loader';
 import { translateServerLoaderFactory } from '@app/translate-server.loader';
+import { CookieBackendModule } from 'ngx-cookie-backend';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { translateServerLoaderFactory } from '@app/translate-server.loader';
       },
       initialNavigation: true,
     }),
+    CookieBackendModule.withOptions(),
   ],
   bootstrap: [AppComponent],
 })

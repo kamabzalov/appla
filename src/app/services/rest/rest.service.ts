@@ -227,8 +227,7 @@ export class RestService {
 
   public isAuthorized(): Observable<BackendResponse> {
     return this.http.get<BackendResponse>(
-      `${this.basePath}Angular/Auth/checkAuth`,
-      { withCredentials: true }
+      `${this.basePath}Angular/Auth/checkAuth`
     );
   }
 
