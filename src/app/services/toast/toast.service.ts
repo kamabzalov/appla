@@ -15,6 +15,7 @@ export class ToastService {
   }
 
   public clear() {
+    // eslint-disable-next-line no-magic-numbers
     this.toasts.splice(0, this.toasts.length);
   }
 }
