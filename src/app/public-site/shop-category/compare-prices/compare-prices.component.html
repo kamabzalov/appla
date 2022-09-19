@@ -4,7 +4,7 @@
       <div class="column-12 m-b-12px">
         <ng-container *ngFor="let breadcrumb of offer.arr_cats">
           <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
-            breadcrumb.slug
+            breadcrumb.name
           }}</a>
           /
         </ng-container>

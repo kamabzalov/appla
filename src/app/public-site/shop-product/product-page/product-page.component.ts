@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, Subscription, switchMap, tap } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
-import { ToastService } from '@app/services/toast/toast.service';
+import { LanguageService } from '@app/services/language/language.service';
 
 export interface Product {
   title: string;
@@ -122,16 +122,18 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   public productQuantity: number = 1;
   protected product$: Observable<Product>;
   protected mainPage: string;
+  protected appLang: string;
 
   private productSlugSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private restService: RestService,
-    private toastService: ToastService
+    private languageService: LanguageService
   ) {}
 
   public ngOnInit(): void {
+    this.appLang = this.languageService.currentAppLang$.getValue().code;
     this.product$ = this.route.url.pipe(
       switchMap(url => {
         return this.getProductData(url[0].path, url[1].path);
@@ -171,24 +173,11 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   protected addToCart(productQuantity: number, product_id: number) {
     this.restService.addToCart(productQuantity, product_id).subscribe(res => {
       if (res.status === 'success') {
-        this.showSuccess();
       }
     });
   }
 
-  protected followStore() {
-    this.toastService.show('You will follow this shop', {
-      classname: 'bg-success text-light',
-      delay: 2000,
-    });
-  }
-
-  private showSuccess() {
-    this.toastService.show('Product added to cart', {
-      classname: 'bg-success text-light',
-      delay: 2000,
-    });
-  }
+  protected followStore() {}
 
   private getProductData(
     storeSlug: string,

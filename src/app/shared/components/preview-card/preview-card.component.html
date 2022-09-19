@@ -1,5 +1,26 @@
-<div class="preview-card">
-  <a [routerLink]="productLink" class="preview-card__link">
+<div class="preview-card display-flex">
+  <a
+    [queryParams]="
+      product.count_products > 1 ? { mpi: product.master_product_id } : []
+    "
+    [routerLink]="
+      product.count_products > 1
+        ? [
+            '/',
+            appLanguage,
+            'category',
+            'product_list',
+            product.to_link[0].category_slug
+          ]
+        : [
+            '/',
+            appLanguage,
+            'product',
+            product.to_link[0].store_slug,
+            product.to_link[0].product_slug
+          ]
+    "
+    class="preview-card__link">
     <img
       [src]="
         'https://storage.googleapis.com/images-appla/production/thumbs_150/' +

@@ -159,7 +159,12 @@
             </div>
           </div>
 
-          <div *ngIf="category.products.length" class="text-center">
+          <div
+            *ngIf="
+              category.products.length &&
+              category.products.length !== category.count_products
+            "
+            class="text-center">
             <button (click)="loadMoreProducts()" class="button button_orange">
               {{ 'CATEGORY-PAGE.LOAD_MORE' | translate }}
             </button>

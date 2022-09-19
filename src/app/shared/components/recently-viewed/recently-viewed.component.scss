@@ -37,6 +37,7 @@
     text-transform: capitalize;
     overflow: hidden;
     text-overflow: ellipsis;
+    height: vars.$base-size * 9;
   }
 
   &__price-item {

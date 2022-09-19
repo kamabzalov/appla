@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
-    console.log(this.cookieService.getAll());
     this.router$ = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // eslint-disable-next-line no-magic-numbers
@@ -46,7 +45,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
     this.restService.isAuthorized().subscribe(res => {
       this.isLogin = res.status === 'success';
-      console.log(this.cookieService.getAll());
     });
   }
 

@@ -110,6 +110,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       if (res.length && res[1]) {
         this.slug = res[1].path;
       }
+      this.offset = 0;
       this.minPrice = null;
       this.maxPrice = null;
       this.getCategoryData(this.limit, this.offset, this.order, this.slug);

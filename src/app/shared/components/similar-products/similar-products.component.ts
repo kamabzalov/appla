@@ -1,7 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SimilarProduct } from '@app/public-site/shop-product/product-page/product-page.component';
 import { ProductOfferSimilar } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
+import { LanguageService } from '@app/services/language/language.service';
 
 @Component({
   selector: 'appla-similar-products',
@@ -9,8 +15,9 @@ import { ProductOfferSimilar } from '@app/public-site/shop-category/compare-pric
   styleUrls: ['./similar-products.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SimilarProductsComponent {
+export class SimilarProductsComponent implements OnInit {
   @Input() public similarProducts: SimilarProduct[] | ProductOfferSimilar[];
+  protected appLang: string;
 
   protected readonly customOptions: OwlOptions = {
     loop: false,
@@ -37,4 +44,10 @@ export class SimilarProductsComponent {
     },
     nav: true,
   };
+
+  constructor(private languageService: LanguageService) {}
+
+  public ngOnInit() {
+    this.appLang = this.languageService.currentAppLang$.getValue().code;
+  }
 }

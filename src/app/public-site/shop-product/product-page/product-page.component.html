@@ -1,7 +1,13 @@
-<div class="container p-t-28px">
-  <section
-    *ngIf="product$ | async as product"
-    class="product card-content m-b-20px">
+<div *ngIf="product$ | async as product" class="container p-t-28px">
+  <div class="m-b-20px">
+    <ng-container *ngFor="let breadcrumb of product.arr_cats">
+      <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
+        breadcrumb.name
+      }}</a>
+      /
+    </ng-container>
+  </div>
+  <section class="product card-content m-b-20px">
     <div class="row m-b-16px">
       <div class="column-12">
         <div class="row">
@@ -93,7 +99,11 @@
             <a ngbNavLink>Description</a>
             <ng-template ngbNavContent>
               <div class="p-16px">
-                <p>Weight : {{ product.product.weight }} (g)</p>
+                <p>
+                  Weight : {{ product.product.weight }} ({{
+                    product.product.weight_unit === 1 ? 'g' : 'kg'
+                  }})
+                </p>
                 <p>
                   {{ product.product.short_description }}
                 </p>
