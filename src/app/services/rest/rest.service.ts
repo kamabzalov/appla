@@ -15,10 +15,13 @@ import { Product } from '@app/public-site/shop-product/product-page/product-page
 import { ProductOffer } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
 import {
   Category,
+  CurrentCategory,
   ProductFilter,
+  Subcategory,
 } from '@app/public-site/shop-category/category-page/category-page.component';
 import { AppLanguages } from '@app/services/language/language.service';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 interface BackendResponse {
   data: any;
@@ -34,7 +37,8 @@ export class RestService {
 
   constructor(
     private http: HttpClient,
-    private localizeRouterService: LocalizeRouterService
+    private localizeRouterService: LocalizeRouterService,
+    private sanitizer: DomSanitizer
   ) {}
 
   public getSiteMenu(): Observable<Menu[]> {
@@ -161,6 +165,13 @@ export class RestService {
             });
             return { ...response.data, filters: productFilters };
           }
+          response.data.subcategories.map((item: Subcategory) => {
+            return item.name.replace('&amp;', '&');
+          });
+          (response.data.this_category as CurrentCategory).name = (
+            response.data.this_category as CurrentCategory
+          ).name.replace('&amp;', '&');
+
           return response.data;
         })
       );

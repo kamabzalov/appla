@@ -7,7 +7,10 @@
       <a class="nav-link" ngbDropdownToggle>
         {{ menuItem.name }}
       </a>
-      <div class="nav-item-megamenu dropdown-menu-start" ngbDropdownMenu>
+      <div
+        [ngClass]="{ 'nav-item-megamenu-main': isMainPage }"
+        class="nav-item-megamenu dropdown-menu-start"
+        ngbDropdownMenu>
         <div class="container">
           <div class="row">
             <div class="column-12 column-medium-9">

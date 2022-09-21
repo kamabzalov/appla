@@ -38,7 +38,11 @@
       padding-bottom: vars.$base-size * 5;
       border-bottom: 2px solid vars.$blue-yonder;
       color: black;
-      transform: translate3d(0, 127px, 0) !important;
+      transform: translate3d(0, 97px, 0) !important;
+
+      &-main {
+        transform: translate3d(0, 127px, 0) !important;
+      }
     }
   }
 

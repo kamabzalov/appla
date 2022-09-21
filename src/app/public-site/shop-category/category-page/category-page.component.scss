@@ -1,5 +1,8 @@
-@use '../../../../assets/scss/vars' as vars;
-@use '../../../../assets/scss/mixins' as mixins;
+@use 'sass:map';
+@use '~assets/scss/vars' as vars;
+@use '~assets/scss/mixins' as mixins;
+
+$small-devices-breakpoint: map.get(vars.$media-breakpoints, 'small');
 
 .form-price {
   &__icon {
@@ -34,5 +37,11 @@
       background-color: whitesmoke;
       @include mixins.border-radius(20px);
     }
+  }
+}
+
+.search-category-control {
+  @media (max-width: $small-devices-breakpoint) {
+    width: 100%;
   }
 }

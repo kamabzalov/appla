@@ -29,7 +29,7 @@
         <div class="row">
           <div
             *ngFor="let product of results.products"
-            class="column-12 column-small-2 p-8-px m-b-8px">
+            class="column-6 column-small-2 p-8-px m-b-8px">
             <appla-search-result-card
               [product]="product"></appla-search-result-card>
           </div>
@@ -37,7 +37,7 @@
       </ng-container>
     </section>
 
-    <div class="row">
+    <div *ngIf="results.categories.count > results.products.length" class="row">
       <div class="column-12 text-center">
         <button (click)="loadMoreProducts()" class="button button_orange">
           {{ 'SEARCH-PAGE.LOAD_MORE' | translate }}

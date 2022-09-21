@@ -102,11 +102,12 @@
                   </h1>
                 </div>
               </div>
-              <div class="column-medium-8 display-flex">
+              <div class="column-medium-8 display-flex flex-wrap">
                 <form
                   (ngSubmit)="searchProductInCategory()"
-                  class="display-flex align-items-center flex-grow-1">
-                  <div class="control-group m-b-0px m-r-12px">
+                  class="display-flex align-items-center flex-grow-1 m-small-b-8px m-small-t-8px">
+                  <div
+                    class="control-group search-category-control m-b-0px m-r-12px">
                     <input
                       [(ngModel)]="searchInCategory"
                       name="searchInCategory"

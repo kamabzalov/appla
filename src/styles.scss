@@ -60,3 +60,7 @@ a, .appla-link {
 .ngxImageZoomContainer {
   width: 100% !important;
 }
+
+.dropdown-item.active {
+  color: vars.$white;
+}

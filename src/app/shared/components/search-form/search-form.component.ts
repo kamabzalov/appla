@@ -65,4 +65,8 @@ export class SearchFormComponent {
   protected formatter(result: SearchProduct | SearchCategory): string {
     return result.name;
   }
+
+  protected getClassName(r: SearchProduct | SearchCategory): boolean {
+    return !('master_product_id' in r);
+  }
 }

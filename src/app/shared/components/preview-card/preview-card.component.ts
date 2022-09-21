@@ -9,7 +9,7 @@ import { LanguageService } from '@app/services/language/language.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PreviewCardComponent {
-  @Input() product: CategoryProduct;
+  @Input() public product: CategoryProduct;
   protected productLink: string;
   protected appLanguage: string;
 

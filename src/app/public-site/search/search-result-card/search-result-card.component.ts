@@ -68,17 +68,19 @@ export class SearchResultCardComponent implements OnDestroy {
       .getProductByMasterId(product.master_product_id)
       .subscribe(result => {
         // eslint-disable-next-line no-magic-numbers
-        if (result.length === 1) {
-          this.router.navigate([
-            `/${this.currentLang}/product/${result[0].store_slug}/${result[0].product_slug}`,
-          ]);
-        } else {
-          this.router.navigate(
-            [
-              `/${this.currentLang}/category/product_list/${result[0].product_slug}`,
-            ],
-            { queryParams: { mpi: product.master_product_id } }
-          );
+        if (result) {
+          if (result.length === 1) {
+            this.router.navigate([
+              `/${this.currentLang}/product/${result[0].store_slug}/${result[0].product_slug}`,
+            ]);
+          } else {
+            this.router.navigate(
+              [
+                `/${this.currentLang}/category/product_list/${result[0].product_slug}`,
+              ],
+              { queryParams: { mpi: product.master_product_id } }
+            );
+          }
         }
       });
   }

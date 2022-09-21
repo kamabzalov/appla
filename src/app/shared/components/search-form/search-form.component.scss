@@ -17,7 +17,7 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
     &__input {
       @include mixins.border-radius(
-        vars.$base-size * 5 0 0 vars.$base-size * 5
+          vars.$base-size * 5 0 0 vars.$base-size * 5
       );
 
       outline: none;
@@ -25,7 +25,7 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
     &__button {
       @include mixins.border-radius(
-        0 vars.$base-size * 5 vars.$base-size * 5 0
+          0 vars.$base-size * 5 vars.$base-size * 5 0
       );
 
       font-size: 1rem;
@@ -34,5 +34,14 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
       cursor: pointer;
       color: vars.$white;
     }
+  }
+}
+
+.suggestion {
+  margin-bottom: vars.$base-size;
+
+  &-category {
+    color: vars.$united-nations-blue;
+    background: none;
   }
 }
