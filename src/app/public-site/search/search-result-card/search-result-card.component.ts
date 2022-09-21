@@ -69,6 +69,7 @@ export class SearchResultCardComponent implements OnDestroy {
       .subscribe(result => {
         // eslint-disable-next-line no-magic-numbers
         if (result) {
+          // eslint-disable-next-line no-magic-numbers
           if (result.length === 1) {
             this.router.navigate([
               `/${this.currentLang}/product/${result[0].store_slug}/${result[0].product_slug}`,
