@@ -23,7 +23,7 @@
       <a
         class="button button_orange text-center display-inline-block w-100"
         href="https://appla.cy/account/register"
-        >Sign Up</a
+        >{{ 'HEADER.MOBILE.SIGN_UP' | translate }}</a
       >
     </div>
   </div>
@@ -31,11 +31,15 @@
   <ul class="sidenav-menu list-no-bullets p-l-0px">
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faHouse" class="m-r-12px"></fa-icon>
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./">Home</a>
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="./">{{
+        'HEADER.MOBILE.HOME' | translate
+      }}</a>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faCart" class="m-r-12px"></fa-icon>
-      <a applaCloseCanvas class="sidenav-menu__link" routerLink="">Cart</a>
+      <a applaCloseCanvas class="sidenav-menu__link" routerLink="">{{
+        'HEADER.MOBILE.CART' | translate
+      }}</a>
     </li>
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faBookOpen" class="m-r-12px"></fa-icon>
@@ -43,7 +47,7 @@
         (click)="categoriesCollapse.toggle()"
         [attr.aria-expanded]="!isCategoriesCollapsed"
         class="sidenav-menu__link"
-        >Categories</a
+        >{{ 'HEADER.MOBILE.CATEGORIES' | translate }}</a
       >
       <div
         #categoriesCollapse="ngbCollapse"
@@ -61,7 +65,7 @@
         (click)="langCollapse.toggle()"
         [attr.aria-expanded]="!isLangCollapse"
         class="sidenav-menu__link"
-        >Languages</a
+        >{{ 'HEADER.MOBILE.LANGUAGES' | translate }}</a
       >
       <div #langCollapse="ngbCollapse" [(ngbCollapse)]="isLangCollapse">
         <div class="card">
@@ -72,21 +76,27 @@
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
                   src="/assets/images/flags/en.png" />
-                <button (click)="setLang('en')" class="button">English</button>
+                <button (click)="setLang('en')" class="button">
+                  {{ 'HEADER.MOBILE.ENGLISH' | translate }}
+                </button>
               </li>
               <li class="m-b-8px">
                 <img
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
                   src="/assets/images/flags/el.png" />
-                <button (click)="setLang('el')" class="button">Greece</button>
+                <button (click)="setLang('el')" class="button">
+                  {{ 'HEADER.MOBILE.GREEK' | translate }}
+                </button>
               </li>
               <li>
                 <img
                   alt="Uk"
                   class="sidenav-languages__flag m-r-8px"
                   src="/assets/images/flags/ru.png" />
-                <button (click)="setLang('ru')" class="button">Russia</button>
+                <button (click)="setLang('ru')" class="button">
+                  {{ 'HEADER.MOBILE.RUSSIAN' | translate }}
+                </button>
               </li>
             </ul>
           </div>
@@ -99,20 +109,20 @@
         applaCloseCanvas
         class="sidenav-menu__link"
         routerLink="/{{ appLanguage }}/aboutus"
-        >About Us</a
+        >{{ 'HEADER.MOBILE.ABOUT_US' | translate }}</a
       >
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
-      <a class="sidenav-menu__link" href="https://blog.appla.cy/careers/en/"
-        >Careers</a
-      >
+      <a class="sidenav-menu__link" href="https://blog.appla.cy/careers/en/">{{
+        'HEADER.MOBILE.CAREERS' | translate
+      }}</a>
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
       <a
         applaCloseCanvas
         class="sidenav-menu__link"
         href="https://help.appla.cy/"
-        >Help &amp; Contact</a
+        >{{ 'HEADER.MOBILE.HELP' | translate }}</a
       >
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
@@ -120,7 +130,7 @@
         applaCloseCanvas
         class="sidenav-menu__link"
         routerLink="/{{ appLanguage }}/privacy"
-        >Privacy Policy</a
+        >{{ 'HEADER.MOBILE.PRIVACY' | translate }}</a
       >
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
@@ -128,16 +138,18 @@
         applaCloseCanvas
         class="sidenav-menu__link"
         routerLink="/{{ appLanguage }}terms"
-        >Terms</a
+        >{{ 'HEADER.MOBILE.TERMS' | translate }}</a
       >
     </li>
     <li class="sidenav-menu__item no-border p-l-16px p-r-16px p-t-8px p-b-8px">
-      <a class="sidenav-menu__link" href="https://blog.appla.cy/faq-en/">FAQ</a>
+      <a class="sidenav-menu__link" href="https://blog.appla.cy/faq-en/">{{
+        'HEADER.MOBILE.FAQ' | translate
+      }}</a>
     </li>
   </ul>
 
   <div class="sidenav-contact p-l-16px p-r-16px">
-    <h5>Contact Information:</h5>
+    <h5>{{ 'HEADER.MOBILE.CONTACT_INFO' | translate }}:</h5>
     <p>
       <fa-icon [icon]="faPhone" class="m-r-12px"></fa-icon>
       <a class="sidenav-contact__link" href="tel:+35724506800">+357 24506800</a>
@@ -145,7 +157,7 @@
     <p>
       <fa-icon [icon]="faEnvelope" class="m-r-12px"></fa-icon>
       <a class="sidenav-contact__link" href="mailto:contact@appla.cy"
-        >Email contact@appla.cy</a
+        >{{ 'HEADER.MOBILE.EMAIL' | translate }} contact@appla.cy</a
       >
     </p>
   </div>

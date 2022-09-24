@@ -8,6 +8,24 @@
       "EN": "English",
       "EL": "Greek",
       "RU": "Russian"
+    },
+    "MOBILE": {
+      "HOME": "Home",
+      "SIGN_UP": "Sign Up",
+      "CART": "Cart",
+      "CATEGORIES": "Categories",
+      "LANGUAGES": "Languages",
+      "ABOUT_US": "About us",
+      "CAREERS": "Careers",
+      "ENGLISH": "English",
+      "GREEK": "Greek",
+      "RUSSIAN": "Russian",
+      "HELP": "Help",
+      "PRIVACY": "Privacy policy",
+      "TERMS": "Terms",
+      "FAQ": "FAQ",
+      "CONTACT_INFO": "Contact info",
+      "EMAIL": "Email:"
     }
   },
   "STORE-OFFERS": {
