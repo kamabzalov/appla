@@ -7,11 +7,29 @@
       &times;
     </button>
     <img
+      *ngIf="mode === 'menu'"
       alt="Appla"
       class="img-responsive"
       src="./assets/images/mob-header.png" />
+    <img
+      *ngIf="mode === 'category'"
+      alt="Appla"
+      class="img-responsive"
+      src="./assets/images/mobile-categories-list.webp" />
+    <div
+      *ngIf="mode === 'category'"
+      class="active-category-title text-center display-flex p-l-20px p-r-20px">
+      <fa-icon
+        (click)="closeCategoryMenu()"
+        [icon]="faChevronLeft"
+        class="active-category-title__icon"></fa-icon>
+      <h5 class="active-category-title__head">
+        {{ activeCategory?.name }}
+      </h5>
+    </div>
   </div>
-  <div class="row p-l-16px p-r-16px m-b-16px">
+
+  <div *ngIf="mode === 'menu'" class="row p-l-16px p-r-16px m-b-16px">
     <div class="column-6">
       <button
         (click)="openLoginModal()"
@@ -28,7 +46,7 @@
     </div>
   </div>
 
-  <ul class="sidenav-menu list-no-bullets p-l-0px">
+  <ul *ngIf="mode === 'menu'" class="sidenav-menu list-no-bullets p-l-0px">
     <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faHouse" class="m-r-12px"></fa-icon>
       <a applaCloseCanvas class="sidenav-menu__link" routerLink="./">{{
@@ -54,7 +72,11 @@
         [(ngbCollapse)]="isCategoriesCollapsed">
         <ul class="list-no-bullets p-l-20px p-t-20px p-r-20px">
           <li *ngFor="let category of menu$ | async" class="m-b-8px">
-            <a class="sidenav-menu__link" routerLink="">{{ category.name }}</a>
+            <button
+              (click)="openSubcategories(category)"
+              class="button p-0px sidenav-menu__link">
+              {{ category.name }}
+            </button>
           </li>
         </ul>
       </div>
@@ -148,7 +170,41 @@
     </li>
   </ul>
 
-  <div class="sidenav-contact p-l-16px p-r-16px">
+  <ul *ngIf="mode === 'category'" class="sidenav-menu list-no-bullets p-l-0px">
+    <li
+      *ngFor="let firstLevel of activeCategory?.childs"
+      class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+      <a
+        [routerLink]="[appLanguage, 'category', 'list', firstLevel.link]"
+        applaCloseCanvas
+        class="sidenav-menu__link first-child"
+        >{{ firstLevel.name }}</a
+      >
+      <ul class="list-unstyled m-l-12px">
+        <li
+          *ngFor="
+            let secondLevel of firstLevel.childs
+              | slice: 0:(firstLevel.toggle ? undefined : 8)
+          "
+          class="m-t-8px m-b-8px">
+          <a
+            [routerLink]="[appLanguage, 'category', 'list', secondLevel.value]"
+            applaCloseCanvas
+            class="sidenav-menu__link"
+            >{{ secondLevel.name }}</a
+          >
+        </li>
+      </ul>
+      <button
+        (click)="toggleMore(firstLevel)"
+        *ngIf="firstLevel.childs && firstLevel.childs.length > 9"
+        class="button p-0px text-orange show-more">
+        {{ firstLevel.toggle ? 'Show less' : 'Show more' }}
+      </button>
+    </li>
+  </ul>
+
+  <div *ngIf="mode === 'menu'" class="sidenav-contact p-l-16px p-r-16px">
     <h5>{{ 'HEADER.MOBILE.CONTACT_INFO' | translate }}:</h5>
     <p>
       <fa-icon [icon]="faPhone" class="m-r-12px"></fa-icon>

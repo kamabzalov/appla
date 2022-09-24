@@ -24,7 +24,7 @@ export interface Menu {
   commercial_products: CommercialProduct[];
 }
 
-interface FirstLevel {
+export interface FirstLevel {
   name: string;
   link: string;
   childs: SecondLevel[];

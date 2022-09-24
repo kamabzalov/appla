@@ -4,7 +4,10 @@ import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { iconSet } from '@app/shared/utils/icons';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable } from 'rxjs';
-import { Menu } from '@app/shared/components/header/navigation/navigation.component';
+import {
+  FirstLevel,
+  Menu,
+} from '@app/shared/components/header/navigation/navigation.component';
 import { LanguageService } from '@app/services/language/language.service';
 
 @Component({
@@ -21,10 +24,13 @@ export class SidenavComponent implements OnInit {
   protected faBookOpen = iconSet.faBookOpen;
   protected faEarthAmericas = iconSet.faEarthAmericas;
   protected faCircleInfo = iconSet.faCircleInfo;
+  protected faChevronLeft = iconSet.faChevronLeft;
   protected isCategoriesCollapsed = true;
   protected isLangCollapse = true;
   protected menu$: Observable<Menu[]>;
   protected appLanguage: string;
+  protected mode: 'menu' | 'category' = 'menu';
+  protected activeCategory: Menu | null;
 
   constructor(
     private modalService: NgbModal,
@@ -49,5 +55,19 @@ export class SidenavComponent implements OnInit {
   protected setLang(langCode: string) {
     this.languageService.setLanguage(langCode);
     this.offcanvas.dismiss();
+  }
+
+  protected openSubcategories(category: Menu) {
+    this.activeCategory = category;
+    this.mode = 'category';
+  }
+
+  protected closeCategoryMenu() {
+    this.mode = 'menu';
+    this.activeCategory = null;
+  }
+
+  protected toggleMore(menuLevel: FirstLevel) {
+    menuLevel.toggle = !menuLevel.toggle;
   }
 }
