@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from '@app/shared/components/modal/login/login.component';
+import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
 import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
 import { RestService } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   protected openLoginModal() {
     this.modalService
-      .open(LoginComponent, { centered: true })
+      .open(LoginDialogComponent, { centered: true })
       .dismissed.subscribe(res => {
         this.isLogin = res === 'success';
         this.cdr.markForCheck();

@@ -4,7 +4,7 @@ import { RestService } from '@app/services/rest/rest.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'appla-login',
+  selector: 'appla-login-dialog',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

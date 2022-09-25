@@ -8,10 +8,10 @@ export interface AuthStatus {
 }
 
 @Component({
-  selector: 'appla-login',
-  templateUrl: './login.component.html',
+  selector: 'appla-login-dialog',
+  templateUrl: './login-dialog.component.html',
 })
-export class LoginComponent {
+export class LoginDialogComponent {
   protected showError: boolean;
   protected email: string;
   protected password: string;

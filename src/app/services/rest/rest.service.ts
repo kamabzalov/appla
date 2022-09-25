@@ -168,9 +168,11 @@ export class RestService {
           response.data.subcategories.map((item: Subcategory) => {
             return item.name.replace('&amp;', '&');
           });
-          (response.data.this_category as CurrentCategory).name = (
-            response.data.this_category as CurrentCategory
-          ).name.replace('&amp;', '&');
+          if (response.data.this_category?.name) {
+            (response.data.this_category as CurrentCategory).name = (
+              response.data.this_category as CurrentCategory
+            ).name.replace('&amp;', '&');
+          }
 
           return response.data;
         })
@@ -270,7 +272,10 @@ export class RestService {
       .pipe(map(response => response.data));
   }
 
-  public addToCart(qty: number, product_id: number) {
+  public addToCart(
+    qty: number,
+    product_id: number
+  ): Observable<BackendResponse> {
     return this.http.post<BackendResponse>(
       `${this.basePath}/Angular/Cart/addToCart`,
       {

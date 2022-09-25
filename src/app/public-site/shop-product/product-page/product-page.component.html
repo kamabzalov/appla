@@ -60,39 +60,57 @@
 
             <div class="card-content product-order">
               <h2 class="product-order__header">Order item</h2>
-              <p class="product-order__quantity">Quantity</p>
-              <div class="display-flex m-b-12px">
-                <form class="product-order-form m-r-8px display-flex">
+              <div class="m-b-20px">
+                <p>Product Variants</p>
+                <ng-container *ngFor="let variant of product.product_variant">
+                  <ng-container
+                    *ngFor="let item of variant.product_variant | keyvalue">
+                    <strong>{{ item.key }}</strong>
+                    <select>
+                      <option [ngValue]="variant.product_variant_id">
+                        {{ item.value }}
+                      </option>
+                    </select>
+                  </ng-container>
+                </ng-container>
+              </div>
+              <div>
+                <p>Quantity</p>
+                <div class="display-flex m-b-12px">
+                  <form class="product-order-form m-r-8px display-flex">
+                    <button
+                      (click)="decreaseQuantity()"
+                      class="product-order-form__decrease button button_orange">
+                      <fa-icon [icon]="faMinus"></fa-icon>
+                    </button>
+                    <div class="control-group flex-grow-1 m-b-0px">
+                      <input
+                        [(ngModel)]="productQuantity"
+                        aria-label="Example text with button addon"
+                        class="product-order-form__input control-group__field"
+                        name="productQuantity"
+                        type="number" />
+                    </div>
+                    <button
+                      (click)="increaseQuantity(product.product.qty)"
+                      class="product-order-form__increase button button_orange">
+                      <fa-icon [icon]="faPlus"></fa-icon>
+                    </button>
+                  </form>
                   <button
-                    (click)="decreaseQuantity()"
-                    class="product-order-form__decrease button button_orange">
-                    <fa-icon [icon]="faMinus"></fa-icon>
+                    (click)="setMax(product.product.qty)"
+                    class="button button_orange">
+                    Max
                   </button>
-                  <div class="control-group flex-grow-1 m-b-0px">
-                    <input
-                      [(ngModel)]="productQuantity"
-                      aria-label="Example text with button addon"
-                      class="product-order-form__input control-group__field"
-                      name="productQuantity"
-                      type="number" />
-                  </div>
-                  <button
-                    (click)="increaseQuantity(product.product.qty)"
-                    class="product-order-form__increase button button_orange">
-                    <fa-icon [icon]="faPlus"></fa-icon>
-                  </button>
-                </form>
+                </div>
                 <button
-                  (click)="setMax(product.product.qty)"
-                  class="button button_orange">
-                  Max
+                  (click)="
+                    addToCart(productQuantity, product.product.product_id)
+                  "
+                  class="w-50 button button_orange p-12px">
+                  Add to Cart
                 </button>
               </div>
-              <button
-                (click)="addToCart(productQuantity, product.product.product_id)"
-                class="w-50 button button_orange p-12px">
-                Add to Cart
-              </button>
             </div>
           </div>
         </div>

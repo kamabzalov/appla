@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { LoginComponent } from '@app/shared/components/modal/login/login.component';
+import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { iconSet } from '@app/shared/utils/icons';
 import { RestService } from '@app/services/rest/rest.service';
@@ -45,7 +45,7 @@ export class SidenavComponent implements OnInit {
   }
 
   protected openLoginModal() {
-    this.modalService.open(LoginComponent);
+    this.modalService.open(LoginDialogComponent);
   }
 
   protected closeSideNav() {

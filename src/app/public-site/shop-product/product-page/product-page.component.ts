@@ -12,6 +12,7 @@ import { LanguageService } from '@app/services/language/language.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '@app/shared/components/modal/confirm-dialog/confirm-dialog.component';
 import { ToastService } from '@app/services/toast/toast.service';
+import { SuccessAddCartDialogComponent } from '@app/public-site/shop-product/modal/success-add-cart-dialog/success-add-cart-dialog.component';
 
 export interface Product {
   title: string;
@@ -178,6 +179,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   protected addToCart(productQuantity: number, product_id: number) {
     this.restService.addToCart(productQuantity, product_id).subscribe(res => {
       if (res.status === 'success') {
+        this.modalService.open(SuccessAddCartDialogComponent);
       }
     });
   }

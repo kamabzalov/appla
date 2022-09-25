@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from '@app/shared/components/modal/login/login.component';
+import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
 import { iconSet } from '@app/shared/utils/icons';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -45,6 +45,6 @@ export class FooterComponent implements OnInit {
   }
 
   public openLoginModal() {
-    this.modalService.open(LoginComponent);
+    this.modalService.open(LoginDialogComponent);
   }
 }

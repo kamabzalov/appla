@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <button
+    (click)="activeModal.dismiss('Cross click')"
+    aria-label="Close"
+    class="btn-close"
+    type="button"></button>
+</div>
+<div class="modal-body">
+  <h5>Success</h5>
+</div>
+<div class="modal-footer">
+  <button
+    (click)="goToCategory()"
+    class="button button_transparent_outline_orange"
+    type="button">
+    See more
+  </button>
+  <button
+    (click)="activeModal.close()"
+    class="button button_orange"
+    type="button">
+    Cart
+  </button>
+</div>

@@ -16,7 +16,6 @@ import { AsideWidgetComponent } from './components/aside-widget/aside-widget.com
 import { TranslateModule } from '@ngx-translate/core';
 import { RecentlyViewedComponent } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './components/modal/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CloseCanvasDirective } from './directives/close-canvas/close-canvas.directive';
@@ -27,6 +26,7 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 import { ConfirmDialogComponent } from './components/modal/confirm-dialog/confirm-dialog.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { ToastComponent } from './components/toast/toast.component';
     PreviewCardComponent,
     AsideWidgetComponent,
     RecentlyViewedComponent,
-    LoginComponent,
+    LoginDialogComponent,
     SidenavComponent,
     CloseCanvasDirective,
     CloseDropdownDirective,
