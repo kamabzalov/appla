@@ -21,7 +21,8 @@ import {
 } from '@app/public-site/shop-category/category-page/category-page.component';
 import { AppLanguages } from '@app/services/language/language.service';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
-import { DomSanitizer } from '@angular/platform-browser';
+import * as auth from 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 interface BackendResponse {
   data: any;
@@ -38,7 +39,7 @@ export class RestService {
   constructor(
     private http: HttpClient,
     private localizeRouterService: LocalizeRouterService,
-    private sanitizer: DomSanitizer
+    public afAuth: AngularFireAuth
   ) {}
 
   public getSiteMenu(): Observable<Menu[]> {
@@ -302,6 +303,24 @@ export class RestService {
         merchant_id,
       })
       .pipe(map(response => response.data.msg));
+  }
+
+  public signWithGoogle() {
+    return this.authLogin(new auth.GoogleAuthProvider()).then((res: any) =>
+      console.log(res)
+    );
+  }
+
+  public signWithFacebook() {
+    return this.authLogin(new auth.FacebookAuthProvider()).then((res: any) =>
+      console.log(res)
+    );
+  }
+
+  private authLogin(provider: any) {
+    return this.afAuth.signInWithPopup(provider).then(result => {
+      console.log(result);
+    });
   }
 
   private getLangId(): number {

@@ -10,6 +10,7 @@ export interface AuthStatus {
 @Component({
   selector: 'appla-login-dialog',
   templateUrl: './login-dialog.component.html',
+  styleUrls: ['./login-dialog.component.scss'],
 })
 export class LoginDialogComponent {
   protected showError: boolean;
@@ -30,5 +31,13 @@ export class LoginDialogComponent {
         this.offCanvas.dismiss();
       }
     });
+  }
+
+  protected signWithGoogle() {
+    this.rest.signWithGoogle().then();
+  }
+
+  protected signWithFacebook() {
+    this.rest.signWithFacebook().then();
   }
 }

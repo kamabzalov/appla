@@ -45,7 +45,9 @@ export class SidenavComponent implements OnInit {
   }
 
   protected openLoginModal() {
-    this.modalService.open(LoginDialogComponent);
+    this.modalService
+      .open(LoginDialogComponent, { centered: true })
+      .dismissed.subscribe(_ => console.log('call'));
   }
 
   protected closeSideNav() {

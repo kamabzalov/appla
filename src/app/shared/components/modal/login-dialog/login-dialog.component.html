@@ -7,7 +7,7 @@
     type="button"></button>
 </div>
 <div class="modal-body">
-  <form>
+  <form class="m-b-12px">
     <div class="control-group">
       <input
         [(ngModel)]="email"
@@ -26,6 +26,20 @@
     </div>
     <p *ngIf="showError">Invalid login or password</p>
   </form>
+  <div class="m-b-12px">
+    <button
+      (click)="signWithGoogle()"
+      class="w-100 button button_google p-12px">
+      Google
+    </button>
+  </div>
+  <div>
+    <button
+      (click)="signWithFacebook()"
+      class="w-100 button button_facebook p-12px">
+      Facebook
+    </button>
+  </div>
 </div>
 <div class="modal-footer">
   <button (click)="auth()" class="btn btn-outline-dark" type="button">

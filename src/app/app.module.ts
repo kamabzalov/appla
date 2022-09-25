@@ -21,6 +21,9 @@ import {
 } from '@gilsdav/ngx-translate-router';
 import { localizeBrowserLoaderFactory } from '@app/localize-browser.loader';
 import { CookieService } from 'ngx-cookie-service';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from '@env/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,6 +52,8 @@ import { CookieService } from 'ngx-cookie-service';
       },
       initialNavigation: true,
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,

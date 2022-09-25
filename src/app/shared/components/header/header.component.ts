@@ -43,6 +43,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
     });
+    this.restService.isAuthorized().subscribe(res => {
+      console.log(document.cookie);
+      this.isLogin = res.status === 'success';
+      console.log(this.cookieService.get('ci_sessions'));
+    });
   }
 
   public ngOnDestroy() {
