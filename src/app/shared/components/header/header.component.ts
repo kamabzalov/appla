@@ -12,6 +12,7 @@ import { RestService } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 @Component({
   selector: 'appla-header',
@@ -30,7 +31,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private offCanvas: NgbOffcanvas,
     private cdr: ChangeDetectorRef,
     private restService: RestService,
-    private router: Router
+    private router: Router,
+    private cookieService: SsrCookieService
   ) {}
 
   public ngOnInit() {
@@ -40,9 +42,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isMainPage = event.url.split('/').length === 2;
         this.cdr.markForCheck();
       }
-    });
-    this.restService.isAuthorized().subscribe(res => {
-      this.isLogin = res.status === 'success';
     });
   }
 
@@ -56,7 +55,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService
       .open(LoginDialogComponent, { centered: true })
       .dismissed.subscribe(res => {
-        this.isLogin = res === 'success';
+        this.restService.isAuthorized().subscribe(res => {
+          console.log(document.cookie);
+          this.isLogin = res.status === 'success';
+          console.log(this.cookieService.get('ci_sessions'));
+        });
         this.cdr.markForCheck();
       });
   }
