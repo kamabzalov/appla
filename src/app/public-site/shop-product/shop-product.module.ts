@@ -8,7 +8,11 @@ import { AdditionalProductImagesComponent } from './additional-product-images/ad
 import { SuccessAddCartDialogComponent } from './modal/success-add-cart-dialog/success-add-cart-dialog.component';
 
 @NgModule({
-  declarations: [ProductPageComponent, AdditionalProductImagesComponent, SuccessAddCartDialogComponent],
+  declarations: [
+    ProductPageComponent,
+    AdditionalProductImagesComponent,
+    SuccessAddCartDialogComponent,
+  ],
   imports: [CommonModule, SharedModule, ShopProductRoutingModule],
 })
 export class ShopProductModule {}

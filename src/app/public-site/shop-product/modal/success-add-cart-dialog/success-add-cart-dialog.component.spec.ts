@@ -8,9 +8,8 @@ describe('SuccessAddCartDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SuccessAddCartDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [SuccessAddCartDialogComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SuccessAddCartDialogComponent);
     component = fixture.componentInstance;
