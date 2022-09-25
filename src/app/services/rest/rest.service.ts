@@ -194,13 +194,17 @@ export class RestService {
   public searchInShop(
     query: string,
     limit?: number,
-    offset?: number
+    offset?: number,
+    category_slug?: string
   ): Observable<SearchResults> {
     const langId = this.getLangId();
     let params = new HttpParams().set('lang_id', langId);
     if (limit && offset) {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
+    }
+    if (category_slug) {
+      params = params.set('category_slug', category_slug);
     }
     return this.http
       .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`, {

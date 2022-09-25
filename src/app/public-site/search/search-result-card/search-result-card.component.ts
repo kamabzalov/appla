@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnDestroy,
+  Output,
 } from '@angular/core';
 import {
   SearchCategory,
@@ -23,6 +25,8 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 export class SearchResultCardComponent implements OnDestroy {
   @Input() public categories: SearchCategory[];
   @Input() public product: SearchProduct;
+  @Output() public clickOnCategory: EventEmitter<string> =
+    new EventEmitter<string>();
   protected currentLang: string;
   protected readonly customOptions: OwlOptions = {
     loop: true,
@@ -84,5 +88,9 @@ export class SearchResultCardComponent implements OnDestroy {
           }
         }
       });
+  }
+
+  protected categoryClick(category_slug: string) {
+    this.clickOnCategory.emit(category_slug);
   }
 }

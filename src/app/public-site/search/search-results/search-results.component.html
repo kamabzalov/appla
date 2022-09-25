@@ -14,6 +14,7 @@
           </div>
         </div>
         <appla-search-result-card
+          (clickOnCategory)="searchInCategory($event)"
           [categories]="results.categories.data"></appla-search-result-card>
       </ng-container>
     </section>
@@ -39,9 +40,15 @@
 
     <div *ngIf="results.categories.count > results.products.length" class="row">
       <div class="column-12 text-center">
-        <button (click)="loadMoreProducts()" class="button button_orange">
+        <button
+          (click)="loadMoreProducts()"
+          *ngIf="!loading"
+          class="button button_orange">
           {{ 'SEARCH-PAGE.LOAD_MORE' | translate }}
         </button>
+        <div *ngIf="loading" class="spinner-border text-orange" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
     </div>
   </div>

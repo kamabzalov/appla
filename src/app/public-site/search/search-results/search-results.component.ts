@@ -6,7 +6,14 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { filter, Observable, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  filter,
+  map,
+  Observable,
+  Subscription,
+  tap,
+} from 'rxjs';
 
 export interface SearchResults {
   categories: SearchCategoryResult;
@@ -62,12 +69,15 @@ export interface Slugs {
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
   public searchResults$: Observable<SearchResults>;
+  protected loading: boolean = false;
   // eslint-disable-next-line no-magic-numbers
   private limit: number = 24;
   // eslint-disable-next-line no-magic-numbers
   private offset: number = 0;
   private query: string;
   private categoryIdSubscription: Subscription;
+  private currentSearchState$: BehaviorSubject<SearchResults | null> =
+    new BehaviorSubject<SearchResults | null>(null);
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -79,13 +89,17 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     this.query = this.activeRoute.snapshot.queryParams['string'];
     this.activeRoute.queryParams.subscribe(
       params =>
-        (this.searchResults$ = this.restService.searchInShop(params['string']))
+        (this.searchResults$ = this.restService
+          .searchInShop(params['string'])
+          .pipe(tap(res => this.currentSearchState$.next(res))))
     );
     this.categoryIdSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((res: any) => {
         this.query = res.urlAfterRedirects.split('?string=')[1];
-        this.searchResults$ = this.restService.searchInShop(this.query);
+        this.searchResults$ = this.restService
+          .searchInShop(this.query)
+          .pipe(tap(res => this.currentSearchState$.next(res)));
       });
   }
 
@@ -95,10 +109,31 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     }
   }
 
+  public searchInCategory($event: string) {
+    this.searchResults$ = this.restService
+      .searchInShop(this.query, this.limit, this.offset, $event)
+      .pipe(tap(data => console.log(data.products)));
+  }
+
   protected loadMoreProducts() {
     this.offset = this.offset + this.limit;
-    this.restService
+    this.loading = true;
+    this.searchResults$ = this.restService
       .searchInShop(this.query, this.limit, this.offset)
-      .subscribe();
+      .pipe(
+        map(res => {
+          this.loading = false;
+          const currentSearchState = this.currentSearchState$.getValue();
+          if (currentSearchState) {
+            currentSearchState.products = currentSearchState.products.concat(
+              res.products
+            );
+            console.log(currentSearchState.products);
+            this.currentSearchState$.next(currentSearchState);
+            return currentSearchState;
+          }
+          return res;
+        })
+      );
   }
 }
