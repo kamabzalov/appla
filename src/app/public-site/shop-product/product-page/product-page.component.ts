@@ -9,6 +9,9 @@ import { RestService } from '@app/services/rest/rest.service';
 import { Observable, Subscription, switchMap, tap } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { LanguageService } from '@app/services/language/language.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDialogComponent } from '@app/shared/components/modal/confirm-dialog/confirm-dialog.component';
+import { ToastService } from '@app/services/toast/toast.service';
 
 export interface Product {
   title: string;
@@ -129,7 +132,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private restService: RestService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private modalService: NgbModal,
+    private toastService: ToastService
   ) {}
 
   public ngOnInit(): void {
@@ -177,7 +182,17 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  protected followStore() {}
+  protected followStore(userId: number, merchantId: number) {
+    const confirmModal = this.modalService.open(ConfirmDialogComponent, {
+      centered: true,
+    });
+    confirmModal.componentInstance.text = 'Follow this store?';
+    confirmModal.closed.subscribe(_ => {
+      this.restService.followStore(userId, merchantId).subscribe(res => {
+        this.toastService.show(res);
+      });
+    });
+  }
 
   private getProductData(
     storeSlug: string,

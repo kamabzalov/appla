@@ -280,6 +280,18 @@ export class RestService {
     );
   }
 
+  public followStore(
+    user_id: number = 1,
+    merchant_id: number = 1
+  ): Observable<string> {
+    return this.http
+      .post<BackendResponse>(`${this.basePath}/Angular/Store/follow_merchant`, {
+        user_id,
+        merchant_id,
+      })
+      .pipe(map(response => response.data.msg));
+  }
+
   private getLangId(): number {
     const lang = AppLanguages.find(
       lang => lang.code === this.localizeRouterService.parser.currentLang

@@ -165,7 +165,11 @@
         </div>
       </div>
       <div class="col-md-6 text-end">
-        <button (click)="followStore()" class="product-follow">Follow</button>
+        <button
+          (click)="followStore(1, product.product.store_id)"
+          class="product-follow">
+          Follow
+        </button>
       </div>
     </div>
   </section>

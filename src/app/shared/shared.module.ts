@@ -25,6 +25,8 @@ import { ScrollTopComponent } from './components/scroll-top/scroll-top.component
 import { SimilarProductsComponent } from '@app/shared/components/similar-products/similar-products.component';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
+import { ConfirmDialogComponent } from './components/modal/confirm-dialog/confirm-dialog.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
     CloseDropdownDirective,
     ScrollTopComponent,
     SimilarProductsComponent,
+    ConfirmDialogComponent,
+    ToastComponent,
   ],
   imports: [
     CommonModule,
@@ -77,6 +81,7 @@ import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
     RecentlyViewedComponent,
     ScrollTopComponent,
     SimilarProductsComponent,
+    ToastComponent,
     SidenavComponent,
     CloseCanvasDirective,
   ],
