@@ -88,6 +88,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   protected sorting = SORTING;
   protected categoryData$: Observable<Category | null>;
   protected appLang: string;
+  protected loading: boolean = false;
   // eslint-disable-next-line no-magic-numbers
   private offset = 0;
   // eslint-disable-next-line no-magic-numbers
@@ -165,6 +166,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   protected loadMoreProducts() {
     this.offset = this.offset + this.limit;
+    this.loading = true;
     this.restService
       .getAllProductCategories(this.limit, this.offset, this.order, this.slug)
       .subscribe(res => {
@@ -174,6 +176,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
             res.products
           );
           this.categorySubject$.next(currentCategories);
+          this.loading = false;
         }
       });
   }
