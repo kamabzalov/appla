@@ -281,7 +281,9 @@ export class RestService {
   }
 
   public followStore(
+    // eslint-disable-next-line no-magic-numbers
     user_id: number = 1,
+    // eslint-disable-next-line no-magic-numbers
     merchant_id: number = 1
   ): Observable<string> {
     return this.http

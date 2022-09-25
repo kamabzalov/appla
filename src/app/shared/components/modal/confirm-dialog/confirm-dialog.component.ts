@@ -8,7 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmDialogComponent {
-  @Input() text: string;
+  @Input() public text: string;
 
   constructor(public activeModal: NgbActiveModal) {}
 }

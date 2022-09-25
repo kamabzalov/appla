@@ -5,7 +5,6 @@ import { ToastService } from '@app/services/toast/toast.service';
   selector: 'appla-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent implements OnInit {
   public toasts: any[] = [];
@@ -17,7 +16,6 @@ export class ToastComponent implements OnInit {
   }
 
   protected isTemplate(toast: any) {
-    console.log(toast);
     return toast.textOrTpl instanceof TemplateRef;
   }
 
