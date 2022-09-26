@@ -34,7 +34,12 @@ export class LoginDialogComponent {
   }
 
   protected signWithGoogle() {
-    this.rest.signWithGoogle().then();
+    this.rest.signWithGoogle().then(res => {
+      console.log(res.additionalUserInfo?.profile);
+      this.rest
+        .doGoogle(res.additionalUserInfo?.profile)
+        .subscribe(res => console.log(res));
+    });
   }
 
   protected signWithFacebook() {

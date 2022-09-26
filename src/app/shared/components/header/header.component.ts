@@ -44,9 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
     this.restService.isAuthorized().subscribe(res => {
-      console.log(document.cookie);
       this.isLogin = res.status === 'success';
-      console.log(this.cookieService.get('ci_sessions'));
     });
   }
 
@@ -61,9 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .open(LoginDialogComponent, { centered: true })
       .dismissed.subscribe(res => {
         this.restService.isAuthorized().subscribe(res => {
-          console.log(document.cookie);
           this.isLogin = res.status === 'success';
-          console.log(this.cookieService.get('ci_sessions'));
         });
         this.cdr.markForCheck();
       });

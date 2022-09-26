@@ -30,6 +30,13 @@ interface BackendResponse {
   status: string;
 }
 
+interface FirebaseResponse {
+  additionalUserInfo: any;
+  credential: any;
+  operationType: string;
+  user: any;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -283,7 +290,7 @@ export class RestService {
     product_id: number
   ): Observable<BackendResponse> {
     return this.http.post<BackendResponse>(
-      `${this.basePath}/Angular/Cart/addToCart`,
+      `${this.basePath}Angular/Cart/addToCart`,
       {
         qty,
         product_id,
@@ -298,29 +305,35 @@ export class RestService {
     merchant_id: number = 1
   ): Observable<string> {
     return this.http
-      .post<BackendResponse>(`${this.basePath}/Angular/Store/follow_merchant`, {
+      .post<BackendResponse>(`${this.basePath}Angular/Store/follow_merchant`, {
         user_id,
         merchant_id,
       })
       .pipe(map(response => response.data.msg));
   }
 
-  public signWithGoogle() {
-    return this.authLogin(new auth.GoogleAuthProvider()).then((res: any) =>
-      console.log(res)
-    );
+  public async signWithGoogle() {
+    return await this.authLogin(new auth.GoogleAuthProvider());
   }
 
-  public signWithFacebook() {
-    return this.authLogin(new auth.FacebookAuthProvider()).then((res: any) =>
-      console.log(res)
-    );
+  public async signWithFacebook() {
+    return await this.authLogin(new auth.FacebookAuthProvider());
   }
 
-  private authLogin(provider: any) {
-    return this.afAuth.signInWithPopup(provider).then(result => {
-      console.log(result);
+  public doGoogle(profile: any): Observable<any> {
+    return this.http.post<any>(`${this.basePath}Angular/Auth/doGoogle`, {
+      profile,
     });
+  }
+
+  public doFacebook(profile: any) {
+    return this.http.post(`${this.basePath}Angular/Auth/doFacebook`, {
+      profile,
+    });
+  }
+
+  private async authLogin(provider: any) {
+    return this.afAuth.signInWithPopup(provider);
   }
 
   private getLangId(): number {
