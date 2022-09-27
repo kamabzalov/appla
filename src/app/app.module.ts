@@ -20,7 +20,6 @@ import {
   LocalizeRouterSettings,
 } from '@gilsdav/ngx-translate-router';
 import { localizeBrowserLoaderFactory } from '@app/localize-browser.loader';
-import { CookieService } from 'ngx-cookie-service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '@env/environment';
@@ -65,7 +64,6 @@ import { environment } from '@env/environment';
       useValue: 'en-GB',
     },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
-    CookieService,
   ],
   bootstrap: [AppComponent],
 })
