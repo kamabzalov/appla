@@ -2,6 +2,7 @@
   <div class="control-group flex-grow-1 m-b-0px">
     <ng-template #rt let-r="result" let-t="term">
       <p
+        (click)="goToEntity(r)"
         [ngClass]="{ 'suggestion-category': getClassName(r) }"
         class="suggestion">
         <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>

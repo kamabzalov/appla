@@ -13,6 +13,7 @@ import {
   SearchCategory,
   SearchProduct,
 } from '@app/public-site/search/search-results/search-results.component';
+import { LanguageService } from '@app/services/language/language.service';
 
 @Component({
   selector: 'appla-search-form',
@@ -28,7 +29,8 @@ export class SearchFormComponent {
   constructor(
     private router: Router,
     private restService: RestService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private languageService: LanguageService
   ) {}
 
   public search() {
@@ -68,5 +70,21 @@ export class SearchFormComponent {
 
   protected getClassName(r: SearchProduct | SearchCategory): boolean {
     return !('master_product_id' in r);
+  }
+
+  protected goToEntity(r: SearchProduct | SearchCategory) {
+    const lang = this.languageService.currentAppLang$.getValue().code;
+    if ('master_product_id' in r) {
+      this.restService
+        .getProductByMasterId(r.master_product_id)
+        .subscribe(res => {
+          const slugs = res[0];
+          this.router.navigate([
+            `/${lang}/product/${slugs.store_slug}/${slugs.product_slug}`,
+          ]);
+        });
+    } else {
+      this.router.navigate([`/${lang}/category/list/${r.slug}`]);
+    }
   }
 }
