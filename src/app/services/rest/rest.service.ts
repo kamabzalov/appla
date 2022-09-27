@@ -19,7 +19,10 @@ import {
   ProductFilter,
   Subcategory,
 } from '@app/public-site/shop-category/category-page/category-page.component';
-import { AppLanguages } from '@app/services/language/language.service';
+import {
+  AppLanguages,
+  LanguageService,
+} from '@app/services/language/language.service';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -28,13 +31,6 @@ interface BackendResponse {
   data: any;
   message: string;
   status: string;
-}
-
-interface FirebaseResponse {
-  additionalUserInfo: any;
-  credential: any;
-  operationType: string;
-  user: any;
 }
 
 @Injectable({
@@ -46,21 +42,25 @@ export class RestService {
   constructor(
     private http: HttpClient,
     private localizeRouterService: LocalizeRouterService,
-    public afAuth: AngularFireAuth
+    private languageService: LanguageService,
+    private afAuth: AngularFireAuth
   ) {}
 
   public getSiteMenu(): Observable<Menu[]> {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Header/top_menu?lang_id=${langId}`
+        `${this.basePath}Angular/Header/top_menu?lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
 
   public getSlides(): Observable<Slide[]> {
     return this.http
-      .get<BackendResponse>(`${this.basePath}Angular/Home/home_slider_top`)
+      .get<BackendResponse>(`${this.basePath}Angular/Home/home_slider_top`, {
+        withCredentials: true,
+      })
       .pipe(map(response => response.data));
   }
 
@@ -68,7 +68,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/get_store_offers?lang_id=${langId}`
+        `${this.basePath}Angular/Home/get_store_offers?lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -77,7 +78,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/get_recently_viewed?store_id=false&user_id=&name=name1&lang_id=${langId}`
+        `${this.basePath}Angular/Home/get_recently_viewed?store_id=false&user_id=&name=name1&lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -86,7 +88,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/get_now_trending?lang_id=${langId}`
+        `${this.basePath}Angular/Home/get_now_trending?lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -95,7 +98,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/sample_smartphones?lang_id=${langId}`
+        `${this.basePath}Angular/Home/sample_smartphones?lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -104,7 +108,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/sample_kitchen?lang_id=${langId}`
+        `${this.basePath}Angular/Home/sample_kitchen?lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -113,7 +118,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/sample_personal_care?lang_id=${langId}`
+        `${this.basePath}Angular/Home/sample_personal_care?lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -122,7 +128,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/sample_cleaning?lang_id=${langId}`
+        `${this.basePath}Angular/Home/sample_cleaning?lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -158,6 +165,7 @@ export class RestService {
         `${this.basePath}Angular/Categories/get_category_products`,
         {
           params,
+          withCredentials: true,
         }
       )
       .pipe(
@@ -194,7 +202,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId}`
+        `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId},`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -217,6 +226,7 @@ export class RestService {
     return this.http
       .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`, {
         params,
+        withCredentials: true,
       })
       .pipe(map(response => response.data));
   }
@@ -225,7 +235,8 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Search?string=${query}&lang_id=${langId}`
+        `${this.basePath}Angular/Search?string=${query}&lang_id=${langId}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -238,7 +249,8 @@ export class RestService {
         email,
         password,
         lang_id,
-      }
+      },
+      { withCredentials: true }
     );
   }
 
@@ -246,7 +258,8 @@ export class RestService {
     const lang_id = this.getLangId();
     return this.http.post<BackendResponse>(
       `${this.basePath}Angular/Auth/doSignup`,
-      { email, lang_id }
+      { email, lang_id },
+      { withCredentials: true }
     );
   }
 
@@ -260,7 +273,8 @@ export class RestService {
   public logout(): Observable<BackendResponse> {
     const lang_id = this.getLangId();
     return this.http.get<BackendResponse>(
-      `${this.basePath}logout?lang_id=${lang_id}`
+      `${this.basePath}Angular/Auth/logout?lang_id=${lang_id}`,
+      { withCredentials: true }
     );
   }
 
@@ -271,7 +285,8 @@ export class RestService {
     const lang_id = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}&lang_id=${lang_id}`
+        `${this.basePath}Angular/Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}&lang_id=${lang_id}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -280,7 +295,8 @@ export class RestService {
     const lang_id = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Search/mpi_to_slug?mpi=${id}&lang_id=${lang_id}`
+        `${this.basePath}Angular/Search/mpi_to_slug?mpi=${id}&lang_id=${lang_id}`,
+        { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
@@ -294,7 +310,8 @@ export class RestService {
       {
         qty,
         product_id,
-      }
+      },
+      { withCredentials: true }
     );
   }
 
@@ -305,10 +322,14 @@ export class RestService {
     merchant_id: number = 1
   ): Observable<string> {
     return this.http
-      .post<BackendResponse>(`${this.basePath}Angular/Store/follow_merchant`, {
-        user_id,
-        merchant_id,
-      })
+      .post<BackendResponse>(
+        `${this.basePath}Angular/Store/follow_merchant`,
+        {
+          user_id,
+          merchant_id,
+        },
+        { withCredentials: true }
+      )
       .pipe(map(response => response.data.msg));
   }
 
@@ -321,15 +342,23 @@ export class RestService {
   }
 
   public doGoogle(profile: any): Observable<any> {
-    return this.http.post<any>(`${this.basePath}Angular/Auth/doGoogle`, {
-      profile,
-    });
+    return this.http.post<any>(
+      `${this.basePath}Angular/Auth/doGoogle`,
+      {
+        profile,
+      },
+      { withCredentials: true }
+    );
   }
 
   public doFacebook(profile: any) {
-    return this.http.post(`${this.basePath}Angular/Auth/doFacebook`, {
-      profile,
-    });
+    return this.http.post(
+      `${this.basePath}Angular/Auth/doFacebook`,
+      {
+        profile,
+      },
+      { withCredentials: true }
+    );
   }
 
   private async authLogin(provider: any) {
@@ -338,7 +367,7 @@ export class RestService {
 
   private getLangId(): number {
     const lang = AppLanguages.find(
-      lang => lang.code === this.localizeRouterService.parser.currentLang
+      lang => lang.code === this.languageService.currentAppLang$.getValue().code
     );
     if (lang) {
       return lang.id;

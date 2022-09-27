@@ -35,14 +35,21 @@ export class LoginDialogComponent {
 
   protected signWithGoogle() {
     this.rest.signWithGoogle().then(res => {
-      console.log(res.additionalUserInfo?.profile);
       this.rest
         .doGoogle(res.additionalUserInfo?.profile)
-        .subscribe(res => console.log(res));
+        .subscribe(response => {
+          this.activeModal.dismiss(response);
+        });
     });
   }
 
   protected signWithFacebook() {
-    this.rest.signWithFacebook().then();
+    this.rest.signWithFacebook().then(res => {
+      this.rest
+        .doFacebook(res.additionalUserInfo?.profile)
+        .subscribe(response => {
+          this.activeModal.dismiss(response);
+        });
+    });
   }
 }

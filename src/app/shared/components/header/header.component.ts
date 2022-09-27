@@ -12,7 +12,6 @@ import { RestService } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
-import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 @Component({
   selector: 'appla-header',
@@ -31,8 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private offCanvas: NgbOffcanvas,
     private cdr: ChangeDetectorRef,
     private restService: RestService,
-    private router: Router,
-    private cookieService: SsrCookieService
+    private router: Router
   ) {}
 
   public ngOnInit() {
@@ -45,6 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
     this.restService.isAuthorized().subscribe(res => {
       this.isLogin = res.status === 'success';
+      this.cdr.markForCheck();
     });
   }
 
@@ -60,8 +59,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .dismissed.subscribe(res => {
         this.restService.isAuthorized().subscribe(res => {
           this.isLogin = res.status === 'success';
+          this.cdr.markForCheck();
         });
-        this.cdr.markForCheck();
       });
   }
 
@@ -71,7 +70,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   protected logout() {
     this.restService.logout().subscribe(res => {
-      this.isLogin = false;
+      if (res.status === 'success') {
+        this.isLogin = false;
+      }
+      this.cdr.markForCheck();
     });
   }
 }

@@ -62,17 +62,23 @@
               <h2 class="product-order__header">Order item</h2>
               <div class="m-b-20px">
                 <p>Product Variants</p>
-                <ng-container *ngFor="let variant of product.product_variant">
-                  <ng-container
-                    *ngFor="let item of variant.product_variant | keyvalue">
-                    <strong>{{ item.key }}</strong>
-                    <select>
-                      <option [ngValue]="variant.product_variant_id">
-                        {{ item.value }}
-                      </option>
-                    </select>
-                  </ng-container>
-                </ng-container>
+                <select>
+                  <option
+                    *ngFor="let variant of product.product_variant"
+                    [ngValue]="variant.product_variant_id">
+                    {{ variant.product_variant | json }}
+                  </option>
+                  <hr />
+                  <!--                  <ng-container-->
+                  <!--                    *ngFor="let item of variant.product_variant | keyvalue">-->
+                  <!--                    <strong>{{ item.key }}</strong>-->
+                  <!--                    <select>-->
+                  <!--                      <option [ngValue]="variant.product_variant_id">-->
+                  <!--                        {{ item.value }}-->
+                  <!--                      </option>-->
+                  <!--                    </select>-->
+                  <!--                  </ng-container>-->
+                </select>
               </div>
               <div>
                 <p>Quantity</p>
