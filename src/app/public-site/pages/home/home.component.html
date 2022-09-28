@@ -1,20 +1,20 @@
-<section
-  *ngIf="slides$ | async as slides"
-  class="m-b-16px display-none display-large-block">
-  <appla-slider [slides]="slides"></appla-slider>
-</section>
+<!--<section-->
+<!--  *ngIf="slides$ | async as slides"-->
+<!--  class="m-b-16px display-none display-large-block">-->
+<!--  <appla-slider [slides]="slides"></appla-slider>-->
+<!--</section>-->
 
-{{ storeOffers$ | async | json }}
-
-<section *ngIf="storeOffers$ | async as storeOffers" class="m-b-16px">
-  <div class="container">
-    <div class="row">
-      <div class="column-12">
-        <appla-store-offers [storeOffers]="storeOffers"></appla-store-offers>
+<ng-container *ngIf="storeOffers$ | async as storeOffers">
+  <section class="m-b-16px">
+    <div class="container">
+      <div class="row">
+        <div class="column-12">
+          <appla-store-offers [storeOffers]="storeOffers"></appla-store-offers>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</ng-container>
 
 <!--<section class="m-b-16px">-->
 <!--  <div class="container">-->
@@ -223,16 +223,16 @@
 <!--  </div>-->
 <!--</section>-->
 
-<section *ngIf="recentlyViewed$ | async as recentlyViewed" class="m-b-16px">
-  <div class="container">
-    <div class="row">
-      <div class="column-12 p-l-32px">
-        <appla-recently-viewed
-          [recentlyViewed]="recentlyViewed"></appla-recently-viewed>
-      </div>
-    </div>
-  </div>
-</section>
+<!--<section *ngIf="recentlyViewed$ | async as recentlyViewed" class="m-b-16px">-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="column-12 p-l-32px">-->
+<!--        <appla-recently-viewed-->
+<!--          [recentlyViewed]="recentlyViewed"></appla-recently-viewed>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 
 <!--<section class="m-b-16px">-->
 <!--  <div class="container">-->
@@ -307,15 +307,15 @@
 <!--  </div>-->
 <!--</section>-->
 
-<section *ngIf="trending$ | async as trending" class="m-b-16px">
-  <div class="container">
-    <div class="row">
-      <div class="column-12 p-l-32px">
-        <appla-now-trending [trending]="trending"></appla-now-trending>
-      </div>
-    </div>
-  </div>
-</section>
+<!--<section *ngIf="trending$ | async as trending" class="m-b-16px">-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="column-12 p-l-32px">-->
+<!--        <appla-now-trending [trending]="trending"></appla-now-trending>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 
 <!--<section class="m-b-16px">-->
 <!--  <div class="container">-->
@@ -327,60 +327,60 @@
 <!--  </div>-->
 <!--</section>-->
 
-<section
-  *ngIf="sampleSmartphones$ | async as sampleSmartphones"
-  class="m-b-16px">
-  <div class="container">
-    <div *ngIf="sampleSmartphones.length" class="row">
-      <div class="column-12">
-        <appla-product-category-tile
-          [entities]="sampleSmartphones"
-          link="./category/list/smartphones-1893"
-          title="{{
-            'HOME-PRODUCT-CATEGORIES.SMARTPHONES' | translate
-          }}"></appla-product-category-tile>
-      </div>
-    </div>
-  </div>
-</section>
+<!--<section-->
+<!--  *ngIf="sampleSmartphones$ | async as sampleSmartphones"-->
+<!--  class="m-b-16px">-->
+<!--  <div class="container">-->
+<!--    <div *ngIf="sampleSmartphones.length" class="row">-->
+<!--      <div class="column-12">-->
+<!--        <appla-product-category-tile-->
+<!--          [entities]="sampleSmartphones"-->
+<!--          link="./category/list/smartphones-1893"-->
+<!--          title="{{-->
+<!--            'HOME-PRODUCT-CATEGORIES.SMARTPHONES' | translate-->
+<!--          }}"></appla-product-category-tile>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 
-<section
-  *ngIf="samplePersonalCareProducts$ | async as samplePersonalCareProducts"
-  class="m-b-16px">
-  <div class="container">
-    <div *ngIf="samplePersonalCareProducts.length" class="row">
-      <div class="column-12">
-        <appla-product-category-tile
-          [entities]="samplePersonalCareProducts"
-          categoryId="7604"
-          link="./category/list/personal-care-products-7604"
-          title="{{
-            'HOME-PRODUCT-CATEGORIES.PERSONAL_CARE' | translate
-          }}"></appla-product-category-tile>
-      </div>
-    </div>
-  </div>
-</section>
+<!--<section-->
+<!--  *ngIf="samplePersonalCareProducts$ | async as samplePersonalCareProducts"-->
+<!--  class="m-b-16px">-->
+<!--  <div class="container">-->
+<!--    <div *ngIf="samplePersonalCareProducts.length" class="row">-->
+<!--      <div class="column-12">-->
+<!--        <appla-product-category-tile-->
+<!--          [entities]="samplePersonalCareProducts"-->
+<!--          categoryId="7604"-->
+<!--          link="./category/list/personal-care-products-7604"-->
+<!--          title="{{-->
+<!--            'HOME-PRODUCT-CATEGORIES.PERSONAL_CARE' | translate-->
+<!--          }}"></appla-product-category-tile>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 
-<section
-  *ngIf="
-    samplePersonalCleaningProducts$ | async as samplePersonalCleaningProducts
-  "
-  class="m-b-16px">
-  <div class="container">
-    <div *ngIf="samplePersonalCleaningProducts.length" class="row">
-      <div class="column-12">
-        <appla-product-category-tile
-          [entities]="samplePersonalCleaningProducts"
-          categoryId="4838"
-          link="./category/list/cleaning-agents-tools-supplies-4838"
-          title="{{
-            'HOME-PRODUCT-CATEGORIES.CLEANING_AGENTS' | translate
-          }}"></appla-product-category-tile>
-      </div>
-    </div>
-  </div>
-</section>
+<!--<section-->
+<!--  *ngIf="-->
+<!--    samplePersonalCleaningProducts$ | async as samplePersonalCleaningProducts-->
+<!--  "-->
+<!--  class="m-b-16px">-->
+<!--  <div class="container">-->
+<!--    <div *ngIf="samplePersonalCleaningProducts.length" class="row">-->
+<!--      <div class="column-12">-->
+<!--        <appla-product-category-tile-->
+<!--          [entities]="samplePersonalCleaningProducts"-->
+<!--          categoryId="4838"-->
+<!--          link="./category/list/cleaning-agents-tools-supplies-4838"-->
+<!--          title="{{-->
+<!--            'HOME-PRODUCT-CATEGORIES.CLEANING_AGENTS' | translate-->
+<!--          }}"></appla-product-category-tile>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 
 <!--<section>-->
 <!--  <div class="container">-->
