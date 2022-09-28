@@ -4,6 +4,8 @@
   <appla-slider [slides]="slides"></appla-slider>
 </section>
 
+{{ storeOffers$ | async | json }}
+
 <section *ngIf="storeOffers$ | async as storeOffers" class="m-b-16px">
   <div class="container">
     <div class="row">
