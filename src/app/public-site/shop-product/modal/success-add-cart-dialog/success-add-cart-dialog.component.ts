@@ -19,7 +19,7 @@ export class SuccessAddCartDialogComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.appLang = this.languageService.currentAppLang$.getValue().code;
+    this.appLang = this.languageService.currentAppLang$.getValue()!.code;
   }
 
   protected goToCategory() {

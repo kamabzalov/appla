@@ -1,5 +1,5 @@
-@use '~assets/scss/vars';
-@use '~assets/scss/mixins';
+@use '../vars';
+@use '../mixins';
 
 .button {
   @include mixins.border-radius(vars.$base-size * 5);

@@ -26,8 +26,8 @@ export const AppLanguages: AppLanguage[] = [
   providedIn: 'root',
 })
 export class LanguageService {
-  public currentAppLang$: BehaviorSubject<AppLanguage> =
-    new BehaviorSubject<AppLanguage>(AppLanguages[1]);
+  public currentAppLang$: BehaviorSubject<AppLanguage | null> =
+    new BehaviorSubject<AppLanguage | null>(null);
 
   constructor(public translate: TranslateService) {
     const langs = AppLanguages.map(item => item.code);

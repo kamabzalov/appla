@@ -14,6 +14,6 @@ export class PreviewCardComponent {
   protected appLanguage: string;
 
   constructor(private languageService: LanguageService) {
-    this.appLanguage = languageService.currentAppLang$.getValue().code;
+    this.appLanguage = languageService.currentAppLang$.getValue()!.code;
   }
 }

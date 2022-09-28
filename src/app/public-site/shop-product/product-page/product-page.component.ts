@@ -126,7 +126,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   public productQuantity: number = 1;
   protected product$: Observable<Product>;
   protected mainPage: string;
-  protected appLang: string;
+  protected appLang: 'en' | 'el' | 'ru' | undefined;
 
   private productSlugSubscription: Subscription;
 
@@ -139,7 +139,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.appLang = this.languageService.currentAppLang$.getValue().code;
+    this.appLang = this.languageService.currentAppLang$.getValue()?.code;
     this.product$ = this.route.url.pipe(
       switchMap(url => {
         return this.getProductData(url[0].path, url[1].path);

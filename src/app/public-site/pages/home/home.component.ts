@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { distinctUntilChanged, Observable } from 'rxjs';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { RestService } from '@app/services/rest/rest.service';
@@ -26,14 +31,20 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private restService: RestService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
     this.languageService.currentAppLang$
       .asObservable()
       .pipe(distinctUntilChanged())
-      .subscribe(_ => this.getPageData());
+      .subscribe(res => {
+        if (res) {
+          this.getPageData();
+          this.cdr.markForCheck();
+        }
+      });
   }
 
   private getSlides() {

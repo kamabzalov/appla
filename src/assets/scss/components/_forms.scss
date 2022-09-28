@@ -1,6 +1,6 @@
 /* stylelint-disable property-no-vendor-prefix */
-@use '~assets/scss/vars' as vars;
-@use '~assets/scss/mixins' as mixins;
+@use "../vars" as vars;
+@use '../mixins' as mixins;
 
 .control-group {
   margin-bottom: 1rem;

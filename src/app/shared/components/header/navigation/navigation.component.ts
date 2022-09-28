@@ -52,7 +52,7 @@ interface CommercialProduct {
 })
 export class NavigationComponent implements OnInit {
   protected menu$: Observable<Menu[]>;
-  protected appLanguage$: Observable<AppLanguage>;
+  protected appLanguage$: Observable<AppLanguage | null>;
   protected isMainPage: boolean = true;
   private router$: Subscription;
 
