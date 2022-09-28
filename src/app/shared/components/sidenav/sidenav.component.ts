@@ -40,7 +40,7 @@ export class SidenavComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.appLanguage = this.languageService.currentAppLang$.getValue().code;
+    this.appLanguage = this.languageService.currentAppLang$.getValue()!.code;
     this.menu$ = this.restService.getSiteMenu();
   }
 

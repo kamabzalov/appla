@@ -73,7 +73,7 @@ export class SearchFormComponent {
   }
 
   protected goToEntity(r: SearchProduct | SearchCategory) {
-    const lang = this.languageService.currentAppLang$.getValue().code;
+    const lang = this.languageService.currentAppLang$.getValue()!.code;
     if ('master_product_id' in r) {
       this.restService
         .getProductByMasterId(r.master_product_id)

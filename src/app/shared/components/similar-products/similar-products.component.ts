@@ -48,6 +48,6 @@ export class SimilarProductsComponent implements OnInit {
   constructor(private languageService: LanguageService) {}
 
   public ngOnInit() {
-    this.appLang = this.languageService.currentAppLang$.getValue().code;
+    this.appLang = this.languageService.currentAppLang$.getValue()!.code;
   }
 }
