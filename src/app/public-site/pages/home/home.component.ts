@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { distinctUntilChanged, Observable } from 'rxjs';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { RestService } from '@app/services/rest/rest.service';
@@ -17,7 +12,7 @@ import { LanguageService } from '@app/services/language/language.service';
   selector: 'appla-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   public sampleSmartphones$: Observable<ProductInTile[]>;
