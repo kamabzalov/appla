@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '~assets/scss/vars' as vars;
-@use '~assets/scss/mixins' as mixins;
+@use 'vars';
+@use 'mixins';
 
 $small-devices-breakpoint: map.get(vars.$media-breakpoints, 'small');
 

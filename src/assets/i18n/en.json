@@ -142,5 +142,21 @@
     "PASSWORD": "Password",
     "NOT_HAVE_ACCOUNT": "Don't have an account?",
     "SIGN_UP": "Sign up"
+  },
+  "PRODUCT_PAGE": {
+    "CATEGORIES": "Categories",
+    "CONDITION": "Condition",
+    "NEW": "New",
+    "IN_STOCK": "In Stock",
+    "ORDER_DETAILS": "Order details",
+    "PRODUCT_VARIANTS": "Product variants",
+    "QUANTITY": "Quantity",
+    "MAX": "Max",
+    "ADD_TO_CART": "Add to cart",
+    "WEIGHT": "Weight",
+    "DESCRIPTION": "Description",
+    "SIMILAR_PRODUCTS": "Similar products",
+    "FOLLOW": "Follow",
+    "SPECIFICATIONS": "Specifications"
   }
 }
