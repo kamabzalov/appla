@@ -202,7 +202,7 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId},`,
+        `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId}`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));

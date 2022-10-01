@@ -5,6 +5,7 @@
         <aside class="m-b-20px m-b-small-0px">
           <div class="card-content m-b-20px">
             <appla-aside-widget
+              [collapseInMobile]="true"
               widgetHeader="{{ 'CATEGORY-PAGE.CATEGORIES_LABEL' | translate }}">
               <ul class="subcategories-list list-unstyled p-r-20px">
                 <li>
@@ -183,4 +184,14 @@
       </div>
     </div>
   </ng-container>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="column-12">
+        <appla-advertise-banner></appla-advertise-banner>
+      </div>
+    </div>
+  </div>
 </section>

@@ -18,6 +18,7 @@
               <div class="column-medium-3 text-center">
                 <img
                   alt="{{ offer.master_product_info.name }}"
+                  applaErrorImage
                   class="img-fluid"
                   src="https://storage.googleapis.com/images-appla/production/thumbs_150/{{
                     offer.master_product_info.picture
@@ -116,6 +117,7 @@
                 <div class="column-2 display-none display-medium-block">
                   <img
                     alt="{{ store.name }}"
+                    applaErrorImage
                     class="product-offers__image"
                     src="https://storage.googleapis.com/images-appla/profile_picture/{{
                       store.avatar
@@ -192,7 +194,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="m-b-20px">
     <div class="card-content">
       <h5>{{ 'COMPARE-PRICES-PAGE.SIMILAR_PRODUCTS' | translate }}</h5>
       <appla-similar-products
@@ -200,3 +202,13 @@
     </div>
   </section>
 </div>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="column-12">
+        <appla-advertise-banner></appla-advertise-banner>
+      </div>
+    </div>
+  </div>
+</section>

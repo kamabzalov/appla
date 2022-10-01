@@ -12,6 +12,7 @@
               'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
               category.picture
             "
+            applaErrorImage
             class="preview-card__image" />
           <div>
             <p class="m-b-4px">{{ category.name }}</p>
@@ -38,6 +39,7 @@
         'https://storage.googleapis.com/images-appla/production/thumbs_150/' +
         product.picture
       "
+      applaErrorImage
       class="preview-card__image" />
     <p class="m-b-4px">
       {{ product.name }}
@@ -45,7 +47,7 @@
     <p class="preview-card__price m-b-4px">
       {{ product.price_min | currency }} - {{ product.price_max | currency }}
     </p>
-    <p class="m-b-4px">Caregory: {{ product.name }}</p>
+    <p class="m-b-4px">Category: {{ product.sort_cat }}</p>
     <p class="m-b-0px">Brand: {{ product.manufacturer }}</p>
   </button>
 </ng-template>
