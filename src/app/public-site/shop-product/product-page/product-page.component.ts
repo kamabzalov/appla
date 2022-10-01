@@ -87,7 +87,7 @@ interface ProductDetails {
   item_model_number: number;
   manufacturer: string;
   condition: number;
-  short_description: string;
+  description: string;
   product_slug: string;
   category_id: number;
   category_name: string;

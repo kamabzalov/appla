@@ -142,5 +142,21 @@
     "PASSWORD": "Κωδικός πρόσβασης",
     "NOT_HAVE_ACCOUNT": "Δεν έχετε λογαριασμό;",
     "SIGN_UP": "Εγγραφείτε εδώ"
+  },
+  "PRODUCT_PAGE": {
+    "CATEGORIES": "ΚΑΤΗΓΟΡΙΕΣ",
+    "CONDITION": "Κατάσταση",
+    "NEW": "Καινούριο",
+    "IN_STOCK": "Σε Απόθεμα",
+    "ORDER_DETAILS": "Στοιχεία Παραγγελίας",
+    "PRODUCT_VARIANTS": "Παραλλαγές προϊόντων",
+    "QUANTITY": "Ποσότητα",
+    "MAX": "Μέγιστη",
+    "ADD_TO_CART": "Προσθήκη στο καλάθι",
+    "WEIGHT": "Βάρος",
+    "DESCRIPTION": "Περιγραφή",
+    "SIMILAR_PRODUCTS": "Παρόμοια Προϊόντα",
+    "FOLLOW": "Ακολουθηστε",
+    "SPECIFICATIONS": ""
   }
 }
