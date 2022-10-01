@@ -27,6 +27,7 @@ import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 import { ConfirmDialogComponent } from './components/modal/confirm-dialog/confirm-dialog.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
+import { ErrorImageDirective } from './directives/error-image/error-image.directive';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/
     SimilarProductsComponent,
     ConfirmDialogComponent,
     ToastComponent,
+    ErrorImageDirective,
   ],
   imports: [
     CommonModule,
@@ -84,6 +86,7 @@ import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/
     ToastComponent,
     SidenavComponent,
     CloseCanvasDirective,
+    ErrorImageDirective,
   ],
 })
 export class SharedModule {}

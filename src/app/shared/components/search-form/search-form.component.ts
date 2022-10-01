@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
   debounceTime,
   distinctUntilChanged,
+  filter,
   map,
   Observable,
   switchMap,
@@ -54,6 +55,7 @@ export class SearchFormComponent {
       // eslint-disable-next-line no-magic-numbers
       debounceTime(750),
       distinctUntilChanged(),
+      filter((queryString: string) => !!queryString.length),
       switchMap(query => {
         this.resultsProducts$ = this.restService
           .searchProducts(query)

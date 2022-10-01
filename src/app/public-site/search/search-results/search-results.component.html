@@ -1,55 +1,71 @@
 <ng-container *ngIf="searchResults$ | async as results">
   <div class="container p-t-28px">
-    <div class="row m-b-20px">
-      <div class="col-12 text-center">
-        <h1>Results for:</h1>
-      </div>
-    </div>
-
-    <section class="m-b-20px">
-      <ng-container *ngIf="results.categories">
-        <div class="row">
-          <div class="col-12 text-center m-b-20px">
-            <h2>Categories:</h2>
-          </div>
-        </div>
-        <appla-search-result-card
-          (clickOnCategory)="searchInCategory($event)"
-          [categories]="results.categories.data"></appla-search-result-card>
-      </ng-container>
-    </section>
-
-    <section class="m-b-20px">
-      <ng-container *ngIf="results.products">
-        <div class="row">
-          <div class="column-12 text-center m-b-20px">
-            <h2>Products:</h2>
-          </div>
-        </div>
-
-        <div class="row">
-          <div
-            *ngFor="let product of results.products"
-            class="column-6 column-small-2 p-8-px m-b-8px">
-            <appla-search-result-card
-              [product]="product"></appla-search-result-card>
-          </div>
-        </div>
-      </ng-container>
-    </section>
-
-    <div *ngIf="results.categories.count > results.products.length" class="row">
-      <div class="column-12 text-center">
-        <button
-          (click)="loadMoreProducts()"
-          *ngIf="!loading"
-          class="button button_orange">
-          {{ 'SEARCH-PAGE.LOAD_MORE' | translate }}
-        </button>
-        <div *ngIf="loading" class="spinner-border text-orange" role="status">
-          <span class="visually-hidden">Loading...</span>
+    <ng-container
+      *ngIf="
+        results.products.length || results.categories.data.length;
+        else noResults
+      ">
+      <div class="row m-b-20px">
+        <div class="column-12 text-center">
+          <h1>Results for:</h1>
         </div>
       </div>
-    </div>
+
+      <section class="m-b-20px">
+        <ng-container *ngIf="results.categories">
+          <div class="row">
+            <div class="col-12 text-center m-b-20px">
+              <h2>Categories:</h2>
+            </div>
+          </div>
+          <appla-search-result-card
+            (clickOnCategory)="searchInCategory($event)"
+            [categories]="results.categories.data"></appla-search-result-card>
+        </ng-container>
+      </section>
+
+      <section class="m-b-20px">
+        <ng-container *ngIf="results.products">
+          <div class="row">
+            <div class="column-12 text-center m-b-20px">
+              <h2>Products:</h2>
+            </div>
+          </div>
+
+          <div class="row">
+            <div
+              *ngFor="let product of results.products"
+              class="column-6 column-small-2 p-8-px m-b-8px">
+              <appla-search-result-card
+                [product]="product"></appla-search-result-card>
+            </div>
+          </div>
+        </ng-container>
+      </section>
+
+      <div
+        *ngIf="results.categories.count > results.products.length"
+        class="row">
+        <div class="column-12 text-center">
+          <button
+            (click)="loadMoreProducts()"
+            *ngIf="!loading"
+            class="button button_orange">
+            {{ 'SEARCH-PAGE.LOAD_MORE' | translate }}
+          </button>
+          <div *ngIf="loading" class="spinner-border text-orange" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noResults>
+      <div class="row m-b-20px">
+        <div class="column-12 text-center">
+          <h1>No results were found for you search: {{ query }}</h1>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </ng-container>

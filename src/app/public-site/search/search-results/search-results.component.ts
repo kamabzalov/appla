@@ -70,11 +70,11 @@ export interface Slugs {
 export class SearchResultsComponent implements OnInit, OnDestroy {
   public searchResults$: Observable<SearchResults>;
   protected loading: boolean = false;
+  protected query: string;
   // eslint-disable-next-line no-magic-numbers
   private limit: number = 24;
   // eslint-disable-next-line no-magic-numbers
   private offset: number = 0;
-  private query: string;
   private categoryIdSubscription: Subscription;
   private currentSearchState$: BehaviorSubject<SearchResults | null> =
     new BehaviorSubject<SearchResults | null>(null);
