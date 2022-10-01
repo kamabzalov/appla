@@ -142,5 +142,21 @@
     "PASSWORD": "Пароль",
     "NOT_HAVE_ACCOUNT": "Нет учетной записи?",
     "SIGN_UP": "Регистрация здесь"
+  },
+  "PRODUCT_PAGE": {
+    "CATEGORIES": "Категории",
+    "CONDITION": "Статус",
+    "NEW": "Новый",
+    "IN_STOCK": "В наличии",
+    "ORDER_DETAILS": "Детали",
+    "PRODUCT_VARIANTS": "Варианты",
+    "QUANTITY": "Количество",
+    "MAX": "Максимум",
+    "ADD_TO_CART": "Добавить в корзину",
+    "WEIGHT": "Вес",
+    "DESCRIPTION": "Описание",
+    "SIMILAR_PRODUCTS": "Похожие товары",
+    "FOLLOW": "Следовать",
+    "SPECIFICATIONS": "Характеристики"
   }
 }
