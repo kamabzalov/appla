@@ -13,6 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '@app/shared/components/modal/confirm-dialog/confirm-dialog.component';
 import { ToastService } from '@app/services/toast/toast.service';
 import { SuccessAddCartDialogComponent } from '@app/public-site/shop-product/modal/success-add-cart-dialog/success-add-cart-dialog.component';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 
 export interface Product {
   title: string;
@@ -126,8 +127,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   public productQuantity: number = 1;
   protected product$: Observable<Product>;
   protected mainPage: string;
-  protected appLang: 'en' | 'el' | 'ru' | undefined;
-
+  protected appLang: string;
+  protected productVariant: ProductVariant;
   private productSlugSubscription: Subscription;
 
   constructor(
@@ -135,11 +136,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     private restService: RestService,
     private languageService: LanguageService,
     private modalService: NgbModal,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private localizeRouterService: LocalizeRouterService
   ) {}
 
   public ngOnInit(): void {
-    this.appLang = this.languageService.currentAppLang$.getValue()?.code;
+    this.appLang = this.localizeRouterService.parser.currentLang;
     this.product$ = this.route.url.pipe(
       switchMap(url => {
         return this.getProductData(url[0].path, url[1].path);
@@ -196,6 +198,10 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     });
   }
 
+  protected getDataFromProductVariant(productVariant: Event) {
+    console.log(productVariant);
+  }
+
   private getProductData(
     storeSlug: string,
     productSlug: string
@@ -203,6 +209,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     return this.restService.getProductBySlug(storeSlug, productSlug).pipe(
       tap(res => {
         this.mainPage = res.product.picture[0];
+        this.productVariant = res.product_variant[0];
       })
     );
   }

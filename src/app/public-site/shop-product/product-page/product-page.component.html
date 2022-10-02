@@ -31,7 +31,7 @@
           </div>
           <div class="column-medium-7 column-12">
             <h1 class="product__title">{{ product.product.name }}</h1>
-            <p class="product__price">{{ product.product.price | currency }}</p>
+            <p class="product__price">{{ productVariant.price | currency }}</p>
             <p class="product-categories p-b-4px">
               {{ 'PRODUCT_PAGE.CATEGORIES' | translate }}:
               <ng-container
@@ -67,26 +67,23 @@
               <h2 class="product-order__header">
                 {{ 'PRODUCT_PAGE.ORDER_DETAILS' | translate }}
               </h2>
-              <div class="m-b-20px">
-                <p>{{ 'PRODUCT_PAGE.PRODUCT_VARIANTS' | translate }}</p>
-                <select>
-                  <option
-                    *ngFor="let variant of product.product_variant"
-                    [ngValue]="variant.product_variant_id">
-                    {{ variant.product_variant | json }}
-                  </option>
-                  <hr />
-                  <!--                  <ng-container-->
-                  <!--                    *ngFor="let item of variant.product_variant | keyvalue">-->
-                  <!--                    <strong>{{ item.key }}</strong>-->
-                  <!--                    <select>-->
-                  <!--                      <option [ngValue]="variant.product_variant_id">-->
-                  <!--                        {{ item.value }}-->
-                  <!--                      </option>-->
-                  <!--                    </select>-->
-                  <!--                  </ng-container>-->
-                </select>
-              </div>
+              <ng-container *ngIf="product.product_variant.length">
+                <div class="m-b-20px">
+                  <p>{{ 'PRODUCT_PAGE.PRODUCT_VARIANTS' | translate }}</p>
+                  <select
+                    (ngModelChange)="getDataFromProductVariant($event)"
+                    [(ngModel)]="productVariant">
+                    <ng-container *ngFor="let item of product.product_variant">
+                      <ng-container
+                        *ngFor="let variant of item.product_variant | keyvalue">
+                        <option *ngIf="variant.value" [ngValue]="item">
+                          {{ variant.value }}
+                        </option>
+                      </ng-container>
+                    </ng-container>
+                  </select>
+                </div>
+              </ng-container>
               <div>
                 <p>{{ 'PRODUCT_PAGE.QUANTITY' | translate }}</p>
                 <div class="display-flex m-b-12px">
@@ -111,7 +108,7 @@
                     </button>
                   </form>
                   <button
-                    (click)="setMax(product.product.qty)"
+                    (click)="setMax(productVariant.quantity)"
                     class="button button_orange">
                     {{ 'PRODUCT_PAGE.MAX' | translate }}
                   </button>
