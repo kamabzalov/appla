@@ -1,12 +1,24 @@
 @use 'vars';
 @use 'mixins';
 
+$googleBtn: #e94d54;
+$facebookBtn: #6aa1ed;
+
 .login-form {
   &__input {
     background: vars.$bright-gray;
   }
 
-  &__submit {
+  &__submit, &__facebook, &__google {
     @include mixins.border-radius(10px);
+    color: vars.$white;
+  }
+
+  &__facebook {
+    background: $facebookBtn;
+  }
+
+  &__google {
+    background: $googleBtn;
   }
 }
