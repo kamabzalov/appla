@@ -2,13 +2,34 @@
 
 <p class="text-center">
   {{ 'REGISTER-PAGE.ALREADY_HAVE_ACCOUNT' | translate }} <br />
-  <a routerLink="/{{ appLang }}/account/login">{{
+  <a routerLink="/{{ currentLang }}/account/login">{{
     'REGISTER-PAGE.LOGIN' | translate
   }}</a>
 </p>
 
-<form (ngSubmit)="sighUp()" class="login-form m-b-20px">
-  <div class="control-group text-center">
+<div class="display-flex">
+  <div class="flex-grow-1 m-r-12px">
+    <button
+      (click)="signWithFacebook()"
+      class="login-form__facebook button w-100 m-b-12px"
+      type="button">
+      <fa-icon [icon]="faFacebook"></fa-icon>
+      Facebook
+    </button>
+  </div>
+  <div class="flex-grow-1">
+    <button
+      (click)="signWithGoogle()"
+      class="login-form__google button w-100"
+      type="button">
+      <fa-icon [icon]="faGoogle"></fa-icon>
+      Google
+    </button>
+  </div>
+</div>
+
+<form (ngSubmit)="sighUp()" class="m-b-20px">
+  <div class="control-group">
     <label class="control-group__label" for="email">{{
       'REGISTER-PAGE.EMAIL' | translate
     }}</label>
@@ -27,11 +48,11 @@
 
 <p class="text-center">
   {{ 'REGISTER-PAGE.DESCRIPTION' | translate }}
-  <a routerLink="/{{ appLang }}/terms">{{
+  <a routerLink="/{{ currentLang }}/terms">{{
     'REGISTER-PAGE.TERMS' | translate
   }}</a>
   {{ 'REGISTER-PAGE.AND' | translate }}
-  <a routerLink="/{{ appLang }}/privacy">{{
+  <a routerLink="/{{ currentLang }}/privacy">{{
     'REGISTER-PAGE.PRIVACY' | translate
   }}</a>
 </p>

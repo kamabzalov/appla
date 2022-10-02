@@ -22,6 +22,7 @@ import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons/faGoogle';
 
 export const iconSet = {
   faEye,
@@ -48,4 +49,5 @@ export const iconSet = {
   faTiktok,
   faPlus,
   faMinus,
+  faGoogle,
 };

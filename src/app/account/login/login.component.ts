@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
-import { RestService } from '@app/services/rest/rest.service';
+import { BackendResponse, RestService } from '@app/services/rest/rest.service';
 import { Router } from '@angular/router';
+import { iconSet } from '@app/shared/utils/icons';
 
 @Component({
   selector: 'appla-login-dialog',
@@ -14,6 +15,9 @@ export class LoginComponent implements OnInit {
   protected showError: boolean;
   protected email: string;
   protected password: string;
+
+  protected faFacebook = iconSet.faFacebook;
+  protected faGoogle = iconSet.faGoogle;
 
   constructor(
     private localizeRouterService: LocalizeRouterService,
@@ -31,6 +35,30 @@ export class LoginComponent implements OnInit {
       if (result.status === 'success') {
         this.router.navigate([`${this.appLang}`]);
       }
+    });
+  }
+
+  protected signWithGoogle() {
+    this.restService.signWithGoogle().then(res => {
+      this.restService
+        .doGoogle(res.additionalUserInfo?.profile)
+        .subscribe((response: BackendResponse) => {
+          if (response.status === 'success') {
+            this.router.navigate([`${this.appLang}`]);
+          }
+        });
+    });
+  }
+
+  protected signWithFacebook() {
+    this.restService.signWithFacebook().then(res => {
+      this.restService
+        .doFacebook(res.additionalUserInfo?.profile)
+        .subscribe((response: BackendResponse) => {
+          if (response.status === 'success') {
+            this.router.navigate([`${this.appLang}`]);
+          }
+        });
     });
   }
 }

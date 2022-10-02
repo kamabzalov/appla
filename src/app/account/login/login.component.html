@@ -25,9 +25,29 @@
       placeholder="Password"
       type="password" />
   </div>
-  <button class="login-form__submit button button_orange w-100">
+  <button class="login-form__submit button button_orange w-100 m-b-12px">
     {{ 'LOGIN-PAGE.LABEL' | translate }}
   </button>
+  <div class="display-flex">
+    <div class="flex-grow-1 m-r-12px">
+      <button
+        (click)="signWithFacebook()"
+        class="login-form__facebook button w-100 m-b-12px"
+        type="button">
+        <fa-icon [icon]="faFacebook"></fa-icon>
+        Facebook
+      </button>
+    </div>
+    <div class="flex-grow-1">
+      <button
+        (click)="signWithGoogle()"
+        class="login-form__google button w-100"
+        type="button">
+        <fa-icon [icon]="faGoogle"></fa-icon>
+        Google
+      </button>
+    </div>
+  </div>
 </form>
 
 <p class="text-center">

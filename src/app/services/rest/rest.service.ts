@@ -27,10 +27,10 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
-interface BackendResponse {
+export interface BackendResponse {
   data: any;
   message: string;
-  status: string;
+  status: 'failed' | 'success';
 }
 
 @Injectable({
@@ -351,7 +351,7 @@ export class RestService {
     );
   }
 
-  public doFacebook(profile: any) {
+  public doFacebook(profile: any): Observable<any> {
     return this.http.post(
       `${this.basePath}Angular/Auth/doFacebook`,
       {
