@@ -150,7 +150,14 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   }
 
   protected sortProductsBy() {
-    this.getCategoryData(this.limit, this.offset, this.order, this.slug);
+    this.getCategoryData(
+      this.limit,
+      this.offset,
+      this.order,
+      this.slug,
+      this.minPrice,
+      this.maxPrice
+    );
   }
 
   protected handleFilter(filterKey: string, filterValue: string) {
