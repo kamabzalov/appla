@@ -71,8 +71,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   public searchResults$: Observable<SearchResults>;
   protected loading: boolean = false;
   protected query: string;
+  protected category: string;
   // eslint-disable-next-line no-magic-numbers
-  private limit: number = 24;
+  private limit: number = 12;
   // eslint-disable-next-line no-magic-numbers
   private offset: number = 0;
   private categoryIdSubscription: Subscription;
@@ -110,27 +111,45 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   }
 
   public searchInCategory($event: string) {
+    this.category = $event;
+    this.offset = 0;
+    this.limit = 12;
+    const currentSearchState = this.currentSearchState$.getValue();
+    if (currentSearchState) {
+      this.currentSearchState$.next({
+        categories: currentSearchState?.categories,
+        products: [],
+      });
+    }
     this.searchResults$ = this.restService
-      .searchInShop(this.query, this.limit, this.offset, $event)
-      .pipe(tap(data => console.log(data.products)));
+      .searchInShop(this.query, this.limit, this.offset, this.category)
+      .pipe(tap(res => this.currentSearchState$.next(res)));
   }
 
   protected loadMoreProducts() {
     this.offset = this.offset + this.limit;
     this.loading = true;
     this.searchResults$ = this.restService
-      .searchInShop(this.query, this.limit, this.offset)
+      .searchInShop(this.query, this.limit, this.offset, this.category)
       .pipe(
         map(res => {
           this.loading = false;
           const currentSearchState = this.currentSearchState$.getValue();
           if (currentSearchState) {
-            currentSearchState.products = currentSearchState.products.concat(
-              res.products
-            );
-            console.log(currentSearchState.products);
-            this.currentSearchState$.next(currentSearchState);
-            return currentSearchState;
+            if (this.category) {
+              const categoryState = {
+                categories: currentSearchState.categories,
+                products: currentSearchState.products.concat(res.products),
+              };
+              this.currentSearchState$.next(categoryState);
+              return categoryState;
+            } else {
+              currentSearchState.products = currentSearchState.products.concat(
+                res.products
+              );
+              this.currentSearchState$.next(currentSearchState);
+              return currentSearchState;
+            }
           }
           return res;
         })
