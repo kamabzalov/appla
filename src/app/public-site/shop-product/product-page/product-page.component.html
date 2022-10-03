@@ -31,7 +31,14 @@
           </div>
           <div class="column-medium-7 column-12">
             <h1 class="product__title">{{ product.product.name }}</h1>
-            <p class="product__price">{{ productVariant.price | currency }}</p>
+            <p class="product__price">
+              <ng-container *ngIf="productVariant; else productPrice">
+                {{ productVariant.price | currency }}
+              </ng-container>
+              <ng-template #productPrice>
+                {{ product.product.price }}
+              </ng-template>
+            </p>
             <p class="product-categories p-b-4px">
               {{ 'PRODUCT_PAGE.CATEGORIES' | translate }}:
               <ng-container
