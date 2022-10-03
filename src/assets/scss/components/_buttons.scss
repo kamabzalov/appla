@@ -1,5 +1,5 @@
-@use '../vars';
-@use '../mixins';
+@use 'vars';
+@use 'mixins';
 
 .button {
   @include mixins.border-radius(vars.$base-size * 5);
@@ -11,8 +11,8 @@
     size: 10px;
     weight: 700;
   }
-  text-align: center;
 
+  text-align: center;
   padding: vars.$base-size * 2 vars.$base-size * 5;
 
   &_orange {

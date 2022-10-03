@@ -34,9 +34,10 @@ a, .appla-link {
   & .owl-nav {
     .owl-prev,
     .owl-next {
+      @include mixins.border-radius(50%);
+
       width: vars.$base-size * 8;
       height: vars.$base-size * 8;
-      @include mixins.border-radius(50%);
       background: vars.$honey-yellow;
       color: vars.$white;
 

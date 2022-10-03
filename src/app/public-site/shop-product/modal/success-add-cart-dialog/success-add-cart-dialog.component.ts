@@ -6,7 +6,6 @@ import { LanguageService } from '@app/services/language/language.service';
 @Component({
   selector: 'appla-success-add-cart-dialog',
   templateUrl: './success-add-cart-dialog.component.html',
-  styleUrls: ['./success-add-cart-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SuccessAddCartDialogComponent implements OnInit {

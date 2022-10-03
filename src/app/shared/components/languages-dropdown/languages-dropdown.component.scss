@@ -30,7 +30,7 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
       @include mixins.border-radius(vars.$base-size * 5);
 
       @media (max-width: $medium-devices-breakpoint) {
-        transform: translate3d(60px, 34px, 0px) !important;
+        transform: translate3d(60px, 34px, 0) !important;
       }
 
       & .dropdown-item {

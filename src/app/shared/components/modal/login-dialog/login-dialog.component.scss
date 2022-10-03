@@ -1,16 +1,16 @@
 @use "~assets/scss/vars";
 
-$googleBtn: #31aa52;
-$facebookBtn: #3b5999;
+$google-btn: #31aa52;
+$facebook-btn: #3b5999;
 
 .button {
   &_google {
     color: vars.$white;
-    background: $googleBtn;
+    background: $google-btn;
   }
 
   &_facebook {
     color: vars.$white;
-    background: $facebookBtn;
+    background: $facebook-btn;
   }
 }
