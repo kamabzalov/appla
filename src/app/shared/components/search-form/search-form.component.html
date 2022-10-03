@@ -20,7 +20,10 @@
       placeholder="I am looking for..."
       type="text" />
   </div>
-  <button class="search-form__button button p-4px" type="submit">
+  <button
+    [disabled]="!searchQuery"
+    class="search-form__button button p-4px"
+    type="submit">
     <fa-icon [icon]="faSearch"></fa-icon>
   </button>
 </form>

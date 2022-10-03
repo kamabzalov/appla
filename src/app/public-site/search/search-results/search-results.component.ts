@@ -37,6 +37,7 @@ export interface SearchCategory {
 }
 
 export interface SearchProduct {
+  cat_name: string;
   manufacturer: string;
   master_product_id: number;
   name: string;
