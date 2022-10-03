@@ -64,7 +64,6 @@ import { environment } from '@env/environment';
       useValue: 'en-GB',
     },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
-    { provide: 'Window', useValue: window },
   ],
   bootstrap: [AppComponent],
 })

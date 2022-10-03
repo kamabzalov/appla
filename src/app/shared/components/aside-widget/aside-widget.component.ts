@@ -8,13 +8,19 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import {isPlatformBrowser} from "@angular/common";
+import { isPlatformBrowser } from '@angular/common';
 
+// TODO: move to common util
 enum Breakpoints {
   SMALL = 576,
   MEDIUM = 768,
   LARGE = 992,
   XLARGE = 1200,
+}
+
+// TODO: move to common util
+function _window(): any {
+  return window;
 }
 
 @Component({
@@ -30,16 +36,13 @@ export class AsideWidgetComponent {
   public faChevronUp = faChevronUp;
   public isCollapsed = false;
 
-  constructor(
-    @Inject('Window') private window: Window,
-    @Inject(PLATFORM_ID) private platformId: any
-  ) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
 
   @HostListener('window:resize', ['$event'])
   public checkSize() {
     if (this.collapseInMobile) {
-      if(isPlatformBrowser(this.platformId)) {
-        this.isCollapsed = this.window.innerWidth <= Breakpoints.MEDIUM;
+      if (isPlatformBrowser(this.platformId)) {
+        this.isCollapsed = _window().innerWidth <= Breakpoints.MEDIUM;
       }
     }
   }
