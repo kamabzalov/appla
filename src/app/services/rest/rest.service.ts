@@ -367,8 +367,7 @@ export class RestService {
 
   private getLangId(): number {
     const lang = AppLanguages.find(
-      lang =>
-        lang.code === this.languageService.currentAppLang$.getValue()?.code
+      lang => lang.code === this.localizeRouterService.parser.currentLang
     );
     if (lang) {
       return lang.id;

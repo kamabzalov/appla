@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
+    // eslint-disable-next-line no-magic-numbers
+    this.isMainPage = this.router.url.split('/').length === 2;
     this.router$ = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // eslint-disable-next-line no-magic-numbers

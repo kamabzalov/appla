@@ -53,7 +53,7 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
       this.currentLang = langCode;
       this.languageService.setLanguage(langCode);
       const queryParams = this.route.snapshot.queryParams;
-      const urlPath = this.router.url
+      const urlPath = decodeURIComponent(this.router.url)
         .split('/')
         // eslint-disable-next-line no-magic-numbers
         .slice(2)

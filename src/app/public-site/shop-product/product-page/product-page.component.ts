@@ -171,7 +171,11 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   }
 
   protected setMax(qty: number) {
-    this.productQuantity = qty;
+    if (this.productVariant) {
+      this.productQuantity = this.productVariant.quantity;
+    } else {
+      this.productQuantity = qty;
+    }
   }
 
   protected setActive($event: string) {
