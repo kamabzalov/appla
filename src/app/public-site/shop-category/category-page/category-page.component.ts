@@ -11,6 +11,7 @@ import { iconSet } from '@app/shared/utils/icons';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 
 export interface Category {
+  arr_cats: CategoryBreadcrumb[];
   products: CategoryProduct[];
   subcategories: Subcategory[];
   this_category: CurrentCategory;
@@ -53,6 +54,13 @@ interface ToLink {
   category_slug: string;
   product_slug: string;
   store_slug: string;
+}
+
+interface CategoryBreadcrumb {
+  cat_id: number;
+  name: string;
+  parent_id: number;
+  slug: string;
 }
 
 const SORTING = [

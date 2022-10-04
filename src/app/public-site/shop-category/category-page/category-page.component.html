@@ -1,5 +1,13 @@
 <section class="container-fluid p-t-20px m-b-20px">
   <ng-container *ngIf="categoryData$ | async as category">
+    <div class="m-b-20px">
+      <ng-container *ngFor="let breadcrumb of category.arr_cats">
+        <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
+          breadcrumb.name
+        }}</a>
+        /
+      </ng-container>
+    </div>
     <div class="row">
       <div class="column-12 column-small-3">
         <aside class="m-b-20px m-b-small-0px">
