@@ -47,7 +47,7 @@ export class RestService {
   ) {}
 
   public getSiteMenu(): Observable<Menu[]> {
-    const langId = this.getLangId();
+    const langId = this.languageService.currentAppLang$.getValue()?.id;
     return this.http
       .get<BackendResponse>(
         `${this.basePath}Angular/Header/top_menu?lang_id=${langId}`,
