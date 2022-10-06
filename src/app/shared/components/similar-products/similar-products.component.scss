@@ -9,13 +9,6 @@
     max-width: 80%;
   }
 
-  &__image {
-    @include mixins.centered-content;
-
-    width: 80px;
-    height: 80px;
-  }
-
   &__info {
     display: flex;
     flex-direction: column;

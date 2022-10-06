@@ -49,7 +49,7 @@
         <div class="column-12 text-center">
           <button
             (click)="loadMoreProducts()"
-            *ngIf="!loading"
+            *ngIf="!loading && !isHide"
             class="button button_orange">
             {{ 'SEARCH-PAGE.LOAD_MORE' | translate }}
           </button>

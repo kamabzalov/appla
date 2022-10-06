@@ -68,10 +68,11 @@ export interface Slugs {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-  public searchResults$: Observable<SearchResults>;
+  public searchResults$: Observable<SearchResults | null>;
   protected loading: boolean = false;
   protected query: string;
   protected category: string;
+  protected isHide: boolean = false;
   // eslint-disable-next-line no-magic-numbers
   private limit: number = 12;
   // eslint-disable-next-line no-magic-numbers
@@ -135,6 +136,11 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         map(res => {
           this.loading = false;
           const currentSearchState = this.currentSearchState$.getValue();
+          if (!res.products.length) {
+            this.isHide = true;
+            this.currentSearchState$.next(currentSearchState);
+            return currentSearchState;
+          }
           if (currentSearchState) {
             if (this.category) {
               const categoryState = {

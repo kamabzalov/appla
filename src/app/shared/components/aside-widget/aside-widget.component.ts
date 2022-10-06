@@ -36,14 +36,20 @@ export class AsideWidgetComponent {
   public faChevronUp = faChevronUp;
   public isCollapsed = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+    this.isCollapsed = this.checkCollapseState();
+  }
 
   @HostListener('window:resize', ['$event'])
   public checkSize() {
     if (this.collapseInMobile) {
       if (isPlatformBrowser(this.platformId)) {
-        this.isCollapsed = _window().innerWidth <= Breakpoints.MEDIUM;
+        this.isCollapsed = this.checkCollapseState();
       }
     }
+  }
+
+  private checkCollapseState(): boolean {
+    return _window().innerWidth <= Breakpoints.MEDIUM;
   }
 }
