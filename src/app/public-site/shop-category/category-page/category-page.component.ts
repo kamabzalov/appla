@@ -1,14 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export interface Category {
   arr_cats: CategoryBreadcrumb[];
@@ -78,13 +74,14 @@ const SORTING = [
   },
 ];
 
+@UntilDestroy()
 @Component({
   selector: 'appla-category-page',
   templateUrl: './category-page.component.html',
   styleUrls: ['./category-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryPageComponent implements OnInit, OnDestroy {
+export class CategoryPageComponent implements OnInit {
   protected faChevronRight = iconSet.faChevronRight;
   protected faTags = iconSet.faTags;
   protected faSearch = iconSet.faMagnifyingGlass;
@@ -102,7 +99,6 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   // eslint-disable-next-line no-magic-numbers
   private readonly limit = 48;
   private slug = 'all-categories';
-  private categoryIdSubscription: Subscription;
   private categorySubject$: BehaviorSubject<Category | null> =
     new BehaviorSubject<Category | null>(null);
 
@@ -114,8 +110,10 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.appLang = this.localizeRouterService.parser.currentLang;
-    this.categoryData$ = this.categorySubject$.asObservable();
-    this.categoryIdSubscription = this.route.url.subscribe(res => {
+    this.categoryData$ = this.categorySubject$
+      .asObservable()
+      .pipe(untilDestroyed(this));
+    this.route.url.pipe(untilDestroyed(this)).subscribe(res => {
       if (res.length && res[1]) {
         this.slug = res[1].path;
       }
@@ -124,14 +122,6 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       this.maxPrice = null;
       this.getCategoryData(this.limit, this.offset, this.order, this.slug);
     });
-  }
-
-  public ngOnDestroy() {
-    if (this.categoryIdSubscription) {
-      this.categoryIdSubscription.unsubscribe();
-    }
-    this.categorySubject$.next(null);
-    this.categorySubject$.complete();
   }
 
   protected filterByPrice() {
@@ -174,8 +164,6 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     );
     if (!isFound) {
       this.productFilters.push({ filterKey, filterValue });
-    } else {
-      // this.productFilters.splice(this.productFilters.indexOf(filterKey), 1);
     }
   }
 

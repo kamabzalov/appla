@@ -1,19 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import {
-  BehaviorSubject,
-  filter,
-  map,
-  Observable,
-  Subscription,
-  tap,
-} from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export interface SearchResults {
   categories: SearchCategoryResult;
@@ -62,12 +51,13 @@ export interface Slugs {
   store_slug: string;
 }
 
+@UntilDestroy()
 @Component({
   selector: 'appla-search-results',
   templateUrl: './search-results.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchResultsComponent implements OnInit, OnDestroy {
+export class SearchResultsComponent implements OnInit {
   public searchResults$: Observable<SearchResults | null>;
   protected loading: boolean = false;
   protected query: string;
@@ -77,7 +67,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   private limit: number = 12;
   // eslint-disable-next-line no-magic-numbers
   private offset: number = 0;
-  private categoryIdSubscription: Subscription;
   private currentSearchState$: BehaviorSubject<SearchResults | null> =
     new BehaviorSubject<SearchResults | null>(null);
 
@@ -89,26 +78,25 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.query = this.activeRoute.snapshot.queryParams['string'];
-    this.activeRoute.queryParams.subscribe(
-      params =>
-        (this.searchResults$ = this.restService
-          .searchInShop(params['string'])
-          .pipe(tap(res => this.currentSearchState$.next(res))))
-    );
-    this.categoryIdSubscription = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+    this.activeRoute.queryParams
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        params =>
+          (this.searchResults$ = this.restService
+            .searchInShop(params['string'])
+            .pipe(tap(res => this.currentSearchState$.next(res))))
+      );
+    this.router.events
+      .pipe(
+        untilDestroyed(this),
+        filter(event => event instanceof NavigationEnd)
+      )
       .subscribe((res: any) => {
         this.query = res.urlAfterRedirects.split('?string=')[1];
         this.searchResults$ = this.restService
           .searchInShop(this.query)
           .pipe(tap(res => this.currentSearchState$.next(res)));
       });
-  }
-
-  public ngOnDestroy() {
-    if (this.categoryIdSubscription) {
-      this.categoryIdSubscription.unsubscribe();
-    }
   }
 
   public searchInCategory($event: string) {

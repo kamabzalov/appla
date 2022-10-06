@@ -1,15 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { iconSet } from '@app/shared/utils/icons';
-import { combineLatest, Observable, Subscription } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { LanguageService } from '@app/services/language/language.service';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export interface ProductOffer {
   arr_cats: Breadcrumb[];
@@ -88,19 +84,19 @@ export interface ProductOfferSimilar {
   store_slug: string;
 }
 
+@UntilDestroy()
 @Component({
   selector: 'appla-compare-prices',
   templateUrl: './compare-prices.component.html',
   styleUrls: ['./compare-prices.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComparePricesComponent implements OnInit, OnDestroy {
+export class ComparePricesComponent implements OnInit {
   protected faTruck = iconSet.faTruck;
   protected productOffer$: Observable<ProductOffer>;
   // eslint-disable-next-line no-magic-numbers
   protected maxRating: number = 5;
   protected appLang: string;
-  private productOfferUrl$: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -112,23 +108,19 @@ export class ComparePricesComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.appLang = this.localizeRouterService.parser.currentLang;
-    this.productOfferUrl$ = combineLatest(
-      this.route.queryParams,
-      this.route.params
-    ).subscribe(res => {
-      // eslint-disable-next-line no-magic-numbers
-      if (res && res.length > 1) {
-        const mpi = +res[0]['mpi'];
-        const productSlug = res[1]['slug'];
-        this.productOffer$ = this.restService.getProductOffer(productSlug, mpi);
-      }
-    });
-  }
-
-  public ngOnDestroy() {
-    if (this.productOfferUrl$) {
-      this.productOfferUrl$.unsubscribe();
-    }
+    combineLatest(this.route.queryParams, this.route.params)
+      .pipe(untilDestroyed(this))
+      .subscribe(res => {
+        // eslint-disable-next-line no-magic-numbers
+        if (res && res.length > 1) {
+          const mpi = +res[0]['mpi'];
+          const productSlug = res[1]['slug'];
+          this.productOffer$ = this.restService.getProductOffer(
+            productSlug,
+            mpi
+          );
+        }
+      });
   }
 
   protected goToProductSpec() {

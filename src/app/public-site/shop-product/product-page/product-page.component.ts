@@ -1,12 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
-import { Observable, Subscription, switchMap, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { LanguageService } from '@app/services/language/language.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +9,7 @@ import { ConfirmDialogComponent } from '@app/shared/components/modal/confirm-dia
 import { ToastService } from '@app/services/toast/toast.service';
 import { SuccessAddCartDialogComponent } from '@app/public-site/shop-product/modal/success-add-cart-dialog/success-add-cart-dialog.component';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export interface Product {
   title: string;
@@ -113,13 +109,14 @@ interface CanonicalData {
   href: string;
 }
 
+@UntilDestroy()
 @Component({
   selector: 'appla-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductPageComponent implements OnInit, OnDestroy {
+export class ProductPageComponent implements OnInit {
   public faPlus = iconSet.faPlus;
   public faMinus = iconSet.faMinus;
   public faStar = iconSet.faStar;
@@ -129,7 +126,6 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   protected mainPage: string;
   protected appLang: string;
   protected productVariant: ProductVariant;
-  private productSlugSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -143,16 +139,11 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.appLang = this.localizeRouterService.parser.currentLang;
     this.product$ = this.route.url.pipe(
+      untilDestroyed(this),
       switchMap(url => {
         return this.getProductData(url[0].path, url[1].path);
       })
     );
-  }
-
-  public ngOnDestroy() {
-    if (this.productSlugSubscription) {
-      this.productSlugSubscription.unsubscribe();
-    }
   }
 
   protected decreaseQuantity() {
@@ -200,10 +191,6 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.toastService.show(res);
       });
     });
-  }
-
-  protected getDataFromProductVariant(productVariant: Event) {
-    console.log(productVariant);
   }
 
   private getProductData(

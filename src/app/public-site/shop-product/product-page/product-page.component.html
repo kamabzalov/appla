@@ -77,9 +77,7 @@
               <ng-container *ngIf="product.product_variant.length">
                 <div class="m-b-20px">
                   <p>{{ 'PRODUCT_PAGE.PRODUCT_VARIANTS' | translate }}</p>
-                  <select
-                    (ngModelChange)="getDataFromProductVariant($event)"
-                    [(ngModel)]="productVariant">
+                  <select [(ngModel)]="productVariant">
                     <ng-container *ngFor="let item of product.product_variant">
                       <ng-container
                         *ngFor="let variant of item.product_variant | keyvalue">

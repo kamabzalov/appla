@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
   Output,
 } from '@angular/core';
 import {
@@ -11,18 +10,19 @@ import {
   SearchProduct,
 } from '@app/public-site/search/search-results/search-results.component';
 import { RestService } from '@app/services/rest/rest.service';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'appla-search-result-card',
   templateUrl: './search-result-card.component.html',
   styleUrls: ['./search-result-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchResultCardComponent implements OnDestroy {
+export class SearchResultCardComponent {
   @Input() public categories: SearchCategory[];
   @Input() public product: SearchProduct;
   @Output() public clickOnCategory: EventEmitter<string> =
@@ -52,7 +52,6 @@ export class SearchResultCardComponent implements OnDestroy {
     },
     nav: true,
   };
-  private subscription: Subscription;
 
   constructor(
     private restService: RestService,
@@ -60,16 +59,11 @@ export class SearchResultCardComponent implements OnDestroy {
     private localizeRouterService: LocalizeRouterService
   ) {}
 
-  public ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
-
   protected goToProduct(product: SearchProduct) {
     this.currentLang = this.localizeRouterService.parser.currentLang;
-    this.subscription = this.restService
+    this.restService
       .getProductByMasterId(product.master_product_id)
+      .pipe(untilDestroyed(this))
       .subscribe(result => {
         // eslint-disable-next-line no-magic-numbers
         if (result) {

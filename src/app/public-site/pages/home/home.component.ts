@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { distinctUntilChanged, Observable } from 'rxjs';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { RestService } from '@app/services/rest/rest.service';
@@ -7,12 +12,14 @@ import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-
 import { Trend } from '@app/public-site/now-trending/now-trending.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
 import { LanguageService } from '@app/services/language/language.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'appla-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   public sampleSmartphones$: Observable<ProductInTile[]>;
@@ -33,7 +40,7 @@ export class HomeComponent implements OnInit {
   public ngOnInit(): void {
     this.languageService.currentAppLang$
       .asObservable()
-      .pipe(distinctUntilChanged())
+      .pipe(untilDestroyed(this), distinctUntilChanged())
       .subscribe(res => {
         if (res) {
           this.getPageData();
