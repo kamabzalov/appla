@@ -10,7 +10,7 @@ import {
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from '@app/public-site/shop-product/product-page/product-page.component';
 import { ProductOffer } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
 import {
@@ -53,10 +53,7 @@ export class RestService {
         `${this.basePath}Angular/Header/top_menu?lang_id=${langId}`,
         { withCredentials: true }
       )
-      .pipe(
-        tap(res => console.log(res)),
-        map(response => response.data)
-      );
+      .pipe(map(response => response.data));
   }
 
   public getSlides(): Observable<Slide[]> {
