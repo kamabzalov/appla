@@ -9,6 +9,11 @@
     max-width: 80%;
   }
 
+  &__image {
+    width: 100px;
+    height: 100px;
+  }
+
   &__info {
     display: flex;
     flex-direction: column;

@@ -100,6 +100,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
   public searchInCategory($event: string) {
+    this.isHide = false;
     this.category = $event;
     this.offset = 0;
     this.limit = 12;
