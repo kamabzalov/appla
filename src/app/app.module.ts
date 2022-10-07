@@ -23,12 +23,14 @@ import { localizeBrowserLoaderFactory } from '@app/localize-browser.loader';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '@env/environment';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
+    CookieModule.withOptions(),
     TranslateModule.forRoot({
       defaultLanguage: 'el',
       loader: {

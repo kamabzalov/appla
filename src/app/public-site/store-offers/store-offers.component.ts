@@ -43,7 +43,7 @@ export class StoreOffersComponent {
         items: 3,
       },
       940: {
-        items: 4,
+        items: 3,
       },
     },
     nav: true,
