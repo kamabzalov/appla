@@ -1,4 +1,7 @@
-<div *ngIf="product$ | async as product" class="container p-t-28px">
+<div
+  *ngIf="product$ | async as product"
+  class="container p-t-28px"
+  xmlns="http://www.w3.org/1999/html">
   <div class="m-b-20px">
     <ng-container *ngFor="let breadcrumb of product.arr_cats">
       <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
@@ -77,16 +80,28 @@
               <ng-container *ngIf="product.product_variant.length">
                 <div class="m-b-20px">
                   <p>{{ 'PRODUCT_PAGE.PRODUCT_VARIANTS' | translate }}</p>
-                  <select [(ngModel)]="productVariant">
-                    <ng-container *ngFor="let item of product.product_variant">
-                      <ng-container
-                        *ngFor="let variant of item.product_variant | keyvalue">
-                        <option *ngIf="variant.value" [ngValue]="item">
-                          {{ variant.value }}
+                  <ng-container>
+                    <div class="display-flex align-items-center">
+                      <select
+                        (change)="setVariant(productVariant)"
+                        [(ngModel)]="productVariant"
+                        class="form-control__input"
+                        name="productVariant">
+                        <option
+                          *ngFor="let item of product.product_variant"
+                          [ngValue]="item">
+                          <ng-container
+                            *ngFor="
+                              let variant of item.product_variant | keyvalue
+                            ">
+                            <strong>{{ variant.key }} :</strong>
+                            {{ item.product_variant[variant.key] }}
+                            {{ item.product_variant[variant.value] }}
+                          </ng-container>
                         </option>
-                      </ng-container>
-                    </ng-container>
-                  </select>
+                      </select>
+                    </div>
+                  </ng-container>
                 </div>
               </ng-container>
               <div>

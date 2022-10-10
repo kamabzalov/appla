@@ -18,7 +18,8 @@
   }
 }
 
-input:not([type='checkbox']),
+
+input:not([type='radio']):not([type='checkbox']),
 select {
   @include mixins.appla-input;
 }

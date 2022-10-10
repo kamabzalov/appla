@@ -193,6 +193,10 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
+  protected setVariant(productVariant: ProductVariant) {
+    console.log(productVariant);
+  }
+
   private getProductData(
     storeSlug: string,
     productSlug: string
