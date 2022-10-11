@@ -1,7 +1,4 @@
-<div
-  *ngIf="product$ | async as product"
-  class="container p-t-28px"
-  xmlns="http://www.w3.org/1999/html">
+<div *ngIf="product$ | async as product" class="container">
   <div class="m-b-20px">
     <ng-container *ngFor="let breadcrumb of product.arr_cats">
       <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
