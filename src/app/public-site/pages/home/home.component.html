@@ -380,6 +380,24 @@
   </div>
 </section>
 
+<section
+  *ngIf="sampleKitchenProducts$ | async as sampleKitchenProducts"
+  class="m-b-16px">
+  <div class="container">
+    <div *ngIf="sampleKitchenProducts.length" class="row">
+      <div class="column-12">
+        <appla-product-category-tile
+          [entities]="sampleKitchenProducts"
+          categoryId="4838"
+          link="./category/list/cleaning-agents-tools-supplies-4838"
+          title="{{
+            'HOME-PRODUCT-CATEGORIES.KITCHEN' | translate
+          }}"></appla-product-category-tile>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="container">
     <div class="row">
