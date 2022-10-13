@@ -170,7 +170,7 @@ export class RestService {
       )
       .pipe(
         map(response => {
-          if (response.data.filter) {
+          if (response.data.filters) {
             const filters: any = (response.data as Category).filters;
             const filterKeys = Object.keys(filters);
             const productFilters: ProductFilter[] = filterKeys.map(key => {
