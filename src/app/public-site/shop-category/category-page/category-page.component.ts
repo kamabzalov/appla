@@ -8,9 +8,12 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export interface Category {
   arr_cats: CategoryBreadcrumb[];
-  products: CategoryProduct[];
-  subcategories: Subcategory[];
   this_category: CurrentCategory;
+  subcategories: Subcategory[];
+}
+
+export interface CategoryProducts {
+  products: CategoryProduct[];
   filters: ProductFilter[];
   count_products: number;
 }
@@ -88,10 +91,11 @@ export class CategoryPageComponent implements OnInit {
   protected minPrice: number | null;
   protected maxPrice: number | null;
   protected searchInCategory: string;
-  protected productFilters: ProductFilter[] = [];
+  protected productFilters: any[] = [];
   protected order: string = 'date_update_asc';
   protected sorting = SORTING;
   protected categoryData$: Observable<Category | null>;
+  protected categoryProducts$: Observable<CategoryProducts | null>;
   protected appLang: string;
   protected loading: boolean = false;
   // eslint-disable-next-line no-magic-numbers
@@ -99,8 +103,8 @@ export class CategoryPageComponent implements OnInit {
   // eslint-disable-next-line no-magic-numbers
   private readonly limit = 48;
   private slug = 'all-categories';
-  private categorySubject$: BehaviorSubject<Category | null> =
-    new BehaviorSubject<Category | null>(null);
+  private categoryProductsSubject$: BehaviorSubject<CategoryProducts | null> =
+    new BehaviorSubject<CategoryProducts | null>(null);
 
   constructor(
     private route: ActivatedRoute,
@@ -110,7 +114,7 @@ export class CategoryPageComponent implements OnInit {
 
   public ngOnInit(): void {
     this.appLang = this.localizeRouterService.parser.currentLang;
-    this.categoryData$ = this.categorySubject$
+    this.categoryProducts$ = this.categoryProductsSubject$
       .asObservable()
       .pipe(untilDestroyed(this));
     this.route.url.pipe(untilDestroyed(this)).subscribe(res => {
@@ -120,12 +124,13 @@ export class CategoryPageComponent implements OnInit {
       this.offset = 0;
       this.minPrice = null;
       this.maxPrice = null;
-      this.getCategoryData(this.limit, this.offset, this.order, this.slug);
+      this.categoryData$ = this.restService.getCategory(this.slug);
+      this.getCategoryProducts(this.limit, this.offset, this.order, this.slug);
     });
   }
 
   protected filterByPrice() {
-    this.getCategoryData(
+    this.getCategoryProducts(
       this.limit,
       this.offset,
       this.order,
@@ -136,7 +141,7 @@ export class CategoryPageComponent implements OnInit {
   }
 
   protected searchProductInCategory() {
-    this.getCategoryData(
+    this.getCategoryProducts(
       this.limit,
       this.offset,
       this.order,
@@ -148,7 +153,7 @@ export class CategoryPageComponent implements OnInit {
   }
 
   protected sortProductsBy() {
-    this.getCategoryData(
+    this.getCategoryProducts(
       this.limit,
       this.offset,
       this.order,
@@ -158,13 +163,33 @@ export class CategoryPageComponent implements OnInit {
     );
   }
 
-  protected handleFilter(filterKey: string, filterValue: string) {
-    const isFound = this.productFilters.find(
-      item => item.filterKey === filterKey
-    );
-    if (!isFound) {
-      this.productFilters.push({ filterKey, filterValue });
+  protected handleFilter(
+    $event: Event,
+    filterKey: string,
+    filterValue: string
+  ) {
+    const checkedFilter = ($event.target as HTMLInputElement).checked;
+    const filter = {
+      'checked_key[]': filterKey,
+      'checked_value[]': filterValue,
+    };
+
+    if (checkedFilter) {
+      this.productFilters.push(filter);
+    } else {
+      // eslint-disable-next-line no-magic-numbers
+      this.productFilters.splice(this.productFilters.indexOf(filter), 1);
     }
+    this.getCategoryProducts(
+      this.limit,
+      this.offset,
+      this.order,
+      this.slug,
+      this.minPrice,
+      this.maxPrice,
+      this.searchInCategory,
+      this.productFilters
+    );
   }
 
   protected loadMoreProducts() {
@@ -173,25 +198,26 @@ export class CategoryPageComponent implements OnInit {
     this.restService
       .getAllProductCategories(this.limit, this.offset, this.order, this.slug)
       .subscribe(res => {
-        const currentCategories = this.categorySubject$.getValue();
+        const currentCategories = this.categoryProductsSubject$.getValue();
         if (currentCategories) {
           currentCategories.products = currentCategories.products.concat(
             res.products
           );
-          this.categorySubject$.next(currentCategories);
+          this.categoryProductsSubject$.next(currentCategories);
           this.loading = false;
         }
       });
   }
 
-  private getCategoryData(
+  private getCategoryProducts(
     limit: number,
     offset: number,
     order: string,
     slug: string,
     minPrice?: number | null,
     maxPrice?: number | null,
-    searchQuery?: string
+    searchQuery?: string,
+    filters?: any[]
   ) {
     this.restService
       .getAllProductCategories(
@@ -201,8 +227,9 @@ export class CategoryPageComponent implements OnInit {
         slug,
         minPrice,
         maxPrice,
-        searchQuery
+        searchQuery,
+        filters
       )
-      .subscribe(res => this.categorySubject$.next(res));
+      .subscribe(res => this.categoryProductsSubject$.next(res));
   }
 }

@@ -15,6 +15,7 @@ import { Product } from '@app/public-site/shop-product/product-page/product-page
 import { ProductOffer } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
 import {
   Category,
+  CategoryProducts,
   CurrentCategory,
   ProductFilter,
   Subcategory,
@@ -141,8 +142,9 @@ export class RestService {
     slug: string,
     minPrice?: number | null,
     maxPrice?: number | null,
-    searchQuery?: string | undefined
-  ): Observable<Category> {
+    searchQuery?: string | undefined,
+    filters?: any[]
+  ): Observable<CategoryProducts> {
     let params = new HttpParams()
       .set('slug', slug)
       .set('limit', limit)
@@ -156,6 +158,10 @@ export class RestService {
     }
     if (searchQuery) {
       params = params.set('search', searchQuery);
+    }
+    if (filters) {
+      params = params.set('checked_key[]', filters[0]['checked_key[]']);
+      params = params.set('checked_value[]', filters[0]['checked_value[]']);
     }
     const langId = this.getLangId();
     params = params.set('lang_id', langId);
@@ -171,7 +177,7 @@ export class RestService {
       .pipe(
         map(response => {
           if (response.data.filters) {
-            const filters: any = (response.data as Category).filters;
+            const filters: any = (response.data as CategoryProducts).filters;
             const filterKeys = Object.keys(filters);
             const productFilters: ProductFilter[] = filterKeys.map(key => {
               return {
@@ -193,6 +199,16 @@ export class RestService {
           return response.data;
         })
       );
+  }
+
+  public getCategory(categorySlug: string): Observable<Category> {
+    const langId = this.getLangId();
+    return this.http
+      .get<BackendResponse>(
+        `${this.basePath}Angular/Categories/get_categories/category?slug=${categorySlug}&lang_id=${langId}`,
+        { withCredentials: true }
+      )
+      .pipe(map(response => response.data));
   }
 
   public getProductBySlug(

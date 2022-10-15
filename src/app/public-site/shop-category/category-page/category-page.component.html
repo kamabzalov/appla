@@ -1,196 +1,210 @@
 <section class="container-fluid p-t-20px m-b-20px">
-  <ng-container *ngIf="categoryData$ | async as category">
-    <div class="m-b-20px">
-      <ng-container *ngFor="let breadcrumb of category.arr_cats">
-        <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
-          breadcrumb.name
-        }}</a>
-        /
-      </ng-container>
-    </div>
-    <div class="row">
-      <div class="column-12 column-small-3">
-        <aside class="m-b-20px m-b-small-0px">
-          <div class="card-content m-b-20px">
-            <appla-aside-widget
-              [collapseInMobile]="true"
-              widgetHeader="{{ 'CATEGORY-PAGE.CATEGORIES_LABEL' | translate }}">
-              <ul class="subcategories-list list-unstyled p-r-20px">
-                <li>
-                  <a
-                    class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
-                    routerLink="/{{ appLang }}/category"
-                    >{{ 'CATEGORY-PAGE.ALL_CATEGORIES' | translate }}</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
-                    routerLink="/{{ appLang }}/category/list/{{
-                      category.this_category.slug
-                    }}"
-                    >{{ category.this_category.name }}</a
-                  >
-                  <ul class="list-unstyled p-l-12px">
-                    <li *ngFor="let subcategory of category.subcategories">
-                      <a
-                        class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
-                        routerLink="/{{ appLang }}/category/list/{{
-                          subcategory.slug
-                        }}"
-                        >{{ subcategory.name }}</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </appla-aside-widget>
-          </div>
-
-          <div class="card-content m-b-20px">
-            <appla-aside-widget
-              widgetHeader="{{ 'CATEGORY-PAGE.FILTER_PRICE' | translate }}">
-              <form (ngSubmit)="filterByPrice()" class="form-price">
-                <div class="row">
-                  <div class="col-5">
-                    <input
-                      [(ngModel)]="minPrice"
-                      name="minPrice"
-                      type="number" />
-                  </div>
-                  <div class="col-5">
-                    <input
-                      [(ngModel)]="maxPrice"
-                      name="maxPrice"
-                      type="number" />
-                  </div>
-                  <div class="col-2">
-                    <button class="button p-0px">
-                      <fa-icon
-                        [icon]="faChevronRight"
-                        class="form-price__icon"></fa-icon>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </appla-aside-widget>
-          </div>
-
-          <div
-            *ngIf="category.filters && category.filters.length"
-            class="card-content">
-            <div *ngFor="let filter of category.filters" class="m-b-20px">
-              <appla-aside-widget [widgetHeader]="filter.filterKey">
-                <ng-container *ngFor="let obj of filter.filterValue | keyvalue">
-                  <div
-                    class="display-flex justify-content-space-between p-l-4px p-r-12px m-b-8px">
-                    <span>{{ obj.value }}</span>
-                    <input
-                      (change)="handleFilter(filter.filterKey, obj.value)"
-                      type="checkbox" />
-                  </div>
-                </ng-container>
+  <ng-container *ngIf="categoryProducts$ | async as categoryProducts">
+    <ng-container *ngIf="categoryData$ | async as category">
+      <div class="m-b-20px">
+        <ng-container *ngFor="let breadcrumb of category.arr_cats">
+          <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
+            breadcrumb.name
+          }}</a>
+          /
+        </ng-container>
+      </div>
+      <div class="row">
+        <div class="column-12 column-small-3">
+          <aside class="m-b-20px m-b-small-0px">
+            <div class="card-content m-b-20px">
+              <appla-aside-widget
+                [collapseInMobile]="true"
+                widgetHeader="{{
+                  'CATEGORY-PAGE.CATEGORIES_LABEL' | translate
+                }}">
+                <ul class="subcategories-list list-unstyled p-r-20px">
+                  <li>
+                    <a
+                      class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
+                      routerLink="/{{ appLang }}/category"
+                      >{{ 'CATEGORY-PAGE.ALL_CATEGORIES' | translate }}</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
+                      routerLink="/{{ appLang }}/category/list/{{
+                        category.this_category.slug
+                      }}"
+                      >{{ category.this_category.name }}</a
+                    >
+                    <ul class="list-unstyled p-l-12px">
+                      <li *ngFor="let subcategory of category.subcategories">
+                        <a
+                          class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
+                          routerLink="/{{ appLang }}/category/list/{{
+                            subcategory.slug
+                          }}"
+                          >{{ subcategory.name }}</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
               </appla-aside-widget>
             </div>
-          </div>
-        </aside>
-      </div>
-      <div class="column-12 column-small-9">
-        <main>
-          <div class="category-products m-b-20px card-content">
-            <div class="row align-items-center">
-              <div class="column-medium-4">
-                <div class="display-flex align-items-center">
-                  <fa-icon [icon]="faTags" class="m-r-12px"></fa-icon>
-                  <h1 class="category-products__title m-b-0px">
-                    {{
+
+            <div class="card-content m-b-20px">
+              <appla-aside-widget
+                widgetHeader="{{ 'CATEGORY-PAGE.FILTER_PRICE' | translate }}">
+                <form (ngSubmit)="filterByPrice()" class="form-price">
+                  <div class="row">
+                    <div class="col-5">
+                      <input
+                        [(ngModel)]="minPrice"
+                        name="minPrice"
+                        type="number" />
+                    </div>
+                    <div class="col-5">
+                      <input
+                        [(ngModel)]="maxPrice"
+                        name="maxPrice"
+                        type="number" />
+                    </div>
+                    <div class="col-2">
+                      <button class="button p-0px">
+                        <fa-icon
+                          [icon]="faChevronRight"
+                          class="form-price__icon"></fa-icon>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </appla-aside-widget>
+            </div>
+
+            <div
+              *ngIf="
+                categoryProducts.filters && categoryProducts.filters.length
+              "
+              class="card-content">
+              <div
+                *ngFor="let filter of categoryProducts.filters"
+                class="m-b-20px">
+                <appla-aside-widget [widgetHeader]="filter.filterKey">
+                  <ng-container
+                    *ngFor="let obj of filter.filterValue | keyvalue">
+                    <div
+                      class="display-flex justify-content-space-between p-l-4px p-r-12px m-b-8px">
+                      <span>{{ obj.value }}</span>
+                      <input
+                        (change)="
+                          handleFilter($event, filter.filterKey, obj.value)
+                        "
+                        type="checkbox" />
+                    </div>
+                  </ng-container>
+                </appla-aside-widget>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <div class="column-12 column-small-9">
+          <main>
+            <div class="category-products m-b-20px card-content">
+              <div class="row align-items-center">
+                <div class="column-medium-4">
+                  <div class="display-flex align-items-center">
+                    <fa-icon [icon]="faTags" class="m-r-12px"></fa-icon>
+                    <h1 class="category-products__title m-b-0px">
+                      {{
+                        category.this_category.name
+                          ? category.this_category.name
+                          : 'All Categories'
+                      }}
+                    </h1>
+                  </div>
+                </div>
+                <div class="column-medium-8 display-flex flex-wrap">
+                  <form
+                    (ngSubmit)="searchProductInCategory()"
+                    class="display-flex align-items-center flex-grow-1 m-small-b-8px m-small-t-8px">
+                    <div
+                      class="control-group search-category-control m-b-0px m-r-12px">
+                      <input
+                        [(ngModel)]="searchInCategory"
+                        name="searchInCategory"
+                        placeholder="Search in Category"
+                        type="text" />
+                    </div>
+                    <button
+                      class="button button_orange button_icon p-0px"
+                      type="submit">
+                      <fa-icon [icon]="faSearch"></fa-icon>
+                    </button>
+                  </form>
+                  <form class="flex-grow-1">
+                    <div class="control-group">
+                      <select
+                        (change)="sortProductsBy()"
+                        [(ngModel)]="order"
+                        name="sortBy">
+                        <option
+                          *ngFor="let sort of sorting"
+                          [ngValue]="sort.id">
+                          {{ sort.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="column-12">
+                  <h4 class="category-products__summary">
+                    {{ 'CATEGORY-PAGE.SHOWING' | translate }}
+                    {{ categoryProducts.count_products }} item(s) : "{{
                       category.this_category.name
                         ? category.this_category.name
                         : 'All Categories'
-                    }}
-                  </h1>
+                    }}"
+                  </h4>
                 </div>
               </div>
-              <div class="column-medium-8 display-flex flex-wrap">
-                <form
-                  (ngSubmit)="searchProductInCategory()"
-                  class="display-flex align-items-center flex-grow-1 m-small-b-8px m-small-t-8px">
-                  <div
-                    class="control-group search-category-control m-b-0px m-r-12px">
-                    <input
-                      [(ngModel)]="searchInCategory"
-                      name="searchInCategory"
-                      placeholder="Search in Category"
-                      type="text" />
-                  </div>
-                  <button
-                    class="button button_orange button_icon p-0px"
-                    type="submit">
-                    <fa-icon [icon]="faSearch"></fa-icon>
-                  </button>
-                </form>
-                <form class="flex-grow-1">
-                  <div class="control-group">
-                    <select
-                      (change)="sortProductsBy()"
-                      [(ngModel)]="order"
-                      name="sortBy">
-                      <option *ngFor="let sort of sorting" [ngValue]="sort.id">
-                        {{ sort.name }}
-                      </option>
-                    </select>
-                  </div>
-                </form>
+
+              <div class="row">
+                <div
+                  *ngFor="let productPreview of categoryProducts.products"
+                  class="column-6 column-small-4 column-medium-3 column-large-2 p-8px m-b-16px">
+                  <appla-preview-card
+                    [product]="productPreview"></appla-preview-card>
+                </div>
               </div>
             </div>
 
-            <hr />
-
-            <div class="row">
-              <div class="column-12">
-                <h4 class="category-products__summary">
-                  {{ 'CATEGORY-PAGE.SHOWING' | translate }}
-                  {{ category.count_products }} item(s) : "{{
-                    category.this_category.name
-                      ? category.this_category.name
-                      : 'All Categories'
-                  }}"
-                </h4>
-              </div>
-            </div>
-
-            <div class="row">
-              <div
-                *ngFor="let productPreview of category.products"
-                class="column-6 column-small-4 column-medium-3 column-large-2 p-8px m-b-16px">
-                <appla-preview-card
-                  [product]="productPreview"></appla-preview-card>
-              </div>
-            </div>
-          </div>
-
-          <div
-            *ngIf="
-              category.products.length &&
-              category.products.length !== category.count_products
-            "
-            class="text-center">
-            <button
-              (click)="loadMoreProducts()"
-              *ngIf="!loading"
-              class="button button_orange">
-              {{ 'CATEGORY-PAGE.LOAD_MORE' | translate }}
-            </button>
             <div
-              *ngIf="loading"
-              class="spinner-border text-orange"
-              role="status">
-              <span class="visually-hidden">Loading...</span>
+              *ngIf="
+                categoryProducts.products.length &&
+                categoryProducts.products.length !==
+                  categoryProducts.count_products
+              "
+              class="text-center">
+              <button
+                (click)="loadMoreProducts()"
+                *ngIf="!loading"
+                class="button button_orange">
+                {{ 'CATEGORY-PAGE.LOAD_MORE' | translate }}
+              </button>
+              <div
+                *ngIf="loading"
+                class="spinner-border text-orange"
+                role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
-    </div>
+    </ng-container>
   </ng-container>
 </section>
 
