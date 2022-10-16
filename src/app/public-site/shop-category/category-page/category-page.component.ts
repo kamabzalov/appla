@@ -169,10 +169,7 @@ export class CategoryPageComponent implements OnInit {
     filterValue: string
   ) {
     const checkedFilter = ($event.target as HTMLInputElement).checked;
-    const filter = {
-      'checked_key[]': filterKey,
-      'checked_value[]': filterValue,
-    };
+    const filter = { filterKey, filterValue };
 
     if (checkedFilter) {
       this.productFilters.push(filter);

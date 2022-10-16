@@ -160,8 +160,7 @@ export class RestService {
       params = params.set('search', searchQuery);
     }
     if (filters) {
-      params = params.set('checked_key[]', filters[0]['checked_key[]']);
-      params = params.set('checked_value[]', filters[0]['checked_value[]']);
+      params = params.set('tech_detail', JSON.stringify(filters));
     }
     const langId = this.getLangId();
     params = params.set('lang_id', langId);
