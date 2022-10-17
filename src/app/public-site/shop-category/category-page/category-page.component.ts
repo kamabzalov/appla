@@ -44,8 +44,7 @@ export interface CurrentCategory {
 }
 
 export interface ProductFilter {
-  filterKey: string;
-  filterValue: { [key: number]: string };
+  filters: { [key: string]: string[] };
 }
 
 interface ToLink {
@@ -170,7 +169,7 @@ export class CategoryPageComponent implements OnInit {
     filterValue: string
   ) {
     const checkedFilter = ($event.target as HTMLInputElement).checked;
-    const filter = { filterKey, filterValue };
+    const filter = { filterKey, filterValue: [filterValue] };
 
     if (checkedFilter) {
       this.productFilters.push(filter);

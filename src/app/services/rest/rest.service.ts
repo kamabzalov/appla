@@ -16,9 +16,7 @@ import { ProductOffer } from '@app/public-site/shop-category/compare-prices/comp
 import {
   Category,
   CategoryProducts,
-  CurrentCategory,
   ProductFilter,
-  Subcategory,
 } from '@app/public-site/shop-category/category-page/category-page.component';
 import {
   AppLanguages,
@@ -27,7 +25,6 @@ import {
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { response } from 'express';
 
 export interface BackendResponse {
   data: any;

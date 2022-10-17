@@ -5,7 +5,7 @@
         <ng-container *ngFor="let breadcrumb of category.arr_cats">
           <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
             breadcrumb.name
-          }}</a>
+            }}</a>
           /
         </ng-container>
       </div>
@@ -23,7 +23,7 @@
                     <a
                       class="subcategories-list__link display-block p-t-8px p-b-8px p-l-8px"
                       routerLink="/{{ appLang }}/category"
-                      >{{ 'CATEGORY-PAGE.ALL_CATEGORIES' | translate }}</a
+                    >{{ 'CATEGORY-PAGE.ALL_CATEGORIES' | translate }}</a
                     >
                   </li>
                   <li>
@@ -32,7 +32,7 @@
                       routerLink="/{{ appLang }}/category/list/{{
                         category.this_category.slug
                       }}"
-                      >{{ category.this_category.name }}</a
+                    >{{ category.this_category.name }}</a
                     >
                     <ul class="list-unstyled p-l-12px">
                       <li *ngFor="let subcategory of category.subcategories">
@@ -41,7 +41,7 @@
                           routerLink="/{{ appLang }}/category/list/{{
                             subcategory.slug
                           }}"
-                          >{{ subcategory.name }}</a
+                        >{{ subcategory.name }}</a
                         >
                       </li>
                     </ul>
@@ -59,13 +59,13 @@
                       <input
                         [(ngModel)]="minPrice"
                         name="minPrice"
-                        type="number" />
+                        type="number"/>
                     </div>
                     <div class="col-5">
                       <input
                         [(ngModel)]="maxPrice"
                         name="maxPrice"
-                        type="number" />
+                        type="number"/>
                     </div>
                     <div class="col-2">
                       <button class="button p-0px">
@@ -80,21 +80,18 @@
             </div>
 
             <div class="card-content" *ngIf="filters$ | async as filters">
-              <div class="m-b-20px">
-                <appla-aside-widget [widgetHeader]="filters.filterKey">
-                  <ng-container
-                    *ngFor="let obj of filters.filterValue | keyvalue">
-                    <div
-                      class="display-flex justify-content-space-between p-l-4px p-r-12px m-b-8px">
-                      <span>{{ obj.value }}</span>
+              <div class="m-b-12px">
+                <ng-container *ngFor="let obj of filters.filters | keyvalue">
+                  <appla-aside-widget [widgetHeader]="obj.key">
+                    <div *ngFor="let v of obj.value"
+                         class="display-flex justify-content-space-between p-l-4px p-r-12px m-b-8px">
+                      <span>{{ v }}</span>
                       <input
-                        (change)="
-                          handleFilter($event, filters.filterKey, obj.value)
-                        "
-                        type="checkbox" />
+                        (change)="handleFilter($event, obj.key, v)"
+                        type="checkbox"/>
                     </div>
-                  </ng-container>
-                </appla-aside-widget>
+                  </appla-aside-widget>
+                </ng-container>
               </div>
             </div>
           </aside>
@@ -108,9 +105,9 @@
                     <fa-icon [icon]="faTags" class="m-r-12px"></fa-icon>
                     <h1 class="category-products__title m-b-0px">
                       {{
-                        category.this_category.name
-                          ? category.this_category.name
-                          : 'All Categories'
+                      category.this_category.name
+                        ? category.this_category.name
+                        : 'All Categories'
                       }}
                     </h1>
                   </div>
@@ -125,7 +122,7 @@
                         [(ngModel)]="searchInCategory"
                         name="searchInCategory"
                         placeholder="Search in Category"
-                        type="text" />
+                        type="text"/>
                     </div>
                     <button
                       class="button button_orange button_icon p-0px"
@@ -150,16 +147,16 @@
                 </div>
               </div>
 
-              <hr />
+              <hr/>
 
               <div class="row">
                 <div class="column-12">
                   <h4 class="category-products__summary">
                     {{ 'CATEGORY-PAGE.SHOWING' | translate }}
                     {{ categoryProducts.count_products }} item(s) : "{{
-                      category.this_category.name
-                        ? category.this_category.name
-                        : 'All Categories'
+                    category.this_category.name
+                      ? category.this_category.name
+                      : 'All Categories'
                     }}"
                   </h4>
                 </div>
