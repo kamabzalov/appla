@@ -14,7 +14,6 @@ export interface Category {
 
 export interface CategoryProducts {
   products: CategoryProduct[];
-  filters: ProductFilter[];
   count_products: number;
 }
 
@@ -96,6 +95,7 @@ export class CategoryPageComponent implements OnInit {
   protected sorting = SORTING;
   protected categoryData$: Observable<Category | null>;
   protected categoryProducts$: Observable<CategoryProducts | null>;
+  protected filters$: Observable<ProductFilter | null>;
   protected appLang: string;
   protected loading: boolean = false;
   // eslint-disable-next-line no-magic-numbers
@@ -126,6 +126,7 @@ export class CategoryPageComponent implements OnInit {
       this.maxPrice = null;
       this.categoryData$ = this.restService.getCategory(this.slug);
       this.getCategoryProducts(this.limit, this.offset, this.order, this.slug);
+      this.getProductFilters(this.slug);
     });
   }
 
@@ -228,5 +229,9 @@ export class CategoryPageComponent implements OnInit {
         filters
       )
       .subscribe(res => this.categoryProductsSubject$.next(res));
+  }
+
+  private getProductFilters(slug: string) {
+    this.filters$ = this.restService.getProductFilters(slug);
   }
 }

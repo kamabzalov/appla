@@ -79,23 +79,17 @@
               </appla-aside-widget>
             </div>
 
-            <div
-              *ngIf="
-                categoryProducts.filters && categoryProducts.filters.length
-              "
-              class="card-content">
-              <div
-                *ngFor="let filter of categoryProducts.filters"
-                class="m-b-20px">
-                <appla-aside-widget [widgetHeader]="filter.filterKey">
+            <div class="card-content" *ngIf="filters$ | async as filters">
+              <div class="m-b-20px">
+                <appla-aside-widget [widgetHeader]="filters.filterKey">
                   <ng-container
-                    *ngFor="let obj of filter.filterValue | keyvalue">
+                    *ngFor="let obj of filters.filterValue | keyvalue">
                     <div
                       class="display-flex justify-content-space-between p-l-4px p-r-12px m-b-8px">
                       <span>{{ obj.value }}</span>
                       <input
                         (change)="
-                          handleFilter($event, filter.filterKey, obj.value)
+                          handleFilter($event, filters.filterKey, obj.value)
                         "
                         type="checkbox" />
                     </div>

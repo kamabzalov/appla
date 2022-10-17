@@ -27,6 +27,7 @@ import {
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { response } from 'express';
 
 export interface BackendResponse {
   data: any;
@@ -173,31 +174,18 @@ export class RestService {
           withCredentials: true,
         }
       )
-      .pipe(
-        map(response => {
-          if (response.data.filters) {
-            const filters: any = (response.data as CategoryProducts).filters;
-            const filterKeys = Object.keys(filters);
-            const productFilters: ProductFilter[] = filterKeys.map(key => {
-              return {
-                filterKey: key,
-                filterValue: filters[key],
-              };
-            });
-            return { ...response.data, filters: productFilters };
-          }
-          response.data.subcategories.map((item: Subcategory) => {
-            return item.name.replace('&amp;', '&');
-          });
-          if (response.data.this_category?.name) {
-            (response.data.this_category as CurrentCategory).name = (
-              response.data.this_category as CurrentCategory
-            ).name.replace('&amp;', '&');
-          }
+      .pipe(map(response => response.data));
+  }
 
-          return response.data;
-        })
-      );
+  public getProductFilters(slug: string): Observable<ProductFilter> {
+    const langId = this.getLangId();
+    const params = new HttpParams().set('slug', slug).set('lang_id', langId);
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Angular/Categories/get_filters`, {
+        params,
+        withCredentials: true,
+      })
+      .pipe(map(response => response.data));
   }
 
   public getCategory(categorySlug: string): Observable<Category> {
