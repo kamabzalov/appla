@@ -36,7 +36,7 @@ export interface BackendResponse {
   providedIn: 'root',
 })
 export class RestService {
-  private basePath = 'https://stage.appla.cy/';
+  private basePath = 'https://angular.appla.cy/';
 
   constructor(
     private http: HttpClient,
@@ -77,7 +77,7 @@ export class RestService {
     const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/get_recently_viewed?store_id=false&user_id=&name=name1&lang_id=${langId}`,
+        `${this.basePath}Angular/Home/get_recently_viewed?lang_id=${langId}`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));
