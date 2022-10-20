@@ -78,4 +78,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.cdr.markForCheck();
     });
   }
+
+  protected goToCart() {
+    window.location.href = 'https://checkout.angular.appla.cy/';
+  }
 }

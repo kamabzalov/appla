@@ -25,4 +25,8 @@ export class SuccessAddCartDialogComponent implements OnInit {
     this.activeModal.dismiss();
     return this.router.navigate([this.appLang, 'category']);
   }
+
+  protected goToCart() {
+    window.location.href = 'https://checkout.angular.appla.cy/';
+  }
 }

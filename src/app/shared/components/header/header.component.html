@@ -41,7 +41,7 @@
             type="button">
             <fa-icon [icon]="faBars"></fa-icon>
           </button>
-          <appla-cart-widget></appla-cart-widget>
+          <appla-cart-widget (click)="goToCart()"></appla-cart-widget>
           <div
             class="header__user-actions display-none display-large-inline-flex">
             <ng-container *ngIf="!isLogin; else profileMenu">
