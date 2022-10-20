@@ -36,7 +36,7 @@ export interface BackendResponse {
   providedIn: 'root',
 })
 export class RestService {
-  private basePath = 'https://angular.appla.cy/';
+  private basePath = 'https://api.angular.appla.cy/';
 
   constructor(
     private http: HttpClient,
