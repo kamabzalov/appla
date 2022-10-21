@@ -7,10 +7,9 @@ import {
 } from '@angular/core';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
-import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
 import { RestService } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 
 @Component({
@@ -21,7 +20,9 @@ import { iconSet } from '@app/shared/utils/icons';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   protected faBars = iconSet.faBars;
-  protected isLogin: boolean = false;
+  protected isLogin$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
   protected isMainPage: boolean = true;
   private router$: Subscription;
 
@@ -43,10 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
     });
-    this.restService.isAuthorized().subscribe(res => {
-      this.isLogin = res.status === 'success';
-      this.cdr.markForCheck();
-    });
+    this.isLogin$ = this.restService.isLogin$;
   }
 
   public ngOnDestroy() {
@@ -59,24 +57,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService
       .open(LoginDialogComponent, { centered: true })
       .dismissed.subscribe(res => {
-        this.restService.isAuthorized().subscribe(res => {
-          this.isLogin = res.status === 'success';
-          this.cdr.markForCheck();
-        });
+        this.isLogin$ = this.restService.isLogin$;
       });
   }
 
   protected openMobilePanel() {
-    this.offCanvas.open(SidenavComponent);
+    // this.offCanvas.open(SidenavComponent);
+    window.location.href = 'http://profile.angular.appla.cy/';
   }
 
   protected logout() {
-    this.restService.logout().subscribe(res => {
-      if (res.status === 'success') {
-        this.isLogin = false;
-      }
-      this.cdr.markForCheck();
-    });
+    this.restService.logout().subscribe();
   }
 
   protected goToCart() {

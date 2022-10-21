@@ -10,7 +10,7 @@ import {
 import { Menu } from '@app/shared/components/header/navigation/navigation.component';
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { Product } from '@app/public-site/shop-product/product-page/product-page.component';
 import { ProductOffer } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
 import {
@@ -36,6 +36,10 @@ export interface BackendResponse {
   providedIn: 'root',
 })
 export class RestService {
+  public cart$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public isLogin$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
   private basePath = 'https://api.angular.appla.cy/';
 
   constructor(
@@ -243,15 +247,23 @@ export class RestService {
 
   public login(email: string, password: string): Observable<BackendResponse> {
     const lang_id = this.getLangId();
-    return this.http.post<BackendResponse>(
-      `${this.basePath}Angular/Auth/doSignin`,
-      {
-        email,
-        password,
-        lang_id,
-      },
-      { withCredentials: true }
-    );
+    return this.http
+      .post<BackendResponse>(
+        `${this.basePath}Angular/Auth/doSignin`,
+        {
+          email,
+          password,
+          lang_id,
+        },
+        { withCredentials: true }
+      )
+      .pipe(
+        tap(res => {
+          res.status === 'success'
+            ? this.isLogin$.next(true)
+            : this.isLogin$.next(false);
+        })
+      );
   }
 
   public register(email: string): Observable<BackendResponse> {
@@ -264,18 +276,33 @@ export class RestService {
   }
 
   public isAuthorized(): Observable<BackendResponse> {
-    return this.http.get<BackendResponse>(
-      `${this.basePath}Angular/Auth/checkAuth`,
-      { withCredentials: true }
-    );
+    return this.http
+      .get<BackendResponse>(`${this.basePath}Angular/Auth/checkAuth`, {
+        withCredentials: true,
+      })
+      .pipe(
+        tap(res => {
+          res.status === 'success'
+            ? this.isLogin$.next(true)
+            : this.isLogin$.next(false);
+        })
+      );
   }
 
   public logout(): Observable<BackendResponse> {
     const lang_id = this.getLangId();
-    return this.http.get<BackendResponse>(
-      `${this.basePath}Angular/Auth/logout?lang_id=${lang_id}`,
-      { withCredentials: true }
-    );
+    return this.http
+      .get<BackendResponse>(
+        `${this.basePath}Angular/Auth/logout?lang_id=${lang_id}`,
+        { withCredentials: true }
+      )
+      .pipe(
+        tap(res => {
+          res.status === 'success'
+            ? this.isLogin$.next(false)
+            : this.isLogin$.next(true);
+        })
+      );
   }
 
   public getProductOffer(
@@ -305,14 +332,16 @@ export class RestService {
     qty: number,
     product_id: number
   ): Observable<BackendResponse> {
-    return this.http.post<BackendResponse>(
-      `${this.basePath}Angular/Cart/addToCart`,
-      {
-        qty,
-        product_id,
-      },
-      { withCredentials: true }
-    );
+    return this.http
+      .post<BackendResponse>(
+        `${this.basePath}Angular/Cart/addToCart`,
+        {
+          qty,
+          product_id,
+        },
+        { withCredentials: true }
+      )
+      .pipe(tap(res => this.cart$.next(res.data.cart.length)));
   }
 
   public followStore(

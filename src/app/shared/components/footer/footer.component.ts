@@ -8,7 +8,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
 import { iconSet } from '@app/shared/utils/icons';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { RestService } from '@app/services/rest/rest.service';
 
 @Component({
   selector: 'appla-footer',
@@ -25,13 +26,17 @@ export class FooterComponent implements OnInit {
   protected faTiktok = iconSet.faTiktok;
   protected year = new Date();
   protected isMainPage: boolean = true;
+  protected isLogin$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
   private router$: Subscription;
 
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private restService: RestService
   ) {}
 
   public ngOnInit() {
@@ -42,6 +47,7 @@ export class FooterComponent implements OnInit {
         this.cdr.markForCheck();
       }
     });
+    this.isLogin$ = this.restService.isLogin$;
   }
 
   public openLoginModal() {
