@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
     });
+    this.restService.isAuthorized().subscribe();
     this.isLogin$ = this.restService.isLogin$;
   }
 

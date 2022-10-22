@@ -60,21 +60,6 @@ interface CategoryBreadcrumb {
   slug: string;
 }
 
-const SORTING = [
-  {
-    id: 'date_update_asc',
-    name: 'Newest',
-  },
-  {
-    id: 'price_asc',
-    name: 'Price: Low to High',
-  },
-  {
-    id: 'price_desc',
-    name: 'Price: High to Low',
-  },
-];
-
 @UntilDestroy()
 @Component({
   selector: 'appla-category-page',
@@ -91,7 +76,6 @@ export class CategoryPageComponent implements OnInit {
   protected searchInCategory: string;
   protected productFilters: any[] = [];
   protected order: string = 'date_update_asc';
-  protected sorting = SORTING;
   protected categoryData$: Observable<Category | null>;
   protected categoryProducts$: Observable<CategoryProducts | null>;
   protected filters$: Observable<ProductFilter | null>;

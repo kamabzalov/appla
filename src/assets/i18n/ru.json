@@ -117,9 +117,13 @@
   },
   "CATEGORY-PAGE": {
     "CATEGORIES_LABEL": "Категории",
-    "ALL_CATEGORIES": "All categories",
+    "ALL_CATEGORIES": "Все категории",
     "FILTER_PRICE": "Цена",
     "SHOWING": "Отображено",
+    "SEARCH_IN_CATEGORY": "Поиск по категории",
+    "SORTING_NEWEST": "Сначала новые",
+    "LOW_HIGH": "Цена: От низкой к высокой",
+    "HIGH_LOW": "Цена: От высокой к низкой",
     "SHOWING_ITEMS": "штук",
     "LOAD_MORE": "Загрузить больше"
   },

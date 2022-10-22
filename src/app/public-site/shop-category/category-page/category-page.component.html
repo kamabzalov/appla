@@ -79,7 +79,7 @@
               </appla-aside-widget>
             </div>
 
-            <div class="card-content" *ngIf="filters$ | async as filters">
+            <div *ngIf="filters$ | async as filters" class="card-content">
               <div class="m-b-12px">
                 <ng-container *ngFor="let obj of filters.filters | keyvalue">
                   <appla-aside-widget [widgetHeader]="obj.key">
@@ -122,7 +122,9 @@
                       <input
                         [(ngModel)]="searchInCategory"
                         name="searchInCategory"
-                        placeholder="Search in Category"
+                        placeholder="{{
+                          'CATEGORY-PAGE.SEARCH_IN_CATEGORY' | translate
+                        }}"
                         type="text" />
                     </div>
                     <button
@@ -137,10 +139,14 @@
                         (change)="sortProductsBy()"
                         [(ngModel)]="order"
                         name="sortBy">
-                        <option
-                          *ngFor="let sort of sorting"
-                          [ngValue]="sort.id">
-                          {{ sort.name }}
+                        <option [ngValue]="'date_update_asc'">
+                          {{ 'CATEGORY-PAGE.SORTING_NEWEST' | translate }}
+                        </option>
+                        <option [ngValue]="'price_asc'">
+                          {{ 'CATEGORY-PAGE.LOW_HIGH' | translate }}
+                        </option>
+                        <option [ngValue]="'price_desc'">
+                          {{ 'CATEGORY-PAGE.HIGH_LOW' | translate }}
                         </option>
                       </select>
                     </div>

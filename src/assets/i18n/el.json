@@ -119,6 +119,10 @@
     "CATEGORIES_LABEL": "ΚΑΤΗΓΟΡΙΕΣ",
     "ALL_CATEGORIES": "Όλες οι κατηγορίες",
     "FILTER_PRICE": "ΤΙΜΗ",
+    "SEARCH_IN_CATEGORY": "Αναζήτηση στην κατηγορία",
+    "SORTING_NEWEST": "Νεότερο",
+    "LOW_HIGH": "Τιμή: Χαμηλή προς Υψηλή",
+    "HIGH_LOW": "Τιμή: Υψηλή έως χαμηλή",
     "SHOWING": "Εμφανίζονται",
     "SHOWING_ITEMS": "Προϊόντα",
     "LOAD_MORE": "Φόρτωσε περισσότερα"
