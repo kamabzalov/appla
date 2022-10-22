@@ -29,11 +29,11 @@
           </a>
         </div>
         <div
-          class="column-12 column-medium-6 column-large-5 display-flex align-items-center">
+          class="column-12 column-medium-6 column-large-6 display-flex align-items-center">
           <appla-search-form></appla-search-form>
         </div>
         <div
-          class="column-12 column-medium-4 column-large-4 display-flex justify-content-space-around align-items-center">
+          class="column-12 column-medium-4 column-large-3 display-flex justify-content-space-around align-items-center">
           <appla-languages-dropdown></appla-languages-dropdown>
           <button
             (click)="openMobilePanel()"
@@ -41,7 +41,7 @@
             type="button">
             <fa-icon [icon]="faBars"></fa-icon>
           </button>
-          <appla-cart-widget (click)="goToCart()"></appla-cart-widget>
+          <appla-cart-widget></appla-cart-widget>
           <div
             class="header__user-actions display-none display-large-inline-flex">
             <ng-container
@@ -92,7 +92,7 @@
             class="mobile-links__item mobile-links_orange display-block p-8px"
             href="https://blog.appla.cy/merchants/register/"
             target="_blank"
-            >Join Us</a
+            >{{ 'HEADER.JOIN_US' | translate }}</a
           >
         </div>
       </div>

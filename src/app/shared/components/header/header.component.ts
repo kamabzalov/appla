@@ -69,8 +69,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected logout() {
     this.restService.logout().subscribe();
   }
-
-  protected goToCart() {
-    window.location.href = 'https://checkout.angular.appla.cy/';
-  }
 }

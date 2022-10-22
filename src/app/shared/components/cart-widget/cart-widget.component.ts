@@ -18,4 +18,10 @@ export class CartWidgetComponent implements OnInit {
   public ngOnInit() {
     this.productCount$ = this.restService.cart$;
   }
+
+  protected goToCart() {
+    if (this.productCount$.getValue()) {
+      window.location.href = 'https://checkout.angular.appla.cy/';
+    }
+  }
 }

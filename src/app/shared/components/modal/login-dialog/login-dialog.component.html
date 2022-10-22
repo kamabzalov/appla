@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Login</h4>
+  <h4 class="modal-title">{{ 'HEADER.LOGIN' | translate }}</h4>
   <button
     (click)="activeModal.dismiss('Cross click')"
     aria-label="Close"
@@ -43,6 +43,6 @@
 </div>
 <div class="modal-footer">
   <button (click)="auth()" class="btn btn-outline-dark" type="button">
-    Login
+    {{ 'HEADER.LOGIN' | translate }}
   </button>
 </div>
