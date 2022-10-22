@@ -44,7 +44,7 @@ export interface CurrentCategory {
 }
 
 export interface ProductFilter {
-  filters: { [key: string]: string[] };
+  filters: { [key: string]: any };
 }
 
 interface ToLink {
@@ -104,6 +104,7 @@ export class CategoryPageComponent implements OnInit {
       if (res.length && res[1]) {
         this.slug = res[1].path;
         this.order = 'date_update_asc';
+        this.searchInCategory = '';
       }
       this.offset = 0;
       this.minPrice = null;
@@ -151,7 +152,7 @@ export class CategoryPageComponent implements OnInit {
   protected handleFilter(
     $event: Event,
     filterKey: string,
-    filterValue: string
+    filterValue: unknown
   ) {
     const checkedFilter = ($event.target as HTMLInputElement).checked;
     const filter = { filterKey, filterValue: [filterValue] };

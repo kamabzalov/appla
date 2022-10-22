@@ -84,11 +84,11 @@
                 <ng-container *ngFor="let obj of filters.filters | keyvalue">
                   <appla-aside-widget [widgetHeader]="obj.key">
                     <div
-                      *ngFor="let v of obj.value"
+                      *ngFor="let v of obj.value | keyvalue"
                       class="display-flex justify-content-space-between p-l-4px p-r-12px m-b-8px">
-                      <span>{{ v }}</span>
+                      <span>{{ v.value }}</span>
                       <input
-                        (change)="handleFilter($event, obj.key, v)"
+                        (change)="handleFilter($event, obj.key, v.value)"
                         type="checkbox" />
                     </div>
                   </appla-aside-widget>

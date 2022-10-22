@@ -120,10 +120,12 @@
     "ALL_CATEGORIES": "Все категории",
     "FILTER_PRICE": "Цена",
     "SHOWING": "Отображено",
+    "AVAILABLE_IN": "Доступно в:",
     "SEARCH_IN_CATEGORY": "Поиск по категории",
     "SORTING_NEWEST": "Сначала новые",
     "LOW_HIGH": "Цена: От низкой к высокой",
     "HIGH_LOW": "Цена: От высокой к низкой",
+    "SHOPS": "магазине(-ах)",
     "SHOWING_ITEMS": "штук",
     "LOAD_MORE": "Загрузить больше"
   },

@@ -11,7 +11,10 @@ import { Menu } from '@app/shared/components/header/navigation/navigation.compon
 import { RecentlyViewed } from '@app/shared/components/recently-viewed/recently-viewed.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
-import { Product } from '@app/public-site/shop-product/product-page/product-page.component';
+import {
+  Product,
+  ProductVariant,
+} from '@app/public-site/shop-product/product-page/product-page.component';
 import { ProductOffer } from '@app/public-site/shop-category/compare-prices/compare-prices.component';
 import {
   Category,
@@ -330,7 +333,8 @@ export class RestService {
 
   public addToCart(
     qty: number,
-    product_id: number
+    product_id: number,
+    productVariant: ProductVariant
   ): Observable<BackendResponse> {
     return this.http
       .post<BackendResponse>(
@@ -338,6 +342,7 @@ export class RestService {
         {
           qty,
           product_id,
+          product_variant_id: productVariant.product_variant_id,
         },
         { withCredentials: true }
       )

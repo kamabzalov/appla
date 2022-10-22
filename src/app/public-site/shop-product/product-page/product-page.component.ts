@@ -51,7 +51,7 @@ export interface SimilarProduct {
   store_slug: string;
 }
 
-interface ProductVariant {
+export interface ProductVariant {
   product_variant_id: number;
   product_id: number;
   product_variant: { [key: string]: any };
@@ -173,12 +173,18 @@ export class ProductPageComponent implements OnInit {
     this.mainPage = $event;
   }
 
-  protected addToCart(productQuantity: number, product_id: number) {
-    this.restService.addToCart(productQuantity, product_id).subscribe(res => {
-      if (res.status === 'success') {
-        this.modalService.open(SuccessAddCartDialogComponent);
-      }
-    });
+  protected addToCart(
+    productQuantity: number,
+    product_id: number,
+    productVariant: ProductVariant
+  ) {
+    this.restService
+      .addToCart(productQuantity, product_id, productVariant)
+      .subscribe(res => {
+        if (res.status === 'success') {
+          this.modalService.open(SuccessAddCartDialogComponent);
+        }
+      });
   }
 
   protected followStore(userId: number, merchantId: number) {

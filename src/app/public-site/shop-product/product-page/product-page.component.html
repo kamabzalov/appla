@@ -132,7 +132,11 @@
                 </div>
                 <button
                   (click)="
-                    addToCart(productQuantity, product.product.product_id)
+                    addToCart(
+                      productQuantity,
+                      product.product.product_id,
+                      productVariant
+                    )
                   "
                   class="w-50 button button_orange p-12px">
                   {{ 'PRODUCT_PAGE.ADD_TO_CART' | translate }}

@@ -121,10 +121,12 @@
     "FILTER_PRICE": "Price",
     "SEARCH_IN_CATEGORY": "Search in category",
     "SORTING_NEWEST": "Newest",
+    "AVAILABLE_IN": "Available in:",
     "LOW_HIGH": "Price: Low to High",
     "HIGH_LOW": "Price: High to Low",
     "SHOWING": "Showing",
     "SHOWING_ITEMS": "item(s)",
+    "SHOPS": "shops(s)",
     "LOAD_MORE": "Load more"
   },
   "SEARCH-PAGE": {

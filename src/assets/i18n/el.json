@@ -121,9 +121,11 @@
     "FILTER_PRICE": "ΤΙΜΗ",
     "SEARCH_IN_CATEGORY": "Αναζήτηση στην κατηγορία",
     "SORTING_NEWEST": "Νεότερο",
+    "AVAILABLE_IN": "Διαθέσιμο σε:",
     "LOW_HIGH": "Τιμή: Χαμηλή προς Υψηλή",
     "HIGH_LOW": "Τιμή: Υψηλή έως χαμηλή",
     "SHOWING": "Εμφανίζονται",
+    "SHOPS": "Καταστήματα",
     "SHOWING_ITEMS": "Προϊόντα",
     "LOAD_MORE": "Φόρτωσε περισσότερα"
   },
