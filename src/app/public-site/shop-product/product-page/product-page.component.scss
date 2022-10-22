@@ -32,10 +32,11 @@
         );
       }
 
-      &__input {
+      &__input[name='productQuantity'] {
         @include mixins.border-radius(0);
 
         outline: none;
+        text-align: center;
         border-top: vars.$alice-blue 1px solid;
         border-bottom: vars.$alice-blue 1px solid;
       }

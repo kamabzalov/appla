@@ -72,4 +72,8 @@ export class SidenavComponent implements OnInit {
   protected toggleMore(menuLevel: FirstLevel) {
     menuLevel.toggle = !menuLevel.toggle;
   }
+
+  protected goToCart() {
+    window.location.href = 'https://checkout.angular.appla.cy/';
+  }
 }

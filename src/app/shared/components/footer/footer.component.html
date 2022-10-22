@@ -194,7 +194,6 @@
             </li>
           </ul>
         </div>
-        {{ isLogin$ | async | json }}
         <div *ngIf="(isLogin$ | async) === false" class="col-md-2 col-6">
           <div
             class="display-none display-medium-flex flex-column login-actions">

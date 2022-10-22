@@ -54,7 +54,9 @@
         'HEADER.MOBILE.HOME' | translate
       }}</a>
     </li>
-    <li class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
+    <li
+      (click)="goToCart()"
+      class="sidenav-menu__item p-l-16px p-r-16px p-t-8px p-b-8px">
       <fa-icon [icon]="faCart" class="m-r-12px"></fa-icon>
       <a applaCloseCanvas class="sidenav-menu__link" routerLink="">{{
         'HEADER.MOBILE.CART' | translate

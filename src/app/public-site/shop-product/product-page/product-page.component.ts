@@ -191,7 +191,13 @@ export class ProductPageComponent implements OnInit {
     const confirmModal = this.modalService.open(ConfirmDialogComponent, {
       centered: true,
     });
-    confirmModal.componentInstance.text = 'Follow this store?';
+    const text =
+      this.appLang === 'en'
+        ? 'Follow this store?'
+        : 'ru'
+        ? 'Подписаться на этот магазин?'
+        : '';
+    confirmModal.componentInstance.text = text;
     confirmModal.closed.subscribe(_ => {
       this.restService.followStore(userId, merchantId).subscribe(res => {
         this.toastService.show(res);
@@ -199,9 +205,7 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-  protected setVariant(productVariant: ProductVariant) {
-    console.log(productVariant);
-  }
+  protected setVariant(productVariant: ProductVariant) {}
 
   private getProductData(
     storeSlug: string,

@@ -47,6 +47,10 @@ export class HomeComponent implements OnInit {
           this.cdr.markForCheck();
         }
       });
+    this.restService.isLogin$
+      .asObservable()
+      .pipe(untilDestroyed(this))
+      .subscribe(_ => this.getRecentlyViewed());
   }
 
   private getSlides() {
