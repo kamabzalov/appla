@@ -11,6 +11,7 @@ import { RestService } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
+import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
 
 @Component({
   selector: 'appla-header',
@@ -63,8 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   protected openMobilePanel() {
-    // this.offCanvas.open(SidenavComponent);
-    window.location.href = 'http://profile.angular.appla.cy/';
+    this.offCanvas.open(SidenavComponent);
   }
 
   protected logout() {
