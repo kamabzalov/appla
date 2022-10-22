@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   debounceTime,
@@ -15,14 +20,16 @@ import {
   SearchProduct,
 } from '@app/public-site/search/search-results/search-results.component';
 import { LanguageService } from '@app/services/language/language.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'appla-search-form',
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
   protected faSearch = iconSet.faMagnifyingGlass;
   protected searchQuery: SearchCategory | SearchProduct | string | null;
   protected resultsProducts$: Observable<any[]>;
@@ -31,8 +38,16 @@ export class SearchFormComponent {
     private router: Router,
     private restService: RestService,
     private route: ActivatedRoute,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private cdr: ChangeDetectorRef
   ) {}
+
+  public ngOnInit() {
+    this.router.events.pipe(untilDestroyed(this)).subscribe(_ => {
+      this.searchQuery = '';
+      this.cdr.markForCheck();
+    });
+  }
 
   public search() {
     let query;
