@@ -71,7 +71,7 @@
   },
   "FOOTER": {
     "CUSTOMER_SUPPORT": "Служба поддержки",
-    "CUSTOMER_SUPPORT_LABEL": "Комплексная поддержка клиентов и поставщиков",
+    "CUSTOMER_SUPPORT_DESC": "Комплексная поддержка клиентов и поставщиков",
     "ONLINE_PAYMENTS": "Онлайн платеж",
     "ONLINE_PAYMENTS_DESC": "Удобный и быстрый процесс покупки",
     "DELIVERY": "Быстрая доставка",

@@ -334,7 +334,7 @@ export class RestService {
   public addToCart(
     qty: number,
     product_id: number,
-    productVariant: ProductVariant
+    productVariant?: ProductVariant
   ): Observable<BackendResponse> {
     return this.http
       .post<BackendResponse>(
@@ -342,7 +342,7 @@ export class RestService {
         {
           qty,
           product_id,
-          product_variant_id: productVariant.product_variant_id,
+          product_variant_id: productVariant?.product_variant_id,
         },
         { withCredentials: true }
       )

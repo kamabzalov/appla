@@ -71,7 +71,7 @@
   },
   "FOOTER": {
     "CUSTOMER_SUPPORT": "Υποστήριξη πελατών",
-    "CUSTOMER_SUPPORT_LABEL": "Πλήρης υποστήριξη για πελάτες και προμηθευτές",
+    "CUSTOMER_SUPPORT_DESC": "Πλήρης υποστήριξη για πελάτες και προμηθευτές",
     "ONLINE_PAYMENTS": "Διαδικτυακή πληρωμή",
     "ONLINE_PAYMENTS_DESC": "Φιλική και γρήγορη διαδικασία αγοράς",
     "DELIVERY": "Γρήγορη διανομή",

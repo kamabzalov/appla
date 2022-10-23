@@ -4,7 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -43,10 +43,17 @@ export class SearchFormComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.router.events.pipe(untilDestroyed(this)).subscribe(_ => {
-      this.searchQuery = '';
-      this.cdr.markForCheck();
-    });
+    this.router.events
+      .pipe(
+        untilDestroyed(this),
+        filter(event => event instanceof NavigationEnd)
+      )
+      .subscribe(_ => {
+        if (this.router.url.indexOf('Search') < 0) {
+          this.searchQuery = '';
+          this.cdr.markForCheck();
+        }
+      });
   }
 
   public search() {
@@ -62,7 +69,6 @@ export class SearchFormComponent implements OnInit {
         string: query,
       },
     });
-    this.searchQuery = '';
   }
 
   protected searchTypeAhead = (text$: Observable<string>) =>

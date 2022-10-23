@@ -176,7 +176,7 @@ export class ProductPageComponent implements OnInit {
   protected addToCart(
     productQuantity: number,
     product_id: number,
-    productVariant: ProductVariant
+    productVariant?: ProductVariant
   ) {
     this.restService
       .addToCart(productQuantity, product_id, productVariant)
