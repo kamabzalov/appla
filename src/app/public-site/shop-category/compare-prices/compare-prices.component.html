@@ -127,7 +127,15 @@
                   <div class="row justify-content-end align-items-center">
                     <div class="column-12 column-medium-4">
                       <p class="fw-bolder">
-                        <a href="">{{ store.name }}</a>
+                        <a
+                          [routerLink]="[
+                            '/',
+                            appLang,
+                            'store',
+                            store.store_slug
+                          ]"
+                          >{{ store.name }}</a
+                        >
                       </p>
                       <p>
                         {{ offer.master_product_info.name }}
