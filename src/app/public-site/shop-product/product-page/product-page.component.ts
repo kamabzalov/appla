@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, switchMap, tap } from 'rxjs';
@@ -123,15 +128,28 @@ export class ProductPageComponent implements OnInit {
   // eslint-disable-next-line no-magic-numbers
   public productQuantity: number = 1;
   protected product$: Observable<Product>;
-  protected mainPage: string;
+  protected fullImage: string;
+  protected thumbImage: string;
   protected appLang: string;
   protected productVariant: ProductVariant;
+
+  protected readonly fullImageUrl =
+    'https://storage.googleapis.com/images-appla/production/thumbs_800/';
+  protected readonly thumbImageUrl =
+    'https://storage.googleapis.com/images-appla/production/thumbs_400/';
+
+  protected readonly defaultFullImageUrl =
+    'https://storage.googleapis.com/images-appla/products/no_image150.png';
+  protected readonly defaultThumbImageUrl =
+    'https://storage.googleapis.com/images-appla/products/no_image400.png';
+  private productPicture: string;
 
   constructor(
     private route: ActivatedRoute,
     private restService: RestService,
     private languageService: LanguageService,
     private modalService: NgbModal,
+    private cdr: ChangeDetectorRef,
     private toastService: ToastService,
     private localizeRouterService: LocalizeRouterService
   ) {}
@@ -170,7 +188,8 @@ export class ProductPageComponent implements OnInit {
   }
 
   protected setActive($event: string) {
-    this.mainPage = $event;
+    this.fullImage = this.fullImageUrl + $event;
+    this.cdr.markForCheck();
   }
 
   protected addToCart(
@@ -187,7 +206,7 @@ export class ProductPageComponent implements OnInit {
       });
   }
 
-  protected followStore(userId: number, merchantId: number) {
+  protected followStore(merchantId: number) {
     const confirmModal = this.modalService.open(ConfirmDialogComponent, {
       centered: true,
     });
@@ -199,7 +218,7 @@ export class ProductPageComponent implements OnInit {
         : '';
     confirmModal.componentInstance.text = text;
     confirmModal.closed.subscribe(_ => {
-      this.restService.followStore(userId, merchantId).subscribe(res => {
+      this.restService.followStore(merchantId).subscribe(res => {
         this.toastService.show(res);
       });
     });
@@ -207,13 +226,26 @@ export class ProductPageComponent implements OnInit {
 
   protected setVariant(productVariant: ProductVariant) {}
 
+  protected setImagesForError($event: boolean) {
+    if (!$event) {
+      this.fullImage = this.defaultFullImageUrl;
+      this.thumbImage = this.defaultThumbImageUrl;
+    } else {
+      this.fullImage = this.fullImageUrl + this.productPicture;
+      this.thumbImage = this.thumbImageUrl + this.productPicture;
+    }
+    this.cdr.markForCheck();
+  }
+
   private getProductData(
     storeSlug: string,
     productSlug: string
   ): Observable<Product> {
     return this.restService.getProductBySlug(storeSlug, productSlug).pipe(
       tap(res => {
-        this.mainPage = res.product.picture[0];
+        this.productPicture = res.product.picture[0];
+        this.fullImage = this.fullImageUrl + this.productPicture;
+        this.thumbImage = this.thumbImageUrl + this.productPicture;
         this.productVariant = res.product_variant[0];
       })
     );

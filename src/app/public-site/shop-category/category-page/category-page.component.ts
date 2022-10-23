@@ -179,7 +179,14 @@ export class CategoryPageComponent implements OnInit {
     this.offset = this.offset + this.limit;
     this.loading = true;
     this.restService
-      .getAllProductCategories(this.limit, this.offset, this.order, this.slug)
+      .getAllProductCategories(
+        this.limit,
+        this.offset,
+        this.order,
+        this.slug,
+        this.minPrice,
+        this.maxPrice
+      )
       .subscribe(res => {
         const currentCategories = this.categoryProductsSubject$.getValue();
         if (currentCategories) {

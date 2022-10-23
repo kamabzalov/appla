@@ -39,6 +39,7 @@ export interface BackendResponse {
   providedIn: 'root',
 })
 export class RestService {
+  // eslint-disable-next-line no-magic-numbers
   public cart$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public isLogin$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
@@ -349,17 +350,11 @@ export class RestService {
       .pipe(tap(res => this.cart$.next(res.data.cart.length)));
   }
 
-  public followStore(
-    // eslint-disable-next-line no-magic-numbers
-    user_id: number = 1,
-    // eslint-disable-next-line no-magic-numbers
-    merchant_id: number = 1
-  ): Observable<string> {
+  public followStore(merchant_id: number): Observable<string> {
     return this.http
       .post<BackendResponse>(
         `${this.basePath}Angular/Store/follow_merchant`,
         {
-          user_id,
           merchant_id,
         },
         { withCredentials: true }

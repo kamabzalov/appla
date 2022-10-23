@@ -49,6 +49,7 @@ export class SearchFormComponent implements OnInit {
         filter(event => event instanceof NavigationEnd)
       )
       .subscribe(_ => {
+        // eslint-disable-next-line no-magic-numbers
         if (this.router.url.indexOf('Search') < 0) {
           this.searchQuery = '';
           this.cdr.markForCheck();
