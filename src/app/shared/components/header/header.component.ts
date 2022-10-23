@@ -64,7 +64,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   protected openMobilePanel() {
-    this.offCanvas.open(SidenavComponent);
+    const isLogged = this.restService.isLogin$.getValue();
+    if (isLogged) {
+      window.location.href = 'https://profile.angular.appla.cy/';
+    } else {
+      this.offCanvas.open(SidenavComponent);
+    }
   }
 
   protected logout() {
