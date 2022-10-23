@@ -1,11 +1,12 @@
 <div *ngIf="product$ | async as product" class="container">
   <div class="m-b-20px">
     <ng-container *ngFor="let breadcrumb of product.arr_cats">
-      <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
-        breadcrumb.name
-      }}</a>
+      <a
+        [innerHTML]="breadcrumb.name"
+        routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}"></a>
       /
     </ng-container>
+    {{ product.product.name }}
   </div>
   <section class="product card-content m-b-20px">
     <div class="row m-b-16px">

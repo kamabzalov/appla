@@ -9,6 +9,7 @@ import {
   Menu,
 } from '@app/shared/components/header/navigation/navigation.component';
 import { LanguageService } from '@app/services/language/language.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'appla-sidenav',
@@ -36,6 +37,8 @@ export class SidenavComponent implements OnInit {
     private modalService: NgbModal,
     private restService: RestService,
     private languageService: LanguageService,
+    private router: Router,
+    private route: ActivatedRoute,
     protected offcanvas: NgbOffcanvas
   ) {}
 
@@ -47,7 +50,7 @@ export class SidenavComponent implements OnInit {
   protected openLoginModal() {
     this.modalService
       .open(LoginDialogComponent, { centered: true })
-      .dismissed.subscribe(_ => console.log('call'));
+      .dismissed.subscribe();
   }
 
   protected closeSideNav() {
@@ -55,7 +58,32 @@ export class SidenavComponent implements OnInit {
   }
 
   protected setLang(langCode: string) {
-    this.languageService.setLanguage(langCode);
+    let newUrl;
+    if (langCode) {
+      this.languageService.setLanguage(langCode);
+      const queryParams = this.route.snapshot.queryParams;
+      const urlPath = decodeURIComponent(this.router.url)
+        .split('/')
+        // eslint-disable-next-line no-magic-numbers
+        .slice(2)
+        .map(item => {
+          // eslint-disable-next-line no-magic-numbers
+          if (item.split('?').length > 1) {
+            return item.split('?')[0];
+          }
+          return item;
+        });
+      if (urlPath.length) {
+        newUrl = `/${langCode}/${urlPath.join('/')}`;
+      } else {
+        newUrl = `/${langCode}`;
+      }
+      if (queryParams) {
+        this.router.navigate([newUrl], { queryParams: queryParams });
+      } else {
+        this.router.navigate([newUrl]);
+      }
+    }
     this.offcanvas.dismiss();
   }
 
