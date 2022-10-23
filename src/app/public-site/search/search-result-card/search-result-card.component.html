@@ -38,12 +38,14 @@
       "
       applaErrorImage
       class="preview-card__image" />
-    <p class="m-b-4px">
-      {{ product.name }}
-    </p>
-    <p class="preview-card__price m-b-4px">
-      {{ product.price_min | currency }}
-    </p>
+    <div class="preview-card__product">
+      <p class="m-b-4px preview-card__name">
+        {{ product.name }}
+      </p>
+      <p class="preview-card__price m-b-4px">
+        {{ product.price_min | currency }}
+      </p>
+    </div>
     <p class="m-b-4px">Category: {{ product.cat_name }}</p>
     <p class="m-b-0px">Brand: {{ product.manufacturer }}</p>
   </button>
