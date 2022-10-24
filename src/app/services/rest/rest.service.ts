@@ -54,7 +54,7 @@ export class RestService {
   ) {}
 
   public getSiteMenu(): Observable<Menu[]> {
-    const langId = this.languageService.currentAppLang$.getValue()?.id;
+    const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
         `${this.basePath}Angular/Header/top_menu?lang_id=${langId}`,
@@ -64,6 +64,7 @@ export class RestService {
   }
 
   public getSlides(): Observable<Slide[]> {
+    const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(`${this.basePath}Angular/Home/home_slider_top`, {
         withCredentials: true,
@@ -395,11 +396,9 @@ export class RestService {
   }
 
   private getLangId(): number {
-    const lang = AppLanguages.find(
-      lang => lang.code === this.localizeRouterService.parser.currentLang
-    );
-    if (lang) {
-      return lang.id;
+    const langId = this.languageService.currentAppLang$.getValue()?.id;
+    if (langId) {
+      return langId;
     }
     return AppLanguages.find(lang => lang.code === 'el')!.id;
   }
