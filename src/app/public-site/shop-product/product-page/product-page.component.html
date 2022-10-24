@@ -61,9 +61,17 @@
                   <b>{{ 'PRODUCT_PAGE.NEW' | translate }}</b>
                 </ng-container>
               </p>
-              <p class="product__status">
+              <p
+                *ngIf="productVariant.quantity; else outStock"
+                class="product__status">
                 {{ 'PRODUCT_PAGE.IN_STOCK' | translate }}
               </p>
+
+              <ng-template #outStock>
+                <p class="product__status">
+                  {{ 'PRODUCT_PAGE.OUT_OF_STOCK' | translate }}
+                </p>
+              </ng-template>
             </div>
 
             <div class="card-content product-order">
@@ -112,6 +120,7 @@
                         aria-label="Example text with button addon"
                         class="product-order-form__input control-group__field"
                         name="productQuantity"
+                        readonly
                         type="number" />
                     </div>
                     <button
@@ -134,6 +143,7 @@
                       productVariant
                     )
                   "
+                  [disabled]="!productVariant.quantity"
                   class="w-50 button button_orange p-12px">
                   {{ 'PRODUCT_PAGE.ADD_TO_CART' | translate }}
                 </button>

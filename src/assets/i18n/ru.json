@@ -155,6 +155,7 @@
     "CONDITION": "Статус",
     "NEW": "Новый",
     "IN_STOCK": "В наличии",
+    "OUT_OF_STOCK": "Нет в наличии",
     "ORDER_DETAILS": "Детали",
     "PRODUCT_VARIANTS": "Варианты",
     "QUANTITY": "Количество",

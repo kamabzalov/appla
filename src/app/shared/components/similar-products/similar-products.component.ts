@@ -20,7 +20,7 @@ export class SimilarProductsComponent implements OnInit {
   protected appLang: string;
 
   protected readonly customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,

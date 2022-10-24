@@ -155,6 +155,7 @@
     "CONDITION": "Condition",
     "NEW": "New",
     "IN_STOCK": "In Stock",
+    "OUT_OF_STOCK": "Out of stock",
     "ORDER_DETAILS": "Order details",
     "PRODUCT_VARIANTS": "Product variants",
     "QUANTITY": "Quantity",

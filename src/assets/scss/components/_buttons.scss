@@ -36,4 +36,8 @@
       border: 1px solid vars.$honey-yellow;
     }
   }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
 }
