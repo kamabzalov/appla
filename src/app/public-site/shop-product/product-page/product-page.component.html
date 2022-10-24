@@ -197,9 +197,13 @@
         <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
           <div class="display-flex flex-column">
             <span
-              ><a class="product-seller__link" href="#">{{
-                product.product.store_name
-              }}</a></span
+              ><a
+                class="product-seller__link"
+                href="https://stage.appla.cy/store/{{
+                  product.product.store_slug
+                }}"
+                >{{ product.product.store_name }}</a
+              ></span
             >
             <span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>
           </div>
