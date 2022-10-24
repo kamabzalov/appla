@@ -4,7 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { Observable, switchMap, tap } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
@@ -15,6 +15,8 @@ import { ToastService } from '@app/services/toast/toast.service';
 import { SuccessAddCartDialogComponent } from '@app/public-site/shop-product/modal/success-add-cart-dialog/success-add-cart-dialog.component';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { SeoService } from '@app/services/seo/seo.service';
+import { Title } from '@angular/platform-browser';
 
 export interface Product {
   title: string;
@@ -146,12 +148,15 @@ export class ProductPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private restService: RestService,
     private languageService: LanguageService,
     private modalService: NgbModal,
     private cdr: ChangeDetectorRef,
     private toastService: ToastService,
-    private localizeRouterService: LocalizeRouterService
+    private localizeRouterService: LocalizeRouterService,
+    private seoService: SeoService,
+    private titleService: Title
   ) {}
 
   public ngOnInit(): void {
@@ -247,6 +252,28 @@ export class ProductPageComponent implements OnInit {
         this.fullImage = this.fullImageUrl + this.productPicture;
         this.thumbImage = this.thumbImageUrl + this.productPicture;
         this.productVariant = res.product_variant[0];
+        this.seoService.addLinkTag(this.router.url);
+        this.seoService.setTitle(res.product.name);
+        this.seoService.setMeta('robots', 'index, follow');
+
+        this.seoService.setMeta('twitter:card', 'product');
+        this.seoService.setMeta('twitter:site', 'https://appla.cy/');
+        this.seoService.setMeta('twitter:creator', 'https://appla.cy/');
+        this.seoService.setMeta('twitter:domain', 'https://appla.cy/');
+        this.seoService.setMeta('twitter:title', res.title);
+        this.seoService.setMeta('twitter:description', res.description);
+        this.seoService.setMeta('twitter:image', this.fullImage);
+        this.seoService.setMeta('twitter:label1', 'Lowest Price');
+        this.seoService.setMeta('twitter:data1', res.product.price + '€');
+        this.seoService.setMeta('twitter:label2', res.product.store_name);
+        this.seoService.setMeta('twitter:data2', '1 Shop');
+
+        this.seoService.setMetaOpenGraph('og:title', res.title);
+        this.seoService.setMetaOpenGraph('og:url', this.router.url);
+        this.seoService.setMetaOpenGraph('og:site_name', 'https://appla.cy/');
+        this.seoService.setMetaOpenGraph('og:type', 'product');
+        this.seoService.setMetaOpenGraph('og:description', res.description);
+        this.seoService.setMetaOpenGraph('og:image', this.fullImage);
       })
     );
   }
