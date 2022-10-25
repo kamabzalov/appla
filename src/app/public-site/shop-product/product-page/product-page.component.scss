@@ -112,5 +112,9 @@
   &__status {
     color: vars.$american-green;
     font-weight: 600;
+
+    &.of-stock {
+      color: red;
+    }
   }
 }
