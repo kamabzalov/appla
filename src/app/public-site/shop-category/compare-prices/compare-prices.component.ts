@@ -4,7 +4,6 @@ import { RestService } from '@app/services/rest/rest.service';
 import { iconSet } from '@app/shared/utils/icons';
 import { combineLatest, Observable } from 'rxjs';
 import { LanguageService } from '@app/services/language/language.service';
-import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export interface ProductOffer {
@@ -102,17 +101,19 @@ export class ComparePricesComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private restService: RestService,
-    private languageService: LanguageService,
-    private localizeRouterService: LocalizeRouterService
+    private languageService: LanguageService
   ) {}
 
   public ngOnInit() {
-    this.appLang = this.localizeRouterService.parser.currentLang;
-    combineLatest(this.route.queryParams, this.route.params)
+    combineLatest(
+      this.route.queryParams,
+      this.route.params,
+      this.languageService.currentAppLang$
+    )
       .pipe(untilDestroyed(this))
       .subscribe(res => {
         // eslint-disable-next-line no-magic-numbers
-        if (res && res.length > 1) {
+        if (res) {
           const mpi = +res[0]['mpi'];
           const productSlug = res[1]['slug'];
           this.productOffer$ = this.restService.getProductOffer(
