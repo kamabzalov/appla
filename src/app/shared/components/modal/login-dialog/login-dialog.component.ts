@@ -24,6 +24,10 @@ export class LoginDialogComponent {
   ) {}
 
   public auth() {
+    if (!this.email.trim() || !this.password.trim()) {
+      this.showError = true;
+      return;
+    }
     this.rest.login(this.email, this.password).subscribe(result => {
       this.showError = result.status === 'failed';
       if (result.status === 'success') {

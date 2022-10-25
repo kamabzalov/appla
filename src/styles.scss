@@ -13,7 +13,7 @@ $large-devices-breakpoint: map.get(vars.$media-breakpoints, 'large');
 
 html,
 body {
-  font-size: vars.$base-size * 3;
+  font-size: 14px;
   height: 100%;
 }
 
@@ -24,7 +24,8 @@ body {
   background: vars.$ghost-white;
 }
 
-a, .appla-link {
+a,
+.appla-link {
   text-decoration: none !important;
   color: vars.$blue-yonder;
   cursor: pointer;
@@ -64,7 +65,6 @@ a, .appla-link {
   @media (max-width: $large-devices-breakpoint) {
     margin-top: 0;
   }
-
 }
 
 .ngxImageZoomContainer {
