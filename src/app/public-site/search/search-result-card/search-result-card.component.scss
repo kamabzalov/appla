@@ -21,7 +21,7 @@
   }
 
   &__product {
-    height: vars.$base-size * 13;
+    height: vars.$base-size * 17;
     overflow: hidden;
   }
 
@@ -34,5 +34,9 @@
 
   &__price {
     color: vars.$honey-yellow;
+  }
+
+  &__button {
+    font-size: 1rem;
   }
 }

@@ -128,14 +128,10 @@
                     <div class="column-12 column-medium-4">
                       <p class="fw-bolder">
                         <a
-                          [routerLink]="[
-                            '/',
-                            appLang,
-                            'store',
+                          [innerHTML]="store.name"
+                          href="https://angular.appla.cy/store/{{
                             store.store_slug
-                          ]"
-                          >{{ store.name }}</a
-                        >
+                          }}"></a>
                       </p>
                       <p>
                         {{ offer.master_product_info.name }}

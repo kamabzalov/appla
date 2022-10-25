@@ -4,7 +4,7 @@
       <ng-template carouselSlide>
         <button
           (click)="categoryClick(category.slug)"
-          class="button text-left"
+          class="button text-left preview-card__button"
           type="button">
           <img
             [alt]="category.name"
@@ -15,7 +15,7 @@
             applaErrorImage
             class="preview-card__image" />
           <div>
-            <p class="m-b-4px">{{ category.name }}</p>
+            <p class="m-b-4px preview-card__name">{{ category.name }}</p>
             <p class="preview-card__price m-b-4px">
               {{ category.price_min | currency }} -
               {{ category.price_max | currency }}
@@ -29,7 +29,10 @@
 </ng-container>
 
 <ng-template #productTmpl>
-  <button (click)="goToProduct(product)" class="button text-left" type="button">
+  <button
+    (click)="goToProduct(product)"
+    class="button text-left preview-card__button"
+    type="button">
     <img
       [alt]="product.name"
       [src]="

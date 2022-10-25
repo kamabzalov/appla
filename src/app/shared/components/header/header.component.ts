@@ -12,6 +12,10 @@ import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
+import {
+  AppLanguages,
+  LanguageService,
+} from '@app/services/language/language.service';
 
 @Component({
   selector: 'appla-header',
@@ -32,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private offCanvas: NgbOffcanvas,
     private cdr: ChangeDetectorRef,
     private restService: RestService,
+    private languageService: LanguageService,
     private router: Router
   ) {}
 
@@ -45,7 +50,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
     });
-    this.restService.isAuthorized().subscribe();
+    this.restService.isAuthorized().subscribe(res => {
+      const langId = res.data.lang_id;
+      const langCode = AppLanguages.find(lang => lang.id === langId)!.code;
+      this.languageService.setLanguage(langCode);
+    });
     this.isLogin$ = this.restService.isLogin$;
   }
 
