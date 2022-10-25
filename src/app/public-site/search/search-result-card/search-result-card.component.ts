@@ -31,8 +31,8 @@ export class SearchResultCardComponent {
   protected readonly customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
+    touchDrag: true,
+    pullDrag: true,
     dots: false,
     navSpeed: 700,
     navText: ['<button>&#x2039;</button>', '<button>&#x203A;</button>'],
