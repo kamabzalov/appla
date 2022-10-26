@@ -230,18 +230,6 @@ export class ProductPageComponent implements OnInit {
 
   protected setVariant(productVariant: ProductVariant) {}
 
-  protected setImagesForError($event: boolean) {
-    console.log($event);
-    // if (!$event) {
-    //   this.fullImage = this.defaultFullImageUrl;
-    //   this.thumbImage = this.defaultThumbImageUrl;
-    // } else {
-    //   this.fullImage = this.fullImageUrl + this.productPicture;
-    //   this.thumbImage = this.thumbImageUrl + this.productPicture;
-    // }
-    // this.cdr.markForCheck();
-  }
-
   private getProductData(
     storeSlug: string,
     productSlug: string

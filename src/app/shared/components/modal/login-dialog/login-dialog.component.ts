@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from '@app/services/rest/rest.service';
+import { ToastService } from '@app/services/toast/toast.service';
 
 export interface AuthStatus {
   status: number;
@@ -20,7 +21,8 @@ export class LoginDialogComponent {
   constructor(
     public activeModal: NgbActiveModal,
     private rest: RestService,
-    private offCanvas: NgbOffcanvas
+    private offCanvas: NgbOffcanvas,
+    private toasterService: ToastService
   ) {}
 
   public auth() {
@@ -33,6 +35,8 @@ export class LoginDialogComponent {
       if (result.status === 'success') {
         this.activeModal.dismiss(result.status);
         this.offCanvas.dismiss();
+      } else {
+        this.toasterService.show(result.message);
       }
     });
   }
@@ -42,6 +46,11 @@ export class LoginDialogComponent {
       this.rest
         .doGoogle(res.additionalUserInfo?.profile)
         .subscribe(response => {
+          if (response.status === 'success') {
+            this.offCanvas.dismiss();
+          } else {
+            this.toasterService.show(response.message);
+          }
           this.activeModal.dismiss(response);
         });
     });
@@ -52,6 +61,11 @@ export class LoginDialogComponent {
       this.rest
         .doFacebook(res.additionalUserInfo?.profile)
         .subscribe(response => {
+          if (response.status === 'success') {
+            this.offCanvas.dismiss();
+          } else {
+            this.toasterService.show(response.message);
+          }
           this.activeModal.dismiss(response);
         });
     });

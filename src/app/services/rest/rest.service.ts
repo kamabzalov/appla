@@ -372,23 +372,39 @@ export class RestService {
   }
 
   public doGoogle(profile: any): Observable<any> {
-    return this.http.post<any>(
-      `${this.basePath}Angular/Auth/doGoogle`,
-      {
-        profile,
-      },
-      { withCredentials: true }
-    );
+    return this.http
+      .post<any>(
+        `${this.basePath}Angular/Auth/doGoogle`,
+        {
+          profile,
+        },
+        { withCredentials: true }
+      )
+      .pipe(
+        tap(res => {
+          res.status === 'success'
+            ? this.isLogin$.next(true)
+            : this.isLogin$.next(false);
+        })
+      );
   }
 
   public doFacebook(profile: any): Observable<any> {
-    return this.http.post(
-      `${this.basePath}Angular/Auth/doFacebook`,
-      {
-        profile,
-      },
-      { withCredentials: true }
-    );
+    return this.http
+      .post<any>(
+        `${this.basePath}Angular/Auth/doFacebook`,
+        {
+          profile,
+        },
+        { withCredentials: true }
+      )
+      .pipe(
+        tap(res => {
+          res.status === 'success'
+            ? this.isLogin$.next(true)
+            : this.isLogin$.next(false);
+        })
+      );
   }
 
   private async authLogin(provider: any) {
