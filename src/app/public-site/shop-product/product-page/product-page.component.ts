@@ -16,7 +16,6 @@ import { SuccessAddCartDialogComponent } from '@app/public-site/shop-product/mod
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SeoService } from '@app/services/seo/seo.service';
-import { Title } from '@angular/platform-browser';
 
 export interface Product {
   title: string;
@@ -144,6 +143,7 @@ export class ProductPageComponent implements OnInit {
     'https://storage.googleapis.com/images-appla/products/no_image150.png';
   protected readonly defaultThumbImageUrl =
     'https://storage.googleapis.com/images-appla/products/no_image400.png';
+  protected mainImage: string;
   private productPicture: string;
 
   constructor(
@@ -155,8 +155,7 @@ export class ProductPageComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private toastService: ToastService,
     private localizeRouterService: LocalizeRouterService,
-    private seoService: SeoService,
-    private titleService: Title
+    private seoService: SeoService
   ) {}
 
   public ngOnInit(): void {
@@ -193,7 +192,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   protected setActive($event: string) {
-    this.fullImage = this.fullImageUrl + $event;
+    this.mainImage = $event;
     this.cdr.markForCheck();
   }
 
@@ -232,14 +231,15 @@ export class ProductPageComponent implements OnInit {
   protected setVariant(productVariant: ProductVariant) {}
 
   protected setImagesForError($event: boolean) {
-    if (!$event) {
-      this.fullImage = this.defaultFullImageUrl;
-      this.thumbImage = this.defaultThumbImageUrl;
-    } else {
-      this.fullImage = this.fullImageUrl + this.productPicture;
-      this.thumbImage = this.thumbImageUrl + this.productPicture;
-    }
-    this.cdr.markForCheck();
+    console.log($event);
+    // if (!$event) {
+    //   this.fullImage = this.defaultFullImageUrl;
+    //   this.thumbImage = this.defaultThumbImageUrl;
+    // } else {
+    //   this.fullImage = this.fullImageUrl + this.productPicture;
+    //   this.thumbImage = this.thumbImageUrl + this.productPicture;
+    // }
+    // this.cdr.markForCheck();
   }
 
   private getProductData(
@@ -249,6 +249,8 @@ export class ProductPageComponent implements OnInit {
     return this.restService.getProductBySlug(storeSlug, productSlug).pipe(
       tap(res => {
         this.productPicture = res.product.picture[0];
+        this.mainImage = res.product.picture[0];
+        this.cdr.markForCheck();
         this.fullImage = this.fullImageUrl + this.productPicture;
         this.thumbImage = this.thumbImageUrl + this.productPicture;
         this.productVariant = res.product_variant[0];

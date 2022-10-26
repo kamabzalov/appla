@@ -15,8 +15,24 @@
           <div class="column-medium-5 column-12">
             <lib-ngx-image-zoom
               (imagesLoaded)="setImagesForError($event)"
-              [fullImage]="fullImage"
-              [thumbImage]="thumbImage"></lib-ngx-image-zoom>
+              *ngIf="mainImage; else defaultImage"
+              [fullImage]="
+                'https://storage.googleapis.com/images-appla/production/thumbs_800/' +
+                mainImage
+              "
+              [thumbImage]="
+                'https://storage.googleapis.com/images-appla/production/thumbs_400/' +
+                mainImage
+              "></lib-ngx-image-zoom>
+            <ng-template #defaultImage>
+              <lib-ngx-image-zoom
+                [fullImage]="
+                  'https://storage.googleapis.com/images-appla/products/no_image400.png'
+                "
+                [thumbImage]="
+                  'https://storage.googleapis.com/images-appla/products/no_image400.png'
+                "></lib-ngx-image-zoom>
+            </ng-template>
             <div class="product__additional-images m-t-20px">
               <appla-additional-product-images
                 (changeActiveImage)="setActive($event)"
