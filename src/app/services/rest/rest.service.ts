@@ -315,7 +315,6 @@ export class RestService {
     masterProductId: number
   ): Observable<ProductOffer> {
     const lang_id = this.getLangId();
-    console.log(lang_id);
     return this.http
       .get<BackendResponse>(
         `${this.basePath}Angular/Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}&lang_id=${lang_id}`,

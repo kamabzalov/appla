@@ -7,7 +7,7 @@
       ">
       <div class="row m-b-20px">
         <div class="column-12 text-center">
-          <h1>Results for: {{ query }}</h1>
+          <h1>{{ 'SEARCH-PAGE.RESULTS_FOR' | translate }} {{ query }}</h1>
         </div>
       </div>
 
@@ -15,7 +15,7 @@
         <ng-container *ngIf="results.categories">
           <div class="row">
             <div class="col-12 text-center m-b-20px">
-              <h2>Categories:</h2>
+              <h2>{{ 'SEARCH-PAGE.CATEGORIES' | translate }}</h2>
             </div>
           </div>
           <appla-search-result-card
@@ -28,7 +28,7 @@
         <ng-container *ngIf="results.products">
           <div class="row">
             <div class="column-12 text-center m-b-20px">
-              <h2>Products:</h2>
+              <h2>{{ 'SEARCH-PAGE.PRODUCTS' | translate }}</h2>
             </div>
           </div>
 

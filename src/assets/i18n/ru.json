@@ -130,7 +130,10 @@
     "LOAD_MORE": "Загрузить больше"
   },
   "SEARCH-PAGE": {
-    "LOAD_MORE": "Загрузить больше"
+    "LOAD_MORE": "Загрузить больше",
+    "RESULTS_FOR": "Результаты:",
+    "CATEGORIES": "Категории:",
+    "PRODUCTS": "Продукты:"
   },
   "REGISTER-PAGE": {
     "SIGN_UP": "Зарегистрируйтесь сейчас",

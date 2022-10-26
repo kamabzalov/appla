@@ -130,7 +130,10 @@
     "LOAD_MORE": "Load more"
   },
   "SEARCH-PAGE": {
-    "LOAD_MORE": "Load more"
+    "LOAD_MORE": "Load more",
+    "RESULTS_FOR": "Results for:",
+    "CATEGORIES": "Categories:",
+    "PRODUCTS": "Products:"
   },
   "REGISTER-PAGE": {
     "SIGN_UP": "Sign Up now",

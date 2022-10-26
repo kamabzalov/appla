@@ -131,7 +131,10 @@
     "LOAD_MORE": "Φόρτωσε περισσότερα"
   },
   "SEARCH-PAGE": {
-    "LOAD_MORE": "Φόρτωσε περισσότερα"
+    "LOAD_MORE": "Φόρτωσε περισσότερα",
+    "RESULTS_FOR": "Αποτελέσματα για:",
+    "CATEGORIES": "ΚΑΤΗΓΟΡΙΕΣ:",
+    "PRODUCTS": "Προϊόντα:"
   },
   "REGISTER-PAGE": {
     "SIGN_UP": "Εγγραφείτε τώρα!",

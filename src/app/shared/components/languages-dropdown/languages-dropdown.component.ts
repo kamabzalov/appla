@@ -36,10 +36,7 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
 
     this.routerSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        console.log(this.localizeRouterService.parser.currentLang);
-        this.setLang();
-      });
+      .subscribe(() => this.setLang());
   }
 
   public ngOnDestroy() {
