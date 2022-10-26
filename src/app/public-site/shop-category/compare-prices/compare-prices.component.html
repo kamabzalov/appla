@@ -160,12 +160,16 @@
                         {{ store.price | currency }}
                       </p>
                       <a
+                        [routerLink]="[
+                          '/',
+                          appLang,
+                          'product',
+                          store.store_slug,
+                          store.product_slug
+                        ]"
                         class="button button_orange"
-                        routerLink="/{{ appLang }}/product/{{
-                          store.store_slug
-                        }}/{{ store.product_slug }}"
-                        >{{ 'COMPARE-PRICES-PAGE.VIEW_OFFER' | translate }}</a
-                      >
+                        >{{ 'COMPARE-PRICES-PAGE.VIEW_OFFER' | translate }}
+                      </a>
                     </div>
                   </div>
                 </div>

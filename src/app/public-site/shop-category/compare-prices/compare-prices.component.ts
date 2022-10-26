@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { iconSet } from '@app/shared/utils/icons';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, tap } from 'rxjs';
 import { LanguageService } from '@app/services/language/language.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -108,7 +108,13 @@ export class ComparePricesComponent implements OnInit {
     combineLatest(
       this.route.queryParams,
       this.route.params,
-      this.languageService.currentAppLang$
+      this.languageService.currentAppLang$.asObservable().pipe(
+        tap(lang => {
+          if (lang) {
+            this.appLang = lang.code;
+          }
+        })
+      )
     )
       .pipe(untilDestroyed(this))
       .subscribe(res => {
