@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgbActiveModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from '@app/services/rest/rest.service';
 import { ToastService } from '@app/services/toast/toast.service';
+import { NgForm } from '@angular/forms';
 
 export interface AuthStatus {
   status: number;
@@ -25,12 +26,13 @@ export class LoginDialogComponent {
     private toasterService: ToastService
   ) {}
 
-  public auth() {
-    if (!this.email.trim() || !this.password.trim()) {
+  public auth(loginForm: NgForm) {
+    const { email, password } = loginForm.value;
+    if (!email || !password || !email.trim() || !password.trim()) {
       this.showError = true;
       return;
     }
-    this.rest.login(this.email, this.password).subscribe(result => {
+    this.rest.login(email, password).subscribe(result => {
       this.showError = result.status === 'failed';
       if (result.status === 'success') {
         this.activeModal.dismiss(result.status);

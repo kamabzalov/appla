@@ -47,8 +47,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
     });
-    this.restService.isAuthorized().subscribe();
-    this.isLogin$ = this.restService.isLogin$;
+    this.restService.userState$
+      .asObservable()
+      .subscribe(res => console.log(res));
+    // this.isLogin$ = this.restService.isLogin$;
   }
 
   public ngOnDestroy() {
@@ -61,12 +63,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService
       .open(LoginDialogComponent, { centered: true })
       .dismissed.subscribe(res => {
-        this.isLogin$ = this.restService.isLogin$;
+        // this.isLogin$ = this.restService.isLogin$;
       });
   }
 
   protected openMobilePanel() {
-    const isLogged = this.restService.isLogin$.getValue();
+    // const isLogged = this.restService.isLogin$.getValue();
+    const isLogged = false;
     if (isLogged) {
       window.location.href = 'https://profile.angular.appla.cy/';
     } else {

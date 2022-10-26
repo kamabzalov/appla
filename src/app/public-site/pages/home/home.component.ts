@@ -49,10 +49,13 @@ export class HomeComponent implements OnInit {
           this.cdr.markForCheck();
         }
       });
-    this.restService.isLogin$
+    this.restService.userState$
       .asObservable()
       .pipe(untilDestroyed(this))
-      .subscribe(_ => this.getRecentlyViewed());
+      .subscribe(res => {
+        console.log(res);
+        this.getRecentlyViewed();
+      });
   }
 
   private getSlides() {

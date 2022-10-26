@@ -7,13 +7,18 @@
     type="button"></button>
 </div>
 <div class="modal-body">
-  <form class="m-b-12px">
+  <form
+    #loginForm="ngForm"
+    (ngSubmit)="auth(loginForm)"
+    class="m-b-12px"
+    ngNativeValidate>
     <div class="control-group">
       <input
         [(ngModel)]="email"
         class="control-group__field"
         name="email"
         placeholder="Email"
+        required
         type="email" />
     </div>
     <div class="control-group">
@@ -22,6 +27,7 @@
         class="control-group__field"
         name="password"
         placeholder="Password"
+        required
         type="password" />
     </div>
     <p *ngIf="showError">Invalid login or password</p>
@@ -42,7 +48,7 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button (click)="auth()" class="btn btn-outline-dark" type="button">
+  <button (click)="auth(loginForm)" class="btn btn-outline-dark" type="button">
     {{ 'HEADER.LOGIN' | translate }}
   </button>
 </div>

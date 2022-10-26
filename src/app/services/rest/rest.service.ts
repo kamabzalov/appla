@@ -35,15 +35,20 @@ export interface BackendResponse {
   status: 'failed' | 'success';
 }
 
+export interface UserState {
+  lang_id: number;
+  cart: any[];
+  user_data: any;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
   // eslint-disable-next-line no-magic-numbers
   public cart$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  public isLogin$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
+  public userState$: BehaviorSubject<UserState | null> =
+    new BehaviorSubject<UserState | null>(null);
   private basePath = 'https://api.angular.appla.cy/';
 
   constructor(
@@ -262,13 +267,7 @@ export class RestService {
         },
         { withCredentials: true }
       )
-      .pipe(
-        tap(res => {
-          res.status === 'success'
-            ? this.isLogin$.next(true)
-            : this.isLogin$.next(false);
-        })
-      );
+      .pipe(tap(res => this.userState$.next(res.data)));
   }
 
   public register(email: string): Observable<BackendResponse> {
@@ -285,13 +284,7 @@ export class RestService {
       .get<BackendResponse>(`${this.basePath}Angular/Auth/checkAuth`, {
         withCredentials: true,
       })
-      .pipe(
-        tap(res => {
-          res.status === 'success'
-            ? this.isLogin$.next(true)
-            : this.isLogin$.next(false);
-        })
-      );
+      .pipe(tap(res => this.userState$.next(res.data)));
   }
 
   public logout(): Observable<BackendResponse> {
@@ -301,13 +294,7 @@ export class RestService {
         `${this.basePath}Angular/Auth/logout?lang_id=${lang_id}`,
         { withCredentials: true }
       )
-      .pipe(
-        tap(res => {
-          res.status === 'success'
-            ? this.isLogin$.next(false)
-            : this.isLogin$.next(true);
-        })
-      );
+      .pipe(tap(res => this.userState$.next(res.data)));
   }
 
   public getProductOffer(
@@ -380,13 +367,7 @@ export class RestService {
         },
         { withCredentials: true }
       )
-      .pipe(
-        tap(res => {
-          res.status === 'success'
-            ? this.isLogin$.next(true)
-            : this.isLogin$.next(false);
-        })
-      );
+      .pipe(tap(res => this.userState$.next(res.data)));
   }
 
   public doFacebook(profile: any): Observable<any> {
@@ -398,13 +379,7 @@ export class RestService {
         },
         { withCredentials: true }
       )
-      .pipe(
-        tap(res => {
-          res.status === 'success'
-            ? this.isLogin$.next(true)
-            : this.isLogin$.next(false);
-        })
-      );
+      .pipe(tap(res => this.userState$.next(res.data)));
   }
 
   private async authLogin(provider: any) {

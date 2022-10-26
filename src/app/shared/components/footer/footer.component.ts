@@ -47,7 +47,7 @@ export class FooterComponent implements OnInit {
         this.cdr.markForCheck();
       }
     });
-    this.isLogin$ = this.restService.isLogin$;
+    // this.isLogin$ = this.restService.isLogin$;
   }
 
   public openLoginModal() {

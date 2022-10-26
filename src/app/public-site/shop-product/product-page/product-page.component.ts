@@ -205,7 +205,11 @@ export class ProductPageComponent implements OnInit {
       .addToCart(productQuantity, product_id, productVariant)
       .subscribe(res => {
         if (res.status === 'success') {
-          this.modalService.open(SuccessAddCartDialogComponent);
+          this.modalService
+            .open(SuccessAddCartDialogComponent)
+            .dismissed.subscribe(_ =>
+              this.restService.isAuthorized().subscribe()
+            );
         }
       });
   }
