@@ -6,7 +6,6 @@
   <div class="display-inline-flex position-relative">
     <span class="cart-products">{{ cart.length }}</span>
     <button
-      (click)="goToCart()"
       class="button button_icon button_orange display-flex align-items-center justify-content-center cart"
       ngbDropdownToggle
       type="button">
@@ -17,6 +16,7 @@
     <ng-container *ngIf="cart.length; else emptyCart">
       <ul class="list-no-bullets p-0px m-0px">
         <li
+          (click)="goToCart()"
           *ngFor="let product of cart"
           class="m-b-8px display-flex justify-content-space-between">
           <span>{{ product.name }}</span>
@@ -25,7 +25,7 @@
       </ul>
     </ng-container>
     <ng-template #emptyCart>
-      <img alt="" class="w-100" src="assets/images/cart/empty-cart.svg" />
+      <img alt="Appla" class="w-100" src="assets/images/cart/empty-cart.svg" />
       <p>Empty cart</p>
     </ng-template>
   </div>

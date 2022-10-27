@@ -20,8 +20,6 @@ export class CartWidgetComponent implements OnInit {
   }
 
   protected goToCart() {
-    // if (this.productCount$.getValue()) {
-    //   window.location.href = 'https://checkout.angular.appla.cy/';
-    // }
+    window.location.href = 'https://checkout.angular.appla.cy/';
   }
 }
