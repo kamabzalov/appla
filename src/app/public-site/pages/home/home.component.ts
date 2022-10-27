@@ -14,6 +14,7 @@ import { Slide } from '@app/shared/components/slider/slider.component';
 import { LanguageService } from '@app/services/language/language.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
+import { SeoService } from '@app/services/seo/seo.service';
 
 @UntilDestroy()
 @Component({
@@ -36,10 +37,15 @@ export class HomeComponent implements OnInit {
     private restService: RestService,
     private languageService: LanguageService,
     private translateService: TranslateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private seoService: SeoService
   ) {}
 
   public ngOnInit(): void {
+    this.seoService.setMeta(
+      'description',
+      'Appla - the leading online shopping platform in Cyprus. Compare prices and discounts on our marketplace from hundreds of shops.'
+    );
     this.languageService.currentAppLang$
       .asObservable()
       .pipe(untilDestroyed(this))
