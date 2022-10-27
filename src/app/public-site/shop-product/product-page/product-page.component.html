@@ -181,7 +181,9 @@
                     product.product.weight_unit === 1 ? 'g' : 'kg'
                   }})
                 </p>
-                <p [innerHTML]="product.product.description"></p>
+                <p
+                  [innerHTML]="product.product.description"
+                  style="white-space: pre-wrap"></p>
               </div>
             </ng-template>
           </li>
