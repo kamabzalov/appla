@@ -45,7 +45,7 @@
           <div
             class="header__user-actions display-none display-large-inline-flex">
             <ng-container
-              *ngIf="(isLogin$ | async) === false; else profileMenu">
+              *ngIf="!(userState$ | async)?.user_data; else profileMenu">
               <button
                 (click)="openLoginModal()"
                 class="button button_transparent button_transparent_outline_orange m-r-8px">

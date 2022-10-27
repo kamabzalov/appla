@@ -53,7 +53,6 @@ export class HomeComponent implements OnInit {
       .asObservable()
       .pipe(untilDestroyed(this))
       .subscribe(res => {
-        console.log(res);
         this.getRecentlyViewed();
       });
   }

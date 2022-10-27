@@ -11,17 +11,17 @@ import { RestService } from '@app/services/rest/rest.service';
 })
 export class CartWidgetComponent implements OnInit {
   public faCartShopping = iconSet.faCartShopping;
-  protected productCount$: BehaviorSubject<number>;
+  protected cart$: BehaviorSubject<any>;
 
   constructor(private restService: RestService) {}
 
   public ngOnInit() {
-    this.productCount$ = this.restService.cart$;
+    this.cart$ = this.restService.userState$;
   }
 
   protected goToCart() {
-    if (this.productCount$.getValue()) {
-      window.location.href = 'https://checkout.angular.appla.cy/';
-    }
+    // if (this.productCount$.getValue()) {
+    //   window.location.href = 'https://checkout.angular.appla.cy/';
+    // }
   }
 }

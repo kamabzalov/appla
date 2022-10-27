@@ -46,7 +46,6 @@ export interface UserState {
 })
 export class RestService {
   // eslint-disable-next-line no-magic-numbers
-  public cart$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public userState$: BehaviorSubject<UserState | null> =
     new BehaviorSubject<UserState | null>(null);
   private basePath = 'https://api.angular.appla.cy/';
@@ -257,17 +256,15 @@ export class RestService {
 
   public login(email: string, password: string): Observable<BackendResponse> {
     const lang_id = this.getLangId();
-    return this.http
-      .post<BackendResponse>(
-        `${this.basePath}Angular/Auth/doSignin`,
-        {
-          email,
-          password,
-          lang_id,
-        },
-        { withCredentials: true }
-      )
-      .pipe(tap(res => this.userState$.next(res.data)));
+    return this.http.post<BackendResponse>(
+      `${this.basePath}Angular/Auth/doSignin`,
+      {
+        email,
+        password,
+        lang_id,
+      },
+      { withCredentials: true }
+    );
   }
 
   public register(email: string): Observable<BackendResponse> {
@@ -325,17 +322,15 @@ export class RestService {
     product_id: number,
     productVariant?: ProductVariant
   ): Observable<BackendResponse> {
-    return this.http
-      .post<BackendResponse>(
-        `${this.basePath}Angular/Cart/addToCart`,
-        {
-          qty,
-          product_id,
-          product_variant_id: productVariant?.product_variant_id,
-        },
-        { withCredentials: true }
-      )
-      .pipe(tap(res => this.cart$.next(res.data.cart.length)));
+    return this.http.post<BackendResponse>(
+      `${this.basePath}Angular/Cart/addToCart`,
+      {
+        qty,
+        product_id,
+        product_variant_id: productVariant?.product_variant_id,
+      },
+      { withCredentials: true }
+    );
   }
 
   public followStore(merchant_id: number): Observable<string> {
