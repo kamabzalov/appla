@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
     this.restService.userState$
       .asObservable()
       .pipe(untilDestroyed(this))
-      .subscribe(res => {
+      .subscribe(_ => {
         this.getRecentlyViewed();
       });
   }

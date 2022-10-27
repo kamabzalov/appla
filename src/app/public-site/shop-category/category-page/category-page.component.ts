@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { LanguageService } from '@app/services/language/language.service';
 
 export interface Category {
   arr_cats: CategoryBreadcrumb[];
@@ -79,8 +80,8 @@ export class CategoryPageComponent implements OnInit {
   protected categoryData$: Observable<Category | null>;
   protected categoryProducts$: Observable<CategoryProducts | null>;
   protected filters$: Observable<ProductFilter | null>;
-  protected appLang: string;
   protected loading: boolean = false;
+  protected appLang: string;
   // eslint-disable-next-line no-magic-numbers
   private offset = 0;
   // eslint-disable-next-line no-magic-numbers
@@ -92,7 +93,8 @@ export class CategoryPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private restService: RestService,
-    private localizeRouterService: LocalizeRouterService
+    private localizeRouterService: LocalizeRouterService,
+    private languageService: LanguageService
   ) {}
 
   public ngOnInit(): void {
@@ -109,9 +111,16 @@ export class CategoryPageComponent implements OnInit {
       this.offset = 0;
       this.minPrice = null;
       this.maxPrice = null;
-      this.categoryData$ = this.restService.getCategory(this.slug);
-      this.getCategoryProducts(this.limit, this.offset, this.order, this.slug);
-      this.getProductFilters(this.slug);
+      this.languageService.currentAppLang$.subscribe(_ => {
+        this.categoryData$ = this.restService.getCategory(this.slug);
+        this.getCategoryProducts(
+          this.limit,
+          this.offset,
+          this.order,
+          this.slug
+        );
+        this.getProductFilters(this.slug);
+      });
     });
   }
 

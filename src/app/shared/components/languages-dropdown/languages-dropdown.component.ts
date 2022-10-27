@@ -1,13 +1,18 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { LanguageService } from '@app/services/language/language.service';
+import {
+  AppLanguages,
+  LanguageService,
+} from '@app/services/language/language.service';
 import { filter, Subscription } from 'rxjs';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { RestService } from '@app/services/rest/rest.service';
 
 @Component({
   selector: 'appla-languages-dropdown',
@@ -24,15 +29,24 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private restService: RestService,
     private languageService: LanguageService,
-    private localizeRouterService: LocalizeRouterService
+    private localizeRouterService: LocalizeRouterService,
+    private cdr: ChangeDetectorRef
   ) {
     this.locales = this.localizeRouterService.parser.locales;
   }
 
   public ngOnInit() {
-    this.currentLang = this.localizeRouterService.parser.currentLang;
-    this.languageService.setLanguage(this.currentLang);
+    this.restService.userState$.subscribe(res => {
+      if (res) {
+        this.currentLang = AppLanguages.find(
+          lang => lang.id === res.lang_id
+        )!.code;
+        this.languageService.setLanguage(this.currentLang);
+      }
+      this.cdr.markForCheck();
+    });
 
     this.routerSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
