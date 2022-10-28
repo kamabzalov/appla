@@ -241,8 +241,8 @@ export class CategoryPageComponent implements OnInit {
 
   private getCategorySeo(slug: string) {
     this.restService.getCategorySeo(slug).subscribe(res => {
-      this.seoService.setTitle(res.title);
-      this.seoService.setMeta('description', res.description);
+      this.seoService.setTitle(res?.title);
+      this.seoService.setMeta('description', res?.description);
     });
   }
 }
