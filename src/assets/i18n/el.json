@@ -159,6 +159,7 @@
     "CONDITION": "Κατάσταση",
     "NEW": "Καινούριο",
     "IN_STOCK": "Σε Απόθεμα",
+    "OUT_OF_STOCK": "ΕΚΤΟΣ_ΣΤΟΚ",
     "ORDER_DETAILS": "Στοιχεία Παραγγελίας",
     "PRODUCT_VARIANTS": "Παραλλαγές προϊόντων",
     "QUANTITY": "Ποσότητα",

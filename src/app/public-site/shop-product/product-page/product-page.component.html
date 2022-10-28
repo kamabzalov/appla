@@ -77,12 +77,19 @@
                 </ng-container>
               </p>
               <p
-                *ngIf="!productVariant || productVariant.quantity"
+                *ngIf="
+                  (productVariant && productVariant.quantity) ||
+                  product.product.qty
+                "
                 class="product__status">
                 {{ 'PRODUCT_PAGE.IN_STOCK' | translate }}
               </p>
 
-              <ng-template [ngIf]="productVariant && !productVariant.quantity">
+              <ng-template
+                [ngIf]="
+                  (productVariant && !productVariant.quantity) ||
+                  !product.product.qty
+                ">
                 <p class="product__status of-stock">
                   {{ 'PRODUCT_PAGE.OUT_OF_STOCK' | translate }}
                 </p>
@@ -158,7 +165,10 @@
                       productVariant
                     )
                   "
-                  [disabled]="productVariant && !productVariant.quantity"
+                  [disabled]="
+                    (productVariant && !productVariant.quantity) ||
+                    !productQuantity
+                  "
                   class="w-50 button button_orange p-12px">
                   {{ 'PRODUCT_PAGE.ADD_TO_CART' | translate }}
                 </button>
