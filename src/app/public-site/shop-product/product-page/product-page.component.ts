@@ -127,7 +127,7 @@ export class ProductPageComponent implements OnInit {
   public faMinus = iconSet.faMinus;
   public faStar = iconSet.faStar;
   // eslint-disable-next-line no-magic-numbers
-  public productQuantity: number = 0;
+  public productQuantity: number = 1;
   protected product$: Observable<Product>;
   protected fullImage: string;
   protected thumbImage: string;
@@ -242,7 +242,6 @@ export class ProductPageComponent implements OnInit {
       tap(res => {
         this.productPicture = res.product.picture[0];
         this.mainImage = res.product.picture[0];
-        this.productQuantity = res.product.qty;
         this.cdr.markForCheck();
         this.fullImage = this.fullImageUrl + this.productPicture;
         this.thumbImage = this.thumbImageUrl + this.productPicture;
