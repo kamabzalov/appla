@@ -77,7 +77,7 @@ export class CategoryPageComponent implements OnInit {
   protected maxPrice: number | null;
   protected searchInCategory: string;
   protected productFilters: any[] = [];
-  protected order: string = 'date_update_asc';
+  protected order: string = 'default';
   protected categoryData$: Observable<Category | null>;
   protected categoryProducts$: Observable<CategoryProducts | null>;
   protected filters$: Observable<ProductFilter | null>;
@@ -107,7 +107,7 @@ export class CategoryPageComponent implements OnInit {
     this.route.url.pipe(untilDestroyed(this)).subscribe(res => {
       if (res.length && res[1]) {
         this.slug = res[1].path;
-        this.order = 'date_update_asc';
+        this.order = 'default';
         this.searchInCategory = '';
       }
       this.offset = 0;
