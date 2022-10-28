@@ -1,10 +1,10 @@
 <div
-  *ngIf="(cart$ | async)?.cart as cart"
+  *ngIf="cart$ | async as cart"
   class="cart"
   ngbDropdown
   placement="bottom-end">
   <div class="display-inline-flex position-relative">
-    <span class="cart-products">{{ cart.length }}</span>
+    <span *ngIf="cart.cart" class="cart-products">{{ cart.cart.length }}</span>
     <button
       class="button button_icon button_orange display-flex align-items-center justify-content-center cart"
       ngbDropdownToggle
@@ -13,11 +13,11 @@
     </button>
   </div>
   <div class="p-12px cart-dropdown" ngbDropdownMenu>
-    <ng-container *ngIf="cart.length; else emptyCart">
+    <ng-container *ngIf="cart.cart; else emptyCart">
       <ul class="list-no-bullets p-0px m-0px">
         <li
           (click)="goToCart()"
-          *ngFor="let product of cart"
+          *ngFor="let product of cart.cart"
           class="m-b-8px display-flex justify-content-space-between">
           <span>{{ product.name }}</span>
           <strong>{{ product.price | currency }}</strong>
