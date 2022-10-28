@@ -6,6 +6,7 @@ import { iconSet } from '@app/shared/utils/icons';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LanguageService } from '@app/services/language/language.service';
+import { SeoService } from '@app/services/seo/seo.service';
 
 export interface Category {
   arr_cats: CategoryBreadcrumb[];
@@ -94,7 +95,8 @@ export class CategoryPageComponent implements OnInit {
     private route: ActivatedRoute,
     private restService: RestService,
     private localizeRouterService: LocalizeRouterService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private seoService: SeoService
   ) {}
 
   public ngOnInit(): void {
@@ -120,6 +122,7 @@ export class CategoryPageComponent implements OnInit {
           this.slug
         );
         this.getProductFilters(this.slug);
+        this.getCategorySeo(this.slug);
       });
     });
   }
@@ -234,5 +237,12 @@ export class CategoryPageComponent implements OnInit {
 
   private getProductFilters(slug: string) {
     this.filters$ = this.restService.getProductFilters(slug);
+  }
+
+  private getCategorySeo(slug: string) {
+    this.restService.getCategorySeo(slug).subscribe(res => {
+      this.seoService.setTitle(res.title);
+      this.seoService.setMeta('description', res.description);
+    });
   }
 }
