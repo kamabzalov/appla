@@ -44,6 +44,7 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
           lang => lang.id === res.lang_id
         )!.code;
         this.languageService.setLanguage(this.currentLang);
+        this.setLang(this.currentLang);
       }
       this.cdr.markForCheck();
     });
