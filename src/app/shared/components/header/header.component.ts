@@ -12,6 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { LanguageService } from '@app/services/language/language.service';
+import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
 
 @Component({
   selector: 'appla-header',
@@ -64,7 +65,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   protected openMobilePanel() {
-    window.location.href = 'https://profile.angular.appla.cy/';
+    this.userState$.subscribe(res => {
+      if (res?.user_data) {
+        window.location.href = 'https://profile.angular.appla.cy/';
+      } else {
+        this.offCanvas.open(SidenavComponent);
+      }
+    });
   }
 
   protected logout() {
