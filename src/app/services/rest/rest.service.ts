@@ -21,10 +21,7 @@ import {
   CategoryProducts,
   ProductFilter,
 } from '@app/public-site/shop-category/category-page/category-page.component';
-import {
-  AppLanguages,
-  LanguageService,
-} from '@app/services/language/language.service';
+import { LanguageService } from '@app/services/language/language.service';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -57,18 +54,21 @@ export class RestService {
     private afAuth: AngularFireAuth
   ) {}
 
-  public getSiteMenu(): Observable<Menu[]> {
-    const langId = this.getLangId();
+  public getSiteMenu(langId?: number): Observable<Menu[]> {
+    let params = new HttpParams();
+    if (langId) {
+      params = params.set('lang_id', langId);
+    }
+
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Header/top_menu?lang_id=${langId}`,
-        { withCredentials: true }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Header/top_menu`, {
+        withCredentials: true,
+        params,
+      })
       .pipe(map(response => response.data));
   }
 
   public getSlides(): Observable<Slide[]> {
-    const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(`${this.basePath}Angular/Home/home_slider_top`, {
         withCredentials: true,
@@ -77,72 +77,60 @@ export class RestService {
   }
 
   public getStoreOffers(): Observable<StoreOffers[]> {
-    const langId = this.getLangId();
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Home/get_store_offers?lang_id=${langId}`,
-        { withCredentials: true }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Home/get_store_offers`, {
+        withCredentials: true,
+      })
       .pipe(map(response => response.data));
   }
 
   public getRecentlyViewed(): Observable<RecentlyViewed[]> {
-    const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/get_recently_viewed?lang_id=${langId}`,
+        `${this.basePath}Angular/Home/get_recently_viewed`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
 
   public getTrends(): Observable<Trend[]> {
-    const langId = this.getLangId();
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Home/get_now_trending?lang_id=${langId}`,
-        { withCredentials: true }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Home/get_now_trending`, {
+        withCredentials: true,
+      })
       .pipe(map(response => response.data));
   }
 
   public getSampleSmartphones(): Observable<ProductInTile[]> {
-    const langId = this.getLangId();
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Home/sample_smartphones?lang_id=${langId}`,
-        { withCredentials: true }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Home/sample_smartphones`, {
+        withCredentials: true,
+      })
       .pipe(map(response => response.data));
   }
 
   public getSampleKitchen(): Observable<ProductInTile[]> {
-    const langId = this.getLangId();
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Home/sample_kitchen?lang_id=${langId}`,
-        { withCredentials: true }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Home/sample_kitchen`, {
+        withCredentials: true,
+      })
       .pipe(map(response => response.data));
   }
 
   public getSamplePersonalCareProducts(): Observable<ProductInTile[]> {
-    const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Home/sample_personal_care?lang_id=${langId}`,
+        `${this.basePath}Angular/Home/sample_personal_care`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
 
   public getSampleCleaningProducts(): Observable<ProductInTile[]> {
-    const langId = this.getLangId();
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Home/sample_cleaning?lang_id=${langId}`,
-        { withCredentials: true }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Home/sample_cleaning`, {
+        withCredentials: true,
+      })
       .pipe(map(response => response.data));
   }
 
@@ -173,8 +161,6 @@ export class RestService {
     if (filters) {
       params = params.set('tech_detail', JSON.stringify(filters));
     }
-    const langId = this.getLangId();
-    params = params.set('lang_id', langId);
 
     return this.http
       .get<BackendResponse>(
@@ -188,8 +174,7 @@ export class RestService {
   }
 
   public getProductFilters(slug: string): Observable<ProductFilter> {
-    const langId = this.getLangId();
-    const params = new HttpParams().set('slug', slug).set('lang_id', langId);
+    const params = new HttpParams().set('slug', slug);
     return this.http
       .get<BackendResponse>(`${this.basePath}Angular/Categories/get_filters`, {
         params,
@@ -199,20 +184,18 @@ export class RestService {
   }
 
   public getCategory(categorySlug: string): Observable<Category> {
-    const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Categories/get_categories/category?slug=${categorySlug}&lang_id=${langId}`,
+        `${this.basePath}Angular/Categories/get_categories/category?slug=${categorySlug}`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
 
   public getCategorySeo(slug: string) {
-    const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}/Angular/Categories/seo_data?slug=${slug}&lang_id=${langId}`,
+        `${this.basePath}/Angular/Categories/seo_data?slug=${slug}`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));
@@ -222,10 +205,9 @@ export class RestService {
     storeSlug: string,
     productSlug: string
   ): Observable<Product> {
-    const langId = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}&lang_id=${langId}`,
+        `${this.basePath}Angular/Products/get_product?product_slug=${productSlug}&store_slug=${storeSlug}`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));
@@ -237,8 +219,7 @@ export class RestService {
     offset?: number,
     category_slug?: string
   ): Observable<SearchResults> {
-    const langId = this.getLangId();
-    let params = new HttpParams().set('lang_id', langId);
+    let params = new HttpParams();
     if (limit && offset) {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
@@ -255,52 +236,48 @@ export class RestService {
   }
 
   public searchProducts(query: string): Observable<SearchResults> {
-    const langId = this.getLangId();
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Search?string=${query}&lang_id=${langId}`,
-        { withCredentials: true }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`, {
+        withCredentials: true,
+      })
       .pipe(map(response => response.data));
   }
 
   public login(email: string, password: string): Observable<BackendResponse> {
-    const lang_id = this.getLangId();
     return this.http.post<BackendResponse>(
       `${this.basePath}Angular/Auth/doSignin`,
       {
         email,
         password,
-        lang_id,
       },
       { withCredentials: true }
     );
   }
 
   public register(email: string): Observable<BackendResponse> {
-    const lang_id = this.getLangId();
     return this.http.post<BackendResponse>(
       `${this.basePath}Angular/Auth/doSignup`,
-      { email, lang_id },
+      { email },
       { withCredentials: true }
     );
   }
 
-  public isAuthorized(): Observable<BackendResponse> {
+  public isAuthorized(langId?: number): Observable<BackendResponse> {
     return this.http
-      .get<BackendResponse>(`${this.basePath}Angular/Auth/checkAuth`, {
-        withCredentials: true,
-      })
+      .get<BackendResponse>(
+        `${this.basePath}Angular/Auth/checkAuth?lang_id=${langId}`,
+        {
+          withCredentials: true,
+        }
+      )
       .pipe(tap(res => this.userState$.next(res.data)));
   }
 
   public logout(): Observable<BackendResponse> {
-    const lang_id = this.getLangId();
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Auth/logout?lang_id=${lang_id}`,
-        { withCredentials: true }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Auth/logout`, {
+        withCredentials: true,
+      })
       .pipe(tap(res => this.userState$.next(res.data)));
   }
 
@@ -308,20 +285,18 @@ export class RestService {
     productSlug: string,
     masterProductId: number
   ): Observable<ProductOffer> {
-    const lang_id = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}&lang_id=${lang_id}`,
+        `${this.basePath}Angular/Compare/compare_product?slug=${productSlug}&mpi=${masterProductId}`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));
   }
 
   public getProductByMasterId(id: number): Observable<Slugs[]> {
-    const lang_id = this.getLangId();
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Search/mpi_to_slug?mpi=${id}&lang_id=${lang_id}`,
+        `${this.basePath}Angular/Search/mpi_to_slug?mpi=${id}`,
         { withCredentials: true }
       )
       .pipe(map(response => response.data));
@@ -389,13 +364,5 @@ export class RestService {
 
   private async authLogin(provider: any) {
     return this.afAuth.signInWithPopup(provider);
-  }
-
-  private getLangId(): number {
-    const langId = this.languageService.currentAppLang$.getValue()?.id;
-    if (langId) {
-      return langId;
-    }
-    return AppLanguages.find(lang => lang.code === 'el')!.id;
   }
 }

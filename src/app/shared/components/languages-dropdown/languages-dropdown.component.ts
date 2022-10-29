@@ -38,11 +38,22 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    this.restService.userState$.subscribe(res => {
+    // this.restService.userState$.subscribe(res => {
+    //   console.log(res);
+    //   if (res) {
+    //     this.currentLang = AppLanguages.find(
+    //       lang => lang.id === res.lang_id
+    //     )!.code;
+    //     this.languageService.setLanguage(this.currentLang);
+    //     this.setLang(this.currentLang);
+    //   }
+    //   this.cdr.markForCheck();
+    // });
+
+    this.restService.isAuthorized().subscribe(res => {
       if (res) {
-        this.currentLang = AppLanguages.find(
-          lang => lang.id === res.lang_id
-        )!.code;
+        const langId = res.data.lang_id;
+        this.currentLang = AppLanguages.find(lang => lang.id === langId)!.code;
         this.languageService.setLanguage(this.currentLang);
         this.setLang(this.currentLang);
       }
@@ -65,6 +76,8 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
     if (langCode) {
       this.currentLang = langCode;
       this.languageService.setLanguage(langCode);
+      const lang_id = AppLanguages.find(lang => lang.code === langCode)!.id;
+      this.restService.isAuthorized(lang_id).subscribe();
       const queryParams = this.route.snapshot.queryParams;
       const urlPath = decodeURIComponent(this.router.url)
         .split('/')

@@ -67,7 +67,10 @@ export class NavigationComponent implements OnInit {
     this.appLanguage$ = this.languageService.currentAppLang$.asObservable();
     this.menu$ = this.languageService.currentAppLang$.pipe(
       distinctUntilChanged(),
-      switchMap(_ => this.restService.getSiteMenu())
+      switchMap(lang => {
+        const langId = lang?.id;
+        return this.restService.getSiteMenu(langId);
+      })
     );
     this.router$ = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
