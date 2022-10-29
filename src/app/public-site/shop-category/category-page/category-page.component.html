@@ -138,7 +138,9 @@
                       <select
                         (change)="sortProductsBy()"
                         [(ngModel)]="order"
-                        name="sortBy">
+                        name="sortBy"
+                        placeholder="Sort By">
+                        <option [ngValue]="'default'">Sort By</option>
                         <option [ngValue]="'date_update_asc'">
                           {{ 'CATEGORY-PAGE.SORTING_NEWEST' | translate }}
                         </option>
