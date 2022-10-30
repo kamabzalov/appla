@@ -61,6 +61,7 @@ export class RegisterComponent implements OnInit {
 
   protected signWithFacebook() {
     this.restService.signWithFacebook().then(res => {
+      console.log(res);
       this.restService
         .doFacebook(res.additionalUserInfo?.profile)
         .subscribe((response: BackendResponse) => {

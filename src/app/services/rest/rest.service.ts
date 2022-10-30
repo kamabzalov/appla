@@ -361,12 +361,7 @@ export class RestService {
         },
         { withCredentials: true }
       )
-      .pipe(
-        tap(res => {
-          console.log(res);
-          this.userState$.next(res.data);
-        })
-      );
+      .pipe(tap(res => this.userState$.next(res.data)));
   }
 
   private async authLogin(provider: any) {

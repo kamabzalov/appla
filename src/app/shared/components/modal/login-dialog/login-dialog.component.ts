@@ -60,6 +60,7 @@ export class LoginDialogComponent {
 
   protected signWithFacebook() {
     this.rest.signWithFacebook().then(res => {
+      console.log(res);
       this.rest
         .doFacebook(res.additionalUserInfo?.profile)
         .subscribe(response => {
