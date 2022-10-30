@@ -30,4 +30,11 @@ export class SeoService {
   public setMetaOpenGraph(property: string, content: string) {
     this.metaService.addTag({ property, content });
   }
+
+  public setGoogleProductScheme(schema: string) {
+    const scriptTag = this.document.createElement('script');
+    scriptTag.setAttribute('type', 'application/ld+json');
+    scriptTag.textContent = schema;
+    this.document.head.appendChild(scriptTag);
+  }
 }

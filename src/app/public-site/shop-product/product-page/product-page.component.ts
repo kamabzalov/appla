@@ -18,6 +18,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SeoService } from '@app/services/seo/seo.service';
 
 export interface Product {
+  meta: string;
   title: string;
   description: string;
   page: string;
@@ -246,9 +247,10 @@ export class ProductPageComponent implements OnInit {
         this.fullImage = this.fullImageUrl + this.productPicture;
         this.thumbImage = this.thumbImageUrl + this.productPicture;
         this.productVariant = res.product_variant[0];
-        this.seoService.addLinkTag(this.router.url);
+        this.seoService.addLinkTag(res.canonical_link.href);
         this.seoService.setTitle(res.product.name);
         this.seoService.setMeta('robots', 'index, follow');
+        this.seoService.setGoogleProductScheme(res.meta);
 
         this.seoService.setMeta('twitter:card', 'product');
         this.seoService.setMeta('twitter:site', 'https://appla.cy/');
