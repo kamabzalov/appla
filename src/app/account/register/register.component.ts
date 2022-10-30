@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '@app/shared/components/modal/confirm-dialog/confirm-dialog.component';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { iconSet } from '@app/shared/utils/icons';
+import { ToastService } from '@app/services/toast/toast.service';
 
 @Component({
   selector: 'appla-register',
@@ -25,7 +26,8 @@ export class RegisterComponent implements OnInit {
     private languageService: LanguageService,
     private router: Router,
     private modal: NgbModal,
-    private localizeRouterService: LocalizeRouterService
+    private localizeRouterService: LocalizeRouterService,
+    private toastService: ToastService
   ) {}
 
   public ngOnInit() {
@@ -50,6 +52,8 @@ export class RegisterComponent implements OnInit {
         .subscribe((response: BackendResponse) => {
           if (response.status === 'success') {
             this.router.navigate([`${this.currentLang}`]);
+          } else {
+            this.toastService.show(response.message);
           }
         });
     });
@@ -60,9 +64,10 @@ export class RegisterComponent implements OnInit {
       this.restService
         .doFacebook(res.additionalUserInfo?.profile)
         .subscribe((response: BackendResponse) => {
-          console.log(response);
           if (response.status === 'success') {
             this.router.navigate([`${this.currentLang}`]);
+          } else {
+            this.toastService.show(response.message);
           }
         });
     });
