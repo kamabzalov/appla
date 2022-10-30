@@ -263,13 +263,15 @@ export class RestService {
   }
 
   public isAuthorized(langId?: number): Observable<BackendResponse> {
+    let params = new HttpParams();
+    if (langId) {
+      params = params.set('lang_id', langId);
+    }
     return this.http
-      .get<BackendResponse>(
-        `${this.basePath}Angular/Auth/checkAuth?lang_id=${langId}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .get<BackendResponse>(`${this.basePath}Angular/Auth/checkAuth`, {
+        withCredentials: true,
+        params,
+      })
       .pipe(tap(res => this.userState$.next(res.data)));
   }
 

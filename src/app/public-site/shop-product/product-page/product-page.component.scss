@@ -67,6 +67,11 @@
       font-weight: bold;
       text-decoration: none;
     }
+
+    &__avatar {
+      width: vars.$base-size * 8;
+      height: vars.$base-size * 8;
+    }
   }
 
   &-follow {

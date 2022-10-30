@@ -232,6 +232,13 @@
     <div class="row align-items-center product-seller p-t-16px">
       <div class="col-md-6">
         <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
+          <img
+            [alt]="product.product.store_name"
+            [src]="
+              'https://storage.googleapis.com/images-appla/profile_picture/' +
+              product.product.store_avatar
+            "
+            class="product-seller__avatar m-r-8px" />
           <div class="display-flex flex-column">
             <span
               ><a
