@@ -5,7 +5,6 @@
 $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
 .header {
-
   @media (max-width: $medium-devices-breakpoint) {
     margin-bottom: vars.$base-size * 5;
   }
@@ -64,5 +63,12 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
   .profile-image {
     @include mixins.border-radius(50%);
+  }
+
+  &-profile {
+    &__avatar {
+      width: vars.$base-size * 4;
+      height: vars.$base-size * 4;
+    }
   }
 }

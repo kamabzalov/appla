@@ -67,12 +67,31 @@
                     src="/assets/images/profile/profile.png"
                     width="32" />
                 </button>
-                <div ngbDropdownMenu>
-                  <div></div>
-                  <a href="https://profile.angular.appla.cy/" ngbDropdownItem
-                    >Profile</a
-                  >
-                  <button (click)="logout()" ngbDropdownItem>Logout</button>
+                <div
+                  *ngIf="(userState$ | async)?.user_data as user_data"
+                  class="p-8px"
+                  ngbDropdownMenu>
+                  <div
+                    class="header-profile display-flex justify-content-space-between m-b-12px">
+                    <img
+                      [alt]="user_data.name"
+                      [src]="
+                        'https://storage.googleapis.com/images-appla/profile_picture/' +
+                        user_data.avatar
+                      "
+                      class="header-profile__avatar" />
+                    <span [innerHTML]="user_data.name"></span>
+                  </div>
+                  <div class="display-flex justify-content-space-between">
+                    <span>Appla cash</span>
+                    <span>{{ user_data.appla_cash }}</span>
+                  </div>
+                  <p class="m-b-0px">
+                    <a href="https://profile.angular.appla.cy/">My account</a>
+                  </p>
+                  <button (click)="logout()" class="button p-0px">
+                    Logout
+                  </button>
                 </div>
               </div>
             </ng-template>
