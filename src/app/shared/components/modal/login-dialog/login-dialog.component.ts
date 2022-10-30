@@ -46,7 +46,7 @@ export class LoginDialogComponent {
   protected signWithGoogle() {
     this.rest.signWithGoogle().then(res => {
       this.rest
-        .doGoogle(res.additionalUserInfo?.profile)
+        .doGoogle(res?.additionalUserInfo?.profile)
         .subscribe(response => {
           if (response.status === 'success') {
             this.offCanvas.dismiss();
@@ -60,11 +60,9 @@ export class LoginDialogComponent {
 
   protected signWithFacebook() {
     this.rest.signWithFacebook().then(res => {
-      console.log(res);
       this.rest
-        .doFacebook(res.additionalUserInfo?.profile)
+        .doFacebook(res?.additionalUserInfo?.profile)
         .subscribe(response => {
-          console.log(response);
           if (response.status === 'success') {
             this.offCanvas.dismiss();
           } else {

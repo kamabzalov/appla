@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
   protected signWithGoogle() {
     this.restService.signWithGoogle().then(res => {
       this.restService
-        .doGoogle(res.additionalUserInfo?.profile)
+        .doGoogle(res?.additionalUserInfo?.profile)
         .subscribe((response: BackendResponse) => {
           if (response.status === 'success') {
             this.router.navigate([`${this.currentLang}`]);
@@ -61,11 +61,9 @@ export class RegisterComponent implements OnInit {
 
   protected signWithFacebook() {
     this.restService.signWithFacebook().then(res => {
-      console.log(res);
       this.restService
-        .doFacebook(res.additionalUserInfo?.profile)
+        .doFacebook(res?.additionalUserInfo?.profile)
         .subscribe((response: BackendResponse) => {
-          console.log(response);
           if (response.status === 'success') {
             this.router.navigate([`${this.currentLang}`]);
           } else {

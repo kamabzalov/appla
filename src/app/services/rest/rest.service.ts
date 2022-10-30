@@ -333,11 +333,15 @@ export class RestService {
   }
 
   public async signWithGoogle() {
-    return await this.authLogin(new auth.GoogleAuthProvider());
+    return await this.authLogin(new auth.GoogleAuthProvider()).catch(err =>
+      console.log(err)
+    );
   }
 
   public async signWithFacebook() {
-    return await this.authLogin(new auth.FacebookAuthProvider());
+    return await this.authLogin(new auth.FacebookAuthProvider()).catch(err =>
+      console.log(err)
+    );
   }
 
   public doGoogle(profile: any): Observable<any> {
@@ -349,7 +353,11 @@ export class RestService {
         },
         { withCredentials: true }
       )
-      .pipe(tap(res => this.userState$.next(res.data)));
+      .pipe(
+        tap(res => {
+          this.userState$.next(res.data);
+        })
+      );
   }
 
   public doFacebook(profile: any): Observable<any> {
