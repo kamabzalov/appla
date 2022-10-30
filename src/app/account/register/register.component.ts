@@ -64,6 +64,7 @@ export class RegisterComponent implements OnInit {
       this.restService
         .doFacebook(res.additionalUserInfo?.profile)
         .subscribe((response: BackendResponse) => {
+          console.log(response);
           if (response.status === 'success') {
             this.router.navigate([`${this.currentLang}`]);
           } else {

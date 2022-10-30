@@ -63,6 +63,7 @@ export class LoginDialogComponent {
       this.rest
         .doFacebook(res.additionalUserInfo?.profile)
         .subscribe(response => {
+          console.log(response);
           if (response.status === 'success') {
             this.offCanvas.dismiss();
           } else {
