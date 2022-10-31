@@ -69,8 +69,10 @@
     }
 
     &__avatar {
-      width: vars.$base-size * 8;
-      height: vars.$base-size * 8;
+      @include mixins.border-radius(50%);
+      width: vars.$base-size * 10;
+      height: vars.$base-size * 10;
+      border: 1px solid #ddd;
     }
   }
 
