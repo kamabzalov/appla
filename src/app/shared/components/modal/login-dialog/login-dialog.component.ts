@@ -15,7 +15,6 @@ export interface AuthStatus {
   styleUrls: ['./login-dialog.component.scss'],
 })
 export class LoginDialogComponent {
-  protected showError: boolean;
   protected email: string;
   protected password: string;
 
@@ -29,11 +28,10 @@ export class LoginDialogComponent {
   public auth(loginForm: NgForm) {
     const { email, password } = loginForm.value;
     if (!email || !password || !email.trim() || !password.trim()) {
-      this.showError = true;
+      this.toasterService.show('Invalid login or password');
       return;
     }
     this.rest.login(email, password).subscribe(result => {
-      this.showError = result.status === 'failed';
       if (result.status === 'success') {
         this.activeModal.dismiss(result.status);
         this.offCanvas.dismiss();
