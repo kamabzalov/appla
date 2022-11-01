@@ -282,7 +282,6 @@ export class ProductPageComponent implements OnInit {
   protected scrollTo(id: string): void {
 
     const element: number = document.getElementById(id)?.getBoundingClientRect().top ?? 0 ;
-    console.log(element)
     this.active = id;
     window.scrollTo(0, element);
 

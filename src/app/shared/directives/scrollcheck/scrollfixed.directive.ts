@@ -15,8 +15,6 @@ export class ScrollfixedDirective {
           this.getOffset(this.el)
    }
     getOffset(el: ElementRef) {
-    const rect =  el.nativeElement.getBoundingClientRect().top
-    
       if(window.scrollY  > 570) {
         this.el.nativeElement.style.position = 'fixed'
         this.el.nativeElement.style.top = '105px'
@@ -30,4 +28,4 @@ export class ScrollfixedDirective {
       }
     
   }
-}
+} 
