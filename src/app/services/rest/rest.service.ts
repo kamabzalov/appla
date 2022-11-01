@@ -142,7 +142,8 @@ export class RestService {
     minPrice?: number | null,
     maxPrice?: number | null,
     searchQuery?: string | undefined,
-    filters?: any[]
+    filters?: any[],
+    langId?: number
   ): Observable<CategoryProducts> {
     let params = new HttpParams()
       .set('slug', slug)
@@ -161,6 +162,9 @@ export class RestService {
     if (filters) {
       params = params.set('tech_detail', JSON.stringify(filters));
     }
+    if (langId) {
+      params = params.set('lang_id', langId);
+    }
 
     return this.http
       .get<BackendResponse>(
@@ -173,8 +177,14 @@ export class RestService {
       .pipe(map(response => response.data));
   }
 
-  public getProductFilters(slug: string): Observable<ProductFilter> {
-    const params = new HttpParams().set('slug', slug);
+  public getProductFilters(
+    langId: number,
+    slug: string
+  ): Observable<ProductFilter> {
+    let params = new HttpParams().set('slug', slug);
+    if (langId) {
+      params = params.set('lang_id', langId);
+    }
     return this.http
       .get<BackendResponse>(`${this.basePath}Angular/Categories/get_filters`, {
         params,
@@ -183,11 +193,19 @@ export class RestService {
       .pipe(map(response => response.data));
   }
 
-  public getCategory(categorySlug: string): Observable<Category> {
+  public getCategory(
+    langId: number,
+    categorySlug: string
+  ): Observable<Category> {
+    let params = new HttpParams();
+    if (langId) {
+      params = params.set('lang_id', langId);
+    }
+    params = params.set('slug', categorySlug);
     return this.http
       .get<BackendResponse>(
-        `${this.basePath}Angular/Categories/get_categories/category?slug=${categorySlug}`,
-        { withCredentials: true }
+        `${this.basePath}Angular/Categories/get_categories/category`,
+        { withCredentials: true, params }
       )
       .pipe(map(response => response.data));
   }

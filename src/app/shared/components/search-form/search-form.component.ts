@@ -82,9 +82,9 @@ export class SearchFormComponent implements OnInit {
       distinctUntilChanged(),
       filter((queryString: string) => !!queryString.length),
       switchMap(query => {
-        const lang = this.languageService.currentAppLang$.getValue();
+        const lang = this.languageService.currentAppLang$.getValue()!.id;
         this.resultsProducts$ = this.restService
-          .searchProducts(lang!.id, query)
+          .searchProducts(lang, query)
           .pipe(
             map(results => [...results.categories.data, ...results.products])
           );
