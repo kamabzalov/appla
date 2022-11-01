@@ -79,7 +79,7 @@
               <p
                 *ngIf="
                   (productVariant && productVariant.quantity) ||
-                  product.product.qty
+                  (!productVariant && product.product.qty)
                 "
                 class="product__status">
                 {{ 'PRODUCT_PAGE.IN_STOCK' | translate }}
@@ -106,7 +106,7 @@
                   <ng-container>
                     <div class="display-flex align-items-center">
                       <select
-                        (change)="setVariant(productVariant)"
+                        (change)="setVariant()"
                         [(ngModel)]="productVariant"
                         class="form-control__input"
                         name="productVariant">
@@ -146,7 +146,9 @@
                         type="number" />
                     </div>
                     <button
-                      (click)="increaseQuantity(product.product.qty)"
+                      (click)="
+                        increaseQuantity(productVariant, product.product.qty)
+                      "
                       class="product-order-form__increase button button_orange">
                       <fa-icon [icon]="faPlus"></fa-icon>
                     </button>
