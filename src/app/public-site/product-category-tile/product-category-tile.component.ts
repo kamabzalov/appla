@@ -10,7 +10,11 @@ export interface ProductInTile {
   slug: string;
   store_slug: string;
 }
-
+// constructor(
+//   private localizeRouterService: LocalizeRouterService,
+//   private restService: RestService,
+//   private router: Router
+// ) {}
 @Component({
   selector: 'appla-product-category-tile',
   templateUrl: './product-category-tile.component.html',

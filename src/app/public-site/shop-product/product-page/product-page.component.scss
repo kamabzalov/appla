@@ -21,15 +21,11 @@
       }
 
       &__decrease {
-        @include mixins.border-radius(
-            vars.$base-size * 5 0 0 vars.$base-size * 5
-        );
+        @include mixins.border-radius(vars.$base-size * 5 0 0 vars.$base-size * 5);
       }
 
       &__increase {
-        @include mixins.border-radius(
-            0 vars.$base-size * 5 vars.$base-size * 5 0
-        );
+        @include mixins.border-radius(0 vars.$base-size * 5 vars.$base-size * 5 0);
       }
 
       &__input[name='productQuantity'] {
@@ -122,4 +118,25 @@
       color: red;
     }
   }
+  &__categoryrow {
+    z-index: 99;
+
+    .nav-link {
+      text-decoration: none;
+      color: black;
+      
+  
+      &:hover {
+       color:vars.$honey-yellow;
+      }
+    }
+
+    .active {
+      border-bottom: 1px solid vars.$honey-yellow !important;
+      color: vars.$honey-yellow;
+    }
+  }
+ 
+  
+  
 }

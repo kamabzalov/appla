@@ -178,56 +178,50 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="column-medium-12">
-        <ul #nav="ngbNav" class="nav-tabs" ngbNav>
-          <li ngbNavItem>
-            <a ngbNavLink>{{ 'PRODUCT_PAGE.DESCRIPTION' | translate }}</a>
-            <ng-template ngbNavContent>
-              <div class="p-16px">
-                <p>
-                  {{ 'PRODUCT_PAGE.WEIGHT' | translate }} :
-                  {{ product.product.weight }} ({{
-                    product.product.weight_unit === 1 ? 'g' : 'kg'
-                  }})
-                </p>
-                <p
-                  [innerHTML]="product.product.description"
-                  style="white-space: pre-wrap"></p>
-              </div>
-            </ng-template>
-          </li>
-          <li ngbNavItem>
-            <a ngbNavLink>{{ 'PRODUCT_PAGE.SPECIFICATIONS' | translate }}</a>
-            <ng-template ngbNavContent>
-              <div class="p-16px">
-                <ngb-accordion #acc="ngbAccordion">
-                  <ngb-panel
-                    *ngFor="let spec of product.technical_detail | keyvalue"
-                    [title]="spec.key">
-                    <ng-template ngbPanelContent>
-                      <ng-container *ngFor="let k of spec.value | keyvalue">
-                        <p>
-                          <strong>{{ k.key }}:</strong> {{ k.value }}
-                        </p>
-                      </ng-container>
-                    </ng-template>
-                  </ngb-panel>
-                </ngb-accordion>
-              </div>
-            </ng-template>
-          </li>
-        </ul>
-        <div [ngbNavOutlet]="nav"></div>
-      </div>
 
-      <div class="column-12">
-        <h5>{{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}</h5>
-        <div class="p-16px">
-          <appla-similar-products
-            [similarProducts]="product.similar_short"></appla-similar-products>
+      <div Scrollfixed class="row pt-10 pt-10__inline product__categoryrow">
+        <div class="col-md-9 col-sm-12 col-sm-12__inline">
+          <ul id="myTab" class="container nav nav-tabs ">
+            <li class="nav-item">
+              <a class="nav-link scrollLink {{active === 'desc' ? 'active' : ''}}" (click)="scrollTo('desc')"  >
+                {{ 'PRODUCT_PAGE.DESCRIPTION' | translate }}
+              </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link scrollLink {{active === 'spec' ? 'active' : ''}}" (click)="scrollTo('spec')" >
+                  {{ 'PRODUCT_PAGE.SPECIFICATIONS' | translate }}
+                </a>
+                </li>
+          </ul>
         </div>
       </div>
+  
+
+      <div class="p-16px" id="desc">
+        <p>
+          {{ 'PRODUCT_PAGE.WEIGHT' | translate }} :
+          {{ product.product.weight }} ({{
+            product.product.weight_unit === 1 ? 'g' : 'kg'
+          }})
+        </p>
+        <p
+          [innerHTML]="product.product.description"
+          style="white-space: pre-wrap"></p>
+      </div>
+      <div id="spec">      
+        <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel
+          *ngFor="let spec of product.technical_detail | keyvalue"
+          [title]="spec.key">
+          <ng-template ngbPanelContent>
+            <ng-container *ngFor="let k of spec.value | keyvalue">
+              <p>
+                <strong>{{ k.key }}:</strong> {{ k.value }}
+              </p>
+            </ng-container>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
     </div>
     <div class="row align-items-center product-seller p-t-16px">
       <div class="col-md-6">

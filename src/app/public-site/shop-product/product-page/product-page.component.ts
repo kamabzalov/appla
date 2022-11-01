@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
@@ -16,6 +17,7 @@ import { SuccessAddCartDialogComponent } from '@app/public-site/shop-product/mod
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SeoService } from '@app/services/seo/seo.service';
+
 
 export interface Product {
   meta: string;
@@ -134,7 +136,7 @@ export class ProductPageComponent implements OnInit {
   protected thumbImage: string;
   protected appLang: string;
   protected productVariant: ProductVariant;
-
+  protected active: string;
   protected readonly fullImageUrl =
     'https://storage.googleapis.com/images-appla/production/thumbs_800/';
   protected readonly thumbImageUrl =
@@ -156,8 +158,11 @@ export class ProductPageComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private toastService: ToastService,
     private localizeRouterService: LocalizeRouterService,
-    private seoService: SeoService
-  ) {}
+    private seoService: SeoService,
+
+
+
+  ) { }
 
   public ngOnInit(): void {
     this.appLang = this.localizeRouterService.parser.currentLang;
@@ -223,8 +228,8 @@ export class ProductPageComponent implements OnInit {
       this.appLang === 'en'
         ? 'Follow this store?'
         : 'ru'
-        ? 'Подписаться на этот магазин?'
-        : '';
+          ? 'Подписаться на этот магазин?'
+          : '';
     confirmModal.componentInstance.text = text;
     confirmModal.closed.subscribe(_ => {
       this.restService.followStore(merchantId).subscribe(res => {
@@ -233,7 +238,7 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-  protected setVariant(productVariant: ProductVariant) {}
+  protected setVariant(productVariant: ProductVariant) { }
 
   private getProductData(
     storeSlug: string,
@@ -272,5 +277,14 @@ export class ProductPageComponent implements OnInit {
         this.seoService.setMetaOpenGraph('og:image', this.fullImage);
       })
     );
+  }
+
+  protected scrollTo(id: string): void {
+
+    const element: number = document.getElementById(id)?.getBoundingClientRect().top ?? 0 ;
+    console.log(element)
+    this.active = id;
+    window.scrollTo(0, element);
+
   }
 }
