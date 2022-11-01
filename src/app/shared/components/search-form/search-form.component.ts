@@ -64,12 +64,15 @@ export class SearchFormComponent implements OnInit {
     } else {
       query = this.searchQuery?.name;
     }
-    this.router.navigate(['Search'], {
-      relativeTo: this.route,
-      queryParams: {
-        string: query,
-      },
-    });
+    // eslint-disable-next-line no-magic-numbers
+    if (query && query.length >= 3) {
+      this.router.navigate(['Search'], {
+        relativeTo: this.route,
+        queryParams: {
+          string: query,
+        },
+      });
+    }
   }
 
   protected searchTypeAhead = (text$: Observable<string>) =>
@@ -79,8 +82,9 @@ export class SearchFormComponent implements OnInit {
       distinctUntilChanged(),
       filter((queryString: string) => !!queryString.length),
       switchMap(query => {
+        const lang = this.languageService.currentAppLang$.getValue();
         this.resultsProducts$ = this.restService
-          .searchProducts(query)
+          .searchProducts(lang!.id, query)
           .pipe(
             map(results => [...results.categories.data, ...results.products])
           );

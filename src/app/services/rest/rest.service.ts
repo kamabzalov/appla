@@ -235,11 +235,14 @@ export class RestService {
       .pipe(map(response => response.data));
   }
 
-  public searchProducts(query: string): Observable<SearchResults> {
+  public searchProducts(id: number, query: string): Observable<SearchResults> {
     return this.http
-      .get<BackendResponse>(`${this.basePath}Angular/Search?string=${query}`, {
-        withCredentials: true,
-      })
+      .get<BackendResponse>(
+        `${this.basePath}Angular/Search/suggestions?string=${query}&lang_id=${id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .pipe(map(response => response.data));
   }
 
@@ -333,14 +336,14 @@ export class RestService {
   }
 
   public async signWithGoogle() {
-    return await this.authLogin(new auth.GoogleAuthProvider()).catch(err =>
-      console.log(err)
+    return await this.authLogin(new auth.GoogleAuthProvider()).catch(
+      err => err
     );
   }
 
   public async signWithFacebook() {
-    return await this.authLogin(new auth.FacebookAuthProvider()).catch(err =>
-      console.log(err)
+    return await this.authLogin(new auth.FacebookAuthProvider()).catch(
+      err => err
     );
   }
 

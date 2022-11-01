@@ -113,16 +113,18 @@ export class CategoryPageComponent implements OnInit {
       this.offset = 0;
       this.minPrice = null;
       this.maxPrice = null;
-      this.languageService.currentAppLang$.subscribe(_ => {
-        this.categoryData$ = this.restService.getCategory(this.slug);
-        this.getCategoryProducts(
-          this.limit,
-          this.offset,
-          this.order,
-          this.slug
-        );
-        this.getProductFilters(this.slug);
-        this.getCategorySeo(this.slug);
+      this.restService.isAuthorized().subscribe(res => {
+        if (res.data) {
+          this.categoryData$ = this.restService.getCategory(this.slug);
+          this.getCategoryProducts(
+            this.limit,
+            this.offset,
+            this.order,
+            this.slug
+          );
+          this.getProductFilters(this.slug);
+          this.getCategorySeo(this.slug);
+        }
       });
     });
   }
