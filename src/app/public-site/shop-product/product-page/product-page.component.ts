@@ -136,7 +136,8 @@ export class ProductPageComponent implements OnInit {
   protected thumbImage: string;
   protected appLang: string;
   protected productVariant: ProductVariant;
-  protected active: string;
+ 
+  protected  active : string;
   protected readonly fullImageUrl =
     'https://storage.googleapis.com/images-appla/production/thumbs_800/';
   protected readonly thumbImageUrl =
@@ -159,7 +160,7 @@ export class ProductPageComponent implements OnInit {
     private toastService: ToastService,
     private localizeRouterService: LocalizeRouterService,
     private seoService: SeoService,
-
+  
 
 
   ) { }
@@ -280,10 +281,18 @@ export class ProductPageComponent implements OnInit {
   }
 
   protected scrollTo(id: string): void {
+    
+    const element  = document.getElementById(id)
+ 
+    this.active =  id;
 
-    const element: number = document.getElementById(id)?.getBoundingClientRect().top ?? 0 ;
-    this.active = id;
-    window.scrollTo(0, element);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: "start"
+      })
+    } 
 
   }
 }
