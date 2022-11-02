@@ -83,6 +83,7 @@ export class CategoryPageComponent implements OnInit {
   protected filters$: Observable<ProductFilter | null>;
   protected loading: boolean = false;
   protected appLang: string;
+  private langId: number;
   // eslint-disable-next-line no-magic-numbers
   private offset = 0;
   // eslint-disable-next-line no-magic-numbers
@@ -100,6 +101,11 @@ export class CategoryPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.languageService.currentAppLang$.asObservable().subscribe(res => {
+      if (res?.id) {
+        this.langId = res.id;
+      }
+    });
     this.appLang = this.localizeRouterService.parser.currentLang;
     this.categoryProducts$ = this.categoryProductsSubject$
       .asObservable()
@@ -113,16 +119,21 @@ export class CategoryPageComponent implements OnInit {
       this.offset = 0;
       this.minPrice = null;
       this.maxPrice = null;
-      this.languageService.currentAppLang$.subscribe(_ => {
-        this.categoryData$ = this.restService.getCategory(this.slug);
-        this.getCategoryProducts(
-          this.limit,
-          this.offset,
-          this.order,
-          this.slug
-        );
-        this.getProductFilters(this.slug);
-        this.getCategorySeo(this.slug);
+      this.restService.isAuthorized().subscribe(res => {
+        if (res.data) {
+          this.categoryData$ = this.restService.getCategory(
+            this.langId,
+            this.slug
+          );
+          this.getCategoryProducts(
+            this.limit,
+            this.offset,
+            this.order,
+            this.slug
+          );
+          this.getProductFilters(this.slug);
+          this.getCategorySeo(this.slug);
+        }
       });
     });
   }
@@ -230,13 +241,14 @@ export class CategoryPageComponent implements OnInit {
         minPrice,
         maxPrice,
         searchQuery,
-        filters
+        filters,
+        this.langId
       )
       .subscribe(res => this.categoryProductsSubject$.next(res));
   }
 
   private getProductFilters(slug: string) {
-    this.filters$ = this.restService.getProductFilters(slug);
+    this.filters$ = this.restService.getProductFilters(this.langId, slug);
   }
 
   private getCategorySeo(slug: string) {

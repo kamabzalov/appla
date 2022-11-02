@@ -183,7 +183,13 @@ export class ProductPageComponent implements OnInit {
     this.productQuantity--;
   }
 
-  protected increaseQuantity(qty: number) {
+  protected increaseQuantity(productVariant: ProductVariant, qty: number) {
+    if (
+      !productVariant?.quantity ||
+      productVariant.quantity === this.productQuantity
+    ) {
+      return;
+    }
     if (this.productQuantity === qty) {
       return;
     }
@@ -239,7 +245,9 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-  protected setVariant(productVariant: ProductVariant) { }
+  protected setVariant() {
+    this.productQuantity = 1;
+  }
 
   private getProductData(
     storeSlug: string,

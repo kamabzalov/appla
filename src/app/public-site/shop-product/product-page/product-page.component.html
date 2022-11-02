@@ -79,7 +79,7 @@
               <p
                 *ngIf="
                   (productVariant && productVariant.quantity) ||
-                  product.product.qty
+                  (!productVariant && product.product.qty)
                 "
                 class="product__status">
                 {{ 'PRODUCT_PAGE.IN_STOCK' | translate }}
@@ -106,7 +106,7 @@
                   <ng-container>
                     <div class="display-flex align-items-center">
                       <select
-                        (change)="setVariant(productVariant)"
+                        (change)="setVariant()"
                         [(ngModel)]="productVariant"
                         class="form-control__input"
                         name="productVariant">
@@ -146,7 +146,9 @@
                         type="number" />
                     </div>
                     <button
-                      (click)="increaseQuantity(product.product.qty)"
+                      (click)="
+                        increaseQuantity(productVariant, product.product.qty)
+                      "
                       class="product-order-form__increase button button_orange">
                       <fa-icon [icon]="faPlus"></fa-icon>
                     </button>
@@ -208,20 +210,24 @@
           [innerHTML]="product.product.description"
           style="white-space: pre-wrap"></p>
       </div>
-      <div id="spec">      
-        <ngb-accordion #acc="ngbAccordion">
-        <ngb-panel
-          *ngFor="let spec of product.technical_detail | keyvalue"
-          [title]="spec.key">
-          <ng-template ngbPanelContent>
-            <ng-container *ngFor="let k of spec.value | keyvalue">
-              <p>
-                <strong>{{ k.key }}:</strong> {{ k.value }}
-              </p>
-            </ng-container>
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
+      <div id="spec">     
+        <h2 class="title-text-technical-specifications similar-products__title">Specifications</h2>
+        <div class="accordion-specification">
+          <div id="accordian" class="accordionWrapper">
+            <div class="accordionContainer active"  *ngFor="let spec of product.technical_detail | keyvalue">
+              <div class="accordionHeader">
+                  <p>{{spec.key}}</p>
+                </div>
+                <ng-container *ngFor="let k of spec.value | keyvalue">
+                <div class="accordionInner">
+               <span class="text-map-marker title"> {{k.key}}&nbsp; </span>
+               <span> {{k.value}} </span>
+                </div>
+                </ng-container>
+            </div>
+          </div>
+
+        </div>
     </div>
     <div class="row align-items-center product-seller p-t-16px">
       <div class="col-md-6">
