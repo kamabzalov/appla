@@ -28,6 +28,7 @@ import { ConfirmDialogComponent } from './components/modal/confirm-dialog/confir
 import { ToastComponent } from './components/toast/toast.component';
 import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
 import { ErrorImageDirective } from './directives/error-image/error-image.directive';
+import { ScrollfixedDirective } from './directives/scrollcheck/scrollfixed.directive';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,8 @@ import { ErrorImageDirective } from './directives/error-image/error-image.direct
     ConfirmDialogComponent,
     ToastComponent,
     ErrorImageDirective,
+    ScrollfixedDirective,
+    
   ],
   imports: [
     CommonModule,
@@ -87,6 +90,7 @@ import { ErrorImageDirective } from './directives/error-image/error-image.direct
     SidenavComponent,
     CloseCanvasDirective,
     ErrorImageDirective,
+    ScrollfixedDirective,
   ],
 })
 export class SharedModule {}

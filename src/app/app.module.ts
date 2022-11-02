@@ -40,7 +40,10 @@ import { CookieModule } from 'ngx-cookie';
       },
     }),
     LocalizeRouterModule.forRoot(routes, {
+     
+   
       parser: {
+        
         provide: LocalizeParser,
         useFactory: localizeBrowserLoaderFactory,
         deps: [

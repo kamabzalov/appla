@@ -1,9 +1,8 @@
 <div *ngIf="product$ | async as product" class="container">
+
   <div class="m-b-20px">
     <ng-container *ngFor="let breadcrumb of product.arr_cats">
-      <a
-        [innerHTML]="breadcrumb.name"
-        routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}"></a>
+      <a [innerHTML]="breadcrumb.name" routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}"></a>
       /
     </ng-container>
     {{ product.product.name }}
@@ -13,29 +12,22 @@
       <div class="column-12">
         <div class="row">
           <div class="column-medium-5 column-12">
-            <lib-ngx-image-zoom
-              *ngIf="mainImage; else defaultImage"
-              [fullImage]="
+            <lib-ngx-image-zoom *ngIf="mainImage; else defaultImage" [fullImage]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_800/' +
                 mainImage
-              "
-              [thumbImage]="
+              " [thumbImage]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_400/' +
                 mainImage
               "></lib-ngx-image-zoom>
             <ng-template #defaultImage>
-              <lib-ngx-image-zoom
-                [fullImage]="
+              <lib-ngx-image-zoom [fullImage]="
                   'https://storage.googleapis.com/images-appla/products/no_image400.png'
-                "
-                [thumbImage]="
+                " [thumbImage]="
                   'https://storage.googleapis.com/images-appla/products/no_image400.png'
                 "></lib-ngx-image-zoom>
             </ng-template>
             <div class="product__additional-images m-t-20px">
-              <appla-additional-product-images
-                (changeActiveImage)="setActive($event)"
-                [images]="
+              <appla-additional-product-images (changeActiveImage)="setActive($event)" [images]="
                   product.product.picture
                 "></appla-additional-product-images>
             </div>
@@ -52,20 +44,14 @@
             </p>
             <p class="product-categories p-b-4px">
               {{ 'PRODUCT_PAGE.CATEGORIES' | translate }}:
-              <ng-container
-                *ngFor="let category of product.arr_cats; let last = last">
-                <a
-                  *ngIf="last"
-                  [routerLink]="[
+              <ng-container *ngFor="let category of product.arr_cats; let last = last">
+                <a *ngIf="last" [routerLink]="[
                     '/',
                     appLang,
                     'category',
                     'list',
                     category.slug
-                  ]"
-                  class="product__category"
-                  >{{ category.name }}</a
-                >
+                  ]" class="product__category">{{ category.name }}</a>
               </ng-container>
             </p>
 
@@ -76,17 +62,14 @@
                   <b>{{ 'PRODUCT_PAGE.NEW' | translate }}</b>
                 </ng-container>
               </p>
-              <p
-                *ngIf="
+              <p *ngIf="
                   (productVariant && productVariant.quantity) ||
                   (!productVariant && product.product.qty)
-                "
-                class="product__status">
+                " class="product__status">
                 {{ 'PRODUCT_PAGE.IN_STOCK' | translate }}
               </p>
 
-              <ng-template
-                [ngIf]="
+              <ng-template [ngIf]="
                   (productVariant && !productVariant.quantity) ||
                   !product.product.qty
                 ">
@@ -105,16 +88,10 @@
                   <p>{{ 'PRODUCT_PAGE.PRODUCT_VARIANTS' | translate }}</p>
                   <ng-container>
                     <div class="display-flex align-items-center">
-                      <select
-                        (change)="setVariant()"
-                        [(ngModel)]="productVariant"
-                        class="form-control__input"
+                      <select (change)="setVariant()" [(ngModel)]="productVariant" class="form-control__input"
                         name="productVariant">
-                        <option
-                          *ngFor="let item of product.product_variant"
-                          [ngValue]="item">
-                          <ng-container
-                            *ngFor="
+                        <option *ngFor="let item of product.product_variant" [ngValue]="item">
+                          <ng-container *ngFor="
                               let variant of item.product_variant | keyvalue
                             ">
                             <strong>{{ variant.key }} :</strong>
@@ -131,47 +108,34 @@
                 <p>{{ 'PRODUCT_PAGE.QUANTITY' | translate }}</p>
                 <div class="display-flex m-b-12px">
                   <form class="product-order-form m-r-8px display-flex">
-                    <button
-                      (click)="decreaseQuantity()"
-                      class="product-order-form__decrease button button_orange">
+                    <button (click)="decreaseQuantity()" class="product-order-form__decrease button button_orange">
                       <fa-icon [icon]="faMinus"></fa-icon>
                     </button>
                     <div class="control-group flex-grow-1 m-b-0px">
-                      <input
-                        [(ngModel)]="productQuantity"
-                        aria-label="Example text with button addon"
-                        class="product-order-form__input control-group__field"
-                        name="productQuantity"
-                        readonly
+                      <input [(ngModel)]="productQuantity" aria-label="Example text with button addon"
+                        class="product-order-form__input control-group__field" name="productQuantity" readonly
                         type="number" />
                     </div>
-                    <button
-                      (click)="
+                    <button (click)="
                         increaseQuantity(productVariant, product.product.qty)
-                      "
-                      class="product-order-form__increase button button_orange">
+                      " class="product-order-form__increase button button_orange">
                       <fa-icon [icon]="faPlus"></fa-icon>
                     </button>
                   </form>
-                  <button
-                    (click)="setMax(product.product.qty)"
-                    class="button button_orange">
+                  <button (click)="setMax(product.product.qty)" class="button button_orange">
                     {{ 'PRODUCT_PAGE.MAX' | translate }}
                   </button>
                 </div>
-                <button
-                  (click)="
+                <button (click)="
                     addToCart(
                       productQuantity,
                       product.product.product_id,
                       productVariant
                     )
-                  "
-                  [disabled]="
+                  " [disabled]="
                     (productVariant && !productVariant.quantity) ||
                     !productQuantity
-                  "
-                  class="w-50 button button_orange p-12px">
+                  " class="w-50 button button_orange p-12px">
                   {{ 'PRODUCT_PAGE.ADD_TO_CART' | translate }}
                 </button>
               </div>
@@ -180,100 +144,170 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="column-medium-12">
-        <ul #nav="ngbNav" class="nav-tabs" ngbNav>
-          <li ngbNavItem>
-            <a ngbNavLink>{{ 'PRODUCT_PAGE.DESCRIPTION' | translate }}</a>
-            <ng-template ngbNavContent>
-              <div class="p-16px">
-                <p>
-                  {{ 'PRODUCT_PAGE.WEIGHT' | translate }} :
-                  {{ product.product.weight }} ({{
-                    product.product.weight_unit === 1 ? 'g' : 'kg'
-                  }})
-                </p>
-                <p
-                  [innerHTML]="product.product.description"
-                  style="white-space: pre-wrap"></p>
-              </div>
-            </ng-template>
-          </li>
-          <li ngbNavItem>
-            <a ngbNavLink>{{ 'PRODUCT_PAGE.SPECIFICATIONS' | translate }}</a>
-            <ng-template ngbNavContent>
-              <div class="p-16px">
-                <ngb-accordion #acc="ngbAccordion">
-                  <ngb-panel
-                    *ngFor="let spec of product.technical_detail | keyvalue"
-                    [title]="spec.key">
-                    <ng-template ngbPanelContent>
-                      <ng-container *ngFor="let k of spec.value | keyvalue">
-                        <p>
-                          <strong>{{ k.key }}:</strong> {{ k.value }}
-                        </p>
-                      </ng-container>
-                    </ng-template>
-                  </ngb-panel>
-                </ngb-accordion>
-              </div>
-            </ng-template>
-          </li>
-          <li ngbNavItem>
-            <a ngbNavLink>{{ 'PRODUCT_PAGE.SHIPPING' | translate }}</a>
-            <ng-template ngbNavContent>
-              <div class="p-16px">
-                <p>
-                  <strong>Delivery days:</strong>
-                  {{ product.product.delivery_days }}
-                </p>
-              </div>
-            </ng-template>
-          </li>
-        </ul>
-        <div [ngbNavOutlet]="nav"></div>
-      </div>
 
-      <div class="column-12">
+    <div Scrollfixed class="row pt-10 pt-10__inline product__categoryrow">
+      <div class="col-md-9 col-sm-12 col-sm-12__inline">
+        <ul id="myTab" class="container nav nav-tabs ">
+          <li class="nav-item">
+            <a class="nav-link scrollLink {{active === 'desc' ? 'active' : ''}}" (click)="scrollTo('desc')">
+              {{ 'PRODUCT_PAGE.DESCRIPTION' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link scrollLink {{active === 'spec' ? 'active' : ''}}" (click)="scrollTo('spec')">
+              {{ 'PRODUCT_PAGE.SPECIFICATIONS' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link scrollLink {{active === 'similar' ? 'active' : ''}}" (click)="scrollTo('similar')">
+              {{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link scrollLink {{active === 'shipping' ? 'active' : ''}}" (click)="scrollTo('shipping')">
+              {{ 'PRODUCT_PAGE.SHIPPING' | translate }}
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="product.product.video && product.product.video.length > 3">
+            <a class="nav-link scrollLink {{active === 'video' ? 'active' : ''}}" (click)="scrollTo('video')">
+              {{ 'PRODUCT_PAGE.VIDEO' | translate }}
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="product.product.bpoints && product.product.bpoints.length > 3">
+            <a class="nav-link scrollLink {{active === 'bpoints' ? 'active' : ''}}" (click)="scrollTo('bpoints')">
+              {{ 'PRODUCT_PAGE.BPOINTS' | translate }}
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="product.product.review && product.product?.review.length > 3">
+            <a class="nav-link scrollLink {{active === 'review' ? 'active' : ''}}" (click)="scrollTo('review')">
+              {{ 'PRODUCT_PAGE.REVIEW' | translate }}
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="product.product.reas2buy && product.product?.reas2buy.length > 3">
+            <a class="nav-link scrollLink {{active === 'reas2buy' ? 'active' : ''}}" (click)="scrollTo('reas2buy')">
+              {{ 'PRODUCT_PAGE.REASON' | translate }}
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="p-16px" id="desc">
+      <p>
+        {{ 'PRODUCT_PAGE.WEIGHT' | translate }} :
+        {{ product.product.weight }} ({{
+        product.product.weight_unit === 1 ? 'g' : 'kg'
+        }})
+      </p>
+      <p [innerHTML]="product.product.description" style="white-space: pre-wrap"></p>
+      <ul *ngIf="product.product?.bpoints && product.product?.bpoints.length > 3" id="bpoints">
+        <h4>Bullet Points</h4>
+        <div *ngFor="let bpoints of Strtoarray(product.product?.bpoints)">
+          <li>
+            <span class="product-reas2buy">
+              {{bpoints}}
+            </span>
+          </li>
+        </div>
+  
+      </ul>
+    </div>
+    <div id="spec">
+      <h2 class="title-text-technical-specifications similar-products__title">Specifications</h2>
+      <div class="accordion-specification">
+        <div id="accordian" class="accordionWrapper">
+          <div class="accordionContainer active" *ngFor="let spec of product.technical_detail | keyvalue">
+            <div class="accordionHeader">
+              <p>{{spec.key}}</p>
+            </div>
+            <ng-container *ngFor="let k of spec.value | keyvalue">
+              <div class="accordionInner">
+                <span class="text-map-marker title"> {{k.key}}&nbsp; </span>
+                <span> {{k.value}} </span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row mt-5" id="similar">
+      <div class="col-12">
         <h5>{{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}</h5>
         <div class="p-16px">
-          <appla-similar-products
-            [similarProducts]="product.similar_short"></appla-similar-products>
+          <appla-similar-products [similarProducts]="product.similar_short"></appla-similar-products>
         </div>
       </div>
     </div>
-    <div class="row align-items-center product-seller p-t-16px">
+    <section id="shipping" name="shipping" *ngIf="!!product.product.delivery_days">
+      <h2 class="title-text-technical-specifications similar-products__title">Shipping Information</h2>
+      <div class="tab-pane fade show" id="delivery" role="tabpanel">
+        <p>Usually {{product.product.delivery_days }} working days</p>
+      </div>
+    </section>
+    <section id="video" name="video" *ngIf="product.product.video && product.product.video.length > 3">
+      <iframe width="420" height="315" src="https://www.youtube.com/watch?v=Wq2Idwv38rE">
+      </iframe>
+    </section>
+
+    <div class="row align-items-center product-seller p-t-16px mb-5">
       <div class="col-md-6">
         <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
-          <img
-            [alt]="product.product.store_name"
-            [src]="
+          <img [alt]="product.product.store_name" [src]="
               'https://storage.googleapis.com/images-appla/profile_picture/' +
               product.product.store_avatar
-            "
-            class="product-seller__avatar m-r-8px" />
+            " class="product-seller__avatar m-r-8px" />
           <div class="display-flex flex-column">
-            <span
-              ><a
-                class="product-seller__link"
-                href="https://angular.appla.cy/store/{{
+            <span><a class="product-seller__link" href="https://angular.appla.cy/store/{{
                   product.product.store_slug
-                }}"
-                >{{ product.product.store_name }}</a
-              ></span
-            >
-            <span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>
+                }}">{{ product.product.store_name }}</a></span>
+            <span>
+              <fa-icon [icon]="faStar"></fa-icon>(0 reviews)
+            </span>
           </div>
         </div>
+
       </div>
       <div class="col-md-6 text-end">
-        <button
-          (click)="followStore(product.product.store_id)"
-          class="product-follow">
+        <button (click)="followStore(product.product.store_id)" class="product-follow">
           {{ 'PRODUCT_PAGE.FOLLOW' | translate }}
         </button>
       </div>
     </div>
+
+
+
+    <div *ngIf="product.product.review && product.product?.review.length > 3" id="review">
+      <h4>Review</h4>
+      <div *ngFor="let rev of Strtoarray(product.product?.review)">
+        <p>
+          <span class="product-reas2buy">
+            {{rev}}
+          </span>
+        </p>
+      </div>
+
+    </div>
+
+    <div *ngIf="product.product?.reas2buy && product.product?.reas2buy.length > 3" id="reas2buy">
+      <h4>Reason to Buy</h4>
+      <div *ngFor="let reason of Strtoarray(product.product?.review)">
+        <p>
+          <span class="product-reas2buy">
+            {{reason}}
+          </span>
+        </p>
+      </div>
+
+    </div>
+
+ 
+
+
   </section>
 </div>
 
