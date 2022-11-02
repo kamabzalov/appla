@@ -1,4 +1,5 @@
 @use 'vars';
+@use 'mixins';
 
 .product-offers {
   &__header {
@@ -18,4 +19,19 @@
     }
   }
 
+  .localized-banner {
+    @include mixins.border-radius(vars.$base-size * 3);
+    background: vars.$honey-yellow;
+    color: vars.$white;
+    cursor: pointer;
+
+    &__icon {
+      @include mixins.border-radius(50%);
+      background: vars.$united-nations-blue;
+      color: vars.$white;
+      width: vars.$base-size * 6;
+      height: vars.$base-size * 6;
+      transform: scale(1.2);
+    }
+  }
 }

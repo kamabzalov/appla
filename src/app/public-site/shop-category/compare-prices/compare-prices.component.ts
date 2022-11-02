@@ -67,6 +67,7 @@ interface ProductOfferStores {
   store_id: number;
   store_slug: string;
   user_frontend_id: number;
+  is_localized_banner: number;
 }
 
 export interface ProductOfferSimilar {
@@ -92,6 +93,7 @@ export interface ProductOfferSimilar {
 })
 export class ComparePricesComponent implements OnInit {
   protected faTruck = iconSet.faTruck;
+  protected faCheck = iconSet.faCheck;
   protected productOffer$: Observable<ProductOffer>;
   // eslint-disable-next-line no-magic-numbers
   protected maxRating: number = 5;

@@ -126,13 +126,27 @@
                 <div class="column-12 column-medium-10">
                   <div class="row justify-content-end align-items-center">
                     <div class="column-12 column-medium-4">
-                      <p class="fw-bolder">
+                      <div class="display-flex align-items-center">
                         <a
                           [innerHTML]="store.name"
+                          class="m-r-12px"
                           href="https://angular.appla.cy/store/{{
                             store.store_slug
                           }}"></a>
-                      </p>
+                        <div
+                          *ngIf="store.is_localized_banner === 1"
+                          class="display-inline-flex align-items-center localized-banner"
+                          ngbTooltip="European transfer supplier with local service by Appla"
+                          placement="top">
+                          <span class="p-t-4px p-b-4px p-l-8px p-r-8px"
+                            >Localized</span
+                          >
+                          <fa-icon
+                            [icon]="faCheck"
+                            class="localized-banner__icon display-inline-flex align-items-center justify-content-center"></fa-icon>
+                        </div>
+                      </div>
+
                       <p>
                         {{ offer.master_product_info.name }}
                       </p>

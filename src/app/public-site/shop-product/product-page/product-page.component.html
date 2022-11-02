@@ -253,6 +253,16 @@
             "
             class="product-seller__avatar m-r-8px" />
           <div class="display-flex flex-column">
+            <div
+              *ngIf="product.product.is_localized_banner === 2"
+              class="display-inline-flex align-items-center localized-banner"
+              ngbTooltip="European transfer supplier with local service by Appla"
+              placement="top">
+              <span class="p-t-4px p-b-4px p-l-8px p-r-8px">Localized</span>
+              <fa-icon
+                [icon]="faCheck"
+                class="localized-banner__icon display-inline-flex align-items-center justify-content-center"></fa-icon>
+            </div>
             <span
               ><a
                 class="product-seller__link"
@@ -260,8 +270,8 @@
                   product.product.store_slug
                 }}"
                 >{{ product.product.store_name }}</a
-              ></span
-            >
+              >
+            </span>
             <span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>
           </div>
         </div>
