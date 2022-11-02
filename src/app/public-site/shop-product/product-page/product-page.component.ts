@@ -76,7 +76,7 @@ export interface ProductVariant {
 }
 
 interface ProductDetails {
-  delivery_days: number;
+  
   product_id: number;
   name: string;
   qty: number;
