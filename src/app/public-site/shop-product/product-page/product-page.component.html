@@ -219,6 +219,17 @@
               </div>
             </ng-template>
           </li>
+          <li ngbNavItem>
+            <a ngbNavLink>{{ 'PRODUCT_PAGE.SHIPPING' | translate }}</a>
+            <ng-template ngbNavContent>
+              <div class="p-16px">
+                <p>
+                  <strong>Delivery days:</strong>
+                  {{ product.product.delivery_days }}
+                </p>
+              </div>
+            </ng-template>
+          </li>
         </ul>
         <div [ngbNavOutlet]="nav"></div>
       </div>
