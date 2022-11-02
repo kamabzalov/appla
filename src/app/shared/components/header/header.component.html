@@ -74,12 +74,20 @@
                   <div
                     class="display-flex m-b-12px p-b-8px header-profile__header">
                     <img
+                      *ngIf="user_data.avatar"
                       [alt]="user_data.name"
                       [src]="
                         'https://storage.googleapis.com/images-appla/profile_picture/' +
                         user_data.avatar
                       "
                       class="header-profile__avatar" />
+                    <img
+                      *ngIf="!user_data.avatar"
+                      [alt]="user_data.name"
+                      class="header-profile__avatar"
+                      height="32"
+                      src="/assets/images/profile/profile.png"
+                      width="32" />
                     <span [innerHTML]="user_data.name" class="m-auto"></span>
                   </div>
                   <div
