@@ -66,9 +66,22 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
   }
 
   &-profile {
+    @include mixins.border-radius(vars.$base-size * 4);
+
+    min-width: 300px;
+    border: none;
+
     &__avatar {
-      width: vars.$base-size * 4;
-      height: vars.$base-size * 4;
+      width: vars.$base-size * 8;
+      height: vars.$base-size * 8;
+    }
+
+    &__header {
+      border-bottom: 1px solid vars.$lavender-gray;
+    }
+
+    &__cash {
+      color: vars.$honey-yellow;
     }
   }
 }

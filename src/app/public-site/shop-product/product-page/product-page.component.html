@@ -178,6 +178,7 @@
               {{ 'PRODUCT_PAGE.BPOINTS' | translate }}
             </a>
           </li>
+
           <li class="nav-item" *ngIf="product.product.review && product.product?.review.length > 3">
             <a class="nav-link scrollLink {{active === 'review' ? 'active' : ''}}" (click)="scrollTo('review')">
               {{ 'PRODUCT_PAGE.REVIEW' | translate }}
@@ -188,7 +189,6 @@
               {{ 'PRODUCT_PAGE.REASON' | translate }}
             </a>
           </li>
-
 
         </ul>
       </div>

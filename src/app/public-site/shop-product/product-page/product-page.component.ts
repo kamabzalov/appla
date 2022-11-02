@@ -76,6 +76,7 @@ export interface ProductVariant {
 }
 
 interface ProductDetails {
+  delivery_days: number;
   product_id: number;
   name: string;
   qty: number;
@@ -194,8 +195,8 @@ export class ProductPageComponent implements OnInit {
 
   protected increaseQuantity(productVariant: ProductVariant, qty: number) {
     if (
-      !productVariant?.quantity ||
-      productVariant.quantity === this.productQuantity
+      (productVariant && !productVariant?.quantity) ||
+      productVariant?.quantity === this.productQuantity
     ) {
       return;
     }
