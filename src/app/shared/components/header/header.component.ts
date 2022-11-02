@@ -65,7 +65,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   protected openMobilePanel() {
-
     const user = this.userState$.getValue();
     if (user?.user_data) {
       window.location.href = 'https://profile.angular.appla.cy/';
