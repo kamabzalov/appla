@@ -120,6 +120,7 @@ export class CategoryPageComponent implements OnInit {
       this.minPrice = null;
       this.maxPrice = null;
       this.restService.isAuthorized().subscribe(res => {
+        this.langId = res.data.lang_id;
         if (res.data) {
           this.categoryData$ = this.restService.getCategory(
             this.langId,
