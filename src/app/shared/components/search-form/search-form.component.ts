@@ -78,15 +78,16 @@ export class SearchFormComponent implements OnInit {
   protected searchTypeAhead = (text$: Observable<string>) =>
     text$.pipe(
       // eslint-disable-next-line no-magic-numbers
-      debounceTime(750),
+      debounceTime(450),
       distinctUntilChanged(),
-      filter((queryString: string) => !!queryString.length),
       switchMap(query => {
         const lang = this.languageService.currentAppLang$.getValue()!.id;
         this.resultsProducts$ = this.restService
           .searchProducts(lang, query)
           .pipe(
-            map(results => [...results.categories.data, ...results.products])
+            map(results =>
+              results ? [...results.categories.data, ...results.products] : []
+            )
           );
         return this.resultsProducts$;
       })
