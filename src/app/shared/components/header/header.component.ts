@@ -7,11 +7,12 @@ import {
 } from '@angular/core';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
-import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
-import { RestService } from '@app/services/rest/rest.service';
+import { RestService, UserState } from '@app/services/rest/rest.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
+import { LanguageService } from '@app/services/language/language.service';
+import { SidenavComponent } from '@app/shared/components/sidenav/sidenav.component';
 
 @Component({
   selector: 'appla-header',
@@ -21,7 +22,8 @@ import { iconSet } from '@app/shared/utils/icons';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   protected faBars = iconSet.faBars;
-  protected isLogin: boolean = false;
+  protected userState$: BehaviorSubject<UserState | null> =
+    new BehaviorSubject<UserState | null>(null);
   protected isMainPage: boolean = true;
   private router$: Subscription;
 
@@ -30,10 +32,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private offCanvas: NgbOffcanvas,
     private cdr: ChangeDetectorRef,
     private restService: RestService,
+    private languageService: LanguageService,
     private router: Router
   ) {}
 
   public ngOnInit() {
+    this.restService.isAuthorized().subscribe();
     // eslint-disable-next-line no-magic-numbers
     this.isMainPage = this.router.url.split('/').length === 2;
     this.router$ = this.router.events.subscribe(event => {
@@ -43,10 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
     });
-    this.restService.isAuthorized().subscribe(res => {
-      this.isLogin = res.status === 'success';
-      this.cdr.markForCheck();
-    });
+    this.userState$ = this.restService.userState$;
   }
 
   public ngOnDestroy() {
@@ -59,23 +60,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService
       .open(LoginDialogComponent, { centered: true })
       .dismissed.subscribe(res => {
-        this.restService.isAuthorized().subscribe(res => {
-          this.isLogin = res.status === 'success';
-          this.cdr.markForCheck();
-        });
+        this.restService.isAuthorized().subscribe();
       });
   }
 
   protected openMobilePanel() {
-    this.offCanvas.open(SidenavComponent);
+    const user = this.userState$.getValue();
+    if (user?.user_data) {
+      window.location.href = 'https://profile.angular.appla.cy/';
+    } else {
+      this.offCanvas.open(SidenavComponent);
+    }
   }
 
   protected logout() {
-    this.restService.logout().subscribe(res => {
-      if (res.status === 'success') {
-        this.isLogin = false;
-      }
-      this.cdr.markForCheck();
-    });
+    this.restService.logout().subscribe();
   }
 }

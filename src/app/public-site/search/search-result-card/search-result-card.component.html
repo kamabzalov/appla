@@ -4,7 +4,7 @@
       <ng-template carouselSlide>
         <button
           (click)="categoryClick(category.slug)"
-          class="button text-left"
+          class="button text-left preview-card__button"
           type="button">
           <img
             [alt]="category.name"
@@ -15,11 +15,7 @@
             applaErrorImage
             class="preview-card__image" />
           <div>
-            <p class="m-b-4px">{{ category.name }}</p>
-            <p class="preview-card__price m-b-4px">
-              {{ category.price_min | currency }} -
-              {{ category.price_max | currency }}
-            </p>
+            <p class="m-b-4px preview-card__name">{{ category.name }}</p>
             <p class="m-b-0px">{{ category._cnt }} (items)</p>
           </div>
         </button>
@@ -31,7 +27,7 @@
 <ng-template #productTmpl>
   <button
     (click)="goToProduct(product)"
-    class="button p-0px text-left"
+    class="button text-left preview-card__button"
     type="button">
     <img
       [alt]="product.name"
@@ -41,12 +37,14 @@
       "
       applaErrorImage
       class="preview-card__image" />
-    <p class="m-b-4px">
-      {{ product.name }}
-    </p>
-    <p class="preview-card__price m-b-4px">
-      {{ product.price_min | currency }}
-    </p>
+    <div class="preview-card__product">
+      <p class="m-b-4px preview-card__name">
+        {{ product.name }}
+      </p>
+      <p class="preview-card__price m-b-4px">
+        {{ product.price_min | currency }}
+      </p>
+    </div>
     <p class="m-b-4px">Category: {{ product.cat_name }}</p>
     <p class="m-b-0px">Brand: {{ product.manufacturer }}</p>
   </button>

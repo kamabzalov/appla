@@ -12,6 +12,18 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
       content: unset;
     }
 
+    &-products {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      color: vars.$white;
+      width: vars.$base-size * 5;
+      height: vars.$base-size * 5;
+      background: red;
+      text-align: center;
+      @include mixins.border-radius(50%);
+    }
+
     &-dropdown {
       min-width: 350px;
 

@@ -1,5 +1,8 @@
 @use 'vars';
 @use 'mixins';
+@use 'sass:map';
+
+$medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
 .store-offers {
   &__icon {
@@ -15,7 +18,6 @@
 
   &__link {
     color: inherit;
-    max-width: 80%;
   }
 
   &__image {
@@ -37,6 +39,9 @@
     text-transform: capitalize;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   &__price-title {

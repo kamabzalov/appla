@@ -11,6 +11,7 @@
 
     <input
       [(ngModel)]="searchQuery"
+      [focusFirst]="false"
       [inputFormatter]="formatter"
       [ngbTypeahead]="searchTypeAhead"
       [resultFormatter]="formatter"

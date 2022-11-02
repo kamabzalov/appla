@@ -5,7 +5,6 @@
 $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
 .header {
-
   @media (max-width: $medium-devices-breakpoint) {
     margin-bottom: vars.$base-size * 5;
   }
@@ -64,5 +63,25 @@ $medium-devices-breakpoint: map.get(vars.$media-breakpoints, 'medium');
 
   .profile-image {
     @include mixins.border-radius(50%);
+  }
+
+  &-profile {
+    @include mixins.border-radius(vars.$base-size * 4);
+
+    min-width: 300px;
+    border: none;
+
+    &__avatar {
+      width: vars.$base-size * 8;
+      height: vars.$base-size * 8;
+    }
+
+    &__header {
+      border-bottom: 1px solid vars.$lavender-gray;
+    }
+
+    &__cash {
+      color: vars.$honey-yellow;
+    }
   }
 }

@@ -1,11 +1,12 @@
 <div *ngIf="product$ | async as product" class="container">
   <div class="m-b-20px">
     <ng-container *ngFor="let breadcrumb of product.arr_cats">
-      <a routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}">{{
-        breadcrumb.name
-      }}</a>
+      <a
+        [innerHTML]="breadcrumb.name"
+        routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}"></a>
       /
     </ng-container>
+    {{ product.product.name }}
   </div>
   <section class="product card-content m-b-20px">
     <div class="row m-b-16px">
@@ -13,14 +14,24 @@
         <div class="row">
           <div class="column-medium-5 column-12">
             <lib-ngx-image-zoom
+              *ngIf="mainImage; else defaultImage"
               [fullImage]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_800/' +
-                mainPage
+                mainImage
               "
               [thumbImage]="
                 'https://storage.googleapis.com/images-appla/production/thumbs_400/' +
-                mainPage
+                mainImage
               "></lib-ngx-image-zoom>
+            <ng-template #defaultImage>
+              <lib-ngx-image-zoom
+                [fullImage]="
+                  'https://storage.googleapis.com/images-appla/products/no_image400.png'
+                "
+                [thumbImage]="
+                  'https://storage.googleapis.com/images-appla/products/no_image400.png'
+                "></lib-ngx-image-zoom>
+            </ng-template>
             <div class="product__additional-images m-t-20px">
               <appla-additional-product-images
                 (changeActiveImage)="setActive($event)"
@@ -65,9 +76,24 @@
                   <b>{{ 'PRODUCT_PAGE.NEW' | translate }}</b>
                 </ng-container>
               </p>
-              <p class="product__status">
+              <p
+                *ngIf="
+                  (productVariant && productVariant.quantity) ||
+                  (!productVariant && product.product.qty)
+                "
+                class="product__status">
                 {{ 'PRODUCT_PAGE.IN_STOCK' | translate }}
               </p>
+
+              <ng-template
+                [ngIf]="
+                  (productVariant && !productVariant.quantity) ||
+                  !product.product.qty
+                ">
+                <p class="product__status of-stock">
+                  {{ 'PRODUCT_PAGE.OUT_OF_STOCK' | translate }}
+                </p>
+              </ng-template>
             </div>
 
             <div class="card-content product-order">
@@ -80,7 +106,7 @@
                   <ng-container>
                     <div class="display-flex align-items-center">
                       <select
-                        (change)="setVariant(productVariant)"
+                        (change)="setVariant()"
                         [(ngModel)]="productVariant"
                         class="form-control__input"
                         name="productVariant">
@@ -116,10 +142,13 @@
                         aria-label="Example text with button addon"
                         class="product-order-form__input control-group__field"
                         name="productQuantity"
+                        readonly
                         type="number" />
                     </div>
                     <button
-                      (click)="increaseQuantity(product.product.qty)"
+                      (click)="
+                        increaseQuantity(productVariant, product.product.qty)
+                      "
                       class="product-order-form__increase button button_orange">
                       <fa-icon [icon]="faPlus"></fa-icon>
                     </button>
@@ -132,7 +161,15 @@
                 </div>
                 <button
                   (click)="
-                    addToCart(productQuantity, product.product.product_id)
+                    addToCart(
+                      productQuantity,
+                      product.product.product_id,
+                      productVariant
+                    )
+                  "
+                  [disabled]="
+                    (productVariant && !productVariant.quantity) ||
+                    !productQuantity
                   "
                   class="w-50 button button_orange p-12px">
                   {{ 'PRODUCT_PAGE.ADD_TO_CART' | translate }}
@@ -156,7 +193,9 @@
                     product.product.weight_unit === 1 ? 'g' : 'kg'
                   }})
                 </p>
-                <p [innerHTML]="product.product.description"></p>
+                <p
+                  [innerHTML]="product.product.description"
+                  style="white-space: pre-wrap"></p>
               </div>
             </ng-template>
           </li>
@@ -180,6 +219,17 @@
               </div>
             </ng-template>
           </li>
+          <li ngbNavItem>
+            <a ngbNavLink>{{ 'PRODUCT_PAGE.SHIPPING' | translate }}</a>
+            <ng-template ngbNavContent>
+              <div class="p-16px">
+                <p>
+                  <strong>Delivery days:</strong>
+                  {{ product.product.delivery_days }}
+                </p>
+              </div>
+            </ng-template>
+          </li>
         </ul>
         <div [ngbNavOutlet]="nav"></div>
       </div>
@@ -195,11 +245,22 @@
     <div class="row align-items-center product-seller p-t-16px">
       <div class="col-md-6">
         <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
+          <img
+            [alt]="product.product.store_name"
+            [src]="
+              'https://storage.googleapis.com/images-appla/profile_picture/' +
+              product.product.store_avatar
+            "
+            class="product-seller__avatar m-r-8px" />
           <div class="display-flex flex-column">
             <span
-              ><a class="product-seller__link" href="#">{{
-                product.product.store_name
-              }}</a></span
+              ><a
+                class="product-seller__link"
+                href="https://angular.appla.cy/store/{{
+                  product.product.store_slug
+                }}"
+                >{{ product.product.store_name }}</a
+              ></span
             >
             <span><fa-icon [icon]="faStar"></fa-icon>(0 reviews)</span>
           </div>
@@ -207,7 +268,7 @@
       </div>
       <div class="col-md-6 text-end">
         <button
-          (click)="followStore(1, product.product.store_id)"
+          (click)="followStore(product.product.store_id)"
           class="product-follow">
           {{ 'PRODUCT_PAGE.FOLLOW' | translate }}
         </button>

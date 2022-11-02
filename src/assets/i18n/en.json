@@ -42,14 +42,14 @@
     "BEAUTY_AND_HEALTHCARE": "Beauty and healthcare",
     "PETS": "Pets",
     "KITCHEN_APPLIANCES": "Kitchen Appliances",
-    "SPORTS_AND_EXERCISE": "Sports and exercise",
+    "SPORTS_AND_EXERCISE": "Sports & exercise",
     "PERFUMES": "Perfumes",
     "MAKEUP": "Makeup",
     "JEWELLERY": "Jewellery",
     "TOYS": "Games and toys",
     "BACKPACKS": "Backpacks",
     "OFFICES": "Offices",
-    "PRINTERS": "Printers",
+    "PRINTERS": "Printers and Scanners",
     "ALL_IN_ONE": "All-in-One PCs & Workstations",
     "HAIR_STYLING": "Hair styling tools"
   },
@@ -81,16 +81,16 @@
     "CATEGORIES": "Categories",
     "CLOTHING": "Clothing",
     "COMPUTERS": "Computers & Peripherals",
-    "SPORT_NUTRITIONS": "Sport nutritions",
-    "PERSONAL_CARE": "Personal care tools",
+    "SPORT_NUTRITIONS": "Sport Nutritions",
+    "PERSONAL_CARE": "Personal Care Tools",
     "HOBBY": "Entertaiment & Hobby",
     "PET_CARE": "Care",
     "USEFUL_LINKS": "Useful links",
     "ABOUT_US": "About us",
     "CAREERS": "Careers",
-    "HELP": "Help and Contact",
-    "PRIVACY": "Privacy and Policy",
-    "TERMS": "Terms and Conditions",
+    "HELP": "Help & Contact",
+    "PRIVACY": "Privacy Policy",
+    "TERMS": "Terms & Conditions",
     "FAQ": "FAQ",
     "CONTACT_INFO": "Contact info",
     "TEL": "Tel.",
@@ -119,12 +119,21 @@
     "CATEGORIES_LABEL": "Categories",
     "ALL_CATEGORIES": "All categories",
     "FILTER_PRICE": "Price",
+    "SEARCH_IN_CATEGORY": "Search in category",
+    "SORTING_NEWEST": "Newest",
+    "AVAILABLE_IN": "Available in:",
+    "LOW_HIGH": "Price: Low to High",
+    "HIGH_LOW": "Price: High to Low",
     "SHOWING": "Showing",
     "SHOWING_ITEMS": "item(s)",
+    "SHOPS": "store(s)",
     "LOAD_MORE": "Load more"
   },
   "SEARCH-PAGE": {
-    "LOAD_MORE": "Load more"
+    "LOAD_MORE": "Load more",
+    "RESULTS_FOR": "Results for:",
+    "CATEGORIES": "Categories:",
+    "PRODUCTS": "Products:"
   },
   "REGISTER-PAGE": {
     "SIGN_UP": "Sign Up now",
@@ -149,6 +158,7 @@
     "CONDITION": "Condition",
     "NEW": "New",
     "IN_STOCK": "In Stock",
+    "OUT_OF_STOCK": "Out of stock",
     "ORDER_DETAILS": "Order details",
     "PRODUCT_VARIANTS": "Product variants",
     "QUANTITY": "Quantity",
@@ -158,6 +168,7 @@
     "DESCRIPTION": "Description",
     "SIMILAR_PRODUCTS": "Similar products",
     "FOLLOW": "Follow",
-    "SPECIFICATIONS": "Specifications"
+    "SPECIFICATIONS": "Specifications",
+    "SHIPPING": "Shipping information"
   }
 }

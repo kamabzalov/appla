@@ -32,10 +32,11 @@
         );
       }
 
-      &__input {
+      &__input[name='productQuantity'] {
         @include mixins.border-radius(0);
 
         outline: none;
+        text-align: center;
         border-top: vars.$alice-blue 1px solid;
         border-bottom: vars.$alice-blue 1px solid;
       }
@@ -65,6 +66,13 @@
       color: inherit;
       font-weight: bold;
       text-decoration: none;
+    }
+
+    &__avatar {
+      @include mixins.border-radius(50%);
+      width: vars.$base-size * 10;
+      height: vars.$base-size * 10;
+      border: 1px solid #ddd;
     }
   }
 
@@ -111,5 +119,9 @@
   &__status {
     color: vars.$american-green;
     font-weight: 600;
+
+    &.of-stock {
+      color: red;
+    }
   }
 }

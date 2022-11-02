@@ -29,11 +29,11 @@
           </a>
         </div>
         <div
-          class="column-12 column-medium-6 column-large-5 display-flex align-items-center">
+          class="column-12 column-medium-6 column-large-6 display-flex align-items-center">
           <appla-search-form></appla-search-form>
         </div>
         <div
-          class="column-12 column-medium-4 column-large-4 display-flex justify-content-space-around align-items-center">
+          class="column-12 column-medium-4 column-large-3 display-flex justify-content-space-around align-items-center">
           <appla-languages-dropdown></appla-languages-dropdown>
           <button
             (click)="openMobilePanel()"
@@ -44,7 +44,8 @@
           <appla-cart-widget></appla-cart-widget>
           <div
             class="header__user-actions display-none display-large-inline-flex">
-            <ng-container *ngIf="!isLogin; else profileMenu">
+            <ng-container
+              *ngIf="!(userState$ | async)?.user_data; else profileMenu">
               <button
                 (click)="openLoginModal()"
                 class="button button_transparent button_transparent_outline_orange m-r-8px">
@@ -66,9 +67,33 @@
                     src="/assets/images/profile/profile.png"
                     width="32" />
                 </button>
-                <div ngbDropdownMenu>
-                  <a ngbDropdownItem routerLink="./profile-page">Profile</a>
-                  <button (click)="logout()" ngbDropdownItem>Logout</button>
+                <div
+                  *ngIf="(userState$ | async)?.user_data as user_data"
+                  class="header-profile p-12px"
+                  ngbDropdownMenu>
+                  <div
+                    class="display-flex m-b-12px p-b-8px header-profile__header">
+                    <img
+                      [alt]="user_data.name"
+                      [src]="
+                        'https://storage.googleapis.com/images-appla/profile_picture/' +
+                        user_data.avatar
+                      "
+                      class="header-profile__avatar" />
+                    <span [innerHTML]="user_data.name" class="m-auto"></span>
+                  </div>
+                  <div
+                    *ngIf="user_data.is_merchant"
+                    class="display-flex header-profile__cash justify-content-space-between">
+                    <span>Appla cash</span>
+                    <span>{{ user_data.appla_cash }}</span>
+                  </div>
+                  <p class="m-b-0px">
+                    <a href="https://profile.angular.appla.cy/">My account</a>
+                  </p>
+                  <button (click)="logout()" class="button p-0px">
+                    Logout
+                  </button>
                 </div>
               </div>
             </ng-template>
@@ -79,7 +104,7 @@
         <div class="column-6 text-center">
           <a
             class="mobile-links__item mobile-links_blue display-block p-8px"
-            routerLink="./supersale"
+            href="https://angular.appla.cy/supersale"
             >Appla Super Sale</a
           >
         </div>
@@ -88,7 +113,7 @@
             class="mobile-links__item mobile-links_orange display-block p-8px"
             href="https://blog.appla.cy/merchants/register/"
             target="_blank"
-            >Join Us</a
+            >{{ 'HEADER.JOIN_US' | translate }}</a
           >
         </div>
       </div>

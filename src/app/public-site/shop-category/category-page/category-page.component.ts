@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { iconSet } from '@app/shared/utils/icons';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { LanguageService } from '@app/services/language/language.service';
+import { SeoService } from '@app/services/seo/seo.service';
 
 export interface Category {
   arr_cats: CategoryBreadcrumb[];
@@ -44,7 +46,7 @@ export interface CurrentCategory {
 }
 
 export interface ProductFilter {
-  filters: { [key: string]: string[] };
+  filters: { [key: string]: any };
 }
 
 interface ToLink {
@@ -59,21 +61,6 @@ interface CategoryBreadcrumb {
   parent_id: number;
   slug: string;
 }
-
-const SORTING = [
-  {
-    id: 'date_update_asc',
-    name: 'Newest',
-  },
-  {
-    id: 'price_asc',
-    name: 'Price: Low to High',
-  },
-  {
-    id: 'price_desc',
-    name: 'Price: High to Low',
-  },
-];
 
 @UntilDestroy()
 @Component({
@@ -90,13 +77,13 @@ export class CategoryPageComponent implements OnInit {
   protected maxPrice: number | null;
   protected searchInCategory: string;
   protected productFilters: any[] = [];
-  protected order: string = 'date_update_asc';
-  protected sorting = SORTING;
+  protected order: string = 'default';
   protected categoryData$: Observable<Category | null>;
   protected categoryProducts$: Observable<CategoryProducts | null>;
   protected filters$: Observable<ProductFilter | null>;
-  protected appLang: string;
   protected loading: boolean = false;
+  protected appLang: string;
+  private langId: number;
   // eslint-disable-next-line no-magic-numbers
   private offset = 0;
   // eslint-disable-next-line no-magic-numbers
@@ -108,10 +95,17 @@ export class CategoryPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private restService: RestService,
-    private localizeRouterService: LocalizeRouterService
+    private localizeRouterService: LocalizeRouterService,
+    private languageService: LanguageService,
+    private seoService: SeoService
   ) {}
 
   public ngOnInit(): void {
+    this.languageService.currentAppLang$.asObservable().subscribe(res => {
+      if (res?.id) {
+        this.langId = res.id;
+      }
+    });
     this.appLang = this.localizeRouterService.parser.currentLang;
     this.categoryProducts$ = this.categoryProductsSubject$
       .asObservable()
@@ -119,13 +113,29 @@ export class CategoryPageComponent implements OnInit {
     this.route.url.pipe(untilDestroyed(this)).subscribe(res => {
       if (res.length && res[1]) {
         this.slug = res[1].path;
+        this.order = 'default';
+        this.searchInCategory = '';
       }
       this.offset = 0;
       this.minPrice = null;
       this.maxPrice = null;
-      this.categoryData$ = this.restService.getCategory(this.slug);
-      this.getCategoryProducts(this.limit, this.offset, this.order, this.slug);
-      this.getProductFilters(this.slug);
+      this.restService.isAuthorized().subscribe(res => {
+        this.langId = res.data.lang_id;
+        if (res.data) {
+          this.categoryData$ = this.restService.getCategory(
+            this.langId,
+            this.slug
+          );
+          this.getCategoryProducts(
+            this.limit,
+            this.offset,
+            this.order,
+            this.slug
+          );
+          this.getProductFilters(this.slug);
+          this.getCategorySeo(this.slug);
+        }
+      });
     });
   }
 
@@ -166,7 +176,7 @@ export class CategoryPageComponent implements OnInit {
   protected handleFilter(
     $event: Event,
     filterKey: string,
-    filterValue: string
+    filterValue: unknown
   ) {
     const checkedFilter = ($event.target as HTMLInputElement).checked;
     const filter = { filterKey, filterValue: [filterValue] };
@@ -193,7 +203,14 @@ export class CategoryPageComponent implements OnInit {
     this.offset = this.offset + this.limit;
     this.loading = true;
     this.restService
-      .getAllProductCategories(this.limit, this.offset, this.order, this.slug)
+      .getAllProductCategories(
+        this.limit,
+        this.offset,
+        this.order,
+        this.slug,
+        this.minPrice,
+        this.maxPrice
+      )
       .subscribe(res => {
         const currentCategories = this.categoryProductsSubject$.getValue();
         if (currentCategories) {
@@ -225,12 +242,20 @@ export class CategoryPageComponent implements OnInit {
         minPrice,
         maxPrice,
         searchQuery,
-        filters
+        filters,
+        this.langId
       )
       .subscribe(res => this.categoryProductsSubject$.next(res));
   }
 
   private getProductFilters(slug: string) {
-    this.filters$ = this.restService.getProductFilters(slug);
+    this.filters$ = this.restService.getProductFilters(this.langId, slug);
+  }
+
+  private getCategorySeo(slug: string) {
+    this.restService.getCategorySeo(slug).subscribe(res => {
+      this.seoService.setTitle(res?.title);
+      this.seoService.setMeta('description', res?.description);
+    });
   }
 }

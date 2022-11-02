@@ -71,7 +71,7 @@
   },
   "FOOTER": {
     "CUSTOMER_SUPPORT": "Служба поддержки",
-    "CUSTOMER_SUPPORT_LABEL": "Комплексная поддержка клиентов и поставщиков",
+    "CUSTOMER_SUPPORT_DESC": "Комплексная поддержка клиентов и поставщиков",
     "ONLINE_PAYMENTS": "Онлайн платеж",
     "ONLINE_PAYMENTS_DESC": "Удобный и быстрый процесс покупки",
     "DELIVERY": "Быстрая доставка",
@@ -117,14 +117,23 @@
   },
   "CATEGORY-PAGE": {
     "CATEGORIES_LABEL": "Категории",
-    "ALL_CATEGORIES": "All categories",
+    "ALL_CATEGORIES": "Все категории",
     "FILTER_PRICE": "Цена",
     "SHOWING": "Отображено",
+    "AVAILABLE_IN": "Доступно в:",
+    "SEARCH_IN_CATEGORY": "Поиск по категории",
+    "SORTING_NEWEST": "Сначала новые",
+    "LOW_HIGH": "Цена: От низкой к высокой",
+    "HIGH_LOW": "Цена: От высокой к низкой",
+    "SHOPS": "магазине(-ах)",
     "SHOWING_ITEMS": "штук",
     "LOAD_MORE": "Загрузить больше"
   },
   "SEARCH-PAGE": {
-    "LOAD_MORE": "Загрузить больше"
+    "LOAD_MORE": "Загрузить больше",
+    "RESULTS_FOR": "Результаты:",
+    "CATEGORIES": "Категории:",
+    "PRODUCTS": "Продукты:"
   },
   "REGISTER-PAGE": {
     "SIGN_UP": "Зарегистрируйтесь сейчас",
@@ -149,6 +158,7 @@
     "CONDITION": "Статус",
     "NEW": "Новый",
     "IN_STOCK": "В наличии",
+    "OUT_OF_STOCK": "Нет в наличии",
     "ORDER_DETAILS": "Детали",
     "PRODUCT_VARIANTS": "Варианты",
     "QUANTITY": "Количество",
@@ -157,7 +167,8 @@
     "WEIGHT": "Вес",
     "DESCRIPTION": "Описание",
     "SIMILAR_PRODUCTS": "Похожие товары",
-    "FOLLOW": "Следовать",
-    "SPECIFICATIONS": "Характеристики"
+    "FOLLOW": "Подписаться",
+    "SPECIFICATIONS": "Характеристики",
+    "SHIPPING": "Доставка"
   }
 }

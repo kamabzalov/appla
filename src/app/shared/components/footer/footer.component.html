@@ -79,7 +79,7 @@
           <ul class="list-unstyled footer-menu__list">
             <li>
               <a
-                [routerLink]="['./category/list/clothing-6082']"
+                [routerLink]="['./category/list/clothing-10002']"
                 class="footer-menu__list-item d-inline-block m-b-12px"
                 >{{ 'FOOTER.CLOTHING' | translate }}</a
               >
@@ -194,7 +194,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-md-2 col-6">
+        <div *ngIf="(isLogin$ | async) === false" class="col-md-2 col-6">
           <div
             class="display-none display-medium-flex flex-column login-actions">
             <button

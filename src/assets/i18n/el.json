@@ -71,7 +71,7 @@
   },
   "FOOTER": {
     "CUSTOMER_SUPPORT": "Υποστήριξη πελατών",
-    "CUSTOMER_SUPPORT_LABEL": "Πλήρης υποστήριξη για πελάτες και προμηθευτές",
+    "CUSTOMER_SUPPORT_DESC": "Πλήρης υποστήριξη για πελάτες και προμηθευτές",
     "ONLINE_PAYMENTS": "Διαδικτυακή πληρωμή",
     "ONLINE_PAYMENTS_DESC": "Φιλική και γρήγορη διαδικασία αγοράς",
     "DELIVERY": "Γρήγορη διανομή",
@@ -111,6 +111,7 @@
     "COMPARE_PRICES": "Συγκρίνετε τιμές",
     "RECOMMENDED_OFFERS": "Προτεινόμενες Προσφορές",
     "IN_STOCK": "Σε απόθεμα",
+    "OUT_OF_STOCK": "Εκτός αποθέματος",
     "SHIPPING": "Δεν περιλαμβάνονται τα έξοδα αποστολής",
     "VIEW_OFFER": "Προβολή προϊόντος Προσφορά",
     "SIMILAR_PRODUCTS": "Παρόμοια Προϊόντα"
@@ -119,12 +120,21 @@
     "CATEGORIES_LABEL": "ΚΑΤΗΓΟΡΙΕΣ",
     "ALL_CATEGORIES": "Όλες οι κατηγορίες",
     "FILTER_PRICE": "ΤΙΜΗ",
+    "SEARCH_IN_CATEGORY": "Αναζήτηση στην κατηγορία",
+    "SORTING_NEWEST": "Νεότερο",
+    "AVAILABLE_IN": "Διαθέσιμο σε:",
+    "LOW_HIGH": "Τιμή: Χαμηλή προς Υψηλή",
+    "HIGH_LOW": "Τιμή: Υψηλή έως χαμηλή",
     "SHOWING": "Εμφανίζονται",
+    "SHOPS": "Καταστήματα",
     "SHOWING_ITEMS": "Προϊόντα",
     "LOAD_MORE": "Φόρτωσε περισσότερα"
   },
   "SEARCH-PAGE": {
-    "LOAD_MORE": "Φόρτωσε περισσότερα"
+    "LOAD_MORE": "Φόρτωσε περισσότερα",
+    "RESULTS_FOR": "Αποτελέσματα για:",
+    "CATEGORIES": "ΚΑΤΗΓΟΡΙΕΣ:",
+    "PRODUCTS": "Προϊόντα:"
   },
   "REGISTER-PAGE": {
     "SIGN_UP": "Εγγραφείτε τώρα!",
@@ -149,6 +159,7 @@
     "CONDITION": "Κατάσταση",
     "NEW": "Καινούριο",
     "IN_STOCK": "Σε Απόθεμα",
+    "OUT_OF_STOCK": "ΕΚΤΟΣ_ΣΤΟΚ",
     "ORDER_DETAILS": "Στοιχεία Παραγγελίας",
     "PRODUCT_VARIANTS": "Παραλλαγές προϊόντων",
     "QUANTITY": "Ποσότητα",
@@ -158,6 +169,7 @@
     "DESCRIPTION": "Περιγραφή",
     "SIMILAR_PRODUCTS": "Παρόμοια Προϊόντα",
     "FOLLOW": "Ακολουθηστε",
-    "SPECIFICATIONS": "Προδιαγραφές"
+    "SPECIFICATIONS": "Προδιαγραφές",
+    "SHIPPING": "Πληροφορίες αποστολής"
   }
 }

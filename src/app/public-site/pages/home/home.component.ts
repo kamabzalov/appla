@@ -4,7 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { distinctUntilChanged, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductInTile } from '@app/public-site/product-category-tile/product-category-tile.component';
 import { RestService } from '@app/services/rest/rest.service';
 import { StoreOffers } from '@app/public-site/store-offers/store-offers.component';
@@ -13,6 +13,8 @@ import { Trend } from '@app/public-site/now-trending/now-trending.component';
 import { Slide } from '@app/shared/components/slider/slider.component';
 import { LanguageService } from '@app/services/language/language.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TranslateService } from '@ngx-translate/core';
+import { SeoService } from '@app/services/seo/seo.service';
 
 @UntilDestroy()
 @Component({
@@ -34,18 +36,30 @@ export class HomeComponent implements OnInit {
   constructor(
     private restService: RestService,
     private languageService: LanguageService,
-    private cdr: ChangeDetectorRef
+    private translateService: TranslateService,
+    private cdr: ChangeDetectorRef,
+    private seoService: SeoService
   ) {}
 
   public ngOnInit(): void {
+    this.seoService.setMeta(
+      'description',
+      'Appla - the leading online shopping platform in Cyprus. Compare prices and discounts on our marketplace from hundreds of shops.'
+    );
     this.languageService.currentAppLang$
       .asObservable()
-      .pipe(untilDestroyed(this), distinctUntilChanged())
+      .pipe(untilDestroyed(this))
       .subscribe(res => {
         if (res) {
           this.getPageData();
           this.cdr.markForCheck();
         }
+      });
+    this.restService.userState$
+      .asObservable()
+      .pipe(untilDestroyed(this))
+      .subscribe(_ => {
+        this.getRecentlyViewed();
       });
   }
 

@@ -19,6 +19,12 @@
 
   &__product-title {
     font-size: 12px;
+    height: vars.$base-size * 7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   &__product-price {

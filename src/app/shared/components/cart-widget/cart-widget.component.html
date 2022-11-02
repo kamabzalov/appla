@@ -1,12 +1,32 @@
-<div ngbDropdown class="cart" placement="bottom-end">
-  <button
-    class="button button_icon button_orange display-flex align-items-center justify-content-center cart"
-    type="button"
-    ngbDropdownToggle>
-    <fa-icon [icon]="faCartShopping"></fa-icon>
-  </button>
-  <div ngbDropdownMenu class="p-12px cart-dropdown">
-    <img class="w-100" src="assets/images/cart/empty-cart.svg" alt="" />
-    <p>Empty cart</p>
+<div
+  *ngIf="cart$ | async as cart"
+  class="cart"
+  ngbDropdown
+  placement="bottom-end">
+  <div class="display-inline-flex position-relative">
+    <span *ngIf="cart.cart" class="cart-products">{{ cart.cart.length }}</span>
+    <button
+      class="button button_icon button_orange display-flex align-items-center justify-content-center cart"
+      ngbDropdownToggle
+      type="button">
+      <fa-icon [icon]="faCartShopping"></fa-icon>
+    </button>
+  </div>
+  <div class="p-12px cart-dropdown" ngbDropdownMenu>
+    <ng-container *ngIf="cart.cart; else emptyCart">
+      <ul class="list-no-bullets p-0px m-0px">
+        <li
+          (click)="goToCart()"
+          *ngFor="let product of cart.cart"
+          class="m-b-8px display-flex justify-content-space-between">
+          <span>{{ product.name }}</span>
+          <strong>{{ product.price | currency }}</strong>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #emptyCart>
+      <img alt="Appla" class="w-100" src="assets/images/cart/empty-cart.svg" />
+      <p>Empty cart</p>
+    </ng-template>
   </div>
 </div>

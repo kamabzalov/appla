@@ -127,7 +127,11 @@
                   <div class="row justify-content-end align-items-center">
                     <div class="column-12 column-medium-4">
                       <p class="fw-bolder">
-                        <a href="">{{ store.name }}</a>
+                        <a
+                          [innerHTML]="store.name"
+                          href="https://angular.appla.cy/store/{{
+                            store.store_slug
+                          }}"></a>
                       </p>
                       <p>
                         {{ offer.master_product_info.name }}
@@ -156,12 +160,16 @@
                         {{ store.price | currency }}
                       </p>
                       <a
+                        [routerLink]="[
+                          '/',
+                          appLang,
+                          'product',
+                          store.store_slug,
+                          store.product_slug
+                        ]"
                         class="button button_orange"
-                        routerLink="/{{ appLang }}/product/{{
-                          store.store_slug
-                        }}/{{ store.product_slug }}"
-                        >{{ 'COMPARE-PRICES-PAGE.VIEW_OFFER' | translate }}</a
-                      >
+                        >{{ 'COMPARE-PRICES-PAGE.VIEW_OFFER' | translate }}
+                      </a>
                     </div>
                   </div>
                 </div>

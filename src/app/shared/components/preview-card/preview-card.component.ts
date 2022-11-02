@@ -1,6 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CategoryProduct } from '@app/public-site/shop-category/category-page/category-page.component';
-import { LanguageService } from '@app/services/language/language.service';
+import {
+  AppLanguages,
+  LanguageService,
+} from '@app/services/language/language.service';
+import { RestService } from '@app/services/rest/rest.service';
 
 @Component({
   selector: 'appla-preview-card',
@@ -13,7 +17,16 @@ export class PreviewCardComponent {
   protected productLink: string;
   protected appLanguage: string;
 
-  constructor(private languageService: LanguageService) {
-    this.appLanguage = languageService.currentAppLang$.getValue()!.code;
+  constructor(
+    private languageService: LanguageService,
+    private restService: RestService
+  ) {
+    this.restService.userState$.asObservable().subscribe(res => {
+      if (res) {
+        this.appLanguage = AppLanguages.find(
+          lang => lang.id === res.lang_id
+        )!.code;
+      }
+    });
   }
 }
