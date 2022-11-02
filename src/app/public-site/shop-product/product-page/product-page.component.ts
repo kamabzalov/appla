@@ -105,6 +105,12 @@ interface ProductDetails {
   store_avatar: string;
   store_city: number;
   product_variant_id: number;
+  bpoints? : any;
+  reas2buy? : any;
+  review? : any;
+  video? : any;
+  delivery_days? : number;
+ 
 }
 
 interface ProductCategory {
@@ -150,6 +156,8 @@ export class ProductPageComponent implements OnInit {
   protected mainImage: string;
   private productPicture: string;
 
+  product: any;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -171,7 +179,8 @@ export class ProductPageComponent implements OnInit {
       untilDestroyed(this),
       switchMap(url => {
         return this.getProductData(url[0].path, url[1].path);
-      })
+      }),
+      tap((x) => this.product = x)
     );
   }
 
@@ -302,5 +311,14 @@ export class ProductPageComponent implements OnInit {
       })
     } 
 
+
+  }
+
+
+  protected Strtoarray(str :  string) {
+    const result  =str.slice(1).split(',')
+
+   return result
+  
   }
 }
