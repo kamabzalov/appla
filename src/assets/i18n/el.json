@@ -170,10 +170,8 @@
     "SIMILAR_PRODUCTS": "Παρόμοια Προϊόντα",
     "FOLLOW": "Ακολουθηστε",
     "SPECIFICATIONS": "Προδιαγραφές",
-
+    "POINTS" : "Σημεία",
     "VIDEO" : "Video",
-
-    "SHIPPING": "Πληροφορίες αποστολής"
-
+   "SHIPPING": "Πληροφορίες αποστολής"
   }
 }

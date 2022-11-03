@@ -145,11 +145,11 @@
       </div>
     </div>
 
-    <div Scrollfixed class="row pt-10 pt-10__inline product__categoryrow">
-      <div class="col-md-9 col-sm-12 col-sm-12__inline">
-        <ul id="myTab" class="container nav nav-tabs ">
+    <div  class="row pt-10 pt-10__inline">
+      <div  Scrollfixed class="col-md-12 col-sm-12 col-sm-12__inline product__categoryrow">
+        <ul id="myTab" class="container nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link scrollLink {{active === 'desc' ? 'active' : ''}}" (click)="scrollTo('desc')">
+            <a class="nav-link scrollLink {{active === 'desc' ? 'active' : ''}}"  href="#desc" >
               {{ 'PRODUCT_PAGE.DESCRIPTION' | translate }}
             </a>
           </li>
@@ -158,30 +158,9 @@
               {{ 'PRODUCT_PAGE.SPECIFICATIONS' | translate }}
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link scrollLink {{active === 'similar' ? 'active' : ''}}" (click)="scrollTo('similar')">
-              {{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link scrollLink {{active === 'shipping' ? 'active' : ''}}" (click)="scrollTo('shipping')">
-              {{ 'PRODUCT_PAGE.SHIPPING' | translate }}
-            </a>
-          </li>
-          <li class="nav-item" *ngIf="product.product.video && product.product.video.length > 3">
-            <a class="nav-link scrollLink {{active === 'video' ? 'active' : ''}}" (click)="scrollTo('video')">
-              {{ 'PRODUCT_PAGE.VIDEO' | translate }}
-            </a>
-          </li>
           <li class="nav-item" *ngIf="product.product.bpoints && product.product.bpoints.length > 3">
             <a class="nav-link scrollLink {{active === 'bpoints' ? 'active' : ''}}" (click)="scrollTo('bpoints')">
-              {{ 'PRODUCT_PAGE.BPOINTS' | translate }}
-            </a>
-          </li>
-
-          <li class="nav-item" *ngIf="product.product.review && product.product?.review.length > 3">
-            <a class="nav-link scrollLink {{active === 'review' ? 'active' : ''}}" (click)="scrollTo('review')">
-              {{ 'PRODUCT_PAGE.REVIEW' | translate }}
+              {{ 'PRODUCT_PAGE.POINTS' | translate }}
             </a>
           </li>
           <li class="nav-item" *ngIf="product.product.reas2buy && product.product?.reas2buy.length > 3">
@@ -189,7 +168,28 @@
               {{ 'PRODUCT_PAGE.REASON' | translate }}
             </a>
           </li>
-
+          <li class="nav-item" *ngIf="product.product.delivery_days && product.product.delivery_days > 0">
+            <a class="nav-link scrollLink {{active === 'shipping' ? 'active' : ''}}" (click)="scrollTo('shipping')">
+              {{ 'PRODUCT_PAGE.SHIPPING' | translate }}
+            </a>
+          </li>
+         
+          <li class="nav-item" *ngIf="product.product.review && product.product?.review.length > 3">
+            <a class="nav-link scrollLink {{active === 'review' ? 'active' : ''}}" (click)="scrollTo('review')">
+              {{ 'PRODUCT_PAGE.REVIEW' | translate }}
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="product.product.video && product.product.video.length > 3">
+            <a class="nav-link scrollLink {{active === 'video' ? 'active' : ''}}" (click)="scrollTo('video')">
+              {{ 'PRODUCT_PAGE.VIDEO' | translate }}
+            </a>
+          </li>
+                  <li class="nav-item">
+            <a class="nav-link scrollLink {{active === 'similar' ? 'active' : ''}}" (click)="scrollTo('similar')">
+              {{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}
+            </a>
+          </li>
+          
         </ul>
       </div>
     </div>
@@ -204,7 +204,8 @@
       </p>
       <p [innerHTML]="product.product.description" style="white-space: pre-wrap"></p>
       <ul *ngIf="product.product?.bpoints && product.product?.bpoints.length > 3" id="bpoints">
-        <h4>Bullet Points</h4>
+
+        <h4>{{'PRODUCTS.POINTS' | translate}}</h4>
         <div *ngFor="let bpoints of Strtoarray(product.product?.bpoints)">
           <li>
             <span class="product-reas2buy">
@@ -235,6 +236,47 @@
       </div>
     </div>
 
+    <div *ngIf="product.product?.reas2buy && product.product?.reas2buy.length > 3" id="reas2buy">
+      <h4>Reason to Buy</h4>
+      <div *ngFor="let reason of Strtoarray(product.product?.review)">
+        <p>
+          <span class="product-reas2buy">
+            {{reason}}
+          </span>
+        </p>
+      </div>
+
+    </div>
+  
+    <section id="shipping" name="shipping" *ngIf="product.product.delivery_days && product.product.delivery_days > 0">
+      <h2 class="title-text-technical-specifications similar-products__title">Shipping Information</h2>
+      <div class="tab-pane fade show" id="delivery" role="tabpanel">
+        <p>Usually {{product.product.delivery_days }} working days</p>
+      </div>
+    </section>
+    <div *ngIf="product.product.review && product.product?.review.length > 3" id="review">
+      <h4>Review</h4>
+      <div *ngFor="let rev of Strtoarray(product.product?.review)">
+        <p>
+          <span class="product-reas2buy">
+            {{rev}}
+          </span>
+        </p>
+      </div>
+
+    </div>
+    <section id="video" name="video" *ngIf="product.product.video && product.product.video.length > 3">
+      <iframe width="420" height="315" src="https://www.youtube.com/watch?v=Wq2Idwv38rE">
+      </iframe>
+    </section>
+
+    
+
+
+
+   
+
+
     <div class="row mt-5" id="similar">
       <div class="col-12">
         <h5>{{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}</h5>
@@ -243,18 +285,7 @@
         </div>
       </div>
     </div>
-    <section id="shipping" name="shipping" *ngIf="!!product.product.delivery_days">
-      <h2 class="title-text-technical-specifications similar-products__title">Shipping Information</h2>
-      <div class="tab-pane fade show" id="delivery" role="tabpanel">
-        <p>Usually {{product.product.delivery_days }} working days</p>
-      </div>
-    </section>
-    <section id="video" name="video" *ngIf="product.product.video && product.product.video.length > 3">
-      <iframe width="420" height="315" src="https://www.youtube.com/watch?v=Wq2Idwv38rE">
-      </iframe>
-    </section>
-
-    <div class="row align-items-center product-seller p-t-16px mb-5">
+<div class="row align-items-center product-seller p-t-16px mb-5">
       <div class="col-md-6">
         <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
           <img [alt]="product.product.store_name" [src]="
@@ -278,39 +309,8 @@
         </button>
       </div>
     </div>
-
-
-
-    <div *ngIf="product.product.review && product.product?.review.length > 3" id="review">
-      <h4>Review</h4>
-      <div *ngFor="let rev of Strtoarray(product.product?.review)">
-        <p>
-          <span class="product-reas2buy">
-            {{rev}}
-          </span>
-        </p>
-      </div>
-
-    </div>
-
-    <div *ngIf="product.product?.reas2buy && product.product?.reas2buy.length > 3" id="reas2buy">
-      <h4>Reason to Buy</h4>
-      <div *ngFor="let reason of Strtoarray(product.product?.review)">
-        <p>
-          <span class="product-reas2buy">
-            {{reason}}
-          </span>
-        </p>
-      </div>
-
-    </div>
-
- 
-
-
-  </section>
+</section>
 </div>
-
 <section>
   <div class="container">
     <div class="row">

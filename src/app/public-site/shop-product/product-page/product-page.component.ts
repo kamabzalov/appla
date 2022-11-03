@@ -309,7 +309,11 @@ export class ProductPageComponent implements OnInit {
         behavior: 'smooth',
         block: 'start',
         inline: "start"
-      })
+      });
+    // window.scroll(0 , element.offsetTop - 35)
+    const y = element.getBoundingClientRect().top + window.pageYOffset - 10;
+
+    window.scrollTo({top: y, behavior: 'smooth'});
     } 
 
 
