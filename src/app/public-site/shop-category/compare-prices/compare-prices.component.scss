@@ -24,6 +24,7 @@
     background: vars.$honey-yellow;
     color: vars.$white;
     cursor: pointer;
+    max-width: 100px;
 
     &__icon {
       @include mixins.border-radius(50%);

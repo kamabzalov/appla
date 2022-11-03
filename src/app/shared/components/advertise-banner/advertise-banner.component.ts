@@ -5,9 +5,13 @@ import {
   Inject,
   OnInit,
 } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {
+  DomSanitizer,
+  SafeHtml,
+  SafeResourceUrl,
+} from '@angular/platform-browser';
 
 @Component({
   selector: 'appla-advertise-banner',
@@ -15,7 +19,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertiseBannerComponent implements OnInit {
-  protected res: string;
+  protected res: SafeHtml;
   protected url: string = 'https://angular.io/api/router/RouterLink';
   protected urlSafe: SafeResourceUrl;
 
@@ -28,18 +32,15 @@ export class AdvertiseBannerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-    const headers = new HttpHeaders().set(
-      'Content-Type',
-      'text/plain; charset=utf-8'
-    );
 
     this.http
       .post<any>('https://advertisement.appla.cy/ser.php?t=AADIV&f=37', null, {
         responseType: 'text' as 'json',
       })
       .subscribe(res => {
-        // this.insertScript(res);
-        // this.res = '<script>' + res + '</script>';
+        this.res = this.sanitizer.bypassSecurityTrustHtml(
+          '<script>' + res + '</script>'
+        );
         this.cdr.markForCheck();
       });
   }
