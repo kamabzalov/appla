@@ -169,10 +169,6 @@
     "SIMILAR_PRODUCTS": "Similar products",
     "FOLLOW": "Follow",
     "SPECIFICATIONS": "Specifications",
-    "REVIEW" :  "Review",
-    "SHIPPING" : "Shipping Information",
-    "BPOINTS" : "Bold Points",
-    "REASON" :  "Reason to buy",
-    "VIDEO" : "Video"
+    "SHIPPING": "Shipping information"
   }
 }
