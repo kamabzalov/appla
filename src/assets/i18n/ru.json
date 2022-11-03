@@ -169,8 +169,11 @@
     "SIMILAR_PRODUCTS": "Похожие товары",
     "FOLLOW": "Подписаться",
     "SPECIFICATIONS": "Характеристики",
+<<<<<<< HEAD
     "POINTS" : "Точки",
     "VIDEO" : "видео",
+=======
+>>>>>>> origin
     "SHIPPING": "Доставка"
   }
 }

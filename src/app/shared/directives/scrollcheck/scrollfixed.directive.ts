@@ -1,15 +1,11 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[Scrollfixed]'
-  
+  selector: '[Scrollfixed]',
 })
 export class ScrollfixedDirective {
-
-  constructor(private el: ElementRef) {
-    
-   }
-   @HostListener("window:scroll", []) onWindowScroll() {
+  constructor(private el: ElementRef) {}
+  @HostListener('window:scroll', []) onWindowScroll() {
     // do some stuff here when the window is scrolled
    if(window.innerWidth >  991 && window.innerHeight > 0 ) {
     this.getOffset(this.el)
@@ -42,4 +38,5 @@ export class ScrollfixedDirective {
       }
     
   }
-} 
+ 
+}

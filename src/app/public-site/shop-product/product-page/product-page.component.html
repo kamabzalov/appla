@@ -1,5 +1,4 @@
 <div *ngIf="product$ | async as product" class="container">
-
   <div class="m-b-20px">
     <ng-container *ngFor="let breadcrumb of product.arr_cats">
       <a [innerHTML]="breadcrumb.name" routerLink="/{{ appLang }}/category/list/{{ breadcrumb.slug }}"></a>
@@ -145,11 +144,11 @@
       </div>
     </div>
 
-    <div  class="row pt-10 pt-10__inline">
-      <div  Scrollfixed class="col-md-12 col-sm-12 col-sm-12__inline product__categoryrow">
+    <div class="row pt-10 pt-10__inline">
+      <div Scrollfixed class="col-md-12 col-sm-12 col-sm-12__inline product__categoryrow">
         <ul id="myTab" class="container nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link scrollLink {{active === 'desc' ? 'active' : ''}}"  href="#desc" >
+            <a class="nav-link scrollLink {{active === 'desc' ? 'active' : ''}}" href="#desc">
               {{ 'PRODUCT_PAGE.DESCRIPTION' | translate }}
             </a>
           </li>
@@ -163,7 +162,7 @@
               {{ 'PRODUCT_PAGE.POINTS' | translate }}
             </a>
           </li>
-          <li class="nav-item" *ngIf="product.product.reas2buy && product.product?.reas2buy.length > 3">
+          <li class="nav-item" *ngIf="product.product.reas2buy && product.product.reas2buy.length > 3">
             <a class="nav-link scrollLink {{active === 'reas2buy' ? 'active' : ''}}" (click)="scrollTo('reas2buy')">
               {{ 'PRODUCT_PAGE.REASON' | translate }}
             </a>
@@ -173,8 +172,8 @@
               {{ 'PRODUCT_PAGE.SHIPPING' | translate }}
             </a>
           </li>
-         
-          <li class="nav-item" *ngIf="product.product.review && product.product?.review.length > 3">
+
+          <li class="nav-item" *ngIf="product.product.review && product.product.review.length > 3">
             <a class="nav-link scrollLink {{active === 'review' ? 'active' : ''}}" (click)="scrollTo('review')">
               {{ 'PRODUCT_PAGE.REVIEW' | translate }}
             </a>
@@ -184,12 +183,12 @@
               {{ 'PRODUCT_PAGE.VIDEO' | translate }}
             </a>
           </li>
-                  <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link scrollLink {{active === 'similar' ? 'active' : ''}}" (click)="scrollTo('similar')">
               {{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}
             </a>
           </li>
-          
+
         </ul>
       </div>
     </div>
@@ -203,17 +202,17 @@
         }})
       </p>
       <p [innerHTML]="product.product.description" style="white-space: pre-wrap"></p>
-      <ul *ngIf="product.product?.bpoints && product.product?.bpoints.length > 3" id="bpoints">
+      <ul *ngIf="product.product.bpoints && product.product.bpoints.length > 3" id="bpoints">
 
         <h4>{{'PRODUCTS.POINTS' | translate}}</h4>
-        <div *ngFor="let bpoints of Strtoarray(product.product?.bpoints)">
+        <div *ngFor="let bpoints of Strtoarray(product.product.bpoints)">
           <li>
             <span class="product-reas2buy">
               {{bpoints}}
             </span>
           </li>
         </div>
-  
+
       </ul>
     </div>
     <div id="spec">
@@ -232,13 +231,14 @@
             </ng-container>
           </div>
         </div>
-
       </div>
     </div>
 
-    <div *ngIf="product.product?.reas2buy && product.product?.reas2buy.length > 3" id="reas2buy">
+
+
+    <div *ngIf="product.product.reas2buy && product.product.reas2buy.length > 3" id="reas2buy">
       <h4>Reason to Buy</h4>
-      <div *ngFor="let reason of Strtoarray(product.product?.review)">
+      <div *ngFor="let reason of Strtoarray(product.product.reas2buy)">
         <p>
           <span class="product-reas2buy">
             {{reason}}
@@ -247,16 +247,16 @@
       </div>
 
     </div>
-  
+
     <section id="shipping" name="shipping" *ngIf="product.product.delivery_days && product.product.delivery_days > 0">
       <h2 class="title-text-technical-specifications similar-products__title">Shipping Information</h2>
       <div class="tab-pane fade show" id="delivery" role="tabpanel">
         <p>Usually {{product.product.delivery_days }} working days</p>
       </div>
     </section>
-    <div *ngIf="product.product.review && product.product?.review.length > 3" id="review">
+    <div *ngIf="product.product.review && product.product.review.length > 3" id="review">
       <h4>Review</h4>
-      <div *ngFor="let rev of Strtoarray(product.product?.review)">
+      <div *ngFor="let rev of Strtoarray(product.product.review)">
         <p>
           <span class="product-reas2buy">
             {{rev}}
@@ -270,11 +270,11 @@
       </iframe>
     </section>
 
-    
 
 
 
-   
+
+
 
 
     <div class="row mt-5" id="similar">
@@ -285,38 +285,49 @@
         </div>
       </div>
     </div>
-<div class="row align-items-center product-seller p-t-16px mb-5">
-      <div class="col-md-6">
-        <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
-          <img [alt]="product.product.store_name" [src]="
+  </section>
+  <div class="row align-items-center product-seller p-t-16px mb-5">
+    <div class="col-md-6">
+      <div class="display-flex align-items-center p-t-16px p-l-16px p-r-16px">
+        <img [alt]="product.product.store_name" [src]="
               'https://storage.googleapis.com/images-appla/profile_picture/' +
               product.product.store_avatar
             " class="product-seller__avatar m-r-8px" />
-          <div class="display-flex flex-column">
-            <span><a class="product-seller__link" href="https://angular.appla.cy/store/{{
-                  product.product.store_slug
-                }}">{{ product.product.store_name }}</a></span>
-            <span>
-              <fa-icon [icon]="faStar"></fa-icon>(0 reviews)
-            </span>
+        <div class="display-flex flex-column">
+          <div *ngIf="product.product.is_localized_banner === 2"
+            class="display-inline-flex align-items-center localized-banner"
+            ngbTooltip="European transfer supplier with local service by Appla" placement="top">
+            <span class="p-t-4px p-b-4px p-l-8px p-r-8px">Localized</span>
+            <fa-icon [icon]="faCheck"
+              class="localized-banner__icon display-inline-flex align-items-center justify-content-center"></fa-icon>
           </div>
+          <span><a class="product-seller__link" href="https://angular.appla.cy/store/{{
+                  product.product.store_slug
+                }}">{{ product.product.store_name }}</a>
+          </span>
+          <span>
+            <fa-icon [icon]="faStar"></fa-icon>(0 reviews)
+          </span>
         </div>
-
-      </div>
-      <div class="col-md-6 text-end">
-        <button (click)="followStore(product.product.store_id)" class="product-follow">
-          {{ 'PRODUCT_PAGE.FOLLOW' | translate }}
-        </button>
       </div>
     </div>
-</section>
-</div>
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="column-12">
-        <appla-advertise-banner></appla-advertise-banner>
-      </div>
+    <div class="col-md-6 text-end">
+      <button (click)="followStore(product.product.store_id)" class="product-follow">
+        {{ 'PRODUCT_PAGE.FOLLOW' | translate }}
+      </button>
     </div>
   </div>
-</section>
+
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="column-12">
+          <appla-advertise-banner></appla-advertise-banner>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>
