@@ -69,20 +69,30 @@
                 </button>
                 <div
                   *ngIf="(userState$ | async)?.user_data as user_data"
-                  class="p-8px"
+                  class="header-profile p-12px"
                   ngbDropdownMenu>
                   <div
-                    class="header-profile display-flex justify-content-space-between m-b-12px">
+                    class="display-flex m-b-12px p-b-8px header-profile__header">
                     <img
+                      *ngIf="user_data.avatar"
                       [alt]="user_data.name"
                       [src]="
                         'https://storage.googleapis.com/images-appla/profile_picture/' +
                         user_data.avatar
                       "
                       class="header-profile__avatar" />
-                    <span [innerHTML]="user_data.name"></span>
+                    <img
+                      *ngIf="!user_data.avatar"
+                      [alt]="user_data.name"
+                      class="header-profile__avatar"
+                      height="32"
+                      src="/assets/images/profile/profile.png"
+                      width="32" />
+                    <span [innerHTML]="user_data.name" class="m-auto"></span>
                   </div>
-                  <div class="display-flex justify-content-space-between">
+                  <div
+                    *ngIf="user_data.is_merchant"
+                    class="display-flex header-profile__cash justify-content-space-between">
                     <span>Appla cash</span>
                     <span>{{ user_data.appla_cash }}</span>
                   </div>

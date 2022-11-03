@@ -12,7 +12,7 @@
     "build:ssr": "ng build && ng run appla:server",
     "prerender": "ng run appla:prerender",
     "lint": "ng lint --fix",
-    "style-lint": "npx stylelint \"**/*.scss\"",
+    "style-lint": "npx stylelint \"**/*.ngscss\"",
     "prettier": "npx prettier --write ."
   },
   "private": true,

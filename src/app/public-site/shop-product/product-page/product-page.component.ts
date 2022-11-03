@@ -74,6 +74,8 @@ export interface ProductVariant {
 }
 
 interface ProductDetails {
+  is_localized_banner: number;
+  delivery_days: number;
   product_id: number;
   name: string;
   qty: number;
@@ -124,11 +126,12 @@ interface CanonicalData {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPageComponent implements OnInit {
-  public faPlus = iconSet.faPlus;
-  public faMinus = iconSet.faMinus;
-  public faStar = iconSet.faStar;
   // eslint-disable-next-line no-magic-numbers
-  public productQuantity: number = 1;
+  protected productQuantity: number = 1;
+  protected faPlus = iconSet.faPlus;
+  protected faMinus = iconSet.faMinus;
+  protected faStar = iconSet.faStar;
+  protected faCheck = iconSet.faCheck;
   protected product$: Observable<Product>;
   protected fullImage: string;
   protected thumbImage: string;
@@ -179,8 +182,8 @@ export class ProductPageComponent implements OnInit {
 
   protected increaseQuantity(productVariant: ProductVariant, qty: number) {
     if (
-      !productVariant?.quantity ||
-      productVariant.quantity === this.productQuantity
+      (productVariant && !productVariant?.quantity) ||
+      productVariant?.quantity === this.productQuantity
     ) {
       return;
     }

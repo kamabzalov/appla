@@ -28,6 +28,7 @@ import { ConfirmDialogComponent } from './components/modal/confirm-dialog/confir
 import { ToastComponent } from './components/toast/toast.component';
 import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
 import { ErrorImageDirective } from './directives/error-image/error-image.directive';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ErrorImageDirective } from './directives/error-image/error-image.direct
     ConfirmDialogComponent,
     ToastComponent,
     ErrorImageDirective,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
