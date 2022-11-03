@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
@@ -16,6 +17,7 @@ import { SuccessAddCartDialogComponent } from '@app/public-site/shop-product/mod
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SeoService } from '@app/services/seo/seo.service';
+
 
 export interface Product {
   meta: string;
@@ -74,8 +76,7 @@ export interface ProductVariant {
 }
 
 interface ProductDetails {
-  is_localized_banner: number;
-  delivery_days: number;
+
   product_id: number;
   name: string;
   qty: number;
@@ -105,10 +106,12 @@ interface ProductDetails {
   store_avatar: string;
   store_city: number;
   product_variant_id: number;
-  bpoints? : string;
-  reas2buy? : string;
-  video?: string;
-  review ? : string;
+  bpoints?: any;
+  reas2buy?: any;
+  review?: any;
+  video?: any;
+  delivery_days?: number;
+
 }
 
 interface ProductCategory {
@@ -130,18 +133,18 @@ interface CanonicalData {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPageComponent implements OnInit {
+  public faPlus = iconSet.faPlus;
+  public faMinus = iconSet.faMinus;
+  public faStar = iconSet.faStar;
   // eslint-disable-next-line no-magic-numbers
-  protected productQuantity: number = 1;
-  protected faPlus = iconSet.faPlus;
-  protected faMinus = iconSet.faMinus;
-  protected faStar = iconSet.faStar;
-  protected faCheck = iconSet.faCheck;
+  public productQuantity: number = 1;
   protected product$: Observable<Product>;
   protected fullImage: string;
   protected thumbImage: string;
   protected appLang: string;
   protected productVariant: ProductVariant;
-  protected active:string;
+
+  protected active: string;
   protected readonly fullImageUrl =
     'https://storage.googleapis.com/images-appla/production/thumbs_800/';
   protected readonly thumbImageUrl =
@@ -154,6 +157,8 @@ export class ProductPageComponent implements OnInit {
   protected mainImage: string;
   private productPicture: string;
 
+  product: any;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -163,8 +168,11 @@ export class ProductPageComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private toastService: ToastService,
     private localizeRouterService: LocalizeRouterService,
-    private seoService: SeoService
-  ) {}
+    private seoService: SeoService,
+
+
+
+  ) { }
 
   public ngOnInit(): void {
     this.appLang = this.localizeRouterService.parser.currentLang;
@@ -172,7 +180,8 @@ export class ProductPageComponent implements OnInit {
       untilDestroyed(this),
       switchMap(url => {
         return this.getProductData(url[0].path, url[1].path);
-      })
+      }),
+      tap((x) => this.product = x)
     );
   }
 
@@ -236,8 +245,8 @@ export class ProductPageComponent implements OnInit {
       this.appLang === 'en'
         ? 'Follow this store?'
         : 'ru'
-        ? 'Подписаться на этот магазин?'
-        : '';
+          ? 'Подписаться на этот магазин?'
+          : '';
     confirmModal.componentInstance.text = text;
     confirmModal.closed.subscribe(_ => {
       this.restService.followStore(merchantId).subscribe(res => {
@@ -290,10 +299,10 @@ export class ProductPageComponent implements OnInit {
   }
 
   protected scrollTo(id: string): void {
-    
-    const element  = document.getElementById(id)
- 
-    this.active =  id;
+
+    const element = document.getElementById(id)
+
+    this.active = id;
 
     if (element) {
       element.scrollIntoView({
@@ -301,20 +310,20 @@ export class ProductPageComponent implements OnInit {
         block: 'start',
         inline: "start"
       });
-    // window.scroll(0 , element.offsetTop - 35)
-    const y = element.getBoundingClientRect().top + window.pageYOffset - 10;
+      // window.scroll(0 , element.offsetTop - 35)
+      const y = element.getBoundingClientRect().top + window.pageYOffset - 10;
 
-    window.scrollTo({top: y, behavior: 'smooth'});
-    } 
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
 
 
   }
 
 
-  protected Strtoarray(str :  string) {
-    const result  =str.slice(1).split(',')
+  protected Strtoarray(str: string) {
+    const result = str.slice(1).split(',')
 
-   return result
-  
+    return result
+
   }
 }

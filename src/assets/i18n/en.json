@@ -169,7 +169,6 @@
     "SIMILAR_PRODUCTS": "Similar products",
     "FOLLOW": "Follow",
     "SPECIFICATIONS": "Specifications",
-<<<<<<< HEAD
 
     "REVIEW" :  "Review",
     "SHIPPING" : "Shipping Information",
@@ -177,8 +176,5 @@
     "REASON" :  "Reason to buy",
     "VIDEO" : "Video",
     "POINTS" : "Bullet Points"
-=======
-    "SHIPPING": "Shipping information"
->>>>>>> origin
   }
 }

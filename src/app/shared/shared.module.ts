@@ -29,6 +29,7 @@ import { ToastComponent } from './components/toast/toast.component';
 import { LoginDialogComponent } from '@app/shared/components/modal/login-dialog/login-dialog.component';
 import { ErrorImageDirective } from './directives/error-image/error-image.directive';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ScrollfixedDirective } from './directives/scrollcheck/scrollfixed.directive';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ToastComponent,
     ErrorImageDirective,
     NotFoundComponent,
+    ScrollfixedDirective
   ],
   imports: [
     CommonModule,
@@ -89,6 +91,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     SidenavComponent,
     CloseCanvasDirective,
     ErrorImageDirective,
+    ScrollfixedDirective
   ],
 })
 export class SharedModule {}
