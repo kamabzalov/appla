@@ -149,7 +149,7 @@
       <div Scrollfixed class="col-md-12 col-sm-12 col-sm-12__inline product__categoryrow">
         <ul id="myTab" class="container nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link scrollLink {{active === 'desc' ? 'active' : ''}}" href="#desc">
+            <a class="nav-link scrollLink {{active === 'desc' ? 'active' : ''}}" (click)="scrollTo('desc')">
               {{ 'PRODUCT_PAGE.DESCRIPTION' | translate }}
             </a>
           </li>
