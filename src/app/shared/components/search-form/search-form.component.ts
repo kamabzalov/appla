@@ -5,14 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-  Observable,
-  switchMap,
-} from 'rxjs';
+import { distinctUntilChanged, filter, map, Observable, switchMap } from 'rxjs';
 import { RestService } from '@app/services/rest/rest.service';
 import { iconSet } from '@app/shared/utils/icons';
 import {
@@ -78,7 +71,6 @@ export class SearchFormComponent implements OnInit {
   protected searchTypeAhead = (text$: Observable<string>) =>
     text$.pipe(
       // eslint-disable-next-line no-magic-numbers
-      debounceTime(450),
       distinctUntilChanged(),
       switchMap(query => {
         const lang = this.languageService.currentAppLang$.getValue()!.id;
