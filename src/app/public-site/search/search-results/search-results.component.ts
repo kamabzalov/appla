@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
@@ -73,7 +73,8 @@ export class SearchResultsComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private restService: RestService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   public ngOnInit() {
@@ -96,6 +97,7 @@ export class SearchResultsComponent implements OnInit {
         this.searchResults$ = this.restService
           .searchInShop(this.query)
           .pipe(tap(res => this.currentSearchState$.next(res)));
+        this.cdr.detectChanges();
       });
   }
 
