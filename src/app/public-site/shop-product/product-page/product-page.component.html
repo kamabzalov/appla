@@ -89,7 +89,7 @@
                   <ng-container>
                     <div class="display-flex align-items-center">
                       <select (change)="setVariant()" [(ngModel)]="productVariant" class="form-control__input"
-                        name="productVariant">
+                              name="productVariant">
                         <option *ngFor="let item of product.product_variant" [ngValue]="item">
                           <ng-container *ngFor="
                               let variant of item.product_variant | keyvalue
@@ -113,8 +113,8 @@
                     </button>
                     <div class="control-group flex-grow-1 m-b-0px">
                       <input [(ngModel)]="productQuantity" aria-label="Example text with button addon"
-                        class="product-order-form__input control-group__field" name="productQuantity" readonly
-                        type="number" />
+                             class="product-order-form__input control-group__field" name="productQuantity" readonly
+                             type="number" />
                     </div>
                     <button (click)="
                         increaseQuantity(productVariant, product.product.qty)
@@ -212,7 +212,7 @@
             </span>
           </li>
         </div>
-  
+
       </ul>
     </div>
     <div id="spec">
@@ -305,7 +305,7 @@
 
     </div>
 
- 
+
 
 
   </section>

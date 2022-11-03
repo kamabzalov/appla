@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
@@ -17,7 +16,6 @@ import { SuccessAddCartDialogComponent } from '@app/public-site/shop-product/mod
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SeoService } from '@app/services/seo/seo.service';
-
 
 export interface Product {
   meta: string;
@@ -76,7 +74,7 @@ export interface ProductVariant {
 }
 
 interface ProductDetails {
-  
+  delivery_days: number;
   product_id: number;
   name: string;
   qty: number;
@@ -106,12 +104,6 @@ interface ProductDetails {
   store_avatar: string;
   store_city: number;
   product_variant_id: number;
-  bpoints? : any;
-  reas2buy? : any;
-  review? : any;
-  video? : any;
-  delivery_days? : number;
- 
 }
 
 interface ProductCategory {
@@ -143,8 +135,7 @@ export class ProductPageComponent implements OnInit {
   protected thumbImage: string;
   protected appLang: string;
   protected productVariant: ProductVariant;
- 
-  protected  active : string;
+
   protected readonly fullImageUrl =
     'https://storage.googleapis.com/images-appla/production/thumbs_800/';
   protected readonly thumbImageUrl =
@@ -157,8 +148,6 @@ export class ProductPageComponent implements OnInit {
   protected mainImage: string;
   private productPicture: string;
 
-  product: any;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -168,11 +157,8 @@ export class ProductPageComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private toastService: ToastService,
     private localizeRouterService: LocalizeRouterService,
-    private seoService: SeoService,
-  
-
-
-  ) { }
+    private seoService: SeoService
+  ) {}
 
   public ngOnInit(): void {
     this.appLang = this.localizeRouterService.parser.currentLang;
@@ -180,8 +166,7 @@ export class ProductPageComponent implements OnInit {
       untilDestroyed(this),
       switchMap(url => {
         return this.getProductData(url[0].path, url[1].path);
-      }),
-      tap((x) => this.product = x)
+      })
     );
   }
 
@@ -245,8 +230,8 @@ export class ProductPageComponent implements OnInit {
       this.appLang === 'en'
         ? 'Follow this store?'
         : 'ru'
-          ? 'Подписаться на этот магазин?'
-          : '';
+        ? 'Подписаться на этот магазин?'
+        : '';
     confirmModal.componentInstance.text = text;
     confirmModal.closed.subscribe(_ => {
       this.restService.followStore(merchantId).subscribe(res => {
@@ -296,30 +281,5 @@ export class ProductPageComponent implements OnInit {
         this.seoService.setMetaOpenGraph('og:image', this.fullImage);
       })
     );
-  }
-
-  protected scrollTo(id: string): void {
-    
-    const element  = document.getElementById(id)
- 
-    this.active =  id;
-
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: "start"
-      })
-    } 
-
-
-  }
-
-
-  protected Strtoarray(str :  string) {
-    const result  =str.slice(1).split(',')
-
-   return result
-  
   }
 }
