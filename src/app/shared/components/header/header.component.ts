@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected openLoginModal() {
     this.modalService
       .open(LoginDialogComponent, { centered: true })
-      .dismissed.subscribe(res => {
+      .closed.subscribe(res => {
         this.restService.isAuthorized().subscribe();
       });
   }
