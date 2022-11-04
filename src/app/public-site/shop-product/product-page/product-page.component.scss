@@ -147,6 +147,23 @@
     font-size: 14px;
   }
 
+  .localized-banner {
+    @include mixins.border-radius(vars.$base-size * 3);
+    background: vars.$honey-yellow;
+    color: vars.$white;
+    cursor: pointer;
+    max-width: 100px;
+
+    &__icon {
+      @include mixins.border-radius(50%);
+      background: vars.$united-nations-blue;
+      color: vars.$white;
+      width: vars.$base-size * 6;
+      height: vars.$base-size * 6;
+      transform: scale(1.2);
+    }
+  }
+
   .accordion-specification {
     scrollbar-width: none;
     -ms-overflow-style: none;

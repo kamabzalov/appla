@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
@@ -75,6 +74,8 @@ export interface ProductVariant {
 }
 
 interface ProductDetails {
+  is_localized_banner: number;
+
   product_id: number;
   name: string;
   qty: number;
@@ -135,26 +136,24 @@ export class ProductPageComponent implements OnInit {
   public faStar = iconSet.faStar;
   // eslint-disable-next-line no-magic-numbers
   public productQuantity: number = 1;
+  product: any;
+  protected faCheck = iconSet.faCheck;
   protected product$: Observable<Product>;
   protected fullImage: string;
   protected thumbImage: string;
   protected appLang: string;
   protected productVariant: ProductVariant;
-
   protected active: string;
   protected readonly fullImageUrl =
     'https://storage.googleapis.com/images-appla/production/thumbs_800/';
   protected readonly thumbImageUrl =
     'https://storage.googleapis.com/images-appla/production/thumbs_400/';
-
   protected readonly defaultFullImageUrl =
     'https://storage.googleapis.com/images-appla/products/no_image150.png';
   protected readonly defaultThumbImageUrl =
     'https://storage.googleapis.com/images-appla/products/no_image400.png';
   protected mainImage: string;
   private productPicture: string;
-
-  product: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -253,6 +252,30 @@ export class ProductPageComponent implements OnInit {
     this.productQuantity = 1;
   }
 
+  protected scrollTo(id: string): void {
+    const element = document.getElementById(id);
+
+    this.active = id;
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start',
+      });
+      // window.scroll(0 , element.offsetTop - 35)
+      const y = element.getBoundingClientRect().top + window.pageYOffset - 10;
+
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }
+
+  protected Strtoarray(str: string) {
+    const result = str.slice(1).split(',');
+
+    return result;
+  }
+
   private getProductData(
     storeSlug: string,
     productSlug: string
@@ -292,27 +315,5 @@ export class ProductPageComponent implements OnInit {
     );
   }
 
-  protected scrollTo(id: string): void {
-    const element = document.getElementById(id);
-
-    this.active = id;
-
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'start',
-      });
-      // window.scroll(0 , element.offsetTop - 35)
-      const y = element.getBoundingClientRect().top + window.pageYOffset - 10;
-
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  }
-
-  protected Strtoarray(str: string) {
-    const result = str.slice(1).split(',');
-
-    return result;
-  }
+  
 }

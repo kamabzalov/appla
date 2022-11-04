@@ -1,14 +1,28 @@
 <appla-header></appla-header>
 <main class="not-found">
-  {{ lang }}
   <ng-container [ngSwitch]="lang">
-    <img *ngSwitchCase="'el'" src="/assets/images/not-found/error_404_el.png" />
-    <img
-      *ngSwitchCase="'en'"
-      src="/assets/images/not-found/error_404_en.webp" />
-    <img
-      *ngSwitchCase="'ru'"
-      src="/assets/images/not-found/error_404_ru.webp" />
+    <div class="display-none display-medium-block">
+      <img
+        *ngSwitchCase="'el'"
+        src="/assets/images/not-found/error_404_el.png" />
+      <img
+        *ngSwitchCase="'en'"
+        src="/assets/images/not-found/error_404_en.webp" />
+      <img
+        *ngSwitchCase="'ru'"
+        src="/assets/images/not-found/error_404_ru.webp" />
+    </div>
+    <div class="display-medium-none">
+      <img
+        *ngSwitchCase="'el'"
+        src="/assets/images/not-found/mobile_error_404_el.png" />
+      <img
+        *ngSwitchCase="'en'"
+        src="/assets/images/not-found/mobile_error_404_en.png" />
+      <img
+        *ngSwitchCase="'ru'"
+        src="/assets/images/not-found/mobile_error_404_ru.png" />
+    </div>
   </ng-container>
 </main>
 <appla-footer></appla-footer>

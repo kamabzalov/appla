@@ -33,6 +33,7 @@ export class LoginDialogComponent {
     }
     this.rest.login(email, password).subscribe(result => {
       if (result.status === 'success') {
+        this.rest.isAuthorized().subscribe();
         this.activeModal.dismiss(result.status);
         this.offCanvas.dismiss();
       } else {
