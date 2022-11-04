@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
 import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
@@ -136,14 +141,14 @@ export class SearchResultsComponent implements OnInit {
             if (this.category) {
               const categoryState = {
                 categories: currentSearchState.categories,
-                products: currentSearchState.products.concat(res.products),
+                products: [...currentSearchState.products , ...res.products],
               };
               this.currentSearchState$.next(categoryState);
               return categoryState;
             } else {
-              currentSearchState.products = currentSearchState.products.concat(
-                res.products
-              );
+              currentSearchState.products = [...currentSearchState.products, 
+                ...res.products
+              ]
               this.currentSearchState$.next(currentSearchState);
               return currentSearchState;
             }

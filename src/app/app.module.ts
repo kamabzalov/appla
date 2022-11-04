@@ -1,6 +1,9 @@
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, TransferState } from '@angular/platform-browser';
-
+import {
+  NgxGoogleAnalyticsModule,
+  NgxGoogleAnalyticsRouterModule,
+} from 'ngx-google-analytics';
 import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -59,6 +62,8 @@ import { CookieModule } from 'ngx-cookie';
     AppRoutingModule,
     SharedModule,
     NgbModule,
+    NgxGoogleAnalyticsModule.forRoot('UA-220874976-1'),
+    NgxGoogleAnalyticsRouterModule,
   ],
   providers: [
     {

@@ -54,7 +54,7 @@ import { ScrollfixedDirective } from './directives/scrollcheck/scrollfixed.direc
     ToastComponent,
     ErrorImageDirective,
     NotFoundComponent,
-    ScrollfixedDirective
+    ScrollfixedDirective,
   ],
   imports: [
     CommonModule,
@@ -91,7 +91,7 @@ import { ScrollfixedDirective } from './directives/scrollcheck/scrollfixed.direc
     SidenavComponent,
     CloseCanvasDirective,
     ErrorImageDirective,
-    ScrollfixedDirective
+    ScrollfixedDirective,
   ],
 })
 export class SharedModule {}

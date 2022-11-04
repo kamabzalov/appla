@@ -185,93 +185,95 @@
       <div
         Scrollfixed
         class="col-md-12 col-sm-12 col-sm-12__inline product__categoryrow">
-        <ul class="container nav nav-tabs" id="myTab">
+        <ul id="myTab" class="container nav nav-tabs">
           <li class="nav-item">
             <a
-              (click)="scrollTo('desc')"
               class="nav-link scrollLink {{
                 active === 'desc' ? 'active' : ''
-              }}">
+              }}"
+              (click)="scrollTo('desc')">
               {{ 'PRODUCT_PAGE.DESCRIPTION' | translate }}
             </a>
           </li>
           <li class="nav-item">
             <a
-              (click)="scrollTo('spec')"
               class="nav-link scrollLink {{
                 active === 'spec' ? 'active' : ''
-              }}">
+              }}"
+              (click)="scrollTo('spec')">
               {{ 'PRODUCT_PAGE.SPECIFICATIONS' | translate }}
             </a>
           </li>
           <li
+            class="nav-item"
             *ngIf="
               product.product.bpoints && product.product.bpoints.length > 3
-            "
-            class="nav-item">
+            ">
             <a
-              (click)="scrollTo('bpoints')"
               class="nav-link scrollLink {{
                 active === 'bpoints' ? 'active' : ''
-              }}">
+              }}"
+              (click)="scrollTo('bpoints')">
               {{ 'PRODUCT_PAGE.POINTS' | translate }}
             </a>
           </li>
           <li
+            class="nav-item"
             *ngIf="
               product.product.reas2buy && product.product?.reas2buy.length > 3
-            "
-            class="nav-item">
+            ">
             <a
-              (click)="scrollTo('reas2buy')"
               class="nav-link scrollLink {{
                 active === 'reas2buy' ? 'active' : ''
-              }}">
+              }}"
+              (click)="scrollTo('reas2buy')">
               {{ 'PRODUCT_PAGE.REASON' | translate }}
             </a>
           </li>
           <li
+            class="nav-item"
             *ngIf="
               product.product.delivery_days && product.product.delivery_days > 0
-            "
-            class="nav-item">
+            ">
             <a
-              (click)="scrollTo('shipping')"
               class="nav-link scrollLink {{
                 active === 'shipping' ? 'active' : ''
-              }}">
+              }}"
+              (click)="scrollTo('shipping')">
               {{ 'PRODUCT_PAGE.SHIPPING' | translate }}
             </a>
           </li>
 
           <li
-            *ngIf="product.product.review && product.product?.review.length > 3"
-            class="nav-item">
+            class="nav-item"
+            *ngIf="
+              product.product.review && product.product?.review.length > 3
+            ">
             <a
-              (click)="scrollTo('review')"
               class="nav-link scrollLink {{
                 active === 'review' ? 'active' : ''
-              }}">
+              }}"
+              (click)="scrollTo('review')">
               {{ 'PRODUCT_PAGE.REVIEW' | translate }}
             </a>
           </li>
           <li
-            *ngIf="product.product.video && product.product.video.length > 3"
-            class="nav-item">
+            class="nav-item"
+            *ngIf="product.product.video && product.product.video.length > 3">
             <a
-              (click)="scrollTo('video')"
               class="nav-link scrollLink {{
                 active === 'video' ? 'active' : ''
-              }}">
+              }}"
+              (click)="scrollTo('video')">
               {{ 'PRODUCT_PAGE.VIDEO' | translate }}
             </a>
           </li>
           <li class="nav-item">
             <a
-              (click)="scrollTo('similar')"
               class="nav-link scrollLink {{
                 active === 'similar' ? 'active' : ''
-              }}">
+              }}"
+              (click)="scrollTo('similar')">
               {{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}
             </a>
           </li>
@@ -307,10 +309,10 @@
         Specifications
       </h2>
       <div class="accordion-specification">
-        <div class="accordionWrapper" id="accordian">
+        <div id="accordian" class="accordionWrapper">
           <div
-            *ngFor="let spec of product.technical_detail | keyvalue"
-            class="accordionContainer active">
+            class="accordionContainer active"
+            *ngFor="let spec of product.technical_detail | keyvalue">
             <div class="accordionHeader">
               <p>{{ spec.key }}</p>
             </div>
@@ -339,9 +341,11 @@
     </div>
 
     <section
-      *ngIf="product.product.delivery_days && product.product.delivery_days > 0"
       id="shipping"
-      name="shipping">
+      name="shipping"
+      *ngIf="
+        product.product.delivery_days && product.product.delivery_days > 0
+      ">
       <h2 class="title-text-technical-specifications similar-products__title">
         Shipping Information
       </h2>
@@ -361,17 +365,23 @@
         </p>
       </div>
     </div>
-    <section
-      *ngIf="product.product.video && product.product.video.length > 3"
-      id="video"
-      name="video">
-      <iframe
-        height="315"
-        src="https://www.youtube.com/watch?v=Wq2Idwv38rE"
-        width="420">
-      </iframe>
-    </section>
 
+    <section
+      id="video"
+      name="video"
+      *ngIf="product.product.video && product.product.video.length > 3">
+      <div class="row mt-5">
+        <div class="col-9 col-md-6 col-sm-12">
+          <iframe
+            height="300"
+            src="https://www.youtube.com/embed/Wq2Idwv38rE"
+            title="Top Must have Televisions | Appla.cy Collection"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
     <div class="row mt-5" id="similar">
       <div class="col-12">
         <h5>{{ 'PRODUCT_PAGE.SIMILAR_PRODUCTS' | translate }}</h5>
@@ -392,16 +402,6 @@
             "
             class="product-seller__avatar m-r-8px" />
           <div class="display-flex flex-column">
-            <div
-              *ngIf="product.product.is_localized_banner === 1"
-              class="display-inline-flex align-items-center localized-banner"
-              ngbTooltip="European transfer supplier with local service by Appla"
-              placement="top">
-              <span class="p-t-4px p-b-4px p-l-8px p-r-8px">Localized</span>
-              <fa-icon
-                [icon]="faCheck"
-                class="localized-banner__icon display-inline-flex align-items-center justify-content-center"></fa-icon>
-            </div>
             <span
               ><a
                 class="product-seller__link"

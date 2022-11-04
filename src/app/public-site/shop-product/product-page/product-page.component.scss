@@ -22,13 +22,13 @@
 
       &__decrease {
         @include mixins.border-radius(
-            vars.$base-size * 5 0 0 vars.$base-size * 5
+          vars.$base-size * 5 0 0 vars.$base-size * 5
         );
       }
 
       &__increase {
         @include mixins.border-radius(
-            0 vars.$base-size * 5 vars.$base-size * 5 0
+          0 vars.$base-size * 5 vars.$base-size * 5 0
         );
       }
 
@@ -241,7 +241,7 @@
     cursor: pointer;
     border-radius: 4px;
     -webkit-transition: background-color 0.2s ease-in-out,
-    color 0.2s ease-in-out;
+      color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
     &:nth-child(odd) {
@@ -268,7 +268,7 @@
       color: #fbb040;
       height: fit-content;
       -webkit-transition: background-color 0.2s ease-in-out,
-      color 0.2s ease-in-out;
+        color 0.2s ease-in-out;
       transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     }
   }

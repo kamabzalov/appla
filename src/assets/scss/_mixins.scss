@@ -2,11 +2,9 @@
 @use 'vars';
 
 @mixin make-margins {
-
   @each $prefix, $val in vars.$media-breakpoints {
     @if $val != 0 {
       @media (max-width: $val) {
-
         @for $i from 0 through 300 {
           $i: $i * vars.$base-size;
           .m-#{$prefix}-t-#{$i} {
@@ -83,14 +81,12 @@
       }
     }
   }
-
 }
 
 @mixin make-paddings {
   @each $prefix, $val in vars.$media-breakpoints {
     @if $val != 0 {
       @media (max-width: $val) {
-
         @for $i from 0 through 300 {
           $i: $i * vars.$base-size;
           .p-#{$prefix}-t-#{$i} {
@@ -109,10 +105,8 @@
             padding: $i !important;
           }
         }
-
       }
     } @else {
-
       @for $i from 0 through 300 {
         $i: $i * vars.$base-size;
         .p-t-#{$i} {
@@ -131,7 +125,6 @@
           padding: $i !important;
         }
       }
-
     }
   }
 }
@@ -184,11 +177,11 @@
 @mixin make-card-content() {
   @include border-radius(vars.$base-size * 5);
   @include box-shadow(
-      0,
-      vars.$base-size,
-      vars.$base-size * 2,
-      null,
-      rgb(8 52 119 / 10%)
+    0,
+    vars.$base-size,
+    vars.$base-size * 2,
+    null,
+    rgb(8 52 119 / 10%)
   );
 
   background: vars.$white;

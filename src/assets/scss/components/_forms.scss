@@ -1,5 +1,5 @@
 /* stylelint-disable property-no-vendor-prefix */
-@use "../vars" as vars;
+@use '../vars' as vars;
 @use '../mixins' as mixins;
 
 .control-group {
@@ -17,7 +17,6 @@
     margin-bottom: 0;
   }
 }
-
 
 input:not([type='radio']):not([type='checkbox']),
 select {
