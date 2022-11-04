@@ -34,6 +34,7 @@ export class SidenavComponent implements OnInit {
   protected menu$: Observable<Menu[]>;
   protected currentLang: string;
   protected appLanguage: string;
+  protected appId: number;
   protected mode: 'menu' | 'category' = 'menu';
   protected activeCategory: Menu | null;
 
@@ -48,7 +49,8 @@ export class SidenavComponent implements OnInit {
 
   public ngOnInit() {
     this.appLanguage = this.languageService.currentAppLang$.getValue()!.code;
-    this.menu$ = this.restService.getSiteMenu();
+    this.appId = this.languageService.currentAppLang$.getValue()!.id;
+    this.menu$ = this.restService.getSiteMenu(this.appId);
   }
 
   protected openLoginModal() {
