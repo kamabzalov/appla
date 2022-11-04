@@ -141,14 +141,14 @@ export class SearchResultsComponent implements OnInit {
             if (this.category) {
               const categoryState = {
                 categories: currentSearchState.categories,
-                products: currentSearchState.products.concat(res.products),
+                products: [...currentSearchState.products , ...res.products],
               };
               this.currentSearchState$.next(categoryState);
               return categoryState;
             } else {
-              currentSearchState.products = currentSearchState.products.concat(
-                res.products
-              );
+              currentSearchState.products = [...currentSearchState.products, 
+                ...res.products
+              ]
               this.currentSearchState$.next(currentSearchState);
               return currentSearchState;
             }

@@ -62,7 +62,7 @@ import { CookieModule } from 'ngx-cookie';
     AppRoutingModule,
     SharedModule,
     NgbModule,
-    NgxGoogleAnalyticsModule.forRoot('GTM-59LK394'),
+    NgxGoogleAnalyticsModule.forRoot('UA-220874976-1'),
     NgxGoogleAnalyticsRouterModule,
   ],
   providers: [
