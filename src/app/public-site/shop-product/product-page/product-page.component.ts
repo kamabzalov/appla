@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '@app/services/rest/rest.service';
@@ -166,11 +166,10 @@ export class ProductPageComponent implements OnInit {
     private toastService: ToastService,
     private localizeRouterService: LocalizeRouterService,
     private seoService: SeoService,
-    private _renderer2: Renderer2,
-  ) { }
+    private _renderer2: Renderer2
+  ) {}
 
   public ngOnInit(): void {
-
     this.appLang = this.localizeRouterService.parser.currentLang;
     this.product$ = this.route.url.pipe(
       untilDestroyed(this),
@@ -179,10 +178,8 @@ export class ProductPageComponent implements OnInit {
       }),
       tap(x => (this.product = x))
     );
-
   }
 
- 
   protected decreaseQuantity() {
     // eslint-disable-next-line no-magic-numbers
     if (this.productQuantity <= 1) {
@@ -243,8 +240,8 @@ export class ProductPageComponent implements OnInit {
       this.appLang === 'en'
         ? 'Follow this store?'
         : 'ru'
-          ? 'Подписаться на этот магазин?'
-          : '';
+        ? 'Подписаться на этот магазин?'
+        : '';
     confirmModal.componentInstance.text = text;
     confirmModal.closed.subscribe(_ => {
       this.restService.followStore(merchantId).subscribe(res => {
@@ -254,7 +251,11 @@ export class ProductPageComponent implements OnInit {
   }
 
   protected setVariant() {
-    this.productQuantity = 1;
+    if (!this.productVariant.quantity) {
+      this.productQuantity = 0;
+    } else {
+      this.productQuantity = 1;
+    }
   }
 
   protected scrollTo(id: string): void {
@@ -319,8 +320,4 @@ export class ProductPageComponent implements OnInit {
       })
     );
   }
-
-
-
-
 }

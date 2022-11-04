@@ -8,7 +8,10 @@ import {
   FirstLevel,
   Menu,
 } from '@app/shared/components/header/navigation/navigation.component';
-import { LanguageService } from '@app/services/language/language.service';
+import {
+  AppLanguages,
+  LanguageService,
+} from '@app/services/language/language.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -29,6 +32,7 @@ export class SidenavComponent implements OnInit {
   protected isCategoriesCollapsed = true;
   protected isLangCollapse = true;
   protected menu$: Observable<Menu[]>;
+  protected currentLang: string;
   protected appLanguage: string;
   protected mode: 'menu' | 'category' = 'menu';
   protected activeCategory: Menu | null;
@@ -57,10 +61,13 @@ export class SidenavComponent implements OnInit {
     this.offcanvas.dismiss();
   }
 
-  protected setLang(langCode: string) {
+  protected setLang(langCode?: string) {
     let newUrl;
     if (langCode) {
+      this.currentLang = langCode;
       this.languageService.setLanguage(langCode);
+      const lang_id = AppLanguages.find(lang => lang.code === langCode)!.id;
+      this.restService.isAuthorized(lang_id).subscribe();
       const queryParams = this.route.snapshot.queryParams;
       const urlPath = decodeURIComponent(this.router.url)
         .split('/')

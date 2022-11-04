@@ -52,6 +52,7 @@ export class LoginDialogComponent {
           } else {
             this.toasterService.show(response.message);
           }
+          this.rest.isAuthorized().subscribe();
           this.activeModal.dismiss(response);
         });
     });
@@ -67,6 +68,7 @@ export class LoginDialogComponent {
           } else {
             this.toasterService.show(response.message);
           }
+          this.rest.isAuthorized().subscribe();
           this.activeModal.dismiss(response);
         });
     });

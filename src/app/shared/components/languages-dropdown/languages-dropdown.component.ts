@@ -38,17 +38,14 @@ export class LanguagesDropdownComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    // this.restService.userState$.subscribe(res => {
-    //   console.log(res);
-    //   if (res) {
-    //     this.currentLang = AppLanguages.find(
-    //       lang => lang.id === res.lang_id
-    //     )!.code;
-    //     this.languageService.setLanguage(this.currentLang);
-    //     this.setLang(this.currentLang);
-    //   }
-    //   this.cdr.markForCheck();
-    // });
+    this.restService.userState$.subscribe(res => {
+      if (res?.lang_id) {
+        this.currentLang = AppLanguages.find(
+          lang => lang.id === res.lang_id
+        )!.code;
+      }
+      this.cdr.markForCheck();
+    });
 
     this.restService.isAuthorized().subscribe(res => {
       if (res) {
