@@ -21,11 +21,15 @@
       }
 
       &__decrease {
-        @include mixins.border-radius(vars.$base-size * 5 0 0 vars.$base-size * 5);
+        @include mixins.border-radius(
+          vars.$base-size * 5 0 0 vars.$base-size * 5
+        );
       }
 
       &__increase {
-        @include mixins.border-radius(0 vars.$base-size * 5 vars.$base-size * 5 0);
+        @include mixins.border-radius(
+          0 vars.$base-size * 5 vars.$base-size * 5 0
+        );
       }
 
       &__input[name='productQuantity'] {
@@ -128,7 +132,6 @@
       text-decoration: none;
       color: black;
 
-
       &:hover {
         color: vars.$honey-yellow;
       }
@@ -220,8 +223,9 @@
     font-weight: 500;
     cursor: pointer;
     border-radius: 4px;
-    -webkit-transition: background-color .2s ease-in-out, color .2s ease-in-out;
-    transition: background-color .2s ease-in-out, color .2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
     &:nth-child(odd) {
       border: 1px solid #e4e6ef;
@@ -246,8 +250,9 @@
       bottom: 0;
       color: #fbb040;
       height: fit-content;
-      -webkit-transition: background-color .2s ease-in-out, color .2s ease-in-out;
-      transition: background-color .2s ease-in-out, color .2s ease-in-out;
+      -webkit-transition: background-color 0.2s ease-in-out,
+        color 0.2s ease-in-out;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     }
   }
 
@@ -255,7 +260,7 @@
     width: 100%;
     margin: 0 auto;
 
-    >* {
+    > * {
       margin: 0;
     }
 
@@ -342,13 +347,13 @@
   }
 
   section {
-    >h2 {
+    > h2 {
       text-transform: capitalize;
     }
   }
 
   .col-sm-12__inline {
-    >section {
+    > section {
       margin: 1em auto;
       min-height: 50px;
     }
@@ -372,10 +377,5 @@
 
   .categoryrow {
     z-index: 99;
-
   }
-
-
-
-
 }

@@ -9,9 +9,11 @@ $facebook-btn: #6aa1ed;
     background: vars.$bright-gray;
   }
 
-  &__submit, &__facebook, &__google {
+  &__submit,
+  &__facebook,
+  &__google {
     @include mixins.border-radius(10px);
-    
+
     color: vars.$white;
   }
 

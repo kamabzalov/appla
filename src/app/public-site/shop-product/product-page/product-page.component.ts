@@ -18,7 +18,6 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SeoService } from '@app/services/seo/seo.service';
 
-
 export interface Product {
   meta: string;
   title: string;
@@ -76,7 +75,6 @@ export interface ProductVariant {
 }
 
 interface ProductDetails {
-
   product_id: number;
   name: string;
   qty: number;
@@ -111,7 +109,6 @@ interface ProductDetails {
   review?: any;
   video?: any;
   delivery_days?: number;
-
 }
 
 interface ProductCategory {
@@ -168,11 +165,8 @@ export class ProductPageComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private toastService: ToastService,
     private localizeRouterService: LocalizeRouterService,
-    private seoService: SeoService,
-
-
-
-  ) { }
+    private seoService: SeoService
+  ) {}
 
   public ngOnInit(): void {
     this.appLang = this.localizeRouterService.parser.currentLang;
@@ -181,7 +175,7 @@ export class ProductPageComponent implements OnInit {
       switchMap(url => {
         return this.getProductData(url[0].path, url[1].path);
       }),
-      tap((x) => this.product = x)
+      tap(x => (this.product = x))
     );
   }
 
@@ -245,8 +239,8 @@ export class ProductPageComponent implements OnInit {
       this.appLang === 'en'
         ? 'Follow this store?'
         : 'ru'
-          ? 'Подписаться на этот магазин?'
-          : '';
+        ? 'Подписаться на этот магазин?'
+        : '';
     confirmModal.componentInstance.text = text;
     confirmModal.closed.subscribe(_ => {
       this.restService.followStore(merchantId).subscribe(res => {
@@ -299,8 +293,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   protected scrollTo(id: string): void {
-
-    const element = document.getElementById(id)
+    const element = document.getElementById(id);
 
     this.active = id;
 
@@ -308,22 +301,18 @@ export class ProductPageComponent implements OnInit {
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
-        inline: "start"
+        inline: 'start',
       });
       // window.scroll(0 , element.offsetTop - 35)
       const y = element.getBoundingClientRect().top + window.pageYOffset - 10;
 
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
-
-
   }
 
-
   protected Strtoarray(str: string) {
-    const result = str.slice(1).split(',')
+    const result = str.slice(1).split(',');
 
-    return result
-
+    return result;
   }
 }
